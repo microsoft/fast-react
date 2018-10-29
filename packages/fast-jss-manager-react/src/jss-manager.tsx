@@ -8,7 +8,7 @@ import {
     ManagedClasses,
 } from "@microsoft/fast-jss-manager";
 import { isEqual, merge } from "lodash-es";
-import { Consumer } from "./context";
+import { DesignSystemContext } from "./context";
 
 /**
  * State interface for JSS manager
@@ -32,17 +32,15 @@ export interface JSSManagerProps<S, C> extends JSSManagedComponentProps<S, C> {
     /**
      * The styles for the JSS manager to compile
      */
-    styles?: ComponentStyles<S, C>;
-
+    // styles?: ComponentStyles<S, C>;
     /**
      * The design-system to compile the styles with
      */
-    designSystem?: C;
-
+    // designSystem?: C;
     /**
      * Render the child component
      */
-    render: (managedClasses: { [className in keyof S]?: string }) => React.ReactNode;
+    // render: (managedClasses: { [className in keyof S]?: string }) => React.ReactNode;
 }
 
 /**
@@ -58,10 +56,11 @@ export type ManagedJSSProps<T, S, C> = Pick<
  * The JSSManger. This class manages JSSStyleSheet compilation and passes generated class-names
  * down to child component
  */
-export class JSSManager<S, C> extends React.Component<
+export abstract class JSSManager<S, C> extends React.Component<
     JSSManagerProps<S, C>,
     JSSManagerState
 > {
+    private static contextType: React.Context<unknown> = DesignSystemContext;
     /**
      * The style manager is responsible for attaching and detaching style elements when
      * components mount and un-mount
@@ -84,6 +83,11 @@ export class JSSManager<S, C> extends React.Component<
     private static index: number = -1000;
 
     /**
+     * The style object for the jss-manager to compile and apply to a component
+     */
+    protected styles?: ComponentStyles<S, C>;
+
+    /**
      * The stylesheet index for the JSSManager instance
      */
     private index: number;
@@ -94,7 +98,7 @@ export class JSSManager<S, C> extends React.Component<
         const state: JSSManagerState = {};
         this.index = JSSManager.index--;
 
-        if (Boolean(props.styles)) {
+        if (Boolean(this.styles)) {
             state.styleSheet = this.createStyleSheet();
             state.styleSheet.attach();
             state.styleSheet.update(props.designSystem);
@@ -137,11 +141,13 @@ export class JSSManager<S, C> extends React.Component<
             return;
         }
 
-        if (typeof this.props.styles === "function") {
+        if (typeof this.styles === "function") {
             this.resetStyleSheet();
         } else {
             this.state.styleSheet.update(this.props.designSystem);
         }
+
+        this.forceUpdate();
     }
 
     /**
@@ -183,9 +189,9 @@ export class JSSManager<S, C> extends React.Component<
      */
     private createStyleSheet(): any {
         const stylesheet: ComponentStyleSheet<S, C> =
-            typeof this.props.styles === "function"
-                ? this.props.styles(this.props.designSystem)
-                : this.props.styles;
+            typeof this.styles === "function"
+                ? this.styles(this.props.designSystem)
+                : this.styles;
 
         const jssSheet: any = jss.createStyleSheet(
             merge({}, stylesheet, this.props.jssStyleSheet),
@@ -204,7 +210,7 @@ export class JSSManager<S, C> extends React.Component<
      * Checks to see if this component has an associated dynamic stylesheet
      */
     private hasStyleSheet(): boolean {
-        return Boolean(this.props.styles || this.props.jssStyleSheet);
+        return Boolean(this.styles || this.props.jssStyleSheet);
     }
 
     /**
