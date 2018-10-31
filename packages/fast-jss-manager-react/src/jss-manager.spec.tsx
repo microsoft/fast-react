@@ -129,13 +129,17 @@ describe("The JSSManager", (): void => {
             />
         );
 
-        expect(objectStylesheetComponent.state("styleSheet")).toBeInstanceOf(StyleSheet);
-        expect(objectStylesheetComponent.state("styleSheet").attached).toBe(true);
-
-        expect(functionStylesheetComponent.state("styleSheet")).toBeInstanceOf(
+        expect(objectStylesheetComponent.state("primaryStyleSheet")).toBeInstanceOf(
             StyleSheet
         );
-        expect(functionStylesheetComponent.state("styleSheet").attached).toBe(true);
+        expect(objectStylesheetComponent.state("primaryStyleSheet").attached).toBe(true);
+
+        expect(functionStylesheetComponent.state("primaryStyleSheet")).toBeInstanceOf(
+            StyleSheet
+        );
+        expect(functionStylesheetComponent.state("primaryStyleSheet").attached).toBe(
+            true
+        );
     });
 
     test("should update an object stylesheet when the design-system changes", (): void => {
@@ -157,20 +161,22 @@ describe("The JSSManager", (): void => {
 
         const mock: any = jest.fn();
 
-        objectStylesheetComponent.state("styleSheet").update = mock;
+        objectStylesheetComponent.state("primaryStyleSheet").update = mock;
         objectStylesheetComponent.setProps({ designSystem: testDesignSystem });
 
         expect(mock.mock.calls).toHaveLength(1);
         expect(mock.mock.calls[0][0]).toEqual(testDesignSystem);
 
-        const functionSheet: any = functionStylesheetComponent.state("styleSheet");
+        const functionSheet: any = functionStylesheetComponent.state("primaryStyleSheet");
         functionStylesheetComponent.setProps({
             designSystem: testDesignSystem,
         });
 
         // Function stylesheets must be completely re-generated when the design-system changes,
         // so check identity
-        expect(functionStylesheetComponent.state("styleSheet")).not.toBe(functionSheet);
+        expect(functionStylesheetComponent.state("primaryStyleSheet")).not.toBe(
+            functionSheet
+        );
     });
 
     test("should remove stylesheets when unmounting", (): void => {
@@ -190,8 +196,8 @@ describe("The JSSManager", (): void => {
             />
         );
 
-        const objectSheet: any = objectStylesheetComponent.state("styleSheet");
-        const functionSheet: any = functionStylesheetComponent.state("styleSheet");
+        const objectSheet: any = objectStylesheetComponent.state("primaryStyleSheet");
+        const functionSheet: any = functionStylesheetComponent.state("primaryStyleSheet");
 
         expect(objectSheet.attached).toBe(true);
         expect(functionSheet.attached).toBe(true);
@@ -203,7 +209,19 @@ describe("The JSSManager", (): void => {
         expect(functionSheet.attached).toBe(false);
     });
 
-    test("should create a new stylesheet when stylesheet props are changed", () => {
+    test("should create a secondary stylesheet when jssStyleSheet is used", () => {
+        const rendered: any = shallow(
+            <JSSManager
+                jssStyleSheet={stylesheet}
+                designSystem={testDesignSystem}
+                render={renderChild}
+            />
+        );
+
+        expect(rendered.state("secondaryStyleSheet")).not.toBeUndefined();
+    });
+
+    test("should not update the primary stylesheet when jssStyleSheet props are changed", () => {
         const rendered: any = shallow(
             <JSSManager
                 styles={stylesheet}
@@ -212,11 +230,14 @@ describe("The JSSManager", (): void => {
             />
         );
 
-        const sheet: any = rendered.state("styleSheet");
+        const sheet: any = rendered.state("primaryStyleSheet");
+        sheet.update = jest.fn();
 
         rendered.setProps({ jssStyleSheet: { class: { color: "blue" } } });
 
-        expect(rendered.state("styleSheet")).not.toBe(sheet);
+        expect(rendered.state("primaryStyleSheet")).toBe(sheet);
+        expect(rendered.state("primaryStyleSheet").update).toBe(sheet.update);
+        expect(sheet.update).not.toHaveBeenCalled();
     });
 
     test("should store all stylesheets in the registry", (): void => {
@@ -253,8 +274,24 @@ describe("The JSSManager", (): void => {
             />
         );
 
-        expect(rendered.instance().index).toBeGreaterThan(
-            rendered.children().instance().index
+        expect(rendered.instance().primaryStylesheetIndex).toBeGreaterThan(
+            rendered.children().instance().primaryStylesheetIndex
         );
+    });
+
+    test("should assign a secondary stylesheet a higher index than a the primary stylesheet", () => {
+        const rendered: any = mount(
+            <JSSManager
+                styles={stylesheet}
+                jssStyleSheet={{ className: { color: "blue" } }}
+                designSystem={testDesignSystem}
+                render={renderChild}
+            />
+        );
+
+        expect(
+            rendered.state("primaryStyleSheet").options.index <
+                rendered.state("secondaryStyleSheet").options.index
+        ).toBeTruthy();
     });
 });
