@@ -100,7 +100,7 @@ export class JSSManager<S, C> extends React.Component<
 
         const state: JSSManagerState = {};
 
-        if (this.hasPrimaryStyleSheet) {
+        if (Boolean(this.props.styles)) {
             this.primaryStylesheetIndex = JSSManager.index--;
             state.primaryStyleSheet = this.createPrimaryStyleSheet();
             state.primaryStyleSheet.attach();
@@ -122,7 +122,7 @@ export class JSSManager<S, C> extends React.Component<
     }
 
     public componentWillUnmount(): void {
-        if (this.hasPrimaryStyleSheet) {
+        if (this.state.primaryStyleSheet) {
             this.removePrimaryStyleSheet();
 
             // Increment the global stylesheet index tracker when a component unmounts
@@ -140,13 +140,9 @@ export class JSSManager<S, C> extends React.Component<
      * Updates a dynamic stylesheet with context
      */
     public updatePrimaryStyleSheet(): void {
-        if (!this.hasPrimaryStyleSheet) {
-            return;
-        }
-
         if (typeof this.props.styles === "function") {
             this.resetPrimaryStyleSheet();
-        } else {
+        } else if (Boolean(this.state.primaryStyleSheet)) {
             this.state.primaryStyleSheet.update(this.props.designSystem);
         }
     }
@@ -171,13 +167,13 @@ export class JSSManager<S, C> extends React.Component<
                 props: JSSManagerProps<S, C>
             ): Partial<JSSManagerState> => {
                 return {
-                    primaryStyleSheet: this.hasPrimaryStyleSheet
+                    primaryStyleSheet: Boolean(this.props.styles)
                         ? this.createPrimaryStyleSheet()
                         : null,
                 };
             },
             (): void => {
-                if (this.hasPrimaryStyleSheet) {
+                if (Boolean(this.state.primaryStyleSheet)) {
                     this.state.primaryStyleSheet.attach().update(this.props.designSystem);
                 }
             }
@@ -205,23 +201,11 @@ export class JSSManager<S, C> extends React.Component<
     }
 
     /**
-     * Checks to see if this component has a primary stylesheet
-     */
-    private get hasPrimaryStyleSheet(): boolean {
-        return Boolean(this.props.styles);
-    }
-
-    /**
-     * Checks to see if this component has a secondary stylesheet
-     */
-    private get hasSecondaryStyleSheet(): boolean {
-        return Boolean(this.props.jssStyleSheet);
-    }
-
-    /**
      * returns the compiled classes
      */
     private classNames(): { [className in keyof S]?: string } {
-        return this.hasPrimaryStyleSheet ? this.state.primaryStyleSheet.classes : {};
+        return Boolean(this.state.primaryStyleSheet)
+            ? this.state.primaryStyleSheet.classes
+            : {};
     }
 }
