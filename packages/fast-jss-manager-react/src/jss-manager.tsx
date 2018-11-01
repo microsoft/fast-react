@@ -7,7 +7,7 @@ import {
     ComponentStyleSheet,
     ManagedClasses,
 } from "@microsoft/fast-jss-manager";
-import { isEqual, merge } from "lodash-es";
+import { isEqual, mergeWith } from "lodash-es";
 import { Consumer } from "./context";
 
 /**
@@ -26,11 +26,19 @@ export interface JSSManagerState {
 }
 
 /**
+ * Enum describing the types of stylesheets the JSSmanager manages
+ */
+export enum StyleSheetTypes {
+    primary,
+    secondary,
+}
+
+/**
  * Describes an interface for adjusting a styled component
  * per component instance
  */
 export interface JSSManagedComponentProps<S, C> {
-    jssStyleSheet?: Partial<ComponentStyles<S, C>>;
+    jssStyleSheet?: ComponentStyles<S, C>;
 }
 
 export interface JSSManagerProps<S, C> extends JSSManagedComponentProps<S, C> {
@@ -99,12 +107,27 @@ export class JSSManager<S, C> extends React.Component<
         super(props);
 
         const state: JSSManagerState = {};
+        this.primaryStylesheetIndex = JSSManager.index--;
 
-        if (Boolean(this.props.styles)) {
-            this.primaryStylesheetIndex = JSSManager.index--;
-            state.primaryStyleSheet = this.createPrimaryStyleSheet();
+        // We always want to render the secondary stylesheet after the primary stylesheet
+        this.secondaryStyleSheetIndex = this.primaryStylesheetIndex + 1;
+
+        if (this.hasPrimaryStyleSheet) {
+            state.primaryStyleSheet = this.createStyleSheet(
+                this.props.styles,
+                this.primaryStylesheetIndex
+            );
             state.primaryStyleSheet.attach();
             state.primaryStyleSheet.update(props.designSystem);
+        }
+
+        if (this.props.jssStyleSheet) {
+            state.secondaryStyleSheet = this.createStyleSheet(
+                this.props.jssStyleSheet,
+                this.secondaryStyleSheetIndex
+            );
+            state.secondaryStyleSheet.attach();
+            state.secondaryStyleSheet.update(props.designSystem);
         }
 
         this.state = state;
@@ -114,21 +137,56 @@ export class JSSManager<S, C> extends React.Component<
         prevProps: JSSManagerProps<S, C>,
         prevState: JSSManagerState
     ): void {
+        const jssStyleSheet: ComponentStyles<S, C> = this.props.jssStyleSheet;
+
         if (!isEqual(this.props.designSystem, prevProps.designSystem)) {
-            this.updatePrimaryStyleSheet();
+            if (this.hasPrimaryStyleSheet) {
+                this.updateStyleSheet(StyleSheetTypes.primary);
+            }
         }
 
-        // TODO: add update path for jssStyleSheet
+        if (prevProps.jssStyleSheet !== jssStyleSheet) {
+            if (!jssStyleSheet && this.state.secondaryStyleSheet) {
+                // If we don't have props, lets remove the stylesheet.
+                this.removeStyleSheet(this.state.secondaryStyleSheet);
+            } else if (this.props.jssStyleSheet && !this.state.secondaryStyleSheet) {
+                // If we do have props but no state, we need to create a stylesheet
+                // this.setState({
+                //     secondaryStyleSheet: this.createStyleSheet(this.props.jssStyleSheet, this.secondaryStyleSheetIndex)
+                // })
+                this.setState(
+                    (
+                        previousState: JSSManagerState,
+                        props: JSSManagerProps<S, C>
+                    ): Partial<JSSManagerState> => {
+                        return {
+                            secondaryStyleSheet: this.createStyleSheet(
+                                jssStyleSheet,
+                                this.secondaryStyleSheetIndex
+                            ),
+                        };
+                    },
+                    (): void => {
+                        this.state.secondaryStyleSheet
+                            .attach()
+                            .update(this.props.designSystem);
+                    }
+                );
+            } else {
+                // Otherwise, we should reset because the stylesheet itself has changed
+                this.resetStyleSheet(StyleSheetTypes.secondary);
+            }
+        }
     }
 
     public componentWillUnmount(): void {
-        if (this.state.primaryStyleSheet) {
-            this.removePrimaryStyleSheet();
+        // Increment the global stylesheet index tracker when a component unmounts
+        // so that we can recycle index values and avoid eventually running out of numbers
+        // if an application lives for a long time.
+        JSSManager.index++;
 
-            // Increment the global stylesheet index tracker when a component unmounts
-            // so that we can recycle index values and avoid eventually running out of numbers
-            // if an application lives for a long time.
-            JSSManager.index++;
+        if (this.hasPrimaryStyleSheet) {
+            this.removeStyleSheet(this.state.primaryStyleSheet);
         }
     }
 
@@ -139,60 +197,87 @@ export class JSSManager<S, C> extends React.Component<
     /**
      * Updates a dynamic stylesheet with context
      */
-    public updatePrimaryStyleSheet(): void {
-        if (typeof this.props.styles === "function") {
-            this.resetPrimaryStyleSheet();
-        } else if (Boolean(this.state.primaryStyleSheet)) {
-            this.state.primaryStyleSheet.update(this.props.designSystem);
+    private updateStyleSheet(sheetType: StyleSheetTypes): void {
+        const source: ComponentStyles<S, C> = this.styleSheetSourceByType(sheetType);
+        const jssSheet: any = this.jssSheetByType(sheetType);
+
+        if (typeof source === "function") {
+            this.resetStyleSheet(sheetType);
+        } else if (jssSheet && typeof jssSheet.update === "function") {
+            jssSheet.update(this.props.designSystem);
         }
+    }
+
+    /**
+     * Return the source of a type of stylesheet
+     */
+    private styleSheetSourceByType(sheetType: StyleSheetTypes): ComponentStyles<S, C> {
+        return sheetType === StyleSheetTypes.primary
+            ? this.props.styles
+            : this.props.jssStyleSheet;
+    }
+
+    /**
+     * Return the jss style sheet instance by type
+     */
+    private jssSheetByType(sheetType: StyleSheetTypes): any {
+        return sheetType === StyleSheetTypes.primary
+            ? this.state.primaryStyleSheet
+            : this.state.secondaryStyleSheet;
+    }
+
+    private sheetIndexByType(sheetType: StyleSheetTypes): number {
+        return sheetType === StyleSheetTypes.primary
+            ? this.primaryStylesheetIndex
+            : this.secondaryStyleSheetIndex;
     }
 
     /**
      * Remove a JSS stylesheet
      */
-    private removePrimaryStyleSheet(): void {
-        this.state.primaryStyleSheet.detach();
-        stylesheetRegistry.remove(this.state.primaryStyleSheet);
-        jss.removeStyleSheet(this.state.primaryStyleSheet);
+    private removeStyleSheet(sheet: any): void {
+        sheet.detach();
+        stylesheetRegistry.remove(sheet);
+        jss.removeStyleSheet(sheet);
     }
 
     /**
      * Reset a JSS stylesheet relative to current props
      */
-    private resetPrimaryStyleSheet(): void {
-        this.removePrimaryStyleSheet();
+    private resetStyleSheet(sheetType: StyleSheetTypes): void {
+        this.removeStyleSheet(this.jssSheetByType(sheetType));
         this.setState(
             (
                 previousState: JSSManagerState,
                 props: JSSManagerProps<S, C>
             ): Partial<JSSManagerState> => {
                 return {
-                    primaryStyleSheet: Boolean(this.props.styles)
-                        ? this.createPrimaryStyleSheet()
-                        : null,
+                    [sheetType === StyleSheetTypes.primary
+                        ? "primaryStyleSheet"
+                        : "secondaryStyleSheet"]: this.createStyleSheet(
+                        this.styleSheetSourceByType(sheetType),
+                        this.sheetIndexByType(sheetType)
+                    ),
                 };
             },
             (): void => {
-                if (Boolean(this.state.primaryStyleSheet)) {
-                    this.state.primaryStyleSheet.attach().update(this.props.designSystem);
-                }
+                this.jssSheetByType(sheetType)
+                    .attach()
+                    .update(this.props.designSystem);
             }
         );
     }
 
     /**
-     * Creates a JSS stylesheet from the dynamic portion of an associated style object and any style object passed
-     * as props
+     * Creates a secondary stylesheet
      */
-    private createPrimaryStyleSheet(): any {
+    private createStyleSheet(styles: ComponentStyles<S, C>, index: number): any {
         const stylesheet: ComponentStyleSheet<S, C> =
-            typeof this.props.styles === "function"
-                ? this.props.styles(this.props.designSystem)
-                : this.props.styles;
+            typeof styles === "function" ? styles(this.props.designSystem) : styles;
 
         const jssSheet: any = jss.createStyleSheet(stylesheet, {
             link: true,
-            index: this.primaryStylesheetIndex,
+            index,
         });
 
         stylesheetRegistry.add(jssSheet);
@@ -201,11 +286,33 @@ export class JSSManager<S, C> extends React.Component<
     }
 
     /**
+     * Checks to see if this component has a primary stylesheet
+     */
+    private get hasPrimaryStyleSheet(): boolean {
+        return Boolean(this.props.styles);
+    }
+
+    /**
      * returns the compiled classes
      */
     private classNames(): { [className in keyof S]?: string } {
-        return Boolean(this.state.primaryStyleSheet)
-            ? this.state.primaryStyleSheet.classes
-            : {};
+        return this.hasPrimaryStyleSheet && this.state.secondaryStyleSheet
+            ? mergeWith(
+                  this.state.primaryStyleSheet.classes,
+                  this.state.secondaryStyleSheet.classes,
+                  this.mergeClassNames
+              )
+            : this.state.secondaryStyleSheet
+                ? this.state.secondaryStyleSheet.classes
+                : this.hasPrimaryStyleSheet
+                    ? this.state.primaryStyleSheet.classes
+                    : {};
+    }
+
+    /**
+     * Merges class-names together
+     */
+    private mergeClassNames(objValue: string, srcValue: string): string {
+        return objValue.concat(" ", srcValue).trim();
     }
 }
