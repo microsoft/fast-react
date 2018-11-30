@@ -3,11 +3,6 @@
 <url> <loc>https://microsoft.github.io/fast-dna/help</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/fast-dna/en/help" /> </url>
 <url> <loc>https://microsoft.github.io/fast-dna/index</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/fast-dna/en/index" /> </url>
 <url> <loc>https://microsoft.github.io/fast-dna/users</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/fast-dna/en/users" /> </url>
-<url> <loc>https://microsoft.github.io/fast-dna/blog/2017/10/24/new-version-1.0.0</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
-<url> <loc>https://microsoft.github.io/fast-dna/blog/2017/09/26/adding-rss</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
-<url> <loc>https://microsoft.github.io/fast-dna/blog/2017/09/25/testing-rss</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
-<url> <loc>https://microsoft.github.io/fast-dna/blog/2017/04/10/blog-post-two</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
-<url> <loc>https://microsoft.github.io/fast-dna/blog/2016/03/11/blog-post</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://microsoft.github.io/fast-dna/docs/contributing/install</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/fast-dna/docs/contributing/install" /> </url>
 <url> <loc>https://microsoft.github.io/fast-dna/docs/contributing/policies</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/fast-dna/docs/contributing/policies" /> </url>
 <url> <loc>https://microsoft.github.io/fast-dna/docs/contributing/standards</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://microsoft.github.io/fast-dna/docs/contributing/standards" /> </url>
