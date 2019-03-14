@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>en/packages/fast-data-utilities-react/api/index · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;FAST Data utilities React&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="en/packages/fast-data-utilities-react/api/index · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://microsoft.github.io/fast-dna/index.html"/><meta property="og:description" content="&lt;p&gt;FAST Data utilities React&lt;/p&gt;
+"/><meta property="og:image" content="https://microsoft.github.io/fast-dna/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://microsoft.github.io/fast-dna/img/logo.png"/><link rel="shortcut icon" href="/fast-dna/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/fast-dna/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/fast-dna/"><img class="logo" src="/fast-dna/img/logo.svg" alt="Documentation"/><h2 class="headerTitleWithLogo">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/fast-dna/docs/en/contributing/install" target="_self">Guide</a></li><li class=""><a href="https://github.com/microsoft/fast-dna" target="_self">GitHub</a></li><li class=""><a href="https://explore.fastdna.net" target="_self">Components</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">en/packages/fast-data-utilities-react/api/index</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="fast-data-utilities-react"></a><a href="#fast-data-utilities-react" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FAST Data utilities React</h1>
+<p><strong>FAST Data utilities React has been deprecated. Use <a href="https://www.npmjs.com/package/@microsoft/fast-tooling-react">FAST Tooling React</a> instead.</strong></p>
+<p>React data utilities are used to map data to components and perform other actions that may be necessary to pass data to other FAST-DNA libraries for manipulation, data validation, or storage. It relies on the creation of relevant JSON schemas for components, JSON schemas for the purposes of React use additional keyword of <code>reactProperties</code> for React children with the &quot;type&quot; of &quot;children&quot;.</p>
+<h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<p><code>npm i --save @microsoft/fast-data-utilities-react</code></p>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<h3><a class="anchor" aria-hidden="true" id="mapdatatocomponent"></a><a href="#mapdatatocomponent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>mapDataToComponent</code></h3>
+<p>The <code>mapDataToComponent</code> function can be used to map data to a React component. It uses JSON Schema, IDs, as well as data to create components from plain data.</p>
+<p>An example of mapping data to a component from the <code>@microsoft/fast-data-utilities-react</code> package:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">"react-dom"</span>;
+<span class="hljs-keyword">import</span> { Dialog } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> dialogSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-base/dist/dialog/dialog.schema.json"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> headingSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/heading/heading.schema.json"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> paragraphSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/paragraph/paragraph.schema.json"</span>;
+<span class="hljs-keyword">import</span> { mapDataToComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-data-utilities-react"</span>;
+
+<span class="hljs-keyword">const</span> data = {
+    <span class="hljs-attr">visible</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">children</span>: [
+        {
+            <span class="hljs-attr">id</span>: headingSchema.id,
+            <span class="hljs-attr">props</span>: {
+                <span class="hljs-attr">children</span>: <span class="hljs-string">"Heading 1"</span>
+            }
+        },
+        {
+            <span class="hljs-attr">id</span>: paragraphSchema.id,
+            <span class="hljs-attr">props</span>: {
+                <span class="hljs-attr">children</span>: <span class="hljs-string">"Lorem ipsum."</span>
+            }
+        }
+    ]
+};
+
+<span class="hljs-keyword">const</span> childOptions = [
+    { <span class="hljs-attr">component</span>: Heading, <span class="hljs-attr">schema</span>: headingSchema },
+    { <span class="hljs-attr">component</span>: Paragraph, <span class="hljs-attr">schema</span>: paragraphSchema },
+];
+
+<span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"div"</span>);
+root.setAttribute(<span class="hljs-string">"id"</span>, <span class="hljs-string">"root"</span>);
+<span class="hljs-built_in">document</span>.body.appendChild(root);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>) </span>{
+    ReactDOM.render(
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Dialog</span> {<span class="hljs-attr">...mapDataToComponent</span>(<span class="hljs-attr">dialogSchema</span>, <span class="hljs-attr">data</span>, <span class="hljs-attr">childOptions</span>)} /&gt;</span>,
+        root
+    );
+}
+
+render();
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="plugins"></a><a href="#plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Plugins</h4>
+<p>As an optional argument to <code>mapDataToComponent</code>, plugins may be used. Plugins must be extended from the <code>Plugin</code> class export and provide a <code>resolver</code> method. In this way functional code can be mapped to a component.</p>
+<p>React render prop plugin example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> { mapDataToComponent, Plugin } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-data-utilities-react"</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+    resolver(data, childOption) {
+        <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">className</span>) =&gt;</span> {
+            <span class="hljs-keyword">return</span> React.createElement(
+                childOption.component,
+                <span class="hljs-built_in">Object</span>.assign({}, data.props, { className })
+            );
+        };
+    }
+}
+</code></pre>
+<p>Schema example for the React render prop plugin example:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/schema#"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Component with custom properties"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"component-with-react-render-prop"</span>,
+    <span class="hljs-attr">"reactProperties"</span>: {
+        <span class="hljs-attr">"children"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Children"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"children"</span>,
+            <span class="hljs-attr">"pluginId"</span>: <span class="hljs-string">"my-plugin"</span>
+        }
+    }
+}
+</code></pre>
+<pre><code class="hljs css language-jsx"><span class="hljs-comment">/**
+ * The plugins take a configuration that includes a string or an array of strings
+ * mapping them to schema properties which also have a `pluginId`
+ */</span>
+<span class="hljs-keyword">const</span> plugins = [
+    <span class="hljs-keyword">new</span> MyPlugin({
+        <span class="hljs-attr">id</span>: <span class="hljs-string">"my-plugin"</span>
+    })
+];
+
+mapDataToComponent(schema, data, childOptions, plugins);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getchildoptionbyschemaid"></a><a href="#getchildoptionbyschemaid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>getChildOptionBySchemaId</code></h3>
+<p>The <code>getChildOptionBySchemaId</code> accepts a list of child options and returns the one that matches the schema ID.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { getChildOptionBySchemaId } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-data-utilities-react"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> headingSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/heading/heading.schema.json"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> paragraphSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/paragraph/paragraph.schema.json"</span>;
+
+<span class="hljs-keyword">const</span> childOptions = [
+    { <span class="hljs-attr">component</span>: Heading, <span class="hljs-attr">schema</span>: headingSchema },
+    { <span class="hljs-attr">component</span>: Paragraph, <span class="hljs-attr">schema</span>: paragraphSchema },
+];
+
+<span class="hljs-keyword">const</span> headingChildOption = getChildOptionBySchemaId(headingSchema.id, childOptions); <span class="hljs-comment">// should be { component: Heading, schema: headingSchema }</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getdatalocationsofchildren"></a><a href="#getdatalocationsofchildren" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>getDataLocationsOfChildren</code></h3>
+<p>The <code>getDataLocationsOfChildren</code> returns any data locations of react children. This assumes that the</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { getDataLocationsOfChildren } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-data-utilities-react"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> headingSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/heading/heading.schema.json"</span>;
+
+<span class="hljs-keyword">const</span> headingData = {
+    <span class="hljs-attr">children</span>: <span class="hljs-string">"Hello world"</span>
+};
+
+<span class="hljs-keyword">const</span> dataLocationsOfChildren = getDataLocationsOfChildren(headingSchema, headingData, []); <span class="hljs-comment">// should be ["children"]</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="getpartialdata"></a><a href="#getpartialdata" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>getPartialData</code></h3>
+<p>The <code>getPartialData</code> function returns partial data based on a location path using the <code>lodash</code> path syntax.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { getPartialData } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-data-utilities-react"</span>;
+
+<span class="hljs-keyword">const</span> data = {
+    <span class="hljs-attr">foo</span>: {
+        <span class="hljs-attr">bar</span>: [
+            {
+                <span class="hljs-attr">bat</span>: <span class="hljs-string">"Hello world"</span>
+            }
+        ]
+    }
+}
+
+<span class="hljs-keyword">const</span> location = <span class="hljs-string">"foo.bar.0"</span>;
+
+<span class="hljs-keyword">const</span> partialData = getPartialData(location, data); <span class="hljs-comment">// should be { bat: "Hello world" }</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="mapschemalocationfromdatalocation"></a><a href="#mapschemalocationfromdatalocation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>mapSchemaLocationFromDataLocation</code></h3>
+<p>The <code>mapSchemaLocationFromDataLocation</code> takes a <code>lodash</code> path to data, the data and the corresponding schema to determine the schemas path to that data.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { mapSchemaLocationFromDataLocation } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-data-utilities-react"</span>;
+
+<span class="hljs-keyword">const</span> dataLocation = <span class="hljs-string">"children"</span>;
+<span class="hljs-keyword">const</span> data = {
+    <span class="hljs-attr">children</span>: <span class="hljs-string">"Hello world"</span>
+};
+<span class="hljs-keyword">const</span> schema = {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">reactProperties</span>: {
+        <span class="hljs-attr">children</span>: {
+            <span class="hljs-attr">type</span>: <span class="hljs-string">"children"</span>
+        }
+    }
+}
+
+<span class="hljs-keyword">const</span> schemaLocation = mapSchemaLocationFromDataLocation(dataLocation, data, schema); <span class="hljs-comment">// should be "reactProperties.children"</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="normalizedatalocation"></a><a href="#normalizedatalocation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>normalizeDataLocation</code></h3>
+<p>The <code>normalizeDataLocation</code> converts all property locations to <code>lodash</code> path dot notation and all array item references to bracket notation</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { normalizeDataLocation } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-data-utilities-react"</span>;
+
+<span class="hljs-keyword">const</span> dataLocation = <span class="hljs-string">"foo.bar[0].bat"</span>;
+<span class="hljs-keyword">const</span> data = {
+    <span class="hljs-attr">foo</span>: {
+        <span class="hljs-attr">bar</span>: [
+            {
+                <span class="hljs-attr">bat</span>: <span class="hljs-string">"Hello world"</span>
+            }
+        ]
+    }
+}
+<span class="hljs-keyword">const</span> normalizedDataLocation = normalizeDataLocation(dataLocation, data); <span class="hljs-comment">// should be "foo.bar.0.bat"</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="index"></a><a href="#index" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Index</h2>
+<h3><a class="anchor" aria-hidden="true" id="external-modules"></a><a href="#external-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>External modules</h3>
+<ul>
+<li><a href="modules/_index_.md">&quot;index&quot;</a></li>
+<li><a href="modules/_plugin_.md">&quot;plugin&quot;</a></li>
+</ul>
+<hr>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/1/2019 by Jane Chu</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#usage">Usage</a><ul class="toc-headings"><li><a href="#mapdatatocomponent"><code>mapDataToComponent</code></a></li><li><a href="#getchildoptionbyschemaid"><code>getChildOptionBySchemaId</code></a></li><li><a href="#getdatalocationsofchildren"><code>getDataLocationsOfChildren</code></a></li><li><a href="#getpartialdata"><code>getPartialData</code></a></li><li><a href="#mapschemalocationfromdatalocation"><code>mapSchemaLocationFromDataLocation</code></a></li><li><a href="#normalizedatalocation"><code>normalizeDataLocation</code></a></li></ul></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#external-modules">External modules</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Guides</h5><a href="/fast-dna/docs/en/en/contributing/install">Install</a><a href="/fast-dna/docs/en/en/packages/fast-animation">Packages</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/fast-dna" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/FcSNfg4" target="_blank" rel="noreferrer noopener">Discord</a><a href="https://twitter.com/FAST_DNA" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://medium.com/fast-dna" target="_blank" rel="noreferrer noopener">Blog</a><a href="https://github.com/Microsoft/fast-dna" target="_blank">GitHub</a><a class="github-button" href="https://github.com/microsoft/fast-dna" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star microsoft/fast-dna on GitHub">Star</a></div></section><section class="copyright">© Microsoft 2019</section></footer></div></body></html>

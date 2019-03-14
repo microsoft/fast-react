@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>en/packages/fast-form-generator-react/api/modules/_form_form_utilities_ · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;&lt;a href=&quot;../README.md&quot;&gt;@microsoft/fast-form-generator-react&lt;/a&gt; &amp;gt; &lt;a href=&quot;../modules/_form_form_utilities_.md&quot;&gt;&amp;quot;form/form.utilities&amp;quot;&lt;/a&gt;&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="en/packages/fast-form-generator-react/api/modules/_form_form_utilities_ · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://microsoft.github.io/fast-dna/index.html"/><meta property="og:description" content="&lt;p&gt;&lt;a href=&quot;../README.md&quot;&gt;@microsoft/fast-form-generator-react&lt;/a&gt; &amp;gt; &lt;a href=&quot;../modules/_form_form_utilities_.md&quot;&gt;&amp;quot;form/form.utilities&amp;quot;&lt;/a&gt;&lt;/p&gt;
+"/><meta property="og:image" content="https://microsoft.github.io/fast-dna/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://microsoft.github.io/fast-dna/img/logo.png"/><link rel="shortcut icon" href="/fast-dna/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/fast-dna/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/fast-dna/"><img class="logo" src="/fast-dna/img/logo.svg" alt="Documentation"/><h2 class="headerTitleWithLogo">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/fast-dna/docs/en/contributing/install" target="_self">Guide</a></li><li class=""><a href="https://github.com/microsoft/fast-dna" target="_self">GitHub</a></li><li class=""><a href="https://explore.fastdna.net" target="_self">Components</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">en/packages/fast-form-generator-react/api/modules/_form_form_utilities_</h1></header><article><div><span><p><a href="../README.md">@microsoft/fast-form-generator-react</a> &gt; <a href="../modules/_form_form_utilities_.md">&quot;form/form.utilities&quot;</a></p>
+<h1><a class="anchor" aria-hidden="true" id="external-module-form-formutilities"></a><a href="#external-module-form-formutilities" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>External module: &quot;form/form.utilities&quot;</h1>
+<h2><a class="anchor" aria-hidden="true" id="index"></a><a href="#index" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Index</h2>
+<h3><a class="anchor" aria-hidden="true" id="enumerations"></a><a href="#enumerations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enumerations</h3>
+<ul>
+<li><a href="../enums/_form_form_utilities_.propertykeyword.md">PropertyKeyword</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="interfaces"></a><a href="#interfaces" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interfaces</h3>
+<ul>
+<li><a href="../interfaces/_form_form_utilities_.breadcrumbitem.md">BreadcrumbItem</a></li>
+<li><a href="../interfaces/_form_form_utilities_.navigationitem.md">NavigationItem</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="type-aliases"></a><a href="#type-aliases" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type aliases</h3>
+<ul>
+<li><a href="_form_form_utilities_.md#handlebreadcrumbclick">HandleBreadcrumbClick</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="functions"></a><a href="#functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Functions</h3>
+<ul>
+<li><a href="_form_form_utilities_.md#getactivecomponentandsection">getActiveComponentAndSection</a></li>
+<li><a href="_form_form_utilities_.md#getbreadcrumbs">getBreadcrumbs</a></li>
+<li><a href="_form_form_utilities_.md#getcomponentbydatalocation">getComponentByDataLocation</a></li>
+<li><a href="_form_form_utilities_.md#getcurrentcomponentdatalocation">getCurrentComponentDataLocation</a></li>
+<li><a href="_form_form_utilities_.md#getdatacache">getDataCache</a></li>
+<li><a href="_form_form_utilities_.md#getlocationsfromsegments">getLocationsFromSegments</a></li>
+<li><a href="_form_form_utilities_.md#getnavigation">getNavigation</a></li>
+<li><a href="_form_form_utilities_.md#getnavigationitem">getNavigationItem</a></li>
+<li><a href="_form_form_utilities_.md#getreactdefaultchildren">getReactDefaultChildren</a></li>
+<li><a href="_form_form_utilities_.md#getschemabydatalocation">getSchemaByDataLocation</a></li>
+<li><a href="_form_form_utilities_.md#isrootlocation">isRootLocation</a></li>
+<li><a href="_form_form_utilities_.md#normalizeschemalocation">normalizeSchemaLocation</a></li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="type-aliases-1"></a><a href="#type-aliases-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type aliases</h2>
+<p><a id="handlebreadcrumbclick"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="handlebreadcrumbclick"></a><a href="#handlebreadcrumbclick" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HandleBreadcrumbClick</h3>
+<p><strong>Ƭ HandleBreadcrumbClick</strong>: <em><code>function</code></em></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L41">form/form.utilities.ts:41</a></em></p>
+<h4><a class="anchor" aria-hidden="true" id="type-declaration"></a><a href="#type-declaration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type declaration</h4>
+<p>▸(schemaLocation: <em><code>string</code></em>, dataLocation: <em><code>string</code></em>, schema: <em><code>any</code></em>): <a href="_form_form_props_.md#breadcrumbitemeventhandler">BreadcrumbItemEventHandler</a></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>schemaLocation</td><td><code>string</code></td></tr>
+<tr><td>dataLocation</td><td><code>string</code></td></tr>
+<tr><td>schema</td><td><code>any</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="_form_form_props_.md#breadcrumbitemeventhandler">BreadcrumbItemEventHandler</a></p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="functions-1"></a><a href="#functions-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Functions</h2>
+<p><a id="getactivecomponentandsection"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="getactivecomponentandsection"></a><a href="#getactivecomponentandsection" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getActiveComponentAndSection</h3>
+<p>▸ <strong>getActiveComponentAndSection</strong>(schemaLocation: <em><code>string</code></em>, dataLocation: <em><code>string</code></em>, schema?: <em><code>any</code></em>): <code>Partial</code>&lt;<a href="../interfaces/_form_form_props_.formstate.md">FormState</a>&gt;</p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L78">form/form.utilities.ts:78</a></em></p>
+<p>Determines the navigation from</p>
+<ul>
+<li>section links</li>
+<li>child components</li>
+<li>array items</li>
+<li>breadcrumb links</li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>schemaLocation</td><td><code>string</code></td></tr>
+<tr><td>dataLocation</td><td><code>string</code></td></tr>
+<tr><td><code>Optional</code> schema</td><td><code>any</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>Partial</code>&lt;<a href="../interfaces/_form_form_props_.formstate.md">FormState</a>&gt;</p>
+<hr>
+<p><a id="getbreadcrumbs"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="getbreadcrumbs"></a><a href="#getbreadcrumbs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getBreadcrumbs</h3>
+<p>▸ <strong>getBreadcrumbs</strong>(navigation: <em><a href="../interfaces/_form_form_utilities_.navigationitem.md">NavigationItem</a>[]</em>, handleClick: <em><a href="_form_form_utilities_.md#handlebreadcrumbclick">HandleBreadcrumbClick</a></em>): <a href="../interfaces/_form_form_utilities_.breadcrumbitem.md">BreadcrumbItem</a>[]</p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L279">form/form.utilities.ts:279</a></em></p>
+<p>Gets breadcrumbs from navigation items</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>navigation</td><td><a href="../interfaces/_form_form_utilities_.navigationitem.md">NavigationItem</a>[]</td></tr>
+<tr><td>handleClick</td><td><a href="_form_form_utilities_.md#handlebreadcrumbclick">HandleBreadcrumbClick</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="../interfaces/_form_form_utilities_.breadcrumbitem.md">BreadcrumbItem</a>[]</p>
+<hr>
+<p><a id="getcomponentbydatalocation"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="getcomponentbydatalocation"></a><a href="#getcomponentbydatalocation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getComponentByDataLocation</h3>
+<p>▸ <strong>getComponentByDataLocation</strong>(id: <em><code>string</code></em>, childOptions: <em><a href="../interfaces/_form_form_props_.formchildoptionitem.md">FormChildOptionItem</a>[]</em>): <code>any</code></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L327">form/form.utilities.ts:327</a></em></p>
+<p>Finds the component using the schema id</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>id</td><td><code>string</code></td></tr>
+<tr><td>childOptions</td><td><a href="../interfaces/_form_form_props_.formchildoptionitem.md">FormChildOptionItem</a>[]</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>any</code></p>
+<hr>
+<p><a id="getcurrentcomponentdatalocation"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="getcurrentcomponentdatalocation"></a><a href="#getcurrentcomponentdatalocation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getCurrentComponentDataLocation</h3>
+<p>▸ <strong>getCurrentComponentDataLocation</strong>(dataLocation: <em><code>string</code></em>, lastComponentDataLocation: <em><code>string</code></em>): <code>string</code></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L255">form/form.utilities.ts:255</a></em></p>
+<p>Gets the data location from the current component</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>dataLocation</td><td><code>string</code></td></tr>
+<tr><td>lastComponentDataLocation</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>string</code></p>
+<hr>
+<p><a id="getdatacache"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="getdatacache"></a><a href="#getdatacache" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getDataCache</h3>
+<p>▸ <strong>getDataCache</strong>(dataCache: <em><code>any</code></em>, newData: <em><code>any</code></em>): <code>any</code></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L51">form/form.utilities.ts:51</a></em></p>
+<p>Gets the data cache based on a new data object and previous data object</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>dataCache</td><td><code>any</code></td></tr>
+<tr><td>newData</td><td><code>any</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>any</code></p>
+<hr>
+<p><a id="getlocationsfromsegments"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="getlocationsfromsegments"></a><a href="#getlocationsfromsegments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getLocationsFromSegments</h3>
+<p>▸ <strong>getLocationsFromSegments</strong>(segments: <em><code>string</code>[]</em>): <code>string</code>[]</p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L103">form/form.utilities.ts:103</a></em></p>
+<p>Gets locations from individual location segments Example: getLocationsFromSegments([&quot;children[0].props.object&quot;]) output: [&quot;children[0]&quot;, &quot;children[0].props&quot;, &quot;children[0].props.object&quot;]</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>segments</td><td><code>string</code>[]</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>string</code>[]</p>
+<hr>
+<p><a id="getnavigation"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="getnavigation"></a><a href="#getnavigation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getNavigation</h3>
+<p>▸ <strong>getNavigation</strong>(dataLocation: <em><code>string</code></em>, data: <em><code>any</code></em>, schema: <em><code>any</code></em>, childOptions: <em><a href="../interfaces/_form_form_props_.formchildoptionitem.md">FormChildOptionItem</a>[]</em>): <a href="../interfaces/_form_form_utilities_.navigationitem.md">NavigationItem</a>[]</p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L112">form/form.utilities.ts:112</a></em></p>
+<p>Gets the navigational items</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>dataLocation</td><td><code>string</code></td></tr>
+<tr><td>data</td><td><code>any</code></td></tr>
+<tr><td>schema</td><td><code>any</code></td></tr>
+<tr><td>childOptions</td><td><a href="../interfaces/_form_form_props_.formchildoptionitem.md">FormChildOptionItem</a>[]</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="../interfaces/_form_form_utilities_.navigationitem.md">NavigationItem</a>[]</p>
+<hr>
+<p><a id="getnavigationitem"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="getnavigationitem"></a><a href="#getnavigationitem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getNavigationItem</h3>
+<p>▸ <strong>getNavigationItem</strong>(dataLocation: <em><code>string</code></em>, schemaLocation: <em><code>string</code></em>, schema: <em><code>any</code></em>, data: <em><code>any</code></em>): <a href="../interfaces/_form_form_utilities_.navigationitem.md">NavigationItem</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L224">form/form.utilities.ts:224</a></em></p>
+<p>Get a single navigation item</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>dataLocation</td><td><code>string</code></td></tr>
+<tr><td>schemaLocation</td><td><code>string</code></td></tr>
+<tr><td>schema</td><td><code>any</code></td></tr>
+<tr><td>data</td><td><code>any</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="../interfaces/_form_form_utilities_.navigationitem.md">NavigationItem</a></p>
+<hr>
+<p><a id="getreactdefaultchildren"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="getreactdefaultchildren"></a><a href="#getreactdefaultchildren" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getReactDefaultChildren</h3>
+<p>▸ <strong>getReactDefaultChildren</strong>(): <a href="../interfaces/_form_form_props_.formchildoptionitem.md">FormChildOptionItem</a>[]</p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L242">form/form.utilities.ts:242</a></em></p>
+<p>Get React's default children</p>
+<p><strong>Returns:</strong> <a href="../interfaces/_form_form_props_.formchildoptionitem.md">FormChildOptionItem</a>[]</p>
+<hr>
+<p><a id="getschemabydatalocation"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="getschemabydatalocation"></a><a href="#getschemabydatalocation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getSchemaByDataLocation</h3>
+<p>▸ <strong>getSchemaByDataLocation</strong>(currentSchema: <em><code>any</code></em>, data: <em><code>any</code></em>, dataLocation: <em><code>string</code></em>, childOptions: <em><a href="../interfaces/_form_form_props_.formchildoptionitem.md">FormChildOptionItem</a>[]</em>): <code>any</code></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L301">form/form.utilities.ts:301</a></em></p>
+<p>Finds the schema using the data location</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>currentSchema</td><td><code>any</code></td></tr>
+<tr><td>data</td><td><code>any</code></td></tr>
+<tr><td>dataLocation</td><td><code>string</code></td></tr>
+<tr><td>childOptions</td><td><a href="../interfaces/_form_form_props_.formchildoptionitem.md">FormChildOptionItem</a>[]</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>any</code></p>
+<hr>
+<p><a id="isrootlocation"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="isrootlocation"></a><a href="#isrootlocation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isRootLocation</h3>
+<p>▸ <strong>isRootLocation</strong>(location: <em><code>string</code></em>): <code>boolean</code></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L272">form/form.utilities.ts:272</a></em></p>
+<p>Check to see if we are on the root location</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>location</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>boolean</code></p>
+<hr>
+<p><a id="normalizeschemalocation"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="normalizeschemalocation"></a><a href="#normalizeschemalocation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>normalizeSchemaLocation</h3>
+<p>▸ <strong>normalizeSchemaLocation</strong>(schemaLocation: <em><code>string</code></em>): <code>string</code></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/16163d67/packages/fast-form-generator-react/src/form/form.utilities.ts#L265">form/form.utilities.ts:265</a></em></p>
+<p>Removes any references to array index</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>schemaLocation</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>string</code></p>
+<hr>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/13/2019 by Aaron Wentzel</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#enumerations">Enumerations</a></li><li><a href="#interfaces">Interfaces</a></li><li><a href="#type-aliases">Type aliases</a></li><li><a href="#functions">Functions</a></li></ul></li><li><a href="#type-aliases-1">Type aliases</a><ul class="toc-headings"><li><a href="#handlebreadcrumbclick">HandleBreadcrumbClick</a></li></ul></li><li><a href="#functions-1">Functions</a><ul class="toc-headings"><li><a href="#getactivecomponentandsection">getActiveComponentAndSection</a></li><li><a href="#getbreadcrumbs">getBreadcrumbs</a></li><li><a href="#getcomponentbydatalocation">getComponentByDataLocation</a></li><li><a href="#getcurrentcomponentdatalocation">getCurrentComponentDataLocation</a></li><li><a href="#getdatacache">getDataCache</a></li><li><a href="#getlocationsfromsegments">getLocationsFromSegments</a></li><li><a href="#getnavigation">getNavigation</a></li><li><a href="#getnavigationitem">getNavigationItem</a></li><li><a href="#getreactdefaultchildren">getReactDefaultChildren</a></li><li><a href="#getschemabydatalocation">getSchemaByDataLocation</a></li><li><a href="#isrootlocation">isRootLocation</a></li><li><a href="#normalizeschemalocation">normalizeSchemaLocation</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Guides</h5><a href="/fast-dna/docs/en/en/contributing/install">Install</a><a href="/fast-dna/docs/en/en/packages/fast-animation">Packages</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/fast-dna" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/FcSNfg4" target="_blank" rel="noreferrer noopener">Discord</a><a href="https://twitter.com/FAST_DNA" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://medium.com/fast-dna" target="_blank" rel="noreferrer noopener">Blog</a><a href="https://github.com/Microsoft/fast-dna" target="_blank">GitHub</a><a class="github-button" href="https://github.com/microsoft/fast-dna" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star microsoft/fast-dna on GitHub">Star</a></div></section><section class="copyright">© Microsoft 2019</section></footer></div></body></html>
