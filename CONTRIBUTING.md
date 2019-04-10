@@ -4,6 +4,9 @@
 
 ### Installing
 
+Install yarn:
+https://yarnpkg.com/lang/en/docs/install/
+
 Once the repo has been cloned, install Lerna:
 
 ```bash
@@ -13,13 +16,13 @@ npm install -g lerna
 Install dependencies in the root directory:
 
 ```bash
-npm install
+yarn install
 ```
 
 Install dependencies for packages within the project:
 
 ```bash
-lerna bootstrap
+lerna run prepare
 ```
 
 Learn more about [installing](https://microsoft.github.io/fast-dna/docs/en/contributing/install).
