@@ -8,6 +8,15 @@
   },
   "license": "MIT",
   "private": true,
+  "workspaces": {
+      "packages": [
+          "packages/*"
+      ],
+      "nohoist": [
+          "**/@types/**",
+          "**/jss"
+      ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Microsoft/fast-dna.git"
