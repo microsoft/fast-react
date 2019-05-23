@@ -69,11 +69,8 @@ const navigationProps: NavigationProps = {
 const managedClasses: NavigationClassNameContract = {
     navigation: "navigation-class",
     navigation_item: "navigation_item-class",
-    navigation_itemLink: "navigation_itemLink-class",
-    navigation_itemLink__active: "navigation_itemLink__active-class",
-    navigation_itemExpandListTrigger: "navigation_itemExpandListTrigger-class",
-    navigation_itemExpandListTrigger__active:
-        "navigation_itemExpandListTrigger__active-class",
+    navigation_itemContent: "navigation_itemContent-class",
+    navigation_itemContent__active: "navigation_itemContent__active-class",
     navigation_itemList: "navigation_itemList-class",
 };
 const treeItemSelector: string = "[role='treeitem']";
@@ -103,7 +100,7 @@ describe("Navigation", () => {
         expect(item).toHaveLength(1);
         const triggerItem: any = rendered.find(treeItemExpandListTriggerSelector);
         expect(triggerItem).toHaveLength(2);
-        expect(item.props().className).toEqual(managedClasses.navigation_itemLink);
+        expect(item.props().className).toEqual(managedClasses.navigation_itemContent);
         expect(item.props()["aria-level"]).toEqual(3);
         expect(item.props()["aria-setsize"]).toEqual(1);
         expect(item.props()["aria-posinset"]).toEqual(1);
@@ -167,11 +164,15 @@ describe("Navigation", () => {
         const itemTriggers: any = rendered.find(treeItemExpandListTriggerSelector);
         expect(item).toHaveLength(2);
         expect(itemTriggers).toHaveLength(2);
-        expect(item.at(0).props().className).toEqual(managedClasses.navigation_itemLink);
+        expect(item.at(0).props().className).toEqual(
+            managedClasses.navigation_itemContent
+        );
         expect(item.at(0).props()["aria-level"]).toEqual(3);
         expect(item.at(0).props()["aria-setsize"]).toEqual(2);
         expect(item.at(0).props()["aria-posinset"]).toEqual(1);
-        expect(item.at(1).props().className).toEqual(managedClasses.navigation_itemLink);
+        expect(item.at(1).props().className).toEqual(
+            managedClasses.navigation_itemContent
+        );
         expect(item.at(1).props()["aria-level"]).toEqual(3);
         expect(item.at(1).props()["aria-setsize"]).toEqual(2);
         expect(item.at(1).props()["aria-posinset"]).toEqual(2);
@@ -199,13 +200,13 @@ describe("Navigation", () => {
 
         expect(triggerItem).toHaveLength(1);
         expect(triggerItem.props().className).toEqual(
-            managedClasses.navigation_itemExpandListTrigger
+            managedClasses.navigation_itemContent
         );
         expect(triggerItem.parent().props()["aria-level"]).toEqual(2);
         expect(triggerItem.parent().props()["aria-setsize"]).toEqual(1);
         expect(triggerItem.parent().props()["aria-posinset"]).toEqual(1);
         expect(linkItem).toHaveLength(1);
-        expect(linkItem.props().className).toEqual(managedClasses.navigation_itemLink);
+        expect(linkItem.props().className).toEqual(managedClasses.navigation_itemContent);
         expect(linkItem.props()["aria-level"]).toEqual(5);
         expect(linkItem.props()["aria-setsize"]).toEqual(1);
         expect(linkItem.props()["aria-posinset"]).toEqual(1);
@@ -239,20 +240,20 @@ describe("Navigation", () => {
 
         expect(triggerItem).toHaveLength(1);
         expect(triggerItem.props().className).toEqual(
-            managedClasses.navigation_itemExpandListTrigger
+            managedClasses.navigation_itemContent
         );
         expect(triggerItem.parent().props()["aria-level"]).toEqual(2);
         expect(triggerItem.parent().props()["aria-setsize"]).toEqual(1);
         expect(triggerItem.parent().props()["aria-posinset"]).toEqual(1);
         expect(linkItem).toHaveLength(2);
         expect(linkItem.at(0).props().className).toEqual(
-            managedClasses.navigation_itemLink
+            managedClasses.navigation_itemContent
         );
         expect(linkItem.at(0).props()["aria-level"]).toEqual(5);
         expect(linkItem.at(0).props()["aria-setsize"]).toEqual(2);
         expect(linkItem.at(0).props()["aria-posinset"]).toEqual(1);
         expect(linkItem.at(1).props().className).toEqual(
-            managedClasses.navigation_itemLink
+            managedClasses.navigation_itemContent
         );
         expect(linkItem.at(1).props()["aria-level"]).toEqual(5);
         expect(linkItem.at(1).props()["aria-setsize"]).toEqual(2);
@@ -444,7 +445,7 @@ describe("Navigation", () => {
         const linkItem: any = rendered.find(treeItemEndPointSelector);
 
         expect(linkItem.at(0).props().className).toEqual(
-            managedClasses.navigation_itemLink
+            managedClasses.navigation_itemContent
         );
 
         linkItem.at(0).simulate("click");
@@ -455,8 +456,8 @@ describe("Navigation", () => {
                 .at(0)
                 .props().className
         ).toEqual(
-            `${managedClasses.navigation_itemLink} ${
-                managedClasses.navigation_itemLink__active
+            `${managedClasses.navigation_itemContent} ${
+                managedClasses.navigation_itemContent__active
             }`
         );
     });
@@ -470,7 +471,7 @@ describe("Navigation", () => {
         const triggerItem: any = rendered.find(treeItemExpandListTriggerSelector);
 
         expect(triggerItem.at(0).props().className).toEqual(
-            managedClasses.navigation_itemExpandListTrigger
+            managedClasses.navigation_itemContent
         );
 
         triggerItem.at(0).simulate("click");
@@ -481,8 +482,8 @@ describe("Navigation", () => {
                 .at(0)
                 .props().className
         ).toEqual(
-            `${managedClasses.navigation_itemExpandListTrigger} ${
-                managedClasses.navigation_itemExpandListTrigger__active
+            `${managedClasses.navigation_itemContent} ${
+                managedClasses.navigation_itemContent__active
             }`
         );
     });

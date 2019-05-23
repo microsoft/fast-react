@@ -4,16 +4,15 @@ import { TreeNavigation } from "./navigation.props";
 interface NavigationTreeItemProps {
     children?: React.ReactNode;
     className: string;
+    contentClassName: string;
     dataLocation: string;
     expanded: boolean;
     handleClick: React.MouseEventHandler<HTMLElement>;
     handleKeyUp: React.KeyboardEventHandler<HTMLElement>;
     level: number;
-    linkClassName: string;
     navigationLength: number;
     positionInNavigation: number;
     text: string;
-    triggerClassName: string;
 }
 
 export default function NavigationTreeItem(props: NavigationTreeItemProps): JSX.Element {
@@ -30,7 +29,7 @@ export default function NavigationTreeItem(props: NavigationTreeItemProps): JSX.
                 onKeyUp={props.handleKeyUp}
             >
                 <span
-                    className={props.triggerClassName}
+                    className={props.contentClassName}
                     onClick={props.handleClick}
                     onKeyUp={props.handleKeyUp}
                     tabIndex={0}
@@ -43,7 +42,7 @@ export default function NavigationTreeItem(props: NavigationTreeItemProps): JSX.
         ) : (
             <div className={props.className} role={"none"}>
                 <a
-                    className={props.linkClassName}
+                    className={props.contentClassName}
                     role={"treeitem"}
                     data-location={props.dataLocation}
                     aria-level={props.level}

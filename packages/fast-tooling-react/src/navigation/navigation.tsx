@@ -123,16 +123,15 @@ export default class Navigation extends Foundation<
             <NavigationTreeItem
                 key={index}
                 className={this.props.managedClasses.navigation_item}
+                contentClassName={this.getItemContentClassName(dataLocation)}
                 dataLocation={dataLocation}
                 expanded={this.isExpanded(dataLocation)}
                 handleClick={this.handleTreeItemClick(dataLocation)}
                 handleKeyUp={this.handleTreeItemKeyUp(dataLocation)}
                 level={level}
-                linkClassName={this.getLinkClassNames(dataLocation)}
                 navigationLength={navigationLength}
                 positionInNavigation={positionInNavigation}
                 text={navigation.text}
-                triggerClassName={this.getTriggerClassNames(dataLocation)}
                 children={
                     Array.isArray(navigation.items) && navigationLength > 0
                         ? this.renderTreeItemContainer(navigation.items, level)
@@ -264,27 +263,13 @@ export default class Navigation extends Foundation<
         }
     }
 
-    private getLinkClassNames(dataLocation: string): string {
-        let classes: string = get(this.props, "managedClasses.navigation_itemLink", "");
+    private getItemContentClassName(dataLocation: string): string {
+        let classes: string = this.props.managedClasses.navigation_itemContent;
 
         if (dataLocation === this.state.activeItem) {
             classes = `${classes} ${get(
                 this.props,
-                "managedClasses.navigation_itemLink__active",
-                ""
-            )}`;
-        }
-
-        return classes;
-    }
-
-    private getTriggerClassNames(dataLocation: string): string {
-        let classes: string = this.props.managedClasses.navigation_itemExpandListTrigger;
-
-        if (dataLocation === this.state.activeItem) {
-            classes = `${classes} ${get(
-                this.props,
-                "managedClasses.navigation_itemExpandListTrigger__active",
+                "managedClasses.navigation_itemContent__active",
                 ""
             )}`;
         }
