@@ -120,7 +120,7 @@ export default class Navigation extends Foundation<
         const dataLocation: string = navigation.dataLocation;
 
         return (
-            <NavigationTreeItem
+            <DraggableNavigationTreeItem
                 key={index}
                 className={this.props.managedClasses.navigation_item}
                 contentClassName={this.getItemContentClassName(dataLocation)}
