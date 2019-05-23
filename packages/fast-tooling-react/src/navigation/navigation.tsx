@@ -14,7 +14,7 @@ import {
     TreeNavigation,
 } from "./navigation.props";
 import { getNavigationFromData } from "./navigation.utilities";
-import NavigationTreeItem from "./navigation-tree-item";
+import { DraggableNavigationTreeItem, NavigationTreeItem } from "./navigation-tree-item";
 
 export default class Navigation extends Foundation<
     NavigationHandledProps,
@@ -132,6 +132,7 @@ export default class Navigation extends Foundation<
                 navigationLength={navigationLength}
                 positionInNavigation={positionInNavigation}
                 text={navigation.text}
+                type={navigation.type}
                 children={
                     Array.isArray(navigation.items) && navigationLength > 0
                         ? this.renderTreeItemContainer(navigation.items, level)
