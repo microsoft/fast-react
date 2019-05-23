@@ -98,7 +98,7 @@ describe("Navigation", () => {
             managedClasses,
         };
 
-        const rendered: any = shallow(<Navigation {...props} />);
+        const rendered: any = mount(<Navigation {...props} />);
         const item: any = rendered.find(treeItemEndPointSelector);
         expect(item).toHaveLength(1);
         const triggerItem: any = rendered.find(treeItemExpandListTriggerSelector);
@@ -162,7 +162,7 @@ describe("Navigation", () => {
             managedClasses,
         };
 
-        const rendered: any = shallow(<Navigation {...props} />);
+        const rendered: any = mount(<Navigation {...props} />);
         const item: any = rendered.find(treeItemEndPointSelector);
         const itemTriggers: any = rendered.find(treeItemExpandListTriggerSelector);
         expect(item).toHaveLength(2);
@@ -193,7 +193,7 @@ describe("Navigation", () => {
             managedClasses,
         };
 
-        const rendered: any = shallow(<Navigation {...props} />);
+        const rendered: any = mount(<Navigation {...props} />);
         const linkItem: any = rendered.find(treeItemEndPointSelector);
         const triggerItem: any = rendered.find(treeItemExpandListTriggerSelector).at(1);
 
@@ -233,7 +233,7 @@ describe("Navigation", () => {
             managedClasses,
         };
 
-        const rendered: any = shallow(<Navigation {...props} />);
+        const rendered: any = mount(<Navigation {...props} />);
         const linkItem: any = rendered.find(treeItemEndPointSelector);
         const triggerItem: any = rendered.find(treeItemExpandListTriggerSelector).at(1);
 
@@ -292,7 +292,7 @@ describe("Navigation", () => {
             managedClasses,
         };
 
-        const rendered: any = shallow(<Navigation {...props} />);
+        const rendered: any = mount(<Navigation {...props} />);
         const linkItem: any = rendered.find(treeItemEndPointSelector);
         const triggerItem: any = rendered.find(treeItemExpandListTriggerSelector);
 

@@ -14,6 +14,7 @@ import {
     TreeNavigation,
 } from "./navigation.props";
 import { getNavigationFromData } from "./navigation.utilities";
+import NavigationTreeItem from "./navigation-tree-item";
 
 export default class Navigation extends Foundation<
     NavigationHandledProps,
@@ -116,54 +117,28 @@ export default class Navigation extends Foundation<
         positionInNavigation: number,
         index: number
     ): React.ReactNode {
-        if (Array.isArray(navigation.items) && navigationLength > 0) {
-            return (
-                <div
-                    className={this.props.managedClasses.navigation_item}
-                    key={index}
-                    role={"treeitem"}
-                    aria-level={level}
-                    aria-setsize={navigationLength}
-                    aria-posinset={positionInNavigation}
-                    aria-expanded={this.isExpanded(navigation.dataLocation)}
-                    onClick={this.handleTreeItemClick(navigation.dataLocation)}
-                    onKeyUp={this.handleTreeItemKeyUp(navigation.dataLocation)}
-                >
-                    <span
-                        className={this.getTriggerClassNames(navigation.dataLocation)}
-                        onClick={this.handleTreeItemClick(navigation.dataLocation)}
-                        onKeyUp={this.handleTreeItemKeyUp(navigation.dataLocation)}
-                        tabIndex={0}
-                        data-location={navigation.dataLocation}
-                    >
-                        {navigation.text}
-                    </span>
-                    {this.renderTreeItemContainer(navigation.items, level)}
-                </div>
-            );
-        }
+        const dataLocation: string = navigation.dataLocation;
 
         return (
-            <div
-                className={this.props.managedClasses.navigation_item}
+            <NavigationTreeItem
                 key={index}
-                role={"none"}
-            >
-                <a
-                    className={this.getLinkClassNames(navigation.dataLocation)}
-                    role={"treeitem"}
-                    data-location={navigation.dataLocation}
-                    aria-level={level}
-                    aria-setsize={navigationLength}
-                    aria-posinset={positionInNavigation}
-                    href={"#"}
-                    onClick={this.handleTreeItemClick(navigation.dataLocation)}
-                    onKeyUp={this.handleTreeItemKeyUp(navigation.dataLocation)}
-                    tabIndex={0}
-                >
-                    {navigation.text}
-                </a>
-            </div>
+                className={this.props.managedClasses.navigation_item}
+                dataLocation={dataLocation}
+                expanded={this.isExpanded(dataLocation)}
+                handleClick={this.handleTreeItemClick(dataLocation)}
+                handleKeyUp={this.handleTreeItemKeyUp(dataLocation)}
+                level={level}
+                linkClassName={this.getLinkClassNames(dataLocation)}
+                navigationLength={navigationLength}
+                positionInNavigation={positionInNavigation}
+                text={navigation.text}
+                triggerClassName={this.getTriggerClassNames(dataLocation)}
+                children={
+                    Array.isArray(navigation.items) && navigationLength > 0
+                        ? this.renderTreeItemContainer(navigation.items, level)
+                        : void 0
+                }
+            />
         );
     }
 

@@ -77,6 +77,14 @@ export interface NavigationHandledProps
      * The location update
      */
     onLocationUpdate?: (dataLocation: string) => void;
+
+    /**
+     * If navigation items should enable drag to re-order. For this to work,
+     * the parent application will need to ensure the Navigation component is
+     * wrapped with a react-dnd backend. For more information on react-dnd backends,
+     * see http://react-dnd.github.io/react-dnd/docs/overview
+     */
+    dragAndDropReordering?: boolean;
 }
 
 export type NavigationProps = NavigationHandledProps & NavigationUnhandledProps;
