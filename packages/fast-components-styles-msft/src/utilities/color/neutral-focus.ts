@@ -10,7 +10,7 @@ import { ColorRecipe, colorRecipeFactory, Swatch, SwatchResolver } from "./commo
 import { DesignSystem } from "../../design-system";
 import { accentPalette, backgroundColor, neutralPalette } from "../design-system";
 
-const targetRatio: number = 4.5;
+const targetRatio: number = 3;
 const neutralContrast: SwatchResolver = swatchByContrast(backgroundColor)(neutralPalette)(
     (referenceColor: string, palette: Palette, designSystem: DesignSystem): number =>
         findClosestSwatchIndex(PaletteType.neutral, referenceColor)(designSystem)
@@ -45,4 +45,4 @@ export function neutralFocus(arg: any): any {
     } else {
         return neutralFocusAlgorithm(arg);
     }
-};
+}

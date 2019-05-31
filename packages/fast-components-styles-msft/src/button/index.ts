@@ -94,12 +94,12 @@ const primaryButtonInnerFocusRect: DesignSystemResolver<string> = swatchByContra
     (referenceIndex: number, palette: string[], designSystem: DesignSystem): 1 | -1 => {
         return isDarkMode({
             ...designSystem,
-            backgroundColor: neutralFocus(designSystem),
+            backgroundColor: palette[referenceIndex], // neutralFocus(designSystem),
         })
             ? -1
             : 1;
     }
-)((contrastRatio: number): boolean => contrastRatio >= 4.5);
+)((contrastRatio: number): boolean => contrastRatio >= 3);
 
 const styles: ComponentStyles<ButtonClassNameContract, DesignSystem> = {
     button: {
