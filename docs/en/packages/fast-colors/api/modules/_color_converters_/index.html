@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>en/packages/fast-colors/api/modules/_color_converters_ · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;&lt;a href=&quot;/fast-dna/docs/en/packages/fast-colors/api/&quot;&gt;@microsoft/fast-colors&lt;/a&gt; &amp;gt; &lt;a href=&quot;/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_&quot;&gt;&amp;quot;color-converters&amp;quot;&lt;/a&gt;&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="en/packages/fast-colors/api/modules/_color_converters_ · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://microsoft.github.io/fast-dna/"/><meta property="og:description" content="&lt;p&gt;&lt;a href=&quot;/fast-dna/docs/en/packages/fast-colors/api/&quot;&gt;@microsoft/fast-colors&lt;/a&gt; &amp;gt; &lt;a href=&quot;/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_&quot;&gt;&amp;quot;color-converters&amp;quot;&lt;/a&gt;&lt;/p&gt;
+"/><meta property="og:image" content="https://microsoft.github.io/fast-dna/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://microsoft.github.io/fast-dna/img/logo.png"/><link rel="shortcut icon" href="/fast-dna/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/fast-dna/js/scrollSpy.js"></script><link rel="stylesheet" href="/fast-dna/css/main.css"/><script src="/fast-dna/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/fast-dna/"><img class="logo" src="/fast-dna/img/logo.svg" alt="Documentation"/><h2 class="headerTitleWithLogo">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/fast-dna/docs/en/contributing/install" target="_self">Guide</a></li><li class=""><a href="https://github.com/microsoft/fast-dna" target="_self">GitHub</a></li><li class=""><a href="https://explore.fastdna.net" target="_self">Components</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">en/packages/fast-colors/api/modules/_color_converters_</h1></header><article><div><span><p><a href="/fast-dna/docs/en/packages/fast-colors/api/">@microsoft/fast-colors</a> &gt; <a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_">&quot;color-converters&quot;</a></p>
+<h1><a class="anchor" aria-hidden="true" id="external-module-color-converters"></a><a href="#external-module-color-converters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>External module: &quot;color-converters&quot;</h1>
+<h2><a class="anchor" aria-hidden="true" id="index"></a><a href="#index" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Index</h2>
+<h3><a class="anchor" aria-hidden="true" id="functions"></a><a href="#functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Functions</h3>
+<ul>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#contrastratio">contrastRatio</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#hsltorgb">hslToRGB</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#hsvtorgb">hsvToRGB</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#labtolch">labToLCH</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#labtorgb">labToRGB</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#labtoxyz">labToXYZ</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#lchtolab">lchToLAB</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#lchtorgb">lchToRGB</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#rgbtohsl">rgbToHSL</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#rgbtohsv">rgbToHSV</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#rgbtolab">rgbToLAB</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#rgbtolch">rgbToLCH</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#rgbtoluminance">rgbToLuminance</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#rgbtotemperature">rgbToTemperature</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#rgbtoxyz">rgbToXYZ</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#temperaturetorgb">temperatureToRGB</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#xyztolab">xyzToLAB</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-colors/api/modules/_color_converters_#xyztorgb">xyzToRGB</a></li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="functions-1"></a><a href="#functions-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Functions</h2>
+<p><a id="contrastratio"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="contrastratio"></a><a href="#contrastratio" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>contrastRatio</h3>
+<p>▸ <strong>contrastRatio</strong>(a: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></em>, b: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></em>): <code>number</code></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L36">color-converters.ts:36</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>a</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></td></tr>
+<tr><td>b</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>number</code></p>
+<hr>
+<p><a id="hsltorgb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="hsltorgb"></a><a href="#hsltorgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hslToRGB</h3>
+<p>▸ <strong>hslToRGB</strong>(hsl: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_hsl_.colorhsl">ColorHSL</a></em>, alpha?: <em><code>number</code></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L75">color-converters.ts:75</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default value</th></tr>
+</thead>
+<tbody>
+<tr><td>hsl</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_hsl_.colorhsl">ColorHSL</a></td><td>-</td></tr>
+<tr><td><code>Default value</code> alpha</td><td><code>number</code></td><td>1</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<hr>
+<p><a id="hsvtorgb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="hsvtorgb"></a><a href="#hsvtorgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>hsvToRGB</h3>
+<p>▸ <strong>hsvToRGB</strong>(hsv: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_hsv_.colorhsv">ColorHSV</a></em>, alpha?: <em><code>number</code></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L141">color-converters.ts:141</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default value</th></tr>
+</thead>
+<tbody>
+<tr><td>hsv</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_hsv_.colorhsv">ColorHSV</a></td><td>-</td></tr>
+<tr><td><code>Default value</code> alpha</td><td><code>number</code></td><td>1</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<hr>
+<p><a id="labtolch"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="labtolch"></a><a href="#labtolch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>labToLCH</h3>
+<p>▸ <strong>labToLCH</strong>(lab: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lch_.colorlch">ColorLCH</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L192">color-converters.ts:192</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>lab</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lch_.colorlch">ColorLCH</a></p>
+<hr>
+<p><a id="labtorgb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="labtorgb"></a><a href="#labtorgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>labToRGB</h3>
+<p>▸ <strong>labToRGB</strong>(lab: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></em>, alpha?: <em><code>number</code></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L309">color-converters.ts:309</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default value</th></tr>
+</thead>
+<tbody>
+<tr><td>lab</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></td><td>-</td></tr>
+<tr><td><code>Default value</code> alpha</td><td><code>number</code></td><td>1</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<hr>
+<p><a id="labtoxyz"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="labtoxyz"></a><a href="#labtoxyz" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>labToXYZ</h3>
+<p>▸ <strong>labToXYZ</strong>(lab: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_xyz_.colorxyz">ColorXYZ</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L205">color-converters.ts:205</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>lab</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_xyz_.colorxyz">ColorXYZ</a></p>
+<hr>
+<p><a id="lchtolab"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="lchtolab"></a><a href="#lchtolab" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>lchToLAB</h3>
+<p>▸ <strong>lchToLAB</strong>(lch: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lch_.colorlch">ColorLCH</a></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L178">color-converters.ts:178</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>lch</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lch_.colorlch">ColorLCH</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></p>
+<hr>
+<p><a id="lchtorgb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="lchtorgb"></a><a href="#lchtorgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>lchToRGB</h3>
+<p>▸ <strong>lchToRGB</strong>(lch: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lch_.colorlch">ColorLCH</a></em>, alpha?: <em><code>number</code></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L318">color-converters.ts:318</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default value</th></tr>
+</thead>
+<tbody>
+<tr><td>lch</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lch_.colorlch">ColorLCH</a></td><td>-</td></tr>
+<tr><td><code>Default value</code> alpha</td><td><code>number</code></td><td>1</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<hr>
+<p><a id="rgbtohsl"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="rgbtohsl"></a><a href="#rgbtohsl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rgbToHSL</h3>
+<p>▸ <strong>rgbToHSL</strong>(rgb: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_hsl_.colorhsl">ColorHSL</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L46">color-converters.ts:46</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>rgb</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_hsl_.colorhsl">ColorHSL</a></p>
+<hr>
+<p><a id="rgbtohsv"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="rgbtohsv"></a><a href="#rgbtohsv" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rgbToHSV</h3>
+<p>▸ <strong>rgbToHSV</strong>(rgb: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_hsv_.colorhsv">ColorHSV</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L114">color-converters.ts:114</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>rgb</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_hsv_.colorhsv">ColorHSV</a></p>
+<hr>
+<p><a id="rgbtolab"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="rgbtolab"></a><a href="#rgbtolab" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rgbToLAB</h3>
+<p>▸ <strong>rgbToLAB</strong>(rgb: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L304">color-converters.ts:304</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>rgb</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></p>
+<hr>
+<p><a id="rgbtolch"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="rgbtolch"></a><a href="#rgbtolch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rgbToLCH</h3>
+<p>▸ <strong>rgbToLCH</strong>(rgb: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lch_.colorlch">ColorLCH</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L314">color-converters.ts:314</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>rgb</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lch_.colorlch">ColorLCH</a></p>
+<hr>
+<p><a id="rgbtoluminance"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="rgbtoluminance"></a><a href="#rgbtoluminance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rgbToLuminance</h3>
+<p>▸ <strong>rgbToLuminance</strong>(rgb: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></em>): <code>number</code></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L20">color-converters.ts:20</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>rgb</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>number</code></p>
+<hr>
+<p><a id="rgbtotemperature"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="rgbtotemperature"></a><a href="#rgbtotemperature" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rgbToTemperature</h3>
+<p>▸ <strong>rgbToTemperature</strong>(rgb: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></em>): <code>number</code></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L366">color-converters.ts:366</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>rgb</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>number</code></p>
+<hr>
+<p><a id="rgbtoxyz"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="rgbtoxyz"></a><a href="#rgbtoxyz" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>rgbToXYZ</h3>
+<p>▸ <strong>rgbToXYZ</strong>(rgb: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_xyz_.colorxyz">ColorXYZ</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L262">color-converters.ts:262</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>rgb</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_xyz_.colorxyz">ColorXYZ</a></p>
+<hr>
+<p><a id="temperaturetorgb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="temperaturetorgb"></a><a href="#temperaturetorgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>temperatureToRGB</h3>
+<p>▸ <strong>temperatureToRGB</strong>(tempKelvin: <em><code>number</code></em>, alpha?: <em><code>number</code></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L322">color-converters.ts:322</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default value</th></tr>
+</thead>
+<tbody>
+<tr><td>tempKelvin</td><td><code>number</code></td><td>-</td></tr>
+<tr><td><code>Default value</code> alpha</td><td><code>number</code></td><td>1</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<hr>
+<p><a id="xyztolab"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="xyztolab"></a><a href="#xyztolab" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>xyzToLAB</h3>
+<p>▸ <strong>xyzToLAB</strong>(xyz: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_xyz_.colorxyz">ColorXYZ</a></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L242">color-converters.ts:242</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>xyz</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_xyz_.colorxyz">ColorXYZ</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_lab_.colorlab">ColorLAB</a></p>
+<hr>
+<p><a id="xyztorgb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="xyztorgb"></a><a href="#xyztorgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>xyzToRGB</h3>
+<p>▸ <strong>xyzToRGB</strong>(xyz: <em><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_xyz_.colorxyz">ColorXYZ</a></em>, alpha?: <em><code>number</code></em>): <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<p><em>Defined in <a href="https://github.com/Microsoft/fast-dna/blob/9b8480a/packages/fast-colors/src/color-converters.ts#L282">color-converters.ts:282</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default value</th></tr>
+</thead>
+<tbody>
+<tr><td>xyz</td><td><a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_xyz_.colorxyz">ColorXYZ</a></td><td>-</td></tr>
+<tr><td><code>Default value</code> alpha</td><td><code>number</code></td><td>1</td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/fast-dna/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a></p>
+<hr>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#functions">Functions</a></li></ul></li><li><a href="#functions-1">Functions</a><ul class="toc-headings"><li><a href="#contrastratio">contrastRatio</a></li><li><a href="#hsltorgb">hslToRGB</a></li><li><a href="#hsvtorgb">hsvToRGB</a></li><li><a href="#labtolch">labToLCH</a></li><li><a href="#labtorgb">labToRGB</a></li><li><a href="#labtoxyz">labToXYZ</a></li><li><a href="#lchtolab">lchToLAB</a></li><li><a href="#lchtorgb">lchToRGB</a></li><li><a href="#rgbtohsl">rgbToHSL</a></li><li><a href="#rgbtohsv">rgbToHSV</a></li><li><a href="#rgbtolab">rgbToLAB</a></li><li><a href="#rgbtolch">rgbToLCH</a></li><li><a href="#rgbtoluminance">rgbToLuminance</a></li><li><a href="#rgbtotemperature">rgbToTemperature</a></li><li><a href="#rgbtoxyz">rgbToXYZ</a></li><li><a href="#temperaturetorgb">temperatureToRGB</a></li><li><a href="#xyztolab">xyzToLAB</a></li><li><a href="#xyztorgb">xyzToRGB</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Guides</h5><a href="https://microsoft.github.io/fast-dna/docs/en/contributing/install">Install</a><a href="https://microsoft.github.io/fast-dna/docs/en/packages/fast-animation/">Packages</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/fast-dna" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/FcSNfg4" target="_blank" rel="noreferrer noopener">Discord</a><a href="https://twitter.com/FAST_DNA" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://medium.com/fast-dna" target="_blank" rel="noreferrer noopener">Blog</a><a href="https://github.com/Microsoft/fast-dna" target="_blank">GitHub</a><a class="github-button" href="https://github.com/microsoft/fast-dna" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star microsoft/fast-dna on GitHub">Star</a></div></section><section class="copyright">© Microsoft 2019</section></footer></div></body></html>
