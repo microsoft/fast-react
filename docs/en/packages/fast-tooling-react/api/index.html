@@ -1,0 +1,1128 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>en/packages/fast-tooling-react/api/index · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;FAST Tooling React&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="en/packages/fast-tooling-react/api/index · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://microsoft.github.io/fast-dna/"/><meta property="og:description" content="&lt;p&gt;FAST Tooling React&lt;/p&gt;
+"/><meta property="og:image" content="https://microsoft.github.io/fast-dna/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://microsoft.github.io/fast-dna/img/logo.png"/><link rel="shortcut icon" href="/fast-dna/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/fast-dna/js/scrollSpy.js"></script><link rel="stylesheet" href="/fast-dna/css/main.css"/><script src="/fast-dna/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/fast-dna/"><img class="logo" src="/fast-dna/img/logo.svg" alt="Documentation"/><h2 class="headerTitleWithLogo">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/fast-dna/docs/en/contributing/install" target="_self">Guide</a></li><li class=""><a href="https://github.com/microsoft/fast-dna" target="_self">GitHub</a></li><li class=""><a href="https://explore.fastdna.net" target="_self">Components</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">en/packages/fast-tooling-react/api/index</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="fast-tooling-react"></a><a href="#fast-tooling-react" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FAST Tooling React</h1>
+<p>The tooling available in FAST Tooling React can be used together to create UI for manipulating serializable data and viewing React components.</p>
+<p><img src="https://img.shields.io/badge/ES6-Supported-yellow.svg?style=for-the-badge&amp;logo=JavaScript" alt="JavaScript">   <img src="https://img.shields.io/badge/TypeScript-Supported-blue.svg?style=for-the-badge" alt="TypeScript"></p>
+<ul>
+<li><a href="#benefits">Benefits</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#concepts">Concepts</a>
+<ul>
+<li><a href="#json-schema">JSON Schema</a></li>
+<li><a href="#data-structures-for-react-children">Data structures for React Children</a></li>
+</ul></li>
+<li><a href="#data-utilities">Data utilities</a>
+<ul>
+<li><a href="#mapping-data-to-a-react-component">Mapping data to a React component</a>
+<ul>
+<li><a href="#child-options">Child options</a></li>
+<li><a href="#using-plugins">Using plugins</a></li>
+</ul></li>
+<li><a href="#mapping-data-to-a-code-preview">Mapping data to a code preview</a></li>
+<li><a href="#generating-data-from-a-json-schema">Generating data from a JSON schema</a></li>
+</ul></li>
+<li><a href="#navigation">Navigation</a></li>
+<li><a href="#viewer">Viewer</a>
+<ul>
+<li><a href="#setting-width-and-height">Setting width and height</a></li>
+<li><a href="#custom-messaging">Custom messaging</a></li>
+<li><a href="#viewer-content">Viewer content</a></li>
+<li><a href="#select-device">Select device</a>
+<ul>
+<li><a href="#devices">Devices</a></li>
+</ul></li>
+<li><a href="#rotate">Rotate</a></li>
+</ul></li>
+<li><a href="#css-editor">CSS Editor</a>
+<ul>
+<li><a href="#spacing">Spacing</a></li>
+<li><a href="#position">Position</a></li>
+<li><a href="#width">Width</a></li>
+<li><a href="#height">Height</a></li>
+</ul></li>
+<li><a href="#form">Form</a>
+<ul>
+<li><a href="#using-form-plugins">Using form plugins</a></li>
+<li><a href="#react-children-as-options">React children as options</a></li>
+<li><a href="#controlling-the-visible-section">Controlling the visible section</a></li>
+<li><a href="#validation">Validation</a></li>
+<li><a href="#json-schema-metadata">JSON schema metadata</a>
+<ul>
+<li><a href="#title">Title</a></li>
+<li><a href="#disabled">Disabled</a></li>
+<li><a href="#examples-&amp;-default">Examples &amp; default</a></li>
+<li><a href="#badges">Badges</a></li>
+</ul></li>
+<li><a href="#json-schema-keywords">JSON schema keywords</a>
+<ul>
+<li><a href="#oneof-&amp;-anyof">oneOf &amp; anyOf</a></li>
+<li><a href="#enums">Enums</a></li>
+<li><a href="#react-children">React children</a></li>
+<li><a href="#allof-&amp;-ref">allOf &amp; $ref</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="benefits"></a><a href="#benefits" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Benefits</h2>
+<p>The FAST Tooling can be used in any combination for the following scenarios:</p>
+<ul>
+<li>Mapping serializable data to a React component in an application</li>
+<li>Editing data using a form generated from a JSON schema</li>
+<li>Viewing a React component in an isolated iframe environment</li>
+<li>Using a navigation generated from a components data</li>
+<li>All of the above to create a live editing UI</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<p><code>npm i --save @microsoft/fast-tooling-react</code></p>
+<h2><a class="anchor" aria-hidden="true" id="concepts"></a><a href="#concepts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Concepts</h2>
+<h3><a class="anchor" aria-hidden="true" id="json-schema"></a><a href="#json-schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JSON Schema</h3>
+<p><a href="http://json-schema.org/">JSON schema</a> has been extended on for various libraries in FAST tooling, they help identify nesting structures for components and their children as well as provide additional hooks for plugin systems in the FAST tool libraries.</p>
+<p>To identify React children in the JSON schemas, the JSON schema has been extended for the purposes of the FAST tooling libraries. This is optional, if your component does not accept children there is no need to add them to your components JSON schema. If it does, the children properties will need to be in their own properties section <code>reactProperties</code> and identified with the type &quot;children&quot;.</p>
+<p>Example JSON Schema with React children properties:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/schema#"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Component with react children-properties"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"component-with-two-children-properties"</span>,
+    <span class="hljs-attr">"reactProperties"</span>: {
+        <span class="hljs-attr">"children"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Children"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"children"</span>
+        },
+        <span class="hljs-attr">"otherChildren"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Children"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"children"</span>
+        }
+    }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="data-structures-for-react-children"></a><a href="#data-structures-for-react-children" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Data structures for React children</h3>
+<p>React children are represented in a serializable structure which is then re-interpreted by FAST tooling. A React components children are represented by either an object (for a single child) or an array of objects (for multiple children) in the following structure:</p>
+<pre><code class="hljs css language-js">{
+    <span class="hljs-string">"id"</span>: <span class="hljs-string">"my-component-id"</span>,
+    <span class="hljs-string">"props"</span>: {
+        <span class="hljs-comment">// componentProps</span>
+    }
+}
+</code></pre>
+<p>The <code>id</code> represents the JSON schema id and the <code>props</code> are the properties to map to the component.</p>
+<h2><a class="anchor" aria-hidden="true" id="data-utilities"></a><a href="#data-utilities" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Data utilities</h2>
+<p>React data utilities are used to map data to components and perform other actions that may be necessary to pass data to other FAST tooling for manipulation, data validation, or storage.</p>
+<h3><a class="anchor" aria-hidden="true" id="mapping-data-to-a-react-component"></a><a href="#mapping-data-to-a-react-component" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mapping data to a React component</h3>
+<p>The <code>mapDataToComponent</code> function can be used to map data to a React component. It uses JSON Schema in conjunction with data that is meant to be serializable.</p>
+<p>An example of mapping data to a component from the <code>@microsoft/fast-tooling-react</code> package:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">"react-dom"</span>;
+<span class="hljs-keyword">import</span> { Heading } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> headingSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/heading/heading.schema.json"</span>;
+<span class="hljs-keyword">import</span> { mapDataToComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"div"</span>);
+root.setAttribute(<span class="hljs-string">"id"</span>, <span class="hljs-string">"root"</span>);
+<span class="hljs-built_in">document</span>.body.appendChild(root);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>) </span>{
+    ReactDOM.render(
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Heading</span> {<span class="hljs-attr">...mapDataToComponent</span>(<span class="hljs-attr">headingSchema</span>, { <span class="hljs-attr">children:</span> "<span class="hljs-attr">Hello</span> <span class="hljs-attr">world</span>" })} /&gt;</span>,
+        root
+    );
+}
+
+render();
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="child-options"></a><a href="#child-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Child options</h4>
+<p>Using the <code>childOptions</code> argument allows the <code>mapDataToComponent</code> function to create nested structures. Child components will be identified by the provided <code>id</code> and the props will be applied to the appropriate component.</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">"react-dom"</span>;
+<span class="hljs-keyword">import</span> { Dialog } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> dialogSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-base/dist/dialog/dialog.schema.json"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> headingSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/heading/heading.schema.json"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> paragraphSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/paragraph/paragraph.schema.json"</span>;
+<span class="hljs-keyword">import</span> { mapDataToComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-keyword">const</span> data = {
+    <span class="hljs-attr">visible</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">children</span>: [
+        {
+            <span class="hljs-attr">id</span>: headingSchema.id,
+            <span class="hljs-attr">props</span>: {
+                <span class="hljs-attr">children</span>: <span class="hljs-string">"Heading 1"</span>
+            }
+        },
+        {
+            <span class="hljs-attr">id</span>: paragraphSchema.id,
+            <span class="hljs-attr">props</span>: {
+                <span class="hljs-attr">children</span>: <span class="hljs-string">"Lorem ipsum."</span>
+            }
+        }
+    ]
+};
+
+<span class="hljs-keyword">const</span> childOptions = [
+    { <span class="hljs-attr">component</span>: Heading, <span class="hljs-attr">schema</span>: headingSchema },
+    { <span class="hljs-attr">component</span>: Paragraph, <span class="hljs-attr">schema</span>: paragraphSchema },
+];
+
+<span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"div"</span>);
+root.setAttribute(<span class="hljs-string">"id"</span>, <span class="hljs-string">"root"</span>);
+<span class="hljs-built_in">document</span>.body.appendChild(root);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>) </span>{
+    ReactDOM.render(
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Dialog</span> {<span class="hljs-attr">...mapDataToComponent</span>(<span class="hljs-attr">dialogSchema</span>, <span class="hljs-attr">data</span>, <span class="hljs-attr">childOptions</span>)} /&gt;</span>,
+        root
+    );
+}
+
+render();
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="using-plugins"></a><a href="#using-plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using plugins</h4>
+<p>Using the <code>plugins</code> argument allows the <code>mapDataToComponent</code> to use plugins in place of the standard data mapping. Plugins must be extended from the <code>Plugin</code> class export and provide a <code>resolver</code> method. Plugins can use this method to transform provided data into another data type, for example converting a child component to a React render prop.</p>
+<p>To enable the identification of data that should be handled by a plugin the following must be done:</p>
+<ul>
+<li>Provide a <code>pluginId</code> to the JSON schema in the section related to the data.</li>
+<li>Initialize the plugin with the id (or array of ids) that correspond to one or more <code>pluginId</code>s.</li>
+</ul>
+<p>React render prop plugin example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> { mapDataToComponent, Plugin } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+    resolver(data, childOption) {
+        <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">className</span>) =&gt;</span> {
+            <span class="hljs-keyword">return</span> React.createElement(
+                childOption.component,
+                <span class="hljs-built_in">Object</span>.assign({}, data.props, { className })
+            );
+        };
+    }
+}
+</code></pre>
+<p>Schema example for the React render prop plugin example:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/schema#"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Component with custom properties"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"component-with-react-render-prop"</span>,
+    <span class="hljs-attr">"reactProperties"</span>: {
+        <span class="hljs-attr">"children"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Children"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"children"</span>,
+            <span class="hljs-attr">"pluginId"</span>: <span class="hljs-string">"my-plugin"</span>
+        }
+    }
+}
+</code></pre>
+<pre><code class="hljs css language-jsx"><span class="hljs-comment">/**
+ * The plugins take a configuration that includes a string or an array of strings
+ * mapping them to schema properties which also have a `pluginId`
+ */</span>
+<span class="hljs-keyword">const</span> plugins = [
+    <span class="hljs-keyword">new</span> MyPlugin({
+        <span class="hljs-attr">id</span>: <span class="hljs-string">"my-plugin"</span>
+    })
+];
+
+mapDataToComponent(schema, data, childOptions, plugins);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="mapping-data-to-a-code-preview"></a><a href="#mapping-data-to-a-code-preview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mapping data to a code preview</h3>
+<p>The <code>mapDataToCodePreview</code> function can be used to map data to a code preview, a string which represents the data in JSX format.</p>
+<p>An example of mapping data to a code preview from the <code>@microsoft/fast-tooling-react</code> package:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> headingSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/heading/heading.schema.json"</span>;
+<span class="hljs-keyword">import</span> { mapDataToCodePreview } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-keyword">const</span> childOptions = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"Heading"</span>, <span class="hljs-comment">// This name is used as a JSX element tag</span>
+        schema: headingSchema,
+    },
+];
+
+<span class="hljs-keyword">const</span> codePreview = mapDataToCodePreview({
+    <span class="hljs-attr">data</span>: {
+        <span class="hljs-attr">id</span>: headingSchema.id,
+    },
+    childOptions
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="generating-data-from-a-json-schema"></a><a href="#generating-data-from-a-json-schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating data from a JSON schema</h3>
+<p>Data may be generated from a JSON schema using the <code>getDataFromSchema</code> export. This will only generate the required items as dictated by the JSON schema, and will always choose the first potential match in any situation, for example if a property is an enum and is required, it will add the first value in the enum list.</p>
+<p>An example of generating data from the <code>@microsoft/fast-tooling-react</code> package:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> { getDataFromSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> headingSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/heading/heading.schema.json"</span>;
+
+<span class="hljs-keyword">const</span> data = getDataFromSchema(schema);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="adding-children-as-options"></a><a href="#adding-children-as-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding children as options</h4>
+<p>Children can also be auto-generated provided that they are not accompanied by <code>default</code>, <code>examples</code> or <code>defaults</code> in the schema, which will be used first to add children. The first child in a list of provided <code>ids</code> will be used to create React children.</p>
+<p>An example of generating data with other React children:</p>
+<pre><code class="hljs css language-javascript"><span class="hljs-keyword">import</span> { getDataFromSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> contextMenu <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/context-menu/context-menu.schema.json"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> contextMenuItem <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft/dist/context-menu-item/context-menu-item.schema.json"</span>;
+
+<span class="hljs-keyword">const</span> childOptions = [
+    {
+        <span class="hljs-attr">schema</span>: contextMenuItem,
+        <span class="hljs-attr">component</span>: <span class="hljs-literal">null</span>
+    }
+];
+
+<span class="hljs-keyword">const</span> data = getDataFromSchema(schema, childOptions);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="navigation"></a><a href="#navigation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Navigation</h2>
+<p>The <code>Navigation</code> component uses data structures as specified by the <a href="#data-structures-for-react-children">children</a> data structure to create a tree view. It includes a callback for updating the data location if you are using it with other exports from this package and can be controlled or uncontrolled.</p>
+<p><strong>Schemas used by the examples below can be found <a href="https://github.com/Microsoft/fast-dna/tree/master/packages/fast-tooling-react/app/configs/children.schema.json">here</a> and <a href="https://github.com/Microsoft/fast-dna/tree/master/packages/fast-tooling-react/app/configs/no-children.schema.json">here</a></strong></p>
+<p><strong>Uncontrolled example</strong>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> { Navigation } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+<span class="hljs-keyword">import</span> noChildrenSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"./no-children.schema.json"</span>;
+<span class="hljs-keyword">import</span> childrenSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"./children.schema.json"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Navigation</span>
+                <span class="hljs-attr">data</span>=<span class="hljs-string">{this.getData()}</span>
+                <span class="hljs-attr">schema</span>=<span class="hljs-string">{childrenSchema}</span>
+                <span class="hljs-attr">childOptions</span>=<span class="hljs-string">{this.getChildOptions()}</span>
+            /&gt;</span>
+        );
+    }
+
+    getData() {
+        return {
+            children: [
+                {
+                    id: get(childrenSchema, "id"),
+                    props: {
+                        children: {
+                            id: get(noChildrenSchema, "id"),
+                            props: noChildren,
+                        }
+                    }
+                }
+            ]
+        };
+    }
+
+    getChildOptions() {
+        return [
+            {
+                component: null,
+                schema: noChildrenSchema,
+            },
+            {
+                component: null,
+                schema: childrenSchema,
+            },
+        ];
+    }
+}
+</span></code></pre>
+<p><strong>Controlled example</strong>: Both the <code>dataLocation</code> and <code>onLocationUpdate</code> props are optional, including both of them will allow the component to be fully controlled.</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> { Navigation } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+<span class="hljs-keyword">import</span> noChildrenSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"./no-children.schema.json"</span>;
+<span class="hljs-keyword">import</span> childrenSchema <span class="hljs-keyword">from</span> <span class="hljs-string">"./children.schema.json"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.state = {
+            <span class="hljs-attr">dataLocation</span>: <span class="hljs-string">""</span>
+        };
+    }
+
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Navigation</span>
+                <span class="hljs-attr">data</span>=<span class="hljs-string">{this.getData()}</span>
+                <span class="hljs-attr">schema</span>=<span class="hljs-string">{childrenSchema}</span>
+                <span class="hljs-attr">childOptions</span>=<span class="hljs-string">{this.getChildOptions()}</span>
+                <span class="hljs-attr">dataLocation</span>=<span class="hljs-string">{this.state.dataLocation}</span>
+                <span class="hljs-attr">onLocationUpdate</span>=<span class="hljs-string">{this.handleLocationUpdate}</span>
+            /&gt;</span>
+        );
+    }
+
+    getData() {
+        return {
+            children: [
+                {
+                    id: get(childrenSchema, "id"),
+                    props: {
+                        children: {
+                            id: get(noChildrenSchema, "id"),
+                            props: noChildren,
+                        }
+                    }
+                }
+            ]
+        };
+    }
+
+    getChildOptions() {
+        return [
+            {
+                component: null,
+                schema: noChildrenSchema,
+            },
+            {
+                component: null,
+                schema: childrenSchema,
+            },
+        ];
+    }
+
+    handleLocationUpdate = (newDataLocation) =&gt; {
+        this.setState({
+            dataLocation: newDataLocation
+        });
+    }
+}
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="drag-and-drop"></a><a href="#drag-and-drop" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Drag and drop</h3>
+<p>Using the <code>dragAndDropReordering</code> option allows React children to be re-arranged from the navigation, this requires the <code>onChange</code> callback.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx">render() {
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Navigation</span>
+            {<span class="hljs-attr">...props</span>}
+            <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.data}</span>
+            <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleChange}</span>
+            <span class="hljs-attr">dragAndDropReordering</span>=<span class="hljs-string">{true}</span>
+        /&gt;</span>
+    );
+}
+
+handleChange = (data) =&gt; {
+    this.setState({
+        data
+    });
+}
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="viewer"></a><a href="#viewer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Viewer</h2>
+<p>The <code>Viewer</code> component creates an iframe, it can pass props to a communication system and listen for any messages posted to the iframe window. It can have a fixed or adjustable width and height and can be used independently or as a set with the <code>ViewerContent</code>, <code>SelectDevice</code> and <code>Rotate</code> components.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">"react-dom"</span>;
+<span class="hljs-keyword">import</span> Viewer <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"div"</span>);
+root.setAttribute(<span class="hljs-string">"id"</span>, <span class="hljs-string">"root"</span>);
+<span class="hljs-built_in">document</span>.body.appendChild(root);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>) </span>{
+    ReactDOM.render(
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Viewer</span> <span class="hljs-attr">iframeSrc</span>=<span class="hljs-string">{</span>"/<span class="hljs-attr">example-content</span>"} /&gt;</span>,
+        root
+    );
+}
+
+render();
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="setting-width-and-height"></a><a href="#setting-width-and-height" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting width and height</h3>
+<p>The <code>width</code> and <code>height</code> can be set on the <code>Viewer</code> component which will be used as pixel values:</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx">&lt;Viewer
+    iframeSrc={<span class="hljs-string">"/example-content"</span>}
+    width={<span class="hljs-number">500</span>}
+    height={<span class="hljs-number">300</span>}
+/&gt;
+</code></pre>
+<p>To create a responsive width an height, the <code>width</code> and <code>height</code> can be tied to values in state and combined with the <code>onUpdateHeight</code>, <code>onUpdateWidth</code> and <code>responsive</code> props. This creates draggable borders around the iframe.</p>
+<p>Exampe:</p>
+<pre><code class="hljs css language-jsx">&lt;Viewer
+    iframeSrc={<span class="hljs-string">"/example-content"</span>}
+    width={<span class="hljs-keyword">this</span>.state.viewerWidth}
+    height={<span class="hljs-keyword">this</span>.state.viewerHeight}
+    responsive={<span class="hljs-literal">true</span>}
+    onUpdateHeight={<span class="hljs-keyword">this</span>.handleUpdateViewerHeight}
+    onUpdateWidth={<span class="hljs-keyword">this</span>.handleUpdateViewerWidth}
+/&gt;
+
+<span class="hljs-comment">// handlers for the `onUpdateHeight` and `onUpdateWidth` callbacks</span>
+handleUpdateViewerHeight = <span class="hljs-function">(<span class="hljs-params">newViewerHeight</span>) =&gt;</span> {
+    <span class="hljs-keyword">this</span>.setState({
+        <span class="hljs-attr">viewerHeight</span>: newViewerHeight
+    });
+}
+
+handleUpdateViewerWidth = <span class="hljs-function">(<span class="hljs-params">newViewerWidth</span>) =&gt;</span> {
+    <span class="hljs-keyword">this</span>.setState({
+        <span class="hljs-attr">viewerWidth</span>: newViewerWidth
+    });
+}
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="custom-messaging"></a><a href="#custom-messaging" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom messaging</h3>
+<p>A custom post message may be sent through the viewer to the iframe via the <code>viewerMessage</code> prop. Anytime this prop is update a message will be sent.</p>
+<h3><a class="anchor" aria-hidden="true" id="viewer-content"></a><a href="#viewer-content" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Viewer content</h3>
+<p>Using the <code>Viewer</code> when the provided <code>iframeSrc</code> is pointing to a route that contains the <code>ViewerContent</code> component.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx">&lt;Viewer
+    iframeSrc={<span class="hljs-string">"/example-content"</span>}
+    viewerContentProps={[{<span class="hljs-attr">id</span>: <span class="hljs-string">"example"</span>, <span class="hljs-attr">props</span>: {}}]}
+/&gt;
+</code></pre>
+<p>Using the <code>ViewerContent</code> on the route provided to the <code>Viewer</code> will allow for the dynamic creation of provided components.</p>
+<p>Example component provided in the &quot;/example-content&quot; route for the <code>Viewer</code> impplementation example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> <span class="hljs-keyword">as</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> { ViewerContent } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+<span class="hljs-keyword">import</span> MyComponent <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-component"</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleContent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>&lt;</span>{}, {}&gt; {
+    public render(): JSX.Element {
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ViewerContent</span> <span class="hljs-attr">components</span>=<span class="hljs-string">{[{id:</span> "<span class="hljs-attr">example</span>", <span class="hljs-attr">component:</span> <span class="hljs-attr">MyComponent</span> }]} /&gt;</span>;
+    }
+}
+
+export default UpdatePropsViewerContent;
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="select-device"></a><a href="#select-device" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Select device</h3>
+<p>Use the <code>SelectDevice</code> component to select from provided default devices or provide your own custom device configurations. This component accepts a list of configured devices via the <code>devices</code> prop, some default devices are included with the package as a secondary export. It also accepts an <code>activeDeviceId</code> prop which maps to the current device id of the provided devices. In addition there is a callback <code>onUpdateDevice</code> which will fire a provided function with the new device id selected.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> {
+    defaultDevices,
+    SelectDevice,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">SelectDevice</span>
+    <span class="hljs-attr">devices</span>=<span class="hljs-string">{defaultDevices}</span>
+    <span class="hljs-attr">onUpdateDevice</span>=<span class="hljs-string">{this.handleDeviceUpdate}</span>
+    <span class="hljs-attr">activeDeviceId</span>=<span class="hljs-string">{this.state.activeDevice.id}</span>
+/&gt;</span>
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="devices"></a><a href="#devices" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Devices</h4>
+<p>A device can be either &quot;responsive&quot; or &quot;fixed&quot;, if it is responsive it does not take a width and height. The current active device can be used to activate the <code>responsive</code> prop on the <code>Viewer</code> component.</p>
+<p>Example of custom devices passed to the <code>devices</code> prop:</p>
+<pre><code class="hljs css language-json">[
+    {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-string">"responsive"</span>,
+        <span class="hljs-attr">"displayName"</span>: <span class="hljs-string">"Responsive display"</span>,
+        <span class="hljs-attr">"display"</span>: <span class="hljs-string">"responsive"</span>
+    },
+    {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-string">"phoneDevice"</span>,
+        <span class="hljs-attr">"displayName"</span>: <span class="hljs-string">"Phone device"</span>,
+        <span class="hljs-attr">"display"</span>: <span class="hljs-string">"fixed"</span>,
+        <span class="hljs-attr">"height"</span>: <span class="hljs-number">800</span>,
+        <span class="hljs-attr">"width"</span>: <span class="hljs-number">320</span>
+    }
+]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rotate"></a><a href="#rotate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rotate</h3>
+<p>Use the <code>Rotate</code> component to switch between landscape and portrait view. This component accepts an <code>orientation</code> prop which can be either &quot;landscape&quot; or &quot;portrait&quot;. It also accepts an <code>onUpdateOrientation</code> callback which will fire a provided function with the new orientation selected.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> {
+    Rotate,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Rotate</span>
+    <span class="hljs-attr">orientation</span>=<span class="hljs-string">{this.state.orientation}</span>
+    <span class="hljs-attr">onUpdateOrientation</span>=<span class="hljs-string">{this.handleOrientationUpdate}</span>
+/&gt;</span>
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="css-editor"></a><a href="#css-editor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CSS Editor</h2>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> CSSEditor <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.state = {
+            <span class="hljs-attr">CSSValues</span>: {
+                <span class="hljs-attr">position</span>: <span class="hljs-string">"absolute"</span>,
+                <span class="hljs-attr">left</span>: <span class="hljs-string">"0"</span>
+            }
+        }
+    }
+
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CSSEditor</span>
+                <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.CSSValues}</span>
+                <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleCssValueUpdate}</span>
+            /&gt;</span>
+        );
+    }
+
+    handleCssValueUpdate = (updatedCSSValues) =&gt; {
+        this.setState({
+            CSSValues: updatedCSSValues
+        });
+    }
+}
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="spacing"></a><a href="#spacing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spacing</h3>
+<p>The <code>CSSSpacing</code> component shows the CSS spacing (margin and padding) value as four input elements, when the spacing is set to &quot;margin&quot; the inputs will adjust the top/bottom/left/right margins and when the spacing is set to &quot;padding&quot; it will adjust the top/bottom/left/right padding.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> { CSSSpacing } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.state = {
+            <span class="hljs-attr">spacingValues</span>: {
+                <span class="hljs-attr">marginTop</span>: <span class="hljs-string">"20px"</span>,
+                <span class="hljs-attr">marginLeft</span>: <span class="hljs-string">"0"</span>
+            }
+        }
+    }
+
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CSSSpacing</span>
+                <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.spacingValues}</span>
+                <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleSpacingValueUpdate}</span>
+            /&gt;</span>
+        );
+    }
+
+    handleSpacingValueUpdate = (updatedSpacingValues) =&gt; {
+        this.setState({
+            positionValues: updatedSpacingValues
+        });
+    }
+}
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="position"></a><a href="#position" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Position</h3>
+<p>The <code>CSSPosition</code> component shows the CSS position value as a select, it will also provide a callback for updating this value. When set to &quot;absolute&quot; it will include a UI for allowing the user to select left/right/top/bottom and enter numbers for pixel positioning. The components position will default to static if not set.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> { CSSPosition } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.state = {
+            <span class="hljs-attr">cssValues</span>: {
+                <span class="hljs-attr">position</span>: <span class="hljs-string">"absolute"</span>,
+                <span class="hljs-attr">left</span>: <span class="hljs-string">"0"</span>
+            }
+        }
+    }
+
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CSSPosition</span>
+                <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.cssValues}</span>
+                <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleCSSValueUpdate}</span>
+            /&gt;</span>
+        );
+    }
+
+    handleCSSValueUpdate = (updatedPositionValues) =&gt; {
+        this.setState({
+            cssValues: updatedPositionValues
+        });
+    }
+}
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="width"></a><a href="#width" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Width</h3>
+<p>The <code>CSSWidth</code> component shows an input with a label and has a callback that will be fired when the value is updated.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> { CSSWidth } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.state = {
+            <span class="hljs-attr">cssValues</span>: {
+                <span class="hljs-attr">width</span>: <span class="hljs-string">"100px"</span>
+            }
+        }
+    }
+
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CSSWidth</span>
+                <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.cssValues}</span>
+                <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleCSSValueUpdate}</span>
+            /&gt;</span>
+        );
+    }
+
+    handleCSSValueUpdate = (updatedValues) =&gt; {
+        this.setState({
+            cssValues: updatedValues
+        });
+    }
+}
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="height"></a><a href="#height" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Height</h3>
+<p>The <code>CSSHeight</code> component shows an input with a label and has a callback that will be fired when the value is updated.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> { CSSHeight } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+
+        <span class="hljs-keyword">this</span>.state = {
+            <span class="hljs-attr">cssValues</span>: {
+                <span class="hljs-attr">height</span>: <span class="hljs-string">"100px"</span>
+            }
+        }
+    }
+
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CSSHeight</span>
+                <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.cssValues}</span>
+                <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleCSSValueUpdate}</span>
+            /&gt;</span>
+        );
+    }
+
+    handleCSSValueUpdate = (updatedValues) =&gt; {
+        this.setState({
+            cssValues: updatedValues
+        });
+    }
+}
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="form"></a><a href="#form" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Form</h2>
+<p>The required properties are the <code>data</code>, <code>schema</code>, and <code>onChange</code> function. The data should be tied to your state as the data will change when editing the form. The <code>onChange</code> is used as a callback, it should take one argument that is the data that should be updated when any data has been changed from within the generated form.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> Form <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-comment">/**
+ * Add to your render function
+ */</span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Form</span>
+    <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.data}</span>
+    <span class="hljs-attr">schema</span>=<span class="hljs-string">{schema}</span>
+    <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleChange}</span>
+/&gt;</span>
+
+/**
+ * onChange handler
+ */
+handleChange = (data) =&gt; {
+    this.setState({
+        data
+    });
+}
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="using-form-plugins"></a><a href="#using-form-plugins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using form plugins</h3>
+<p>Plugins may be created to determine if a form should change based on data. You can identify a piece of schema that should be updated by adding a unique key to your JSON schema <code>formPluginId</code>. When you initialize a custom plugin you will need to pass that same id to the plugin as part of its configuration.</p>
+<p>Example schema:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/schema#"</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"my-component"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"My component"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">"properties"</span>: {
+        <span class="hljs-attr">"text"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Text"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+            <span class="hljs-attr">"example"</span>: <span class="hljs-string">"Hello world"</span>,
+            <span class="hljs-attr">"formPluginId"</span>: <span class="hljs-string">"my-custom-plugin-identifier"</span>
+        },
+        <span class="hljs-attr">"weight"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Weight"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+            <span class="hljs-attr">"enum"</span>: [
+                <span class="hljs-string">"heavy"</span>,
+                <span class="hljs-string">"medium"</span>,
+                <span class="hljs-string">"light"</span>
+            ]
+        }
+    },
+    <span class="hljs-attr">"required"</span>: [
+        <span class="hljs-string">"text"</span>
+    ]
+}
+</code></pre>
+<p>Example plugin which returns an unmodified schema, unless the weight property has been specified, then the options become specific to the data:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { FormPlugin, FormPluginProps } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCustomSchemaPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FormPlugin</span> </span>{
+    resolver(schema, data) {
+        <span class="hljs-keyword">switch</span> (data.weight) {
+            <span class="hljs-keyword">case</span> <span class="hljs-string">"heavy"</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, schema, { <span class="hljs-attr">enum</span>: [<span class="hljs-string">"heavy text 1"</span>, <span class="hljs-string">"heavy text 2"</span>] });
+            <span class="hljs-keyword">case</span> <span class="hljs-string">"medium"</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, schema, { <span class="hljs-attr">enum</span>: [<span class="hljs-string">"medium text 1"</span>, <span class="hljs-string">"medium text 2"</span>] });
+            <span class="hljs-keyword">case</span> <span class="hljs-string">"light"</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, schema, { <span class="hljs-attr">enum</span>: [<span class="hljs-string">"light text 1"</span>, <span class="hljs-string">"light text 2"</span>] });
+        }
+
+        <span class="hljs-keyword">return</span> schema;
+    }
+}
+</code></pre>
+<p>Example implementation with the <code>Form</code>:</p>
+<p><em>Note: When the plugins are used the schema tied to the <code>Form</code> should be set to a state so that it can be kept up-to-date, you will need to use the <code>onSchemaChange</code> callback which will return the newly updated schema.</em></p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> Form <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+<span class="hljs-keyword">import</span> { Button, ButtonSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft"</span>;
+<span class="hljs-keyword">import</span> { MyCustomSchemaPlugin } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-custom-schema-plugin"</span>;
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Form</span>
+    <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.currentComponentData}</span>
+    <span class="hljs-attr">schema</span>=<span class="hljs-string">{this.state.currentComponentSchema}</span>
+    <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
+    <span class="hljs-attr">onSchemaChange</span>=<span class="hljs-string">{handleSchemaChange}</span>
+    <span class="hljs-attr">plugins</span>=<span class="hljs-string">{[</span>
+        <span class="hljs-attr">new</span> <span class="hljs-attr">MyCustomSchemaPlugin</span>({
+            <span class="hljs-attr">id:</span> ["<span class="hljs-attr">my-custom-plugin-identifier</span>"]
+        })
+    ]}
+/&gt;</span>
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="react-children-as-options"></a><a href="#react-children-as-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React children as options</h3>
+<p>Children by default only include text elements. If you want to add some child components you are providing, you can do this through the <code>childOptions</code>.</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> Form <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+<span class="hljs-keyword">import</span> { Button, ButtonSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft"</span>;
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Form</span>
+    <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.currentComponentData}</span>
+    <span class="hljs-attr">schema</span>=<span class="hljs-string">{currentComponentSchema}</span>
+    <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
+    <span class="hljs-attr">childOptions</span>=<span class="hljs-string">{[</span>
+        {
+            <span class="hljs-attr">name:</span> "<span class="hljs-attr">Button</span>",
+            <span class="hljs-attr">component:</span> <span class="hljs-attr">Button</span>,
+            <span class="hljs-attr">schema:</span> <span class="hljs-attr">ButtonSchema</span>
+        }
+    ]}
+/&gt;</span>
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="controlling-the-visible-section"></a><a href="#controlling-the-visible-section" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Controlling the visible section</h3>
+<p>The location prop allows the user to control which piece of JSON schema the form is pointing to and has two required properties. It takes <code>dataLocation</code> which is the location of the data to be edited, and <code>onChange</code> which will fire an update when the user performs an action on the form that would change the visible data to be edited. An example of this would be clicking on an array item to edit that item.</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> Form <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Form</span>
+    <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.currentComponentData}</span>
+    <span class="hljs-attr">schema</span>=<span class="hljs-string">{currentComponentSchema}</span>
+    <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
+    <span class="hljs-attr">location</span>=<span class="hljs-string">{{</span>
+        <span class="hljs-attr">dataLocation:</span> <span class="hljs-attr">this.state.dataLocation</span>,
+        <span class="hljs-attr">onChange:</span> <span class="hljs-attr">this.handleChange</span>
+    }}
+/&gt;</span>
+
+// example method to use for the location onChange
+handleChange = (dataLocation) =&gt; {
+    this.setState({
+        dataLocation: dataLocation
+    });
+}
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="validation"></a><a href="#validation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Validation</h3>
+<p>Form validation uses the <a href="https://github.com/epoberezkin/ajv">ajv</a> package. The validation can be displayed inline or using the browser default HTML5 validation UI. This can be achieved through the <code>displayValidationBrowserDefault</code> which is <code>true</code> by default and <code>displayValidationInline</code> which will show validation messages below the associated form element.</p>
+<h3><a class="anchor" aria-hidden="true" id="json-schema-metadata"></a><a href="#json-schema-metadata" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JSON schema metadata</h3>
+<p>The schema form generator can interpret most <a href="http://json-schema.org/">JSON schemas</a>, however there are some things to note when writing JSON schemas that make for a better UI.</p>
+<h4><a class="anchor" aria-hidden="true" id="title"></a><a href="#title" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Title</h4>
+<p>Using a title will add a label to the corresponding form element. All properties are required to have a title.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/schema#"</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"my-component"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"My component"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">"properties"</span>: {
+        <span class="hljs-attr">"text"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Text"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+            <span class="hljs-attr">"example"</span>: <span class="hljs-string">"Hello world"</span>
+        },
+        <span class="hljs-attr">"weight"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Weight"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+            <span class="hljs-attr">"enum"</span>: [
+                <span class="hljs-string">"heavy"</span>
+            ]
+        }
+    },
+    <span class="hljs-attr">"required"</span>: [
+        <span class="hljs-string">"text"</span>
+    ]
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="disabled"></a><a href="#disabled" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Disabled</h4>
+<p>The disabled flag is optional and the form item representing this section of the schema will be disabled if flag is set to true.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/schema#"</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"my-component"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"My component"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">"properties"</span>: {
+        <span class="hljs-attr">"text"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Text"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+            <span class="hljs-attr">"example"</span>: <span class="hljs-string">"Hello world"</span>,
+            <span class="hljs-attr">"disabled"</span>: <span class="hljs-literal">true</span>
+        }
+    },
+    <span class="hljs-attr">"required"</span>: [
+        <span class="hljs-string">"text"</span>
+    ]
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="examples-default"></a><a href="#examples-default" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples &amp; default</h4>
+<p>Providing an examples or default value will replace the placeholder 'example text' or randomly generated number. It is generally better to add this extra information in case the schema form generator needs to create a new set of data.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/schema#"</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"my-component"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"My component"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">"properties"</span>: {
+        <span class="hljs-attr">"text"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Text"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+            <span class="hljs-attr">"examples"</span>: [
+                <span class="hljs-string">"Hello world"</span>
+            ]
+        },
+        <span class="hljs-attr">"style"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Style"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+            <span class="hljs-attr">"properties"</span>: {
+                <span class="hljs-attr">"color"</span>: {
+                    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"HEX Color"</span>,
+                    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+                    <span class="hljs-attr">"examples"</span>: [
+                        <span class="hljs-string">"#FF0000"</span>
+                    ]
+                }
+            },
+            <span class="hljs-attr">"required"</span>: [
+                <span class="hljs-string">"color"</span>
+            ]
+        }
+    },
+    <span class="hljs-attr">"required"</span>: [
+        <span class="hljs-string">"text"</span>
+    ]
+}
+</code></pre>
+<p>Because the style is optional, you can toggle to add it. The schema form generator will see that color is a required piece of data and use the example given to fill in.</p>
+<h4><a class="anchor" aria-hidden="true" id="badges"></a><a href="#badges" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Badges</h4>
+<p>To allow more detail about a field two additional fields can be added to JSON schemas, <code>badge</code> and <code>badgeDescription</code>. The <code>badge</code> can have the values &quot;info&quot;, &quot;warning&quot; and &quot;locked&quot; which will create the related icons. Adding a <code>badgeDescription</code> will add a native tooltip when the badge is hovered.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"badge"</span>: <span class="hljs-string">"warning"</span>,
+    <span class="hljs-attr">"badgeDescription"</span>: <span class="hljs-string">"Setting this field will cause adverse effects"</span>
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="json-schema-keywords"></a><a href="#json-schema-keywords" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JSON schema keywords</h3>
+<p>Certain JSON schema keywords are interpreted to provide a better UI.</p>
+<h4><a class="anchor" aria-hidden="true" id="oneof-anyof"></a><a href="#oneof-anyof" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>oneOf &amp; anyOf</h4>
+<p>The oneOf and anyOf keywords can be used inside a property and at the root level of a schema. This will create a select dropdown so that the user can switch between them. If data has been provided, it will select the first oneOf/anyOf instance it can validate against. The contents of a 'title' property will be used for the contents of the dropdown.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/schema#"</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"my-component"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"My component"</span>,
+    <span class="hljs-attr">"oneOf"</span>: [
+        {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"color"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+            <span class="hljs-attr">"properties"</span>: {
+                <span class="hljs-attr">"color"</span>: {
+                    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"HEX Color"</span>,
+                    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+                    <span class="hljs-attr">"example"</span>: <span class="hljs-string">"#FF0000"</span>
+                }
+            }
+        },
+        {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"text"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+            <span class="hljs-attr">"properties"</span>: {
+                <span class="hljs-attr">"text"</span>: {
+                    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Text"</span>,
+                    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+                    <span class="hljs-attr">"example"</span>: <span class="hljs-string">"Hello world"</span>
+                }
+            }
+        }
+    ]
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="enums"></a><a href="#enums" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enums</h4>
+<p>Any enums will be converted to a select dropdown.</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/schema#"</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"my-component"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"My component"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">"properties"</span>: {
+        <span class="hljs-attr">"color"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Color"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+            <span class="hljs-attr">"enum"</span> : [
+                <span class="hljs-string">"red"</span>,
+                <span class="hljs-string">"green"</span>,
+                <span class="hljs-string">"blue"</span>,
+                <span class="hljs-string">"yellow"</span>
+            ],
+            <span class="hljs-attr">"default"</span>: <span class="hljs-string">"red"</span>
+        }
+    }
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="react-children"></a><a href="#react-children" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React children</h4>
+<p>React children are treated as special objects instead of simple properties and can be defined in an object as <code>reactProperties</code>. They can specify <code>ids</code> from the given <code>childOptions</code> and can be given defaults, currently there is one default <code>text</code>. If no <code>ids</code> are specified all <code>childOptions</code> are considered valid.</p>
+<p>Example of an object that includes children with specific ids and the text default:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/schema#"</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"my-component"</span>,
+    <span class="hljs-attr">"title"</span>: <span class="hljs-string">"My component"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">"properties"</span>: {
+        <span class="hljs-attr">"color"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Color"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+        }
+    },
+    <span class="hljs-attr">"reactProperties"</span>: {
+        <span class="hljs-attr">"children"</span>: {
+            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Components"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"children"</span>,
+            <span class="hljs-attr">"ids"</span>: [
+                <span class="hljs-string">"my-component"</span>,
+                <span class="hljs-string">"my-button-component"</span>
+            ],
+            <span class="hljs-attr">"defaults"</span>: [
+                <span class="hljs-string">"text"</span>
+            ]
+        }
+    }
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="allof-ref"></a><a href="#allof-ref" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>allOf &amp; $ref</h4>
+<p>The allOf and $ref keywords cannot be interpreted by the schema form generator. To allow for most of the functionality there is a tool inside the @microsoft/fast-permutator which will simplify the schema and merge allOf arrays when it finds them, see <code>simplifySchemas</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="index"></a><a href="#index" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Index</h2>
+<h3><a class="anchor" aria-hidden="true" id="external-modules"></a><a href="#external-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>External modules</h3>
+<ul>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_editor_">&quot;css-editor/editor&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_editor_props_">&quot;css-editor/editor.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_editor_style_">&quot;css-editor/editor.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_height_height_">&quot;css-editor/height/height&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_height_height_props_">&quot;css-editor/height/height.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_height_height_style_">&quot;css-editor/height/height.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_height_index_">&quot;css-editor/height/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_index_">&quot;css-editor/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_position_index_">&quot;css-editor/position/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_position_position_">&quot;css-editor/position/position&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_position_position_props_">&quot;css-editor/position/position.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_position_position_style_">&quot;css-editor/position/position.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_spacing_index_">&quot;css-editor/spacing/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_spacing_spacing_">&quot;css-editor/spacing/spacing&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_spacing_spacing_props_">&quot;css-editor/spacing/spacing.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_spacing_spacing_style_">&quot;css-editor/spacing/spacing.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_width_index_">&quot;css-editor/width/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_width_width_">&quot;css-editor/width/width&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_width_width_props_">&quot;css-editor/width/width.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_css_editor_width_width_style_">&quot;css-editor/width/width.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_data_utilities_generate_">&quot;data-utilities/generate&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_data_utilities_index_">&quot;data-utilities/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_data_utilities_location_">&quot;data-utilities/location&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_data_utilities_mapping_">&quot;data-utilities/mapping&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_data_utilities_plugin_">&quot;data-utilities/plugin&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_data_utilities_types_">&quot;data-utilities/types&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_badge_control_">&quot;form/form/badge-control&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_badge_control_props_">&quot;form/form/badge-control.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_">&quot;form/form/form&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_category_">&quot;form/form/form-category&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_category_props_">&quot;form/form/form-category.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_category_style_">&quot;form/form/form-category.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_control_">&quot;form/form/form-control&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_control_props_">&quot;form/form/form-control.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_array_">&quot;form/form/form-item.array&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_array_props_">&quot;form/form/form-item.array.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_array_style_">&quot;form/form/form-item.array.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_base_">&quot;form/form/form-item.base&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_checkbox_">&quot;form/form/form-item.checkbox&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_checkbox_props_">&quot;form/form/form-item.checkbox.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_checkbox_style_">&quot;form/form/form-item.checkbox.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_children_">&quot;form/form/form-item.children&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_children_props_">&quot;form/form/form-item.children.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_children_style_">&quot;form/form/form-item.children.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_children_text_">&quot;form/form/form-item.children.text&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_display_">&quot;form/form/form-item.display&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_display_props_">&quot;form/form/form-item.display.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_display_style_">&quot;form/form/form-item.display.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_number_field_">&quot;form/form/form-item.number-field&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_number_field_props_">&quot;form/form/form-item.number-field.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_number_field_style_">&quot;form/form/form-item.number-field.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_props_">&quot;form/form/form-item.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_section_link_">&quot;form/form/form-item.section-link&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_section_link_props_">&quot;form/form/form-item.section-link.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_section_link_style_">&quot;form/form/form-item.section-link.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_select_">&quot;form/form/form-item.select&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_select_props_">&quot;form/form/form-item.select.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_select_style_">&quot;form/form/form-item.select.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_textarea_">&quot;form/form/form-item.textarea&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_textarea_props_">&quot;form/form/form-item.textarea.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_item_textarea_style_">&quot;form/form/form-item.textarea.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_one_of_any_of_">&quot;form/form/form-one-of-any-of&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_one_of_any_of_props_">&quot;form/form/form-one-of-any-of.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_one_of_any_of_style_">&quot;form/form/form-one-of-any-of.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_section_">&quot;form/form/form-section&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_section_props_">&quot;form/form/form-section.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_section_style_">&quot;form/form/form-section.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_props_">&quot;form/form/form.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_form_style_">&quot;form/form/form.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_index_">&quot;form/form/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_soft_remove_">&quot;form/form/soft-remove&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_form_sorting_">&quot;form/form/sorting&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_index_">&quot;form/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_plugin_">&quot;form/plugin&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_utilities_form_">&quot;form/utilities/form&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_utilities_index_">&quot;form/utilities/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_form_utilities_plugin_">&quot;form/utilities/plugin&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_index_">&quot;index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_navigation_index_">&quot;navigation/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_navigation_navigation_">&quot;navigation/navigation&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_navigation_navigation_tree_item_">&quot;navigation/navigation-tree-item&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_navigation_navigation_tree_item_props_">&quot;navigation/navigation-tree-item.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_navigation_navigation_props_">&quot;navigation/navigation.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_navigation_navigation_style_">&quot;navigation/navigation.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_navigation_navigation_utilities_">&quot;navigation/navigation.utilities&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_style_constants_">&quot;style/constants&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_style_design_system_">&quot;style/design-system&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_style_index_">&quot;style/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_style_utilities_">&quot;style/utilities&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_index_">&quot;viewer/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_rotate_index_">&quot;viewer/rotate/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_rotate_rotate_">&quot;viewer/rotate/rotate&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_rotate_rotate_base_">&quot;viewer/rotate/rotate.base&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_rotate_rotate_class_name_contract_">&quot;viewer/rotate/rotate.class-name-contract&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_rotate_rotate_props_">&quot;viewer/rotate/rotate.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_rotate_rotate_style_">&quot;viewer/rotate/rotate.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_select_device_devices_">&quot;viewer/select-device/devices&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_select_device_index_">&quot;viewer/select-device/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_select_device_select_device_">&quot;viewer/select-device/select-device&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_select_device_select_device_base_">&quot;viewer/select-device/select-device.base&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_select_device_select_device_class_name_contract_">&quot;viewer/select-device/select-device.class-name-contract&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_select_device_select_device_props_">&quot;viewer/select-device/select-device.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_select_device_select_device_style_">&quot;viewer/select-device/select-device.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_utilities_index_">&quot;viewer/utilities/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_utilities_message_system_">&quot;viewer/utilities/message-system&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_content_index_">&quot;viewer/viewer-content/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_content_viewer_content_">&quot;viewer/viewer-content/viewer-content&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_content_viewer_content_base_">&quot;viewer/viewer-content/viewer-content.base&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_content_viewer_content_props_">&quot;viewer/viewer-content/viewer-content.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_content_viewer_content_style_">&quot;viewer/viewer-content/viewer-content.style&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_index_">&quot;viewer/viewer/index&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_viewer_">&quot;viewer/viewer/viewer&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_viewer_base_">&quot;viewer/viewer/viewer.base&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_viewer_class_name_contract_">&quot;viewer/viewer/viewer.class-name-contract&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_viewer_props_">&quot;viewer/viewer/viewer.props&quot;</a></li>
+<li><a href="/fast-dna/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_viewer_style_">&quot;viewer/viewer/viewer.style&quot;</a></li>
+</ul>
+<hr>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#benefits">Benefits</a></li><li><a href="#installation">Installation</a></li><li><a href="#concepts">Concepts</a><ul class="toc-headings"><li><a href="#json-schema">JSON Schema</a></li><li><a href="#data-structures-for-react-children">Data structures for React children</a></li></ul></li><li><a href="#data-utilities">Data utilities</a><ul class="toc-headings"><li><a href="#mapping-data-to-a-react-component">Mapping data to a React component</a></li><li><a href="#mapping-data-to-a-code-preview">Mapping data to a code preview</a></li><li><a href="#generating-data-from-a-json-schema">Generating data from a JSON schema</a></li></ul></li><li><a href="#navigation">Navigation</a><ul class="toc-headings"><li><a href="#drag-and-drop">Drag and drop</a></li></ul></li><li><a href="#viewer">Viewer</a><ul class="toc-headings"><li><a href="#setting-width-and-height">Setting width and height</a></li><li><a href="#custom-messaging">Custom messaging</a></li><li><a href="#viewer-content">Viewer content</a></li><li><a href="#select-device">Select device</a></li><li><a href="#rotate">Rotate</a></li></ul></li><li><a href="#css-editor">CSS Editor</a><ul class="toc-headings"><li><a href="#spacing">Spacing</a></li><li><a href="#position">Position</a></li><li><a href="#width">Width</a></li><li><a href="#height">Height</a></li></ul></li><li><a href="#form">Form</a><ul class="toc-headings"><li><a href="#using-form-plugins">Using form plugins</a></li><li><a href="#react-children-as-options">React children as options</a></li><li><a href="#controlling-the-visible-section">Controlling the visible section</a></li><li><a href="#validation">Validation</a></li><li><a href="#json-schema-metadata">JSON schema metadata</a></li><li><a href="#json-schema-keywords">JSON schema keywords</a></li></ul></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#external-modules">External modules</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Guides</h5><a href="https://microsoft.github.io/fast-dna/docs/en/contributing/install">Install</a><a href="https://microsoft.github.io/fast-dna/docs/en/packages/fast-animation/">Packages</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/fast-dna" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/FcSNfg4" target="_blank" rel="noreferrer noopener">Discord</a><a href="https://twitter.com/FAST_DNA" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://medium.com/fast-dna" target="_blank" rel="noreferrer noopener">Blog</a><a href="https://github.com/Microsoft/fast-dna" target="_blank">GitHub</a><a class="github-button" href="https://github.com/microsoft/fast-dna" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star microsoft/fast-dna on GitHub">Star</a></div></section><section class="copyright">© Microsoft 2019</section></footer></div></body></html>
