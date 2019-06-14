@@ -817,7 +817,7 @@ handleChange = (data) =&gt; {
 }
 </code></pre>
 <p>Example implementation with the <code>Form</code>:</p>
-<p><em>Note: When the plugins are used the schema tied to the <code>Form</code> should be set to a state so that it can be kept up-to-date, you will need to use the <code>onSchemaChange</code> callback which will return the newly updated schema.</em></p>
+<p><em>Note: When the plugins are used the schema used to render the <code>Form</code> is internally updated. To get the plugin-modified schema, you can optionally add the <code>onSchemaChange</code> callback which will return the newly updated schema.</em></p>
 <pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> Form <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-tooling-react"</span>;
 <span class="hljs-keyword">import</span> { Button, ButtonSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-react-msft"</span>;
 <span class="hljs-keyword">import</span> { MyCustomSchemaPlugin } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-custom-schema-plugin"</span>;
@@ -826,7 +826,6 @@ handleChange = (data) =&gt; {
     <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.currentComponentData}</span>
     <span class="hljs-attr">schema</span>=<span class="hljs-string">{this.state.currentComponentSchema}</span>
     <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleChange}</span>
-    <span class="hljs-attr">onSchemaChange</span>=<span class="hljs-string">{handleSchemaChange}</span>
     <span class="hljs-attr">plugins</span>=<span class="hljs-string">{[</span>
         <span class="hljs-attr">new</span> <span class="hljs-attr">MyCustomSchemaPlugin</span>({
             <span class="hljs-attr">id:</span> ["<span class="hljs-attr">my-custom-plugin-identifier</span>"]
