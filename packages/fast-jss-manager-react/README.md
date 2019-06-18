@@ -57,6 +57,15 @@ const StyledButton = manageJss(buttonStyles)(Button);
 <StyledButton>Hello world</StyledButton>
 ```
 
+Optional options:
+- index: used by JSS to order style sheets. The higher the index, the lower in the DOM the style element will be created
+
+```jsx
+const StyledButton = manageJss(buttonStyles, {
+    index: 20
+})(Buton)
+```
+
 ### Instance stylesheet
 
 There is a good chance you will need to customize some CSS properties for a styled component instance. To do this, the styled component created by `manageJss` supports a `jssStyleSheet` prop. Assigning a JSS stylesheet to this prop will generate a stylesheet that applies only to that instance of the component.

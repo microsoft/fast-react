@@ -154,6 +154,22 @@ describe("The JSSManager", (): void => {
         );
     });
 
+    test("should create jssStyleSheet provided index when passed an index option", (): void => {
+        class IndexedStyledManager extends JSSManager<any, any, any> {
+            protected styles: any = Object.assign({}, staticAndDynamicStyles);
+            protected managedComponent: React.ComponentClass<any> = StyledComponent;
+            protected index: number = 20;
+        }
+
+        const rendered: any = mount(
+            <IndexedStyledManager jssStyleSheet={{ foo: { color: "green" } }} />
+        );
+        const manager: any = rendered.find("IndexedStyledManager").instance();
+
+        expect(manager.primaryStyleSheet().options.index).toBe(20);
+        expect(manager.secondaryStyleSheet().options.index).toBe(21);
+    });
+
     test("should decrease a counter tracking global stylesheet order during mounting", (): void => {
         const preMountIndex: number = (StyledManager as any).index;
         const rendered: any = mount(<StyledManager />);

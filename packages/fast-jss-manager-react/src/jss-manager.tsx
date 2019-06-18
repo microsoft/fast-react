@@ -54,8 +54,8 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
     /**
      * Define the contextType for the manager to be the design system context
      */
-
     public static contextType: React.Context<unknown> = designSystemContext;
+
     /**
      * JSS allows us to use an index to order the created style elements. The higher the index,
      * the later in the document the style element will be created.
@@ -94,7 +94,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
     /**
      * The stylesheet index for the JSSManager instance
      */
-    private index: number;
+    protected index: number;
 
     /**
      * Simple switch to track the initial creation of styles.
@@ -114,12 +114,15 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
     constructor(props: ManagedJSSProps<T, S, C>, context: C) {
         super(props, context);
 
-        this.index = JSSManager.index -= 1;
         this.designSystem = context;
     }
 
     public render(): JSX.Element {
         if (!this.hasCreatedIntialStyleSheets) {
+            if (typeof this.index !== "number") {
+                this.index = JSSManager.index -= 1;
+            }
+
             if (!!this.styles) {
                 JSSManager.sheetManager.add(this.styles, this.designSystem, {
                     meta: this.managedComponent.displayName || this.managedComponent.name,
