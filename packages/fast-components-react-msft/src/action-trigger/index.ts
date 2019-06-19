@@ -14,13 +14,16 @@ import MSFTActionTrigger, {
 } from "./action-trigger";
 import actionTriggerSchema from "./action-trigger.schema";
 import { Subtract } from "utility-types";
+import { actionTriggerSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const ActionTrigger = manageJss(ActionTriggerStyles)(MSFTActionTrigger);
+const ActionTrigger = manageJss(ActionTriggerStyles, { index: actionTriggerSheetIndex })(
+    MSFTActionTrigger
+);
 type ActionTrigger = InstanceType<typeof ActionTrigger>;
 
 interface ActionTriggerHandledProps

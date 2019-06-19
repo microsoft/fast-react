@@ -12,13 +12,14 @@ import MSFTButton, {
 } from "./button";
 import buttonSchema from "./button.schema";
 import { Subtract } from "utility-types";
+import { buttonSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Button = manageJss(ButtonStyles)(MSFTButton);
+const Button = manageJss(ButtonStyles, { index: buttonSheetIndex })(MSFTButton);
 type Button = InstanceType<typeof Button>;
 
 interface ButtonHandledProps

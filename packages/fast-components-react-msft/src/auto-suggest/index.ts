@@ -10,13 +10,16 @@ import MSFTAutoSuggest, {
 } from "./auto-suggest";
 import autoSuggestSchema from "./auto-suggest.schema";
 import { Subtract } from "utility-types";
+import { autoSuggestSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const AutoSuggest = manageJss(AutoSuggestStyles)(MSFTAutoSuggest);
+const AutoSuggest = manageJss(AutoSuggestStyles, { index: autoSuggestSheetIndex })(
+    MSFTAutoSuggest
+);
 type AutoSuggest = InstanceType<typeof AutoSuggest>;
 
 interface AutoSuggestHandledProps

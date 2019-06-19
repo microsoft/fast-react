@@ -15,13 +15,16 @@ import {
 import stealthButtonSchema from "./stealth-button.schema";
 import { Subtract } from "utility-types";
 import { DisplayNamePrefix } from "../utilities";
+import { stealthButtonSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const StealthButton = manageJss(StealthButtonStyles)(ButtonBase);
+const StealthButton = manageJss(StealthButtonStyles, { index: stealthButtonSheetIndex })(
+    ButtonBase
+);
 type StealthButton = InstanceType<typeof StealthButton>;
 
 interface StealthButtonHandledProps

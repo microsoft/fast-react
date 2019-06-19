@@ -11,13 +11,14 @@ import MSFTBadge, {
 } from "./badge";
 import badgeSchema from "./badge.schema";
 import { Subtract } from "utility-types";
+import { badgeSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Badge = manageJss(BadgeStyles)(MSFTBadge);
+const Badge = manageJss(BadgeStyles, { index: badgeSheetIndex })(MSFTBadge);
 type Badge = InstanceType<typeof Badge>;
 
 interface BadgeHandledProps

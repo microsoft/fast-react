@@ -13,13 +13,14 @@ import imageSchema from "./image.schema";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { DesignSystem, ImageStyles } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { imageSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Image = manageJss(ImageStyles)(BaseImage);
+const Image = manageJss(ImageStyles, { index: imageSheetIndex })(BaseImage);
 type Image = InstanceType<typeof Image>;
 
 interface ImageHandledProps

@@ -12,13 +12,14 @@ import { CaptionClassNameContract } from "@microsoft/fast-components-class-name-
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { CaptionStyles, DesignSystem } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { captionSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Caption = manageJss(CaptionStyles)(MSFTCaption);
+const Caption = manageJss(CaptionStyles, { index: captionSheetIndex })(MSFTCaption);
 type Caption = InstanceType<typeof Caption>;
 
 interface CaptionHandledProps

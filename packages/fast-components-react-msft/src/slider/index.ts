@@ -10,13 +10,14 @@ import MSFTSlider, {
 } from "./slider";
 import sliderSchema from "./slider.schema";
 import { Subtract } from "utility-types";
+import { sliderSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Slider = manageJss(SliderStyles)(MSFTSlider);
+const Slider = manageJss(SliderStyles, { index: sliderSheetIndex })(MSFTSlider);
 type Slider = InstanceType<typeof Slider>;
 
 interface SliderHandledProps

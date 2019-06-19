@@ -11,9 +11,12 @@ import contextMenuSchema from "./context-menu.schema";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { ContextMenuStyles, DesignSystem } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { contextMenuSheetIndex } from "../stylesheet-order";
 
 /* tslint:disable-next-line:typedef */
-const ContextMenu = manageJss(ContextMenuStyles)(BaseContextMenu);
+const ContextMenu = manageJss(ContextMenuStyles, { index: contextMenuSheetIndex })(
+    BaseContextMenu
+);
 type ContextMenu = InstanceType<typeof ContextMenu>;
 
 interface ContextMenuHandledProps

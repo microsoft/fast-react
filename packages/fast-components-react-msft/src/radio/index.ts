@@ -12,13 +12,14 @@ import radioSchema from "./radio.schema";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { DesignSystem, RadioStyles } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { radioSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Radio = manageJss(RadioStyles)(BaseRadio);
+const Radio = manageJss(RadioStyles, { index: radioSheetIndex })(BaseRadio);
 type Radio = InstanceType<typeof Radio>;
 
 interface RadioHandledProps

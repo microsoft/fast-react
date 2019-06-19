@@ -16,13 +16,14 @@ import MSFTFlipper, {
 } from "./flipper";
 import flipperSchema from "./flipper.schema";
 import { Subtract } from "utility-types";
+import { flipperSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Flipper = manageJss(FlipperStyles)(MSFTFlipper);
+const Flipper = manageJss(FlipperStyles, { index: flipperSheetIndex })(MSFTFlipper);
 type Flipper = InstanceType<typeof Flipper>;
 
 interface FlipperHandledProps

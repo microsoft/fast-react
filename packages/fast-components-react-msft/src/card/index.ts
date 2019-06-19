@@ -12,9 +12,10 @@ import cardSchema from "./card.schema";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { CardStyles, DesignSystem } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { cardSheetIndex } from "../stylesheet-order";
 
 /*tslint:disable-next-line:typedef */
-const Card = manageJss(CardStyles)(BaseCard);
+const Card = manageJss(CardStyles, { index: cardSheetIndex })(BaseCard);
 type Card = InstanceType<typeof Card>;
 
 interface CardHandledProps extends Subtract<BaseCardHandledProps, CardManagedClasses> {}

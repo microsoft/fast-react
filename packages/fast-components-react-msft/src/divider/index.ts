@@ -12,13 +12,13 @@ import dividerSchema from "./divider.schema";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { DesignSystem, DividerStyles } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
-
+import { dividerSheetIndex } from "../stylesheet-order";
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Divider = manageJss(DividerStyles)(BaseDivider);
+const Divider = manageJss(DividerStyles, { index: dividerSheetIndex })(BaseDivider);
 type Divider = InstanceType<typeof Divider>;
 
 interface DividerHandledProps

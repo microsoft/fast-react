@@ -10,9 +10,10 @@ import { PivotClassNameContract } from "@microsoft/fast-components-class-name-co
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { DesignSystem, PivotStyles } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { pivotSheetIndex } from "../stylesheet-order";
 
 /*tslint:disable-next-line:typedef */
-const Pivot = manageJss(PivotStyles)(MSFTPivot);
+const Pivot = manageJss(PivotStyles, { index: pivotSheetIndex })(MSFTPivot);
 type Pivot = InstanceType<typeof Pivot>;
 
 interface PivotHandledProps

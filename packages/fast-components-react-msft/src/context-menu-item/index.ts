@@ -14,9 +14,12 @@ import {
     DesignSystem,
 } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { contextMenuItemSheetIndex } from "../stylesheet-order";
 
 /* tslint:disable-next-line:typedef */
-const ContextMenuItem = manageJss(ContextMenuItemStyles)(MSFTContextMenuItem);
+const ContextMenuItem = manageJss(ContextMenuItemStyles, {
+    index: contextMenuItemSheetIndex,
+})(MSFTContextMenuItem);
 type ContextMenuItem = InstanceType<typeof ContextMenuItem>;
 
 interface ContextMenuItemHandledProps

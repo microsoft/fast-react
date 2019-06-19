@@ -10,12 +10,14 @@ import MSFTProgress, {
 } from "./progress";
 import progressSchema from "./progress.schema";
 import { Subtract } from "utility-types";
+import { progressSheetIndex } from "../stylesheet-order";
+
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Progress = manageJss(ProgressStyles)(MSFTProgress);
+const Progress = manageJss(ProgressStyles, { index: progressSheetIndex })(MSFTProgress);
 type Progress = InstanceType<typeof Progress>;
 
 interface ProgressHandledProps

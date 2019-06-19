@@ -12,13 +12,16 @@ import {
 import accentButtonSchema from "./accent-button.schema";
 import { Subtract } from "utility-types";
 import { DisplayNamePrefix } from "../utilities";
+import { accentButtonSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const AccentButton = manageJss(AccentButtonStyles)(ButtonBase);
+const AccentButton = manageJss(AccentButtonStyles, { index: accentButtonSheetIndex })(
+    ButtonBase
+);
 type AccentButton = InstanceType<typeof AccentButton>;
 
 interface AccentButtonHandledProps

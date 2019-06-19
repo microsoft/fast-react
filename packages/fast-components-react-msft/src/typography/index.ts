@@ -14,13 +14,16 @@ import typographySchema from "./typography.schema";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { DesignSystem, TypographyStyles } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { typographySheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Typography = manageJss(TypographyStyles)(BaseTypography);
+const Typography = manageJss(TypographyStyles, { index: typographySheetIndex })(
+    BaseTypography
+);
 type Typography = InstanceType<typeof Typography>;
 
 interface TypographyHandledProps

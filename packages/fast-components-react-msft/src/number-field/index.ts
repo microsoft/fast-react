@@ -12,13 +12,16 @@ import numberFieldSchema from "./number-field.schema";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { DesignSystem, NumberFieldStyles } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { numberFieldSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const NumberField = manageJss(NumberFieldStyles)(BaseNumberField);
+const NumberField = manageJss(NumberFieldStyles, { index: numberFieldSheetIndex })(
+    BaseNumberField
+);
 type NumberField = InstanceType<typeof NumberField>;
 
 // tslint:disable-next-line:no-empty-interface

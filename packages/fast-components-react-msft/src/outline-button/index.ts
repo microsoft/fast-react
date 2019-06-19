@@ -15,13 +15,16 @@ import {
 import outlineButtonSchema from "./outline-button.schema";
 import { Subtract } from "utility-types";
 import { DisplayNamePrefix } from "../utilities";
+import { outlineButtonSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const OutlineButton = manageJss(OutlineButtonStyles)(ButtonBase);
+const OutlineButton = manageJss(OutlineButtonStyles, { index: outlineButtonSheetIndex })(
+    ButtonBase
+);
 type OutlineButton = InstanceType<typeof OutlineButton>;
 
 interface OutlineButtonHandledProps

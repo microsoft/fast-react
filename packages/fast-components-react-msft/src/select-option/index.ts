@@ -10,9 +10,12 @@ import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { SelectOptionClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
 import { DesignSystem, SelectOptionStyles } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { selectOptionSheetIndex } from "../stylesheet-order";
 
 /* tslint:disable-next-line:typedef */
-const SelectOption = manageJss(SelectOptionStyles)(MSFTSelectOption);
+const SelectOption = manageJss(SelectOptionStyles, { index: selectOptionSheetIndex })(
+    MSFTSelectOption
+);
 type SelectOption = InstanceType<typeof SelectOption>;
 
 interface SelectOptionHandledProps

@@ -12,13 +12,16 @@ import paragraphSchema from "./paragraph.schema";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { DesignSystem, ParagraphStyles } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { paragraphSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Paragraph = manageJss(ParagraphStyles)(MSFTParagraph);
+const Paragraph = manageJss(ParagraphStyles, { index: paragraphSheetIndex })(
+    MSFTParagraph
+);
 type Paragraph = InstanceType<typeof Paragraph>;
 
 interface ParagraphHandledProps

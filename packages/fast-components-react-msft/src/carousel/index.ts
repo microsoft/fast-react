@@ -12,13 +12,14 @@ import { CarouselClassNameContract } from "@microsoft/fast-components-class-name
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { CarouselStyles, DesignSystem } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { carouselSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Carousel = manageJss(CarouselStyles)(MSFTCarousel);
+const Carousel = manageJss(CarouselStyles, { index: carouselSheetIndex })(MSFTCarousel);
 type Carousel = InstanceType<typeof Carousel>;
 
 interface CarouselHandledProps

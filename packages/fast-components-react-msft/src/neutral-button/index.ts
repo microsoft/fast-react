@@ -15,13 +15,16 @@ import {
 import neutralButtonSchema from "./neutral-button.schema";
 import { Subtract } from "utility-types";
 import { DisplayNamePrefix } from "../utilities";
+import { neutralButtonSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const NeutralButton = manageJss(NeutralButtonStyles)(ButtonBase);
+const NeutralButton = manageJss(NeutralButtonStyles, { index: neutralButtonSheetIndex })(
+    ButtonBase
+);
 type NeutralButton = InstanceType<typeof NeutralButton>;
 
 interface NeutralButtonHandledProps

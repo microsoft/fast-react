@@ -12,13 +12,14 @@ import toggleSchema from "./toggle.schema";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { DesignSystem, ToggleStyles } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { toggleSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const Toggle = manageJss(ToggleStyles)(BaseToggle);
+const Toggle = manageJss(ToggleStyles, { index: toggleSheetIndex })(BaseToggle);
 type Toggle = InstanceType<typeof Toggle>;
 
 interface ToggleHandledProps

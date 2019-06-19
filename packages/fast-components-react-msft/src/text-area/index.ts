@@ -12,13 +12,14 @@ import textAreaSchema from "./text-area.schema";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { DesignSystem, TextAreaStyles } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import { textAreaSheetIndex } from "../stylesheet-order";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
 /* tslint:disable-next-line:typedef */
-const TextArea = manageJss(TextAreaStyles)(BaseTextArea);
+const TextArea = manageJss(TextAreaStyles, { index: textAreaSheetIndex })(BaseTextArea);
 type TextArea = InstanceType<typeof TextArea>;
 
 interface TextAreaHandledProps
