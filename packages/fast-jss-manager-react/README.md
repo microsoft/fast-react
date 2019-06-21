@@ -226,4 +226,28 @@ const instanceStyles = {fancyButton: { color: "red" }};
 
 Style element order is determined by render order, where components rendered earlier in the React tree will have style elements defined later in the DOM (giving them higher specificity). The intent of this is to give parent components the opportunity to override child components if necessary.
 
-While in general this works, there is a known issue being tracked [here](https://github.com/microsoft/fast-dna/issues/1279) where parents can lose their ability to override child components. This is an unintended side-effect of memozing stylesheets. While not ideal, specificity can usually be added to the selector to mitigate the issue, as the issue only manifests when document order is determining selector specificity.
+There are cases, though, where this may not work as expected. Because of that, it is __not recommended__ to rely on *document order* for specificity when overriding component style rules. Instead, use `jssStyleSheet` props or otherwise ensure that the selector have a higher specificity than the selector you are overriding.
+
+Let's look at an example - suppose the following:
+
+```jsx
+<div>
+    <Button>First button</Button>
+
+    <ChildComponent />
+</div>
+
+// Child Component render function
+render() {
+    return (
+        <div className={props.managedClasses.childComponent}>
+            <Button className={props.managedClasses.childComponent_myButtonInstance}>
+                Button I'm overriding
+            </Button>
+        </div>
+    );
+}
+```
+`ChildComponent` is a styled component that creates a `myButtonInstance` class - that class is applied to a button component the `ChildComponent` renders.
+
+Because `Button` is actually rendered _before_ `ChildComponent`, `Button`'s style element will be lower in the DOM (giving it a higher specificity). This happens because *both* `Button` components use the same stylesheet (see stylesheet memoization above). This means that any style rules from `childComponent_myButtonInstance` that are trying to override styles inherent to the `Button` itself will have insufficient specificity to do so unless specificity is manually increased through the selector (`.childComponent .childComponent_myButtonInstance` vs `.childComponent_myButtonInstance`).
