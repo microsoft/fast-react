@@ -22,6 +22,12 @@
 <li><a href="#generating-data-from-a-json-schema">Generating data from a JSON schema</a></li>
 </ul></li>
 <li><a href="#navigation">Navigation</a></li>
+<li><a href="#navigation-menu">Navigation Menu</a>
+<ul>
+<li><a href="#menu-structure">Menu structure</a></li>
+<li><a href="#expanding-and-collapsing">Expanding and Collapsing</a></li>
+<li><a href="#controlling-the-location">Controlling the location</a></li>
+</ul></li>
 <li><a href="#viewer">Viewer</a>
 <ul>
 <li><a href="#setting-width-and-height">Setting width and height</a></li>
@@ -398,6 +404,73 @@ handleChange = (data) =&gt; {
     this.setState({
         data
     });
+}
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="navigation-menu"></a><a href="#navigation-menu" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Navigation Menu</h2>
+<p>The <code>NavigationMenu</code> component creates a navigational menu from a provided data structure. This component is meant to serve as location routing in an application.</p>
+<h3><a class="anchor" aria-hidden="true" id="menu-structure"></a><a href="#menu-structure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Menu structure</h3>
+<p>Example menu structure:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> menu = [
+    {
+        <span class="hljs-attr">displayName</span>: <span class="hljs-string">"red"</span>,
+        <span class="hljs-attr">location</span>: <span class="hljs-string">"/red"</span>
+    },
+    {
+        <span class="hljs-attr">displayName</span>: <span class="hljs-string">"green"</span>,
+        <span class="hljs-attr">items</span>: [
+            {
+                <span class="hljs-attr">displayName</span>: <span class="hljs-string">"blue"</span>,
+                <span class="hljs-attr">location</span>: <span class="hljs-string">"/blue"</span>
+            }
+        ]
+    }
+]
+</code></pre>
+<p>Each menu item requires a <code>displayName</code> to use in the generated UI.</p>
+<p>Simple example:</p>
+<pre><code class="hljs css language-jsx">render() {
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">NavigationMenu</span>
+            <span class="hljs-attr">menu</span>=<span class="hljs-string">{menu}</span>
+        /&gt;</span>
+    );
+}
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="expanding-and-collapsing"></a><a href="#expanding-and-collapsing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Expanding and collapsing</h3>
+<p>An optional <code>expanded</code> prop may be provided which can either expand or collapse all expandable items. If there is a need to trigger this initially or after an action such as a button click.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx">private handleExpandClick = (): <span class="hljs-function"><span class="hljs-params">void</span> =&gt;</span> {
+    <span class="hljs-keyword">this</span>.setState(
+        {
+            <span class="hljs-attr">expanded</span>: <span class="hljs-literal">true</span>,
+        },
+        () =&gt; {
+            <span class="hljs-keyword">this</span>.setState({
+                <span class="hljs-attr">expanded</span>: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>,
+            });
+        }
+    );
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="controlling-the-location"></a><a href="#controlling-the-location" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Controlling the location</h3>
+<p>A <code>location</code> may optionally be provided in the menu data, if this is not accompanied by a <code>onLocationUpdate</code> callback, the generated UI for that menu item will be an anchor. If an <code>onLocationUpdate</code> callback is provided this results in a span, which when clicked will fire the callback with the associated location.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-jsx">render() {
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">NavigationMenu</span>
+            <span class="hljs-attr">menu</span>=<span class="hljs-string">{menu}</span>
+            <span class="hljs-attr">activeLocation</span>=<span class="hljs-string">{this.state.activeLocation}</span>
+            <span class="hljs-attr">onLocationUpdate</span>=<span class="hljs-string">{this.handleLocationUpdate}</span>
+        /&gt;</span>
+    );
+}
+
+handleLocationUpdate = (location) =&gt; {
+    this.setState({
+        activeLocation: location
+    });
+
+    // do some route manipulation
 }
 </span></code></pre>
 <h2><a class="anchor" aria-hidden="true" id="viewer"></a><a href="#viewer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Viewer</h2>
@@ -1087,6 +1160,12 @@ handleChange = (dataLocation) =&gt; {
 <li><a href="/docs/en/packages/fast-tooling-react/api/modules/_form_utilities_index_">&quot;form/utilities/index&quot;</a></li>
 <li><a href="/docs/en/packages/fast-tooling-react/api/modules/_form_utilities_plugin_">&quot;form/utilities/plugin&quot;</a></li>
 <li><a href="/docs/en/packages/fast-tooling-react/api/modules/_index_">&quot;index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-tooling-react/api/modules/_navigation_menu_index_">&quot;navigation-menu/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-tooling-react/api/modules/_navigation_menu_navigation_menu_">&quot;navigation-menu/navigation-menu&quot;</a></li>
+<li><a href="/docs/en/packages/fast-tooling-react/api/modules/_navigation_menu_navigation_menu_item_">&quot;navigation-menu/navigation-menu-item&quot;</a></li>
+<li><a href="/docs/en/packages/fast-tooling-react/api/modules/_navigation_menu_navigation_menu_item_props_">&quot;navigation-menu/navigation-menu-item.props&quot;</a></li>
+<li><a href="/docs/en/packages/fast-tooling-react/api/modules/_navigation_menu_navigation_menu_props_">&quot;navigation-menu/navigation-menu.props&quot;</a></li>
+<li><a href="/docs/en/packages/fast-tooling-react/api/modules/_navigation_menu_navigation_menu_style_">&quot;navigation-menu/navigation-menu.style&quot;</a></li>
 <li><a href="/docs/en/packages/fast-tooling-react/api/modules/_navigation_index_">&quot;navigation/index&quot;</a></li>
 <li><a href="/docs/en/packages/fast-tooling-react/api/modules/_navigation_navigation_">&quot;navigation/navigation&quot;</a></li>
 <li><a href="/docs/en/packages/fast-tooling-react/api/modules/_navigation_navigation_tree_item_">&quot;navigation/navigation-tree-item&quot;</a></li>
@@ -1127,4 +1206,4 @@ handleChange = (dataLocation) =&gt; {
 <li><a href="/docs/en/packages/fast-tooling-react/api/modules/_viewer_viewer_viewer_style_">&quot;viewer/viewer/viewer.style&quot;</a></li>
 </ul>
 <hr>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#benefits">Benefits</a></li><li><a href="#installation">Installation</a></li><li><a href="#concepts">Concepts</a><ul class="toc-headings"><li><a href="#json-schema">JSON Schema</a></li><li><a href="#data-structures-for-react-children">Data structures for React children</a></li></ul></li><li><a href="#data-utilities">Data utilities</a><ul class="toc-headings"><li><a href="#mapping-data-to-a-react-component">Mapping data to a React component</a></li><li><a href="#mapping-data-to-a-code-preview">Mapping data to a code preview</a></li><li><a href="#generating-data-from-a-json-schema">Generating data from a JSON schema</a></li></ul></li><li><a href="#navigation">Navigation</a><ul class="toc-headings"><li><a href="#drag-and-drop">Drag and drop</a></li></ul></li><li><a href="#viewer">Viewer</a><ul class="toc-headings"><li><a href="#setting-width-and-height">Setting width and height</a></li><li><a href="#custom-messaging">Custom messaging</a></li><li><a href="#viewer-content">Viewer content</a></li><li><a href="#select-device">Select device</a></li><li><a href="#rotate">Rotate</a></li></ul></li><li><a href="#css-editor">CSS Editor</a><ul class="toc-headings"><li><a href="#spacing">Spacing</a></li><li><a href="#position">Position</a></li><li><a href="#width">Width</a></li><li><a href="#height">Height</a></li></ul></li><li><a href="#form">Form</a><ul class="toc-headings"><li><a href="#using-form-plugins">Using form plugins</a></li><li><a href="#react-children-as-options">React children as options</a></li><li><a href="#controlling-the-visible-section">Controlling the visible section</a></li><li><a href="#validation">Validation</a></li><li><a href="#json-schema-metadata">JSON schema metadata</a></li><li><a href="#json-schema-keywords">JSON schema keywords</a></li></ul></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#external-modules">External modules</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Guides</h5><a href="https://www.fast.design/docs/en/contributing/install">Install</a><a href="https://www.fast.design/docs/en/packages/fast-animation/">Packages</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/fast-dna" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/FcSNfg4" target="_blank" rel="noreferrer noopener">Discord</a><a href="https://twitter.com/FAST_DNA" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://medium.com/fast-dna" target="_blank" rel="noreferrer noopener">Blog</a><a href="https://github.com/Microsoft/fast-dna" target="_blank">GitHub</a><a class="github-button" href="https://github.com/microsoft/fast-dna" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star microsoft/fast-dna on GitHub">Star</a></div></section><section class="copyright">© Microsoft 2019</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#benefits">Benefits</a></li><li><a href="#installation">Installation</a></li><li><a href="#concepts">Concepts</a><ul class="toc-headings"><li><a href="#json-schema">JSON Schema</a></li><li><a href="#data-structures-for-react-children">Data structures for React children</a></li></ul></li><li><a href="#data-utilities">Data utilities</a><ul class="toc-headings"><li><a href="#mapping-data-to-a-react-component">Mapping data to a React component</a></li><li><a href="#mapping-data-to-a-code-preview">Mapping data to a code preview</a></li><li><a href="#generating-data-from-a-json-schema">Generating data from a JSON schema</a></li></ul></li><li><a href="#navigation">Navigation</a><ul class="toc-headings"><li><a href="#drag-and-drop">Drag and drop</a></li></ul></li><li><a href="#navigation-menu">Navigation Menu</a><ul class="toc-headings"><li><a href="#menu-structure">Menu structure</a></li><li><a href="#expanding-and-collapsing">Expanding and collapsing</a></li><li><a href="#controlling-the-location">Controlling the location</a></li></ul></li><li><a href="#viewer">Viewer</a><ul class="toc-headings"><li><a href="#setting-width-and-height">Setting width and height</a></li><li><a href="#custom-messaging">Custom messaging</a></li><li><a href="#viewer-content">Viewer content</a></li><li><a href="#select-device">Select device</a></li><li><a href="#rotate">Rotate</a></li></ul></li><li><a href="#css-editor">CSS Editor</a><ul class="toc-headings"><li><a href="#spacing">Spacing</a></li><li><a href="#position">Position</a></li><li><a href="#width">Width</a></li><li><a href="#height">Height</a></li></ul></li><li><a href="#form">Form</a><ul class="toc-headings"><li><a href="#using-form-plugins">Using form plugins</a></li><li><a href="#react-children-as-options">React children as options</a></li><li><a href="#controlling-the-visible-section">Controlling the visible section</a></li><li><a href="#validation">Validation</a></li><li><a href="#json-schema-metadata">JSON schema metadata</a></li><li><a href="#json-schema-keywords">JSON schema keywords</a></li></ul></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#external-modules">External modules</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Guides</h5><a href="https://www.fast.design/docs/en/contributing/install">Install</a><a href="https://www.fast.design/docs/en/packages/fast-animation/">Packages</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/fast-dna" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/FcSNfg4" target="_blank" rel="noreferrer noopener">Discord</a><a href="https://twitter.com/FAST_DNA" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://medium.com/fast-dna" target="_blank" rel="noreferrer noopener">Blog</a><a href="https://github.com/Microsoft/fast-dna" target="_blank">GitHub</a><a class="github-button" href="https://github.com/microsoft/fast-dna" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star microsoft/fast-dna on GitHub">Star</a></div></section><section class="copyright">© Microsoft 2019</section></footer></div></body></html>
