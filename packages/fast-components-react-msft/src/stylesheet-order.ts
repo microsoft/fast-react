@@ -1,76 +1,72 @@
-function* indexGenerator(i: number): IterableIterator<number> {
-    let _index: number = i;
-
-    while (typeof _index === "number") {
-        yield _index++;
-    }
+// Calculates the JSS sheet index. The higher the input value
+// the lower the resulting sheet priority. 0 is intended to be the
+// most important sheet index, where all other numbers have less priority.
+function calculateIndex(i: number): number {
+    return -1000000 - Math.abs(i);
 }
-
-const index: IterableIterator<number> = indexGenerator(-100000);
 
 /**
  * Typography
  */
-export const typographySheetIndex: number = index.next().value;
-export const badgeSheetIndex: number = index.next().value;
-export const captionSheetIndex: number = index.next().value;
-export const labelSheetIndex: number = index.next().value;
-export const headingSheetIndex: number = index.next().value;
-export const metatextSheetIndex: number = index.next().value;
-export const paragraphSheetIndex: number = index.next().value;
-export const subheadingSheetIndex: number = index.next().value;
+export const typographySheetIndex: number = calculateIndex(41);
+export const badgeSheetIndex: number = calculateIndex(40);
+export const captionSheetIndex: number = calculateIndex(39);
+export const labelSheetIndex: number = calculateIndex(38);
+export const headingSheetIndex: number = calculateIndex(37);
+export const metatextSheetIndex: number = calculateIndex(36);
+export const paragraphSheetIndex: number = calculateIndex(35);
+export const subheadingSheetIndex: number = calculateIndex(34);
 
 /**
  * Misc
  */
-export const breadcrumbSheetIndex: number = index.next().value;
-export const imageSheetIndex: number = index.next().value;
-export const dividerSheetIndex: number = index.next().value;
+export const breadcrumbSheetIndex: number = calculateIndex(33);
+export const imageSheetIndex: number = calculateIndex(32);
+export const dividerSheetIndex: number = calculateIndex(31);
 
 /**
  * Buttons
  */
-export const accentButtonSheetIndex: number = index.next().value;
-export const justifiedButtonSheetIndex: number = index.next().value;
-export const lightweightButtonSheetIndex: number = index.next().value;
-export const neutralButtonSheetIndex: number = index.next().value;
-export const outlineButtonSheetIndex: number = index.next().value;
-export const stealthButtonSheetIndex: number = index.next().value;
-export const buttonSheetIndex: number = index.next().value;
-export const hypertextSheetIndex: number = index.next().value;
-export const flipperSheetIndex: number = index.next().value;
-export const callToActionSheetIndex: number = index.next().value;
-export const actionToggleSheetIndex: number = index.next().value;
-export const actionTriggerSheetIndex: number = index.next().value;
+export const accentButtonSheetIndex: number = calculateIndex(30);
+export const lightweightButtonSheetIndex: number = calculateIndex(29);
+export const neutralButtonSheetIndex: number = calculateIndex(28);
+export const outlineButtonSheetIndex: number = calculateIndex(27);
+export const stealthButtonSheetIndex: number = calculateIndex(26);
+export const buttonSheetIndex: number = calculateIndex(25);
+export const hypertextSheetIndex: number = calculateIndex(24);
+export const flipperSheetIndex: number = calculateIndex(23);
+export const callToActionSheetIndex: number = calculateIndex(21);
+export const actionToggleSheetIndex: number = calculateIndex(21);
+export const actionTriggerSheetIndex: number = calculateIndex(20);
 
 /**
  * Form fields
  */
-export const toggleSheetIndex: number = index.next().value;
-export const numberFieldSheetIndex: number = index.next().value;
-export const checkboxSheetIndex: number = index.next().value;
-export const radioSheetIndex: number = index.next().value;
-export const textAreaSheetIndex: number = index.next().value;
-export const textFieldSheetIndex: number = index.next().value;
-export const progressSheetIndex: number = index.next().value;
-export const selectSheetIndex: number = index.next().value;
-export const selectOptionSheetIndex: number = index.next().value;
-export const sliderLabelSheetIndex: number = index.next().value;
-export const sliderSheetIndex: number = index.next().value;
-export const autoSuggestOptionSheetIndex: number = index.next().value;
-export const autoSuggestSheetIndex: number = index.next().value;
-export const textActionSheetIndex: number = index.next().value;
+export const toggleSheetIndex: number = calculateIndex(19);
+export const numberFieldSheetIndex: number = calculateIndex(18);
+export const checkboxSheetIndex: number = calculateIndex(17);
+export const radioSheetIndex: number = calculateIndex(16);
+export const textAreaSheetIndex: number = calculateIndex(15);
+export const textFieldSheetIndex: number = calculateIndex(14);
+export const progressSheetIndex: number = calculateIndex(13);
+export const selectSheetIndex: number = calculateIndex(12);
+export const selectOptionSheetIndex: number = calculateIndex(11);
+export const sliderLabelSheetIndex: number = calculateIndex(10);
+export const sliderSheetIndex: number = calculateIndex(9);
+export const autoSuggestOptionSheetIndex: number = calculateIndex(8);
+export const autoSuggestSheetIndex: number = calculateIndex(7);
+export const textActionSheetIndex: number = calculateIndex(6);
 
 /**
  * Flyout components
  */
-export const contextMenuItemSheetIndex: number = index.next().value;
-export const contextMenuSheetIndex: number = index.next().value;
+export const contextMenuItemSheetIndex: number = calculateIndex(5);
+export const contextMenuSheetIndex: number = calculateIndex(4);
 
 /**
  * Container components
  */
-export const pivotSheetIndex: number = index.next().value;
-export const cardSheetIndex: number = index.next().value;
-export const carouselSheetIndex: number = index.next().value;
-export const dialogSheetIndex: number = index.next().value;
+export const pivotSheetIndex: number = calculateIndex(3);
+export const cardSheetIndex: number = calculateIndex(2);
+export const carouselSheetIndex: number = calculateIndex(1);
+export const dialogSheetIndex: number = calculateIndex(0);
