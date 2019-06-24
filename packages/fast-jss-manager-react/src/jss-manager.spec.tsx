@@ -359,17 +359,6 @@ describe("The JSSManager", (): void => {
                 two.find("div").prop("className")
             );
         });
-        test("should provide different class names to multiple instances when input class names are different when memo prop is set", (): void => {
-            const one: any = mount(
-                <StyledManager className="foobar-bat" memoizeByClassName={true} />
-            );
-
-            const two: any = mount(<StyledManager className="foobar" />);
-
-            expect(one.find("div").prop("className")).not.toEqual(
-                two.find("div").prop("className")
-            );
-        });
     });
 });
 

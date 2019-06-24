@@ -24,11 +24,6 @@ export interface JSSManagedComponentProps<T, S, C> {
      * React reference to the component instance managed by the JSSManager
      */
     innerRef?: React.LegacyRef<React.Component<T & ManagedClasses<S>>>;
-
-    /**
-     * Instructs the component to memoizeByClassName
-     */
-    memoizeByClassName?: boolean;
 }
 
 /** Describes the JSS StyleSheet object
@@ -343,7 +338,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
     }
 
     private shouldMemoizeByClassName(props: Readonly<ManagedJSSProps<T, S, C>>): boolean {
-        return props.memoizeByClassName || JSSManager.memoizeStylesheetsByClassName;
+        return JSSManager.memoizeStylesheetsByClassName;
     }
 }
 
