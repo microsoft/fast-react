@@ -1,14 +1,25 @@
 import { JSSStyleSheet } from "./jss-manager";
 import { ComponentStyles, ComponentStyleSheet } from "@microsoft/fast-jss-manager";
 import { jss, stylesheetRegistry } from "./jss";
+import { memoize } from "lodash-es";
 
-export type SheetTracker = [JSSStyleSheet, number];
+export type SheetCounter = Map<string, number>;
+export type SheetTracker = [JSSStyleSheet, SheetCounter];
 export type DesignSystemRegistry = WeakMap<object, SheetTracker>;
+// export type ClassNameRegistry = WeakMap<string, DesignSystemRegistry>;
 export type SheetRegistry = WeakMap<
     ComponentStyles<unknown, unknown>,
     DesignSystemRegistry
 >;
 
+/*
+ *
+ * -> DesignSystem
+ *       -> JSSStyleSheet
+ *          -> class
+ *              -> number
+ *
+ */
 export interface JSSSheetOptions {
     meta?: string;
     index?: number;
@@ -30,15 +41,16 @@ export default class SheetManager {
      * then simply track that another instance has been added
      */
     public add(
+        hashKey: string,
         styles: ComponentStyles<unknown, unknown>,
         designSystem: any,
         options?: JSSSheetOptions
     ): void {
         const tracker: SheetTracker | void = this.getTracker(styles, designSystem);
+        const counter: SheetCounter | void = Array.isArray(tracker) ? tracker[1] : void 0;
 
-        if (Array.isArray(tracker)) {
-            tracker[1]++;
-
+        if (counter && counter.has(hashKey)) {
+            counter.set(hashKey, counter.get(hashKey) + 1);
             return;
         }
 
@@ -53,7 +65,10 @@ export default class SheetManager {
 
         this.registry
             .get(styles)
-            .set(designSystem, [this.createStyleSheet(styles, designSystem, options), 1]);
+            .set(designSystem, [
+                this.createStyleSheet(styles, designSystem, options),
+                new Map().set(hashKey, 1),
+            ]);
     }
 
     /**
@@ -78,6 +93,7 @@ export default class SheetManager {
      * design system
      */
     public update(
+        hashKey: string,
         styles: ComponentStyles<unknown, unknown>,
         previousDesignSystem: any,
         nextDesignSystem: any
@@ -97,7 +113,7 @@ export default class SheetManager {
          * re-creating a style element
          */
         if (
-            tracker[1] === 1 &&
+            tracker[1].get(hashKey) === 1 &&
             !this.get(styles, nextDesignSystem) &&
             !!styles &&
             typeof styles === "object"
@@ -106,8 +122,8 @@ export default class SheetManager {
             this.registry.get(styles).delete(previousDesignSystem);
             this.registry.get(styles).set(nextDesignSystem, tracker);
         } else {
-            this.remove(styles, previousDesignSystem);
-            this.add(styles, nextDesignSystem, tracker[0].options);
+            this.remove(hashKey, styles, previousDesignSystem);
+            this.add(hashKey, styles, nextDesignSystem, tracker[0].options);
         }
     }
 
@@ -115,13 +131,18 @@ export default class SheetManager {
      * Reduces the internal count for a stylesheet and designsystem. If the count becomes zero,
      * the sheet will be detached
      */
-    public remove(styles: ComponentStyles<unknown, unknown>, designSystem: any): void {
+    public remove(
+        hashKey: string,
+        styles: ComponentStyles<unknown, unknown>,
+        designSystem: any
+    ): void {
         const tracker: SheetTracker | void = this.getTracker(styles, designSystem);
+        const counter: SheetCounter = tracker[1];
 
         if (Array.isArray(tracker)) {
-            tracker[1]--;
+            counter.set(hashKey, counter.get(hashKey) - 1);
 
-            if (tracker[1] === 0) {
+            if (counter.get(hashKey) === 0) {
                 const sheet: JSSStyleSheet = tracker[0];
                 jss.removeStyleSheet(sheet);
                 stylesheetRegistry.remove(sheet);
@@ -135,13 +156,14 @@ export default class SheetManager {
      * Returns the number of components using a stylesheet with a designSystem
      */
     public count(
+        hashKey: string,
         styles: ComponentStyles<unknown, unknown>,
         designSystem: object
     ): number {
         const tracker: SheetTracker | void = this.getTracker(styles, designSystem);
 
-        if (Array.isArray(tracker)) {
-            return tracker[1];
+        if (Array.isArray(tracker) && tracker[1] instanceof Map) {
+            return tracker[1].get(hashKey);
         }
 
         return -1;

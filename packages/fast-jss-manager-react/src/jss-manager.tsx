@@ -50,6 +50,8 @@ export function mergeClassNames(a: string | void, b: string | void): string | vo
     }
 }
 
+const defaultHashKey: string = "";
+
 abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S, C>, {}> {
     /**
      * Define the contextType for the manager to be the design system context
@@ -124,10 +126,17 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
             }
 
             if (!!this.styles) {
-                JSSManager.sheetManager.add(this.styles, this.designSystem, {
-                    meta: this.managedComponent.displayName || this.managedComponent.name,
-                    index: this.index,
-                });
+                JSSManager.sheetManager.add(
+                    defaultHashKey,
+                    this.styles,
+                    this.designSystem,
+                    {
+                        meta:
+                            this.managedComponent.displayName ||
+                            this.managedComponent.name,
+                        index: this.index,
+                    }
+                );
             }
 
             if (this.props.jssStyleSheet) {
@@ -147,6 +156,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
         if (this.designSystem !== this.context) {
             if (!!this.styles) {
                 JSSManager.sheetManager.update(
+                    defaultHashKey,
                     this.styles,
                     this.designSystem,
                     this.context
@@ -158,12 +168,14 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
             if (hadSheetProps && hasSheetProps) {
                 if (prevProps.jssStyleSheet === this.props.jssStyleSheet) {
                     JSSManager.sheetManager.update(
+                        defaultHashKey,
                         this.props.jssStyleSheet,
                         this.designSystem,
                         this.context
                     );
                 } else {
                     JSSManager.sheetManager.remove(
+                        defaultHashKey,
                         prevProps.jssStyleSheet,
                         this.designSystem
                     );
@@ -173,6 +185,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
                 this.forceUpdate();
             } else if (hadSheetProps && !hasSheetProps) {
                 JSSManager.sheetManager.remove(
+                    defaultHashKey,
                     prevProps.jssStyleSheet,
                     this.designSystem
                 );
@@ -187,14 +200,22 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
             hasSheetProps &&
             prevProps.jssStyleSheet !== this.props.jssStyleSheet
         ) {
-            JSSManager.sheetManager.remove(prevProps.jssStyleSheet, this.designSystem);
+            JSSManager.sheetManager.remove(
+                defaultHashKey,
+                prevProps.jssStyleSheet,
+                this.designSystem
+            );
 
             this.createPropStyleSheet();
             this.forceUpdate();
         }
 
         if (hadSheetProps && !hasSheetProps) {
-            JSSManager.sheetManager.remove(prevProps.jssStyleSheet, this.designSystem);
+            JSSManager.sheetManager.remove(
+                defaultHashKey,
+                prevProps.jssStyleSheet,
+                this.designSystem
+            );
         } else if (!hadSheetProps && hasSheetProps) {
             this.createPropStyleSheet();
             this.forceUpdate();
@@ -203,11 +224,19 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
 
     public componentWillUnmount(): void {
         if (this.styles) {
-            JSSManager.sheetManager.remove(this.styles, this.designSystem);
+            JSSManager.sheetManager.remove(
+                defaultHashKey,
+                this.styles,
+                this.designSystem
+            );
         }
 
         if (this.props.jssStyleSheet) {
-            JSSManager.sheetManager.remove(this.props.jssStyleSheet, this.designSystem);
+            JSSManager.sheetManager.remove(
+                defaultHashKey,
+                this.props.jssStyleSheet,
+                this.designSystem
+            );
         }
 
         JSSManager.index++;
@@ -277,11 +306,16 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
     private createPropStyleSheet(designSystem: C = this.designSystem): void {
         const stylesheet: any = this.primaryStyleSheet();
 
-        JSSManager.sheetManager.add(this.props.jssStyleSheet, designSystem, {
-            meta: `${this.managedComponent.displayName ||
-                this.managedComponent.name} - jssStyleSheet`,
-            index: stylesheet ? stylesheet.options.index + 1 : this.index + 1,
-        });
+        JSSManager.sheetManager.add(
+            defaultHashKey,
+            this.props.jssStyleSheet,
+            designSystem,
+            {
+                meta: `${this.managedComponent.displayName ||
+                    this.managedComponent.name} - jssStyleSheet`,
+                index: stylesheet ? stylesheet.options.index + 1 : this.index + 1,
+            }
+        );
     }
 }
 
