@@ -10,6 +10,12 @@ import SheetManager from "./sheet-manager";
  */
 export interface JSSManagedComponentProps<T, S, C> {
     /**
+     * The class-name to pass to the root component. Optionally,
+     * this will be used as a memoization key for the style
+     */
+    className?: string;
+
+    /**
      * The component instance stylesheet
      */
     jssStyleSheet?: Partial<ComponentStyles<S, C>>;
@@ -18,6 +24,11 @@ export interface JSSManagedComponentProps<T, S, C> {
      * React reference to the component instance managed by the JSSManager
      */
     innerRef?: React.LegacyRef<React.Component<T & ManagedClasses<S>>>;
+
+    /**
+     * Instructs the component to memoizeByClassName
+     */
+    memoizeByClassName?: boolean;
 }
 
 /** Describes the JSS StyleSheet object
@@ -50,13 +61,16 @@ export function mergeClassNames(a: string | void, b: string | void): string | vo
     }
 }
 
-const defaultHashKey: string = "";
-
 abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S, C>, {}> {
     /**
      * Define the contextType for the manager to be the design system context
      */
     public static contextType: React.Context<unknown> = designSystemContext;
+
+    /**
+     * Configure all JSSManager instances to memoize stylesheets by classNames
+     */
+    public static memoizeStylesheetsByClassName: boolean = false;
 
     /**
      * JSS allows us to use an index to order the created style elements. The higher the index,
@@ -127,7 +141,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
 
             if (!!this.styles) {
                 JSSManager.sheetManager.add(
-                    defaultHashKey,
+                    this.hashKey(this.props),
                     this.styles,
                     this.designSystem,
                     {
@@ -156,7 +170,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
         if (this.designSystem !== this.context) {
             if (!!this.styles) {
                 JSSManager.sheetManager.update(
-                    defaultHashKey,
+                    this.hashKey(this.props),
                     this.styles,
                     this.designSystem,
                     this.context
@@ -168,14 +182,14 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
             if (hadSheetProps && hasSheetProps) {
                 if (prevProps.jssStyleSheet === this.props.jssStyleSheet) {
                     JSSManager.sheetManager.update(
-                        defaultHashKey,
+                        this.hashKey(this.props),
                         this.props.jssStyleSheet,
                         this.designSystem,
                         this.context
                     );
                 } else {
                     JSSManager.sheetManager.remove(
-                        defaultHashKey,
+                        this.hashKey(this.props),
                         prevProps.jssStyleSheet,
                         this.designSystem
                     );
@@ -185,7 +199,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
                 this.forceUpdate();
             } else if (hadSheetProps && !hasSheetProps) {
                 JSSManager.sheetManager.remove(
-                    defaultHashKey,
+                    this.hashKey(this.props),
                     prevProps.jssStyleSheet,
                     this.designSystem
                 );
@@ -201,7 +215,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
             prevProps.jssStyleSheet !== this.props.jssStyleSheet
         ) {
             JSSManager.sheetManager.remove(
-                defaultHashKey,
+                this.hashKey(this.props),
                 prevProps.jssStyleSheet,
                 this.designSystem
             );
@@ -212,7 +226,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
 
         if (hadSheetProps && !hasSheetProps) {
             JSSManager.sheetManager.remove(
-                defaultHashKey,
+                this.hashKey(this.props),
                 prevProps.jssStyleSheet,
                 this.designSystem
             );
@@ -225,7 +239,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
     public componentWillUnmount(): void {
         if (this.styles) {
             JSSManager.sheetManager.remove(
-                defaultHashKey,
+                this.hashKey(this.props),
                 this.styles,
                 this.designSystem
             );
@@ -233,7 +247,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
 
         if (this.props.jssStyleSheet) {
             JSSManager.sheetManager.remove(
-                defaultHashKey,
+                this.hashKey(this.props),
                 this.props.jssStyleSheet,
                 this.designSystem
             );
@@ -307,7 +321,7 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
         const stylesheet: any = this.primaryStyleSheet();
 
         JSSManager.sheetManager.add(
-            defaultHashKey,
+            this.hashKey(this.props),
             this.props.jssStyleSheet,
             designSystem,
             {
@@ -316,6 +330,20 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
                 index: stylesheet ? stylesheet.options.index + 1 : this.index + 1,
             }
         );
+    }
+
+    /**
+     * Gets the hash-key that the stylesheet should be registered under
+     */
+    private hashKey(props: Readonly<ManagedJSSProps<T, S, C>>): string {
+        return this.shouldMemoizeByClassName(props) &&
+            typeof this.props.className === "string"
+            ? this.props.className
+            : "";
+    }
+
+    private shouldMemoizeByClassName(props: Readonly<ManagedJSSProps<T, S, C>>): boolean {
+        return props.memoizeByClassName || JSSManager.memoizeStylesheetsByClassName;
     }
 }
 

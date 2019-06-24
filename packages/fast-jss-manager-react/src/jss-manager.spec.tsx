@@ -314,6 +314,63 @@ describe("The JSSManager", (): void => {
         const rendered: any = mount(<StyledManager innerRef={ref} />);
         expect(ref.current instanceof StyledComponent).toBe(true);
     });
+
+    test("should provide the same class names to multiple instances of a component with the same designSystem", (): void => {
+        const one: any = mount(<StyledManager />);
+
+        const two: any = mount(<StyledManager />);
+
+        expect(one.find("div").prop("className")).toEqual(
+            two.find("div").prop("className")
+        );
+    });
+
+    describe("memoizie by class name", (): void => {
+        afterEach((): void => {
+            JSSManager.memoizeStylesheetsByClassName = false;
+        });
+        test("should provide the same class names to multiple instances without input class names", (): void => {
+            JSSManager.memoizeStylesheetsByClassName = true;
+            const one: any = mount(<StyledManager />);
+
+            const two: any = mount(<StyledManager />);
+
+            expect(one.find("div").prop("className")).toEqual(
+                two.find("div").prop("className")
+            );
+        });
+        test("should provide the same class names to multiple instances when input class names are the same", (): void => {
+            JSSManager.memoizeStylesheetsByClassName = true;
+            const one: any = mount(<StyledManager className="foobar" />);
+
+            const two: any = mount(<StyledManager className="foobar" />);
+
+            expect(one.find("div").prop("className")).toEqual(
+                two.find("div").prop("className")
+            );
+        });
+        test("should provide different class names to multiple instances when input class names are different and memo flag is set", (): void => {
+            JSSManager.memoizeStylesheetsByClassName = true;
+            const one: any = mount(<StyledManager className="foobar-bat" />);
+
+            const two: any = mount(<StyledManager className="foobar" />);
+
+            expect(one.find("div").prop("className")).not.toEqual(
+                two.find("div").prop("className")
+            );
+        });
+        test("should provide different class names to multiple instances when input class names are different when memo prop is set", (): void => {
+            const one: any = mount(
+                <StyledManager className="foobar-bat" memoizeByClassName={true} />
+            );
+
+            const two: any = mount(<StyledManager className="foobar" />);
+
+            expect(one.find("div").prop("className")).not.toEqual(
+                two.find("div").prop("className")
+            );
+        });
+    });
 });
 
 describe("mergeClassNames", (): void => {
