@@ -186,6 +186,16 @@ To determine if a stylesheet can be re-used by a subsequent component, the HOC d
 </DesignSystemProvider>
 ```
 
+Optionally, the JSSManager can be configured to use a component's `className` prop during memoization. This can be useful in combating specificiy issues described below, but it should be noted that setting this will result in *more* stylesheets getting created, which will have performance impacts.
+
+```jsx
+import { JSSManager } from  "@microsoft/fast-jss-manager-react";
+
+JSSManager.memoizeStylesheetsByClassName = true;
+
+// Now all sheets will be memoized using the className prop. If no className prop exists on a component instance, the memoization key will be an empty string
+```
+
 ### Stylesheet updates
 
 Because style objects can be generated with input data, we know whenever that input data changes that we need to update our stylesheet. This means that whenever a `manageJss` component receives a **different** design system than it had during the previous render cycle it will update the stylesheet and generate new class names. The HOC determines if the design system is different using object *identity*. A common mistake that results in needless re-generation of stylesheets is to provide the `DesignSystemProvider` with a *new* object every render cycle:
@@ -251,3 +261,4 @@ render() {
 `ChildComponent` is a styled component that creates a `myButtonInstance` class - that class is applied to a button component the `ChildComponent` renders.
 
 Because `Button` is actually rendered _before_ `ChildComponent`, `Button`'s style element will be lower in the DOM (giving it a higher specificity). This happens because *both* `Button` components use the same stylesheet (see stylesheet memoization above). This means that any style rules from `childComponent_myButtonInstance` that are trying to override styles inherent to the `Button` itself will have insufficient specificity to do so unless specificity is manually increased through the selector (`.childComponent .childComponent_myButtonInstance` vs `.childComponent_myButtonInstance`).
+
