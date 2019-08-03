@@ -33,6 +33,15 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
                 toPx<DesignSystem>(outlineWidth),
                 neutralOutlineHover
             ),
+            "@media (-ms-high-contrast:active)": {
+                background: "Highlight",
+                color: "HighlightText",
+            },
+            "& $button_beforeContent, & $button_afterContent": {
+                "@media (-ms-high-contrast:active)": {
+                    fill: "HighlightText",
+                },
+            },
         },
         "&:active:enabled": {
             background: "transparent",
@@ -52,6 +61,29 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
             ),
             borderColor: neutralFocus,
         }),
+        "& $button_beforeContent, & $button_afterContent": {
+            "@media (-ms-high-contrast:active)": {
+                fill: "ButtonText",
+                "-ms-high-contrast-adjust": "none",
+            },
+        },
+        "&$button__disabled": {
+            "@media (-ms-high-contrast:active)": {
+                opacity: "1",
+                border: "1px solid graytext",
+                backgroundColor: "transparent",
+                color: "graytext",
+            },
+            "& $button_beforeContent, & $button_afterContent": {
+                "@media (-ms-high-contrast:active)": {
+                    fill: "graytext",
+                },
+            },
+        },
+        "@media (-ms-high-contrast:active)": {
+            color: "ButtonText",
+            "-ms-high-contrast-adjust": "none",
+        },
     },
 };
 
