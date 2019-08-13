@@ -29,7 +29,8 @@
     "prettier:diff": "prettier --config ../../.prettierrc \"**/*.ts\" --list-different",
     "unit-tests": "jest --maxWorkers=2",
     "unit-tests:watch": "jest --watch",
-    "watch": "npm run build -- -w --preserveWatchOutput"
+    "watch": "npm run build -- -w --preserveWatchOutput",
+    "perf": "rollup perf.js --file perf.rolled.js --format cjs"
   },
   "jest": {
     "collectCoverage": true,
@@ -70,6 +71,7 @@
     "jest": "^24.1.0",
     "lodash-es": "^4.0.0",
     "prettier": "1.14.3",
+    "rollup": "^1.19.4",
     "ts-jest": "^23.10.5",
     "tslint": "^5.9.1",
     "tslint-config-prettier": "^1.15.0",
