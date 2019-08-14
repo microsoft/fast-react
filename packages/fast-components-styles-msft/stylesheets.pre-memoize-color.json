@@ -1,0 +1,217 @@
+[
+    {
+        "functionName": "AccentButtonStyles",
+        "ops": 3673.721244110044,
+        "opsMs": 3.673721244110044
+    },
+    {
+        "functionName": "ActionToggleStyles",
+        "ops": 3249.5587227003366,
+        "opsMs": 3.2495587227003364
+    },
+    {
+        "functionName": "ActionTriggerStyles",
+        "ops": 2808.099478200957,
+        "opsMs": 2.808099478200957
+    },
+    {
+        "functionName": "AutoSuggestStyles",
+        "ops": 25353.253776355003,
+        "opsMs": 25.353253776355004
+    },
+    {
+        "functionName": "AutoSuggestOptionStyles",
+        "ops": 6487.607242234693,
+        "opsMs": 6.487607242234693
+    },
+    {
+        "functionName": "BadgeStyles",
+        "ops": 404471.6908568809,
+        "opsMs": 404.4716908568809
+    },
+    {
+        "functionName": "BreadcrumbStyles",
+        "ops": 10544.093415586065,
+        "opsMs": 10.544093415586065
+    },
+    {
+        "functionName": "ButtonStyles",
+        "ops": 1051.5857207179492,
+        "opsMs": 1.0515857207179493
+    },
+    {
+        "functionName": "CallToActionStyles",
+        "ops": 3512.168397392137,
+        "opsMs": 3.5121683973921374
+    },
+    {
+        "functionName": "CaptionStyles",
+        "ops": 56424.304565621096,
+        "opsMs": 56.4243045656211
+    },
+    {
+        "functionName": "CarouselStyles",
+        "ops": 1191.286004051021,
+        "opsMs": 1.1912860040510211
+    },
+    {
+        "functionName": "CardStyles",
+        "ops": 49657.28067450192,
+        "opsMs": 49.65728067450192
+    },
+    {
+        "functionName": "CheckboxStyles",
+        "ops": 2574.166313448779,
+        "opsMs": 2.574166313448779
+    },
+    {
+        "functionName": "ContextMenuStyles",
+        "ops": 43061.565846377045,
+        "opsMs": 43.06156584637704
+    },
+    {
+        "functionName": "HeadingStyles",
+        "ops": 16242.938727189157,
+        "opsMs": 16.242938727189156
+    },
+    {
+        "functionName": "HypertextStyles",
+        "ops": 7402.731067674167,
+        "opsMs": 7.402731067674167
+    },
+    {
+        "functionName": "ContextMenuItemStyles",
+        "ops": 6478.150913409064,
+        "opsMs": 6.478150913409064
+    },
+    {
+        "functionName": "DialogStyles",
+        "ops": 400412.7775824805,
+        "opsMs": 400.4127775824805
+    },
+    {
+        "functionName": "DividerStyles",
+        "ops": 57141.869828347626,
+        "opsMs": 57.14186982834762
+    },
+    {
+        "functionName": "FlipperStyles",
+        "ops": 4217.947063502454,
+        "opsMs": 4.217947063502454
+    },
+    {
+        "functionName": "FlyoutStyles",
+        "ops": 15947.88891984284,
+        "opsMs": 15.94788891984284
+    },
+    {
+        "functionName": "ImageStyles",
+        "ops": 39626.83885225915,
+        "opsMs": 39.62683885225915
+    },
+    {
+        "functionName": "LabelStyles",
+        "ops": 20199.826870862384,
+        "opsMs": 20.199826870862385
+    },
+    {
+        "functionName": "LightweightButtonStyles",
+        "ops": 3132.8441362307244,
+        "opsMs": 3.1328441362307244
+    },
+    {
+        "functionName": "MetatextStyles",
+        "ops": 36557.020599613235,
+        "opsMs": 36.55702059961324
+    },
+    {
+        "functionName": "NeutralButtonStyles",
+        "ops": 4316.252253524222,
+        "opsMs": 4.3162522535242225
+    },
+    {
+        "functionName": "NumberFieldStyles",
+        "ops": 5984.3973063002,
+        "opsMs": 5.984397306300201
+    },
+    {
+        "functionName": "OutlineButtonStyles",
+        "ops": 4252.63665869832,
+        "opsMs": 4.252636658698321
+    },
+    {
+        "functionName": "ParagraphStyles",
+        "ops": 41485.887134361525,
+        "opsMs": 41.485887134361526
+    },
+    {
+        "functionName": "PivotStyles",
+        "ops": 3230.087281800463,
+        "opsMs": 3.230087281800463
+    },
+    {
+        "functionName": "ProgressStyles",
+        "ops": 2998.0803392805396,
+        "opsMs": 2.9980803392805395
+    },
+    {
+        "functionName": "RadioStyles",
+        "ops": 3339.6004079573154,
+        "opsMs": 3.3396004079573154
+    },
+    {
+        "functionName": "SelectStyles",
+        "ops": 3379.0218719476434,
+        "opsMs": 3.3790218719476433
+    },
+    {
+        "functionName": "SelectOptionStyles",
+        "ops": 5385.384423516323,
+        "opsMs": 5.3853844235163235
+    },
+    {
+        "functionName": "SliderStyles",
+        "ops": 1140.9837643584062,
+        "opsMs": 1.1409837643584062
+    },
+    {
+        "functionName": "SliderLabelStyles",
+        "ops": 3067.8374819538963,
+        "opsMs": 3.0678374819538963
+    },
+    {
+        "functionName": "StealthButtonStyles",
+        "ops": 4691.936593705291,
+        "opsMs": 4.69193659370529
+    },
+    {
+        "functionName": "SubheadingStyles",
+        "ops": 16145.647306133302,
+        "opsMs": 16.145647306133302
+    },
+    {
+        "functionName": "ToggleStyles",
+        "ops": 1616.1708727149833,
+        "opsMs": 1.6161708727149833
+    },
+    {
+        "functionName": "TextActionStyles",
+        "ops": 3145.5555242256582,
+        "opsMs": 3.1455555242256583
+    },
+    {
+        "functionName": "TextAreaStyles",
+        "ops": 5557.647793620234,
+        "opsMs": 5.557647793620234
+    },
+    {
+        "functionName": "TextFieldStyles",
+        "ops": 3071.3675383328755,
+        "opsMs": 3.0713675383328756
+    },
+    {
+        "functionName": "TypographyStyles",
+        "ops": 9502.131105466713,
+        "opsMs": 9.502131105466713
+    }
+]
