@@ -69,6 +69,8 @@
     "babel-jest": "^24.1.0",
     "benchmark": "^2.1.4",
     "jest": "^24.1.0",
+    "jss": "^9.8.7",
+    "jss-preset-default": "^4.5.0",
     "lodash": "^4.17.15",
     "lodash-es": "^4.0.0",
     "microtime": "^3.0.0",
