@@ -98,7 +98,7 @@ export function colorRecipeFactory<T>(recipe: DesignSystemResolver<T>): ColorRec
         }
     }
 
-    return curryRecipe;
+    return memoize(curryRecipe);
 }
 
 /**

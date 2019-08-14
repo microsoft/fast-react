@@ -30,7 +30,7 @@
     "unit-tests": "jest --maxWorkers=2",
     "unit-tests:watch": "jest --watch",
     "watch": "npm run build -- -w --preserveWatchOutput",
-    "perf": "rollup perf.js --file perf.rolled.js --format cjs"
+    "perf": "rollup --config && node perf.rolled.js"
   },
   "jest": {
     "collectCoverage": true,
@@ -69,10 +69,16 @@
     "babel-jest": "^24.1.0",
     "benchmark": "^2.1.4",
     "jest": "^24.1.0",
+    "lodash": "^4.17.15",
     "lodash-es": "^4.0.0",
+    "microtime": "^3.0.0",
     "prettier": "1.14.3",
     "rollup": "^1.19.4",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript": "^1.0.1",
     "ts-jest": "^23.10.5",
+    "tslib": "^1.10.0",
     "tslint": "^5.9.1",
     "tslint-config-prettier": "^1.15.0",
     "typescript": "3.3.3"

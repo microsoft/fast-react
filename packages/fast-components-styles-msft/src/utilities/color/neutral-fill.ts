@@ -15,6 +15,7 @@ import {
     SwatchRecipe,
 } from "./common";
 import { findClosestBackgroundIndex, getSwatch } from "./palette";
+import { memoize } from "lodash-es";
 
 const neutralFillThreshold: DesignSystemResolver<number> = designSystemResolverMax(
     neutralFillRestDelta,
