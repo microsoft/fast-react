@@ -1,0 +1,12 @@
+[
+    {
+        "functionName": "withPlugins",
+        "ops": 73790.62038928425,
+        "opsMs": 73.79062038928424
+    },
+    {
+        "functionName": "withoutPlugins",
+        "ops": 107393.27960150105,
+        "opsMs": 107.39327960150105
+    }
+]
