@@ -1,0 +1,67 @@
+[
+    {
+        "functionName": "AccentButtonStyles",
+        "ops": 5250.509429204885,
+        "opsMs": 5.250509429204885
+    },
+    {
+        "functionName": "ButtonStyles",
+        "ops": 1537.0975612598795,
+        "opsMs": 1.5370975612598796
+    },
+    {
+        "functionName": "CaptionStyles",
+        "ops": 55586.39714867374,
+        "opsMs": 55.58639714867374
+    },
+    {
+        "functionName": "HeadingStyles",
+        "ops": 16730.91939895284,
+        "opsMs": 16.73091939895284
+    },
+    {
+        "functionName": "FlyoutStyles",
+        "ops": 16201.2579860349,
+        "opsMs": 16.2012579860349
+    },
+    {
+        "functionName": "LabelStyles",
+        "ops": 41102.315147248795,
+        "opsMs": 41.102315147248795
+    },
+    {
+        "functionName": "LightweightButtonStyles",
+        "ops": 3797.616196468484,
+        "opsMs": 3.797616196468484
+    },
+    {
+        "functionName": "NeutralButtonStyles",
+        "ops": 6297.595144853021,
+        "opsMs": 6.297595144853021
+    },
+    {
+        "functionName": "OutlineButtonStyles",
+        "ops": 6675.686189579773,
+        "opsMs": 6.675686189579773
+    },
+    {
+        "functionName": "SelectStyles",
+        "ops": 4935.225385600622,
+        "opsMs": 4.935225385600622
+    },
+    {
+        "functionName": "StealthButtonStyles",
+        "ops": 6869.3194906077315,
+        "opsMs": 6.869319490607731
+    },
+    {
+        "functionName": "SubheadingStyles",
+        "ops": 8440.462963482802,
+        "opsMs": 8.440462963482801
+    },
+    {
+        "functionName": "TypographyStyles",
+        "ops": 12353.93691851046,
+        "opsMs": 12.35393691851046
+    }
+]
