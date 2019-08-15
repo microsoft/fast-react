@@ -184,7 +184,7 @@ export function applyTypeRamp(typeConfig: keyof TypeRamp): CSSRules<DesignSystem
  */
 export function applyScaledTypeRamp(key: keyof TypeRamp): CSSRules<DesignSystem> {
     return {
-        fontSize: applyScaledFontSize(key),
-        lineHeight: applyScaledLineHeight(key),
+        "font-size": applyScaledFontSize(key),
+        "line-height": applyScaledLineHeight(key),
     };
 }

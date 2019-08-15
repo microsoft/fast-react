@@ -11,7 +11,7 @@ import {
  * Sets the border radius for controls.
  */
 export function applyCornerRadius(): CSSRules<DesignSystem> {
-    return { borderRadius: toPx(cornerRadius) };
+    return { "border-radius": toPx(cornerRadius) };
 }
 
 /**
