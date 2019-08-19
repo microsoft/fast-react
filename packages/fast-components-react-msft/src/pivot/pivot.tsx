@@ -23,6 +23,7 @@ export interface PivotState {
     offsetX: number;
     activeId: string;
     tabPanelIndex: number;
+    windowInnerWidth: number;
 }
 
 class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotState> {
@@ -70,8 +71,11 @@ class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotStat
                     typeof this.props.activeId === "string"
                         ? this.props.activeId
                         : get(this.props.items[0], "id", ""),
+                windowInnerWidth: window.innerWidth
             };
         }
+
+        window.addEventListener("resize", this.handleResize.bind(this));
 
         this.tabsRef = React.createRef();
     }
@@ -91,6 +95,10 @@ class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotStat
         if (this.state.activeId !== prevState.activeId) {
             this.setActiveIndicatorOffset();
             this.updateTabPanelIndex();
+        }
+
+        if (this.state.windowInnerWidth !== prevState.windowInnerWidth) {
+            this.setActiveIndicatorOffset();
         }
 
         if (this.state.tabPanelIndex !== prevState.tabPanelIndex) {
@@ -147,6 +155,12 @@ class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotStat
                 ),
             };
         }
+    }
+
+    private handleResize(): void {
+        this.setState({
+            windowInnerWidth: window.innerWidth
+        });
     }
 
     private handleTabsUpdate = (activeTabId: string): void => {
