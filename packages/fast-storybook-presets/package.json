@@ -1,6 +1,6 @@
 {
   "name": "@microsoft/fast-storybook-presets",
-  "version": "1.1.5-jss-perf.10+a342c98",
+  "version": "1.1.5-jss-perf.12+23499bb",
   "description": "Storybook presets for FAST integration",
   "main": "dist/index.js",
   "author": {
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@microsoft/fast-components-styles-msft": "^4.19.2-jss-perf.10+a342c98",
-    "@microsoft/fast-storybook-design-system-addon": "^1.1.5-jss-perf.10+a342c98",
+    "@microsoft/fast-storybook-design-system-addon": "^1.1.5-jss-perf.12+23499bb",
     "@storybook/addon-a11y": "^5.1.9",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-viewport": "^5.1.9",
@@ -49,5 +49,5 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.3"
   },
-  "gitHead": "a342c985f74d4f20407398b26d3c98992b3b1040"
+  "gitHead": "23499bb106b8d3e05df4da640189345640d4a0a0"
 }

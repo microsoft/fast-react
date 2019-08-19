@@ -2,7 +2,7 @@
   "name": "@microsoft/fast-development-site-react",
   "description": "FAST development testing site for React",
   "sideEffects": false,
-  "version": "4.4.11-jss-perf.4+a342c98",
+  "version": "4.4.11-jss-perf.6+23499bb",
   "author": {
     "name": "Microsoft",
     "url": "https://discord.gg/FcSNfg4"
@@ -34,15 +34,15 @@
   "dependencies": {
     "@microsoft/fast-glyphs-msft": "^4.0.2",
     "@microsoft/fast-jss-utilities": "^4.5.6-jss-perf.10+a342c98",
-    "@microsoft/fast-layouts-react": "^4.4.2-jss-perf.10+a342c98",
-    "@microsoft/fast-tooling-react": "^1.15.4-jss-perf.4+a342c98",
+    "@microsoft/fast-layouts-react": "^4.4.2-jss-perf.12+23499bb",
+    "@microsoft/fast-tooling-react": "^1.15.4-jss-perf.6+23499bb",
     "@microsoft/fast-web-utilities": "^4.2.1",
     "react-syntax-highlighter": "^7.0.4"
   },
   "devDependencies": {
     "@microsoft/fast-components-class-name-contracts-base": "^4.3.0",
     "@microsoft/fast-jss-manager": "^4.1.4",
-    "@microsoft/fast-jss-manager-react": "^4.3.5",
+    "@microsoft/fast-jss-manager-react": "^4.3.6-jss-perf.132+23499bb",
     "@microsoft/fast-tslint-rules": "^3.0.3",
     "@polymer/polymer": "^3.0.0-pre.10",
     "@types/lodash-es": "^4.17.0",
@@ -76,5 +76,5 @@
     "react-dom": "^16.6.0",
     "react-router-dom": "^4.2.2"
   },
-  "gitHead": "a342c985f74d4f20407398b26d3c98992b3b1040"
+  "gitHead": "23499bb106b8d3e05df4da640189345640d4a0a0"
 }
