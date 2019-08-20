@@ -6,17 +6,13 @@ import {
     neutralFillInputSelected,
 } from "./neutral-fill-input";
 import designSystemDefaults, { DesignSystem } from "../../design-system";
-import { isDarkMode, Palette } from "./palette";
+import { isDarkMode, palette, Palette, PaletteType } from "./palette";
 import { FillSwatchFamily, Swatch } from "./common";
 import { clamp } from "lodash-es";
-import {
-    accentPalette as getAccentPalette,
-    neutralPalette as getNeutralPalette,
-} from "../design-system";
 
 describe("neutralFillInput", (): void => {
-    const neutralPalette: Palette = getNeutralPalette(designSystemDefaults);
-    const accentPalette: Palette = getAccentPalette(designSystemDefaults);
+    const neutralPalette: Palette = palette(PaletteType.neutral)(designSystemDefaults);
+    const accentPalette: Palette = palette(PaletteType.accent)(designSystemDefaults);
 
     test("should operate on design system defaults", (): void => {
         expect(neutralFillInputRest({} as DesignSystem)).toBe(neutralPalette[0]);

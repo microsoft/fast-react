@@ -1,16 +1,11 @@
-import { BadgeClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
+import { BadgeClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
+import { BadgeHandledProps, BadgeUnhandledProps } from "./badge.props";
+import { get } from "lodash-es";
 import { DisplayNamePrefix } from "../utilities";
-import { BadgeHandledProps, BadgeProps, BadgeUnhandledProps } from "./badge.props";
-
 class Badge extends Foundation<BadgeHandledProps, BadgeUnhandledProps, {}> {
     public static displayName: string = `${DisplayNamePrefix}Badge`;
-
-    public static defaultProps: Partial<BadgeProps> = {
-        managedClasses: {},
-    };
 
     protected handledProps: HandledProps<BadgeHandledProps> = {
         managedClasses: void 0,
@@ -31,7 +26,7 @@ class Badge extends Foundation<BadgeHandledProps, BadgeUnhandledProps, {}> {
      * Generates class names
      */
     protected generateClassNames(): string {
-        return super.generateClassNames(classNames(this.props.managedClasses.badge));
+        return super.generateClassNames(get(this.props, "managedClasses.badge", ""));
     }
 }
 

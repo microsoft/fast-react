@@ -1,21 +1,25 @@
-import { ParagraphClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
+import React from "react";
+import ReactDOM from "react-dom";
+import { get } from "lodash-es";
 import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { TypographySize, TypographyTag } from "@microsoft/fast-components-react-base";
-import { classNames } from "@microsoft/fast-web-utilities";
-import React from "react";
-import { Typography } from "../typography";
-import { DisplayNamePrefix } from "../utilities";
 import {
     ParagraphHandledProps,
+    ParagraphManagedClasses,
     ParagraphProps,
     ParagraphSize,
     ParagraphUnhandledProps,
 } from "./paragraph.props";
+import { Typography } from "../typography";
+import {
+    ManagedClasses,
+    ParagraphClassNameContract,
+} from "@microsoft/fast-components-class-name-contracts-msft";
+import { DisplayNamePrefix } from "../utilities";
 
 class Paragraph extends Foundation<ParagraphHandledProps, ParagraphUnhandledProps, {}> {
     public static defaultProps: Partial<ParagraphProps> = {
         size: ParagraphSize._3,
-        managedClasses: {},
     };
 
     public static displayName: string = `${DisplayNamePrefix}Paragraph`;
@@ -45,12 +49,14 @@ class Paragraph extends Foundation<ParagraphHandledProps, ParagraphUnhandledProp
      * Generates class names based on props
      */
     protected generateClassNames(): string {
-        const managedClasses: ParagraphClassNameContract = this.props.managedClasses;
+        const classes: string = `${get(this.props, `managedClasses.paragraph`, "")} ${get(
+            this.props,
+            `managedClasses.paragraph__${this.props.size}`,
+            ""
+        )}`;
+
         return super.generateClassNames(
-            classNames(
-                managedClasses.paragraph,
-                managedClasses[`paragraph__${this.props.size}`]
-            )
+            `${get(this.props, "managedClasses.paragraph")} ${classes}`
         );
     }
 

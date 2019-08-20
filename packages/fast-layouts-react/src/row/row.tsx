@@ -1,7 +1,7 @@
 import React from "react";
 import { throttle } from "lodash-es";
 import { Canvas } from "../canvas";
-import { keyCodeArrowDown, keyCodeArrowUp } from "@microsoft/fast-web-utilities";
+import { KeyCodes } from "@microsoft/fast-web-utilities";
 import {
     RowHandledProps,
     RowProps,
@@ -256,10 +256,10 @@ export class Row extends Foundation<
         let height: number = this.getHeight();
 
         switch (e.keyCode) {
-            case keyCodeArrowDown:
+            case KeyCodes.arrowDown:
                 height = resizeFromNorth ? height - offset : height + offset;
                 break;
-            case keyCodeArrowUp:
+            case KeyCodes.arrowUp:
                 height = resizeFromNorth ? height + offset : height - offset;
                 break;
             default:

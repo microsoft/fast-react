@@ -2,15 +2,7 @@ import React from "react";
 import * as ShallowRenderer from "react-test-renderer/shallow";
 import Adapter from "enzyme-adapter-react-16";
 import { configure, mount, shallow, ShallowWrapper } from "enzyme";
-import {
-    keyCodeArrowDown,
-    keyCodeArrowLeft,
-    keyCodeArrowRight,
-    keyCodeArrowUp,
-    keyCodeEnd,
-    keyCodeHome,
-    Orientation,
-} from "@microsoft/fast-web-utilities";
+import { KeyCodes, Orientation } from "@microsoft/fast-web-utilities";
 import { noop } from "lodash-es";
 import {
     TabClassNameContract,
@@ -455,7 +447,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab1.simulate("keydown", { keyCode: keyCodeArrowLeft });
+        tab1.simulate("keydown", { keyCode: KeyCodes.arrowLeft });
 
         expect(onUpdate).toBeCalledWith(id2);
 
@@ -496,7 +488,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab1.simulate("keydown", { keyCode: keyCodeArrowUp });
+        tab1.simulate("keydown", { keyCode: KeyCodes.arrowUp });
 
         expect(onUpdate).toBeCalledWith(id2);
 
@@ -537,7 +529,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab1.simulate("keydown", { keyCode: keyCodeArrowRight });
+        tab1.simulate("keydown", { keyCode: KeyCodes.arrowRight });
 
         expect(onUpdate).toBeCalledWith(id1);
 
@@ -578,7 +570,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab1.simulate("keydown", { keyCode: keyCodeArrowDown });
+        tab1.simulate("keydown", { keyCode: KeyCodes.arrowDown });
 
         expect(onUpdate).toBeCalledWith(id1);
 
@@ -619,7 +611,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab1.simulate("keydown", { keyCode: keyCodeHome });
+        tab1.simulate("keydown", { keyCode: KeyCodes.home });
 
         expect(onUpdate).toBeCalledWith(id0);
 
@@ -660,7 +652,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab1.simulate("keydown", { keyCode: keyCodeEnd });
+        tab1.simulate("keydown", { keyCode: KeyCodes.end });
 
         expect(onUpdate).toBeCalledWith(id2);
 
@@ -756,19 +748,19 @@ describe("tabs", (): void => {
         rendered
             .find(Tab.displayName)
             .at(0)
-            .simulate("keydown", { keyCode: keyCodeEnd });
+            .simulate("keydown", { keyCode: KeyCodes.end });
         rendered
             .find(Tab.displayName)
             .at(0)
-            .simulate("keydown", { keyCode: keyCodeHome });
+            .simulate("keydown", { keyCode: KeyCodes.home });
         rendered
             .find(Tab.displayName)
             .at(0)
-            .simulate("keydown", { keyCode: keyCodeArrowLeft });
+            .simulate("keydown", { keyCode: KeyCodes.arrowLeft });
         rendered
             .find(Tab.displayName)
             .at(0)
-            .simulate("keydown", { keyCode: keyCodeArrowRight });
+            .simulate("keydown", { keyCode: KeyCodes.arrowRight });
         rendered
             .find(Tab.displayName)
             .at(0)
@@ -827,7 +819,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab1.simulate("keydown", { keyCode: keyCodeArrowLeft });
+        tab1.simulate("keydown", { keyCode: KeyCodes.arrowLeft });
 
         expect(
             rendered
@@ -866,7 +858,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(true);
 
-        tab3.simulate("keydown", { keyCode: keyCodeArrowUp });
+        tab3.simulate("keydown", { keyCode: KeyCodes.arrowUp });
 
         expect(
             rendered
@@ -905,7 +897,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab2.simulate("keydown", { keyCode: keyCodeArrowLeft });
+        tab2.simulate("keydown", { keyCode: KeyCodes.arrowLeft });
 
         expect(
             rendered
@@ -944,7 +936,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab1.simulate("keydown", { keyCode: keyCodeArrowRight });
+        tab1.simulate("keydown", { keyCode: KeyCodes.arrowRight });
 
         expect(
             rendered
@@ -983,7 +975,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab2.simulate("keydown", { keyCode: keyCodeArrowDown });
+        tab2.simulate("keydown", { keyCode: KeyCodes.arrowDown });
 
         expect(
             rendered
@@ -1022,7 +1014,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(true);
 
-        tab3.simulate("keydown", { keyCode: keyCodeArrowRight });
+        tab3.simulate("keydown", { keyCode: KeyCodes.arrowRight });
 
         expect(
             rendered
@@ -1061,7 +1053,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(false);
 
-        tab1.simulate("keydown", { keyCode: keyCodeEnd });
+        tab1.simulate("keydown", { keyCode: KeyCodes.end });
 
         expect(
             rendered
@@ -1100,7 +1092,7 @@ describe("tabs", (): void => {
                 .prop("active")
         ).toBe(true);
 
-        tab1.simulate("keydown", { keyCode: keyCodeHome });
+        tab1.simulate("keydown", { keyCode: KeyCodes.home });
 
         expect(
             rendered

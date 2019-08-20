@@ -6,16 +6,12 @@ import {
     neutralFillStealthSelected,
 } from "./neutral-fill-stealth";
 import designSystemDefaults, { DesignSystem } from "../../design-system";
-import { Palette } from "./palette";
+import { palette, Palette, PaletteType } from "./palette";
 import { FillSwatchFamily, Swatch } from "./common";
-import {
-    accentPalette as getAccentPalette,
-    neutralPalette as getNeutralPalette,
-} from "../design-system";
 
 describe("neutralFillStealth", (): void => {
-    const neutralPalette: Palette = getNeutralPalette(designSystemDefaults);
-    const accentPalette: Palette = getAccentPalette(designSystemDefaults);
+    const neutralPalette: Palette = palette(PaletteType.neutral)(designSystemDefaults);
+    const accentPalette: Palette = palette(PaletteType.accent)(designSystemDefaults);
 
     test("should operate on design system defaults", (): void => {
         expect(neutralFillStealthRest({} as DesignSystem)).toBe(

@@ -158,22 +158,3 @@ const hyphenatedToPascal = pascalCase("my-string");
 const uppercaseToPascal = pascalCase("MY STRING");
 const whitespaceToPascal = pascalCase(" my string ");
 ```
-
-#### classNames
-A utility for merging class names into a single string. It can accept any number arguments which can be any of the following:
-- string
-- function that returns a string
-- tuple with the first index being a string or function that returns a string, and the second index being a boolean that when true adds the first index string value to the returned class names
-
-```
-import { classNames } from "@microsoft/fast-web-utilities";
-
-const myJoinedClassNames = classNames(
-    "classOne",
-    () => "classTwo",
-    ["classThree", true],
-    ["classFour", false]
-    [() => "classFive", true],
-    [() => "classSix", false]
-) // evaluates to "classOne classTwo classThree classFive"
-```

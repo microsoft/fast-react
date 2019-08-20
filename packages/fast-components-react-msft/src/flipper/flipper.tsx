@@ -1,22 +1,26 @@
-import { FlipperClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
+import React from "react";
+import ReactDOM from "react-dom";
+import { get } from "lodash-es";
 import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { Button, ButtonProps } from "@microsoft/fast-components-react-base";
-import { classNames } from "@microsoft/fast-web-utilities";
-import React from "react";
-import { DisplayNamePrefix } from "../utilities";
 import {
     FlipperDirection,
     FlipperHandledProps,
+    FlipperManagedClasses,
     FlipperProps,
     FlipperUnhandledProps,
 } from "./flipper.props";
+import {
+    FlipperClassNameContract,
+    ManagedClasses,
+} from "@microsoft/fast-components-class-name-contracts-msft";
+import { DisplayNamePrefix } from "../utilities";
 
 class Flipper extends Foundation<FlipperHandledProps, FlipperUnhandledProps, {}> {
     public static displayName: string = `${DisplayNamePrefix}Flipper`;
 
     public static defaultProps: Partial<FlipperProps> = {
         direction: FlipperDirection.next,
-        managedClasses: {},
     };
 
     protected handledProps: HandledProps<FlipperHandledProps> = {
@@ -45,15 +49,14 @@ class Flipper extends Foundation<FlipperHandledProps, FlipperUnhandledProps, {}>
      * Generates class names based on props
      */
     protected generateClassNames(): string {
-        const {
-            flipper,
-            flipper__next,
-            flipper__previous,
-        }: FlipperClassNameContract = this.props.managedClasses;
-        const isNext: boolean = this.props.direction !== FlipperDirection.previous;
+        const classes: string = get(
+            this.props,
+            `managedClasses.flipper__${this.props.direction || FlipperDirection.next}`,
+            ""
+        );
 
         return super.generateClassNames(
-            classNames(flipper, [flipper__previous, !isNext], [flipper__next, isNext])
+            `${get(this.props, "managedClasses.flipper", "")} ${classes}`
         );
     }
 
@@ -93,7 +96,7 @@ class Flipper extends Foundation<FlipperHandledProps, FlipperUnhandledProps, {}>
                 <svg
                     viewBox="0 0 16 16"
                     xmlns="http://www.w3.org/2000/svg"
-                    className={classNames(this.props.managedClasses.flipper_glyph)}
+                    className={get(this.props, "managedClasses.flipper_glyph")}
                 >
                     {path}
                 </svg>

@@ -1,23 +1,14 @@
-import { SelectClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import {
-    classNames,
-    keyCodeArrowDown,
-    keyCodeArrowLeft,
-    keyCodeArrowRight,
-    keyCodeArrowUp,
-    keyCodeEnter,
-    keyCodeEscape,
-    keyCodeSpace,
-} from "@microsoft/fast-web-utilities";
-import { canUseDOM } from "exenv-es6";
-import { get, isEqual, isNil } from "lodash-es";
 import React from "react";
-import Button from "../button";
-import Listbox from "../listbox";
-import { ListboxItemProps } from "../listbox-item";
-import { DisplayNamePrefix } from "../utilities";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
+import { get, isEqual, isNil } from "lodash-es";
+import { KeyCodes } from "@microsoft/fast-web-utilities";
+import { SelectClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
 import { SelectHandledProps, SelectProps, SelectUnhandledProps } from "./select.props";
+import { ListboxItemProps } from "../listbox-item";
+import Listbox from "../listbox";
+import Button from "../button";
+import { canUseDOM } from "exenv-es6";
+import { DisplayNamePrefix } from "../utilities";
 
 export interface SelectState {
     value: string | string[];
@@ -34,7 +25,6 @@ class Select extends Foundation<SelectHandledProps, SelectUnhandledProps, Select
         disabled: false,
         defaultSelection: [],
         placeholder: "",
-        managedClasses: {},
     };
 
     /**
@@ -154,21 +144,30 @@ class Select extends Foundation<SelectHandledProps, SelectUnhandledProps, Select
      * Create class names
      */
     protected generateClassNames(): string {
-        const {
-            select,
-            select__disabled,
-            select_menu__open,
-            select__multiSelectable,
-        }: SelectClassNameContract = this.props.managedClasses;
+        let className: string = get(this.props.managedClasses, "select", "");
 
-        return super.generateClassNames(
-            classNames(
-                select,
-                [select__disabled, this.props.disabled],
-                [select_menu__open, this.state.isMenuOpen],
-                [select__multiSelectable, this.props.multiselectable]
-            )
-        );
+        if (this.props.disabled) {
+            className = className.concat(
+                " ",
+                get(this.props.managedClasses, "select__disabled", "")
+            );
+        }
+
+        if (this.state.isMenuOpen) {
+            className = className.concat(
+                " ",
+                get(this.props.managedClasses, "select_menu__open", "")
+            );
+        }
+
+        if (this.props.multiselectable) {
+            className = className.concat(
+                " ",
+                get(this.props.managedClasses, "select__multiSelectable", "")
+            );
+        }
+
+        return super.generateClassNames(className);
     }
 
     /**
@@ -390,8 +389,8 @@ class Select extends Foundation<SelectHandledProps, SelectUnhandledProps, Select
         }
 
         switch (e.keyCode) {
-            case keyCodeEnter:
-            case keyCodeSpace:
+            case KeyCodes.enter:
+            case KeyCodes.space:
                 // preventing default here because when we change focus to the trigger the keydown event gets
                 // emitted from the button again which otherwise toggles the menu a second time on a single key press
                 e.preventDefault();
@@ -400,18 +399,18 @@ class Select extends Foundation<SelectHandledProps, SelectUnhandledProps, Select
                     this.focusTriggerElement();
                 }
                 break;
-            case keyCodeEscape:
+            case KeyCodes.escape:
                 this.toggleMenu(false);
                 this.focusTriggerElement();
                 break;
-            case keyCodeArrowDown:
-            case keyCodeArrowRight:
+            case KeyCodes.arrowDown:
+            case KeyCodes.arrowRight:
                 if (!this.props.multiselectable && !this.state.isMenuOpen) {
                     this.incrementSelectedOption(+1);
                 }
                 break;
-            case keyCodeArrowUp:
-            case keyCodeArrowLeft:
+            case KeyCodes.arrowUp:
+            case KeyCodes.arrowLeft:
                 if (!this.props.multiselectable && !this.state.isMenuOpen) {
                     this.incrementSelectedOption(-1);
                 }

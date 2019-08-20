@@ -3,11 +3,7 @@ import Adapter from "enzyme-adapter-react-16";
 import { configure, mount, render, shallow } from "enzyme";
 import Select, { SelectUnhandledProps } from "./select";
 import ListboxItem from "../listbox-item";
-import {
-    keyCodeArrowDown,
-    keyCodeArrowUp,
-    keyCodeSpace,
-} from "@microsoft/fast-web-utilities";
+import { KeyCodes } from "@microsoft/fast-web-utilities";
 import { DisplayNamePrefix } from "../utilities";
 
 /*
@@ -128,7 +124,7 @@ describe("select", (): void => {
 
         rendered
             .find('[displayString="a"]')
-            .simulate("keydown", { keyCode: keyCodeSpace });
+            .simulate("keydown", { keyCode: KeyCodes.space });
         expect(rendered.state("selectedItems").length).toBe(1);
         expect(rendered.state("value")).toBe("a");
         expect(onValueChange).toHaveBeenCalledTimes(1);
@@ -152,7 +148,7 @@ describe("select", (): void => {
 
         rendered
             .find('[displayString="a"]')
-            .simulate("keydown", { keyCode: keyCodeSpace });
+            .simulate("keydown", { keyCode: KeyCodes.space });
         expect(rendered.state("selectedItems").length).toBe(1);
         expect(rendered.state("value")).toBe("b");
         expect(onValueChange).toHaveBeenCalledTimes(1);
@@ -176,7 +172,7 @@ describe("select", (): void => {
 
         rendered
             .find('[displayString="ab"]')
-            .simulate("keydown", { keyCode: keyCodeSpace });
+            .simulate("keydown", { keyCode: KeyCodes.space });
         expect(rendered.state("selectedItems").length).toBe(1);
         expect(onValueChange).toHaveBeenCalledTimes(0);
     });
@@ -192,30 +188,30 @@ describe("select", (): void => {
 
         expect(rendered.state("selectedItems").length).toBe(0);
 
-        rendered.simulate("keydown", { keyCode: keyCodeArrowDown });
+        rendered.simulate("keydown", { keyCode: KeyCodes.arrowDown });
 
         expect(rendered.state("selectedItems").length).toBe(1);
         expect(rendered.state("selectedItems")[0].id).toBe("a");
         expect(rendered.state("isMenuOpen")).toBe(false);
 
-        rendered.simulate("keydown", { keyCode: keyCodeArrowDown });
+        rendered.simulate("keydown", { keyCode: KeyCodes.arrowDown });
 
         expect(rendered.state("selectedItems").length).toBe(1);
         expect(rendered.state("selectedItems")[0].id).toBe("b");
         expect(rendered.state("isMenuOpen")).toBe(false);
 
-        rendered.simulate("keydown", { keyCode: keyCodeArrowDown });
+        rendered.simulate("keydown", { keyCode: KeyCodes.arrowDown });
         expect(rendered.state("selectedItems").length).toBe(1);
         expect(rendered.state("selectedItems")[0].id).toBe("c");
         expect(rendered.state("isMenuOpen")).toBe(false);
 
-        rendered.simulate("keydown", { keyCode: keyCodeArrowUp });
+        rendered.simulate("keydown", { keyCode: KeyCodes.arrowUp });
 
         expect(rendered.state("selectedItems").length).toBe(1);
         expect(rendered.state("selectedItems")[0].id).toBe("b");
         expect(rendered.state("isMenuOpen")).toBe(false);
 
-        rendered.simulate("keydown", { keyCode: keyCodeArrowUp });
+        rendered.simulate("keydown", { keyCode: KeyCodes.arrowUp });
 
         expect(rendered.state("selectedItems").length).toBe(1);
         expect(rendered.state("selectedItems")[0].id).toBe("a");
@@ -234,7 +230,7 @@ describe("select", (): void => {
         expect(rendered.state("selectedItems").length).toBe(0);
         expect(rendered.state("isMenuOpen")).toBe(false);
 
-        rendered.simulate("keydown", { keyCode: keyCodeArrowUp });
+        rendered.simulate("keydown", { keyCode: KeyCodes.arrowUp });
         expect(rendered.state("isMenuOpen")).toBe(false);
         expect(rendered.state("selectedItems").length).toBe(1);
         expect(rendered.state("selectedItems")[0].id).toBe("c");
@@ -254,14 +250,14 @@ describe("select", (): void => {
 
         rendered
             .find('[displayString="a"]')
-            .simulate("keydown", { keyCode: keyCodeSpace });
+            .simulate("keydown", { keyCode: KeyCodes.space });
 
         expect(rendered.state("displayString")).toBe("a");
         expect(rendered.state("value")).toEqual(["a"]);
 
         rendered
             .find('[displayString="a"]')
-            .simulate("keydown", { keyCode: keyCodeArrowDown, shiftKey: true });
+            .simulate("keydown", { keyCode: KeyCodes.arrowDown, shiftKey: true });
 
         expect(rendered.state("displayString")).toBe("a, ab");
         expect(rendered.state("value")).toEqual(["a", "b"]);
@@ -280,7 +276,7 @@ describe("select", (): void => {
 
         expect(displayFormatter).toHaveBeenCalledTimes(1);
 
-        rendered.simulate("keydown", { keyCode: keyCodeArrowUp });
+        rendered.simulate("keydown", { keyCode: KeyCodes.arrowUp });
         expect(displayFormatter).toHaveBeenCalledTimes(2);
     });
 
@@ -320,12 +316,12 @@ describe("select", (): void => {
 
         rendered
             .find('[displayString="a"]')
-            .simulate("keydown", { keyCode: keyCodeSpace });
+            .simulate("keydown", { keyCode: KeyCodes.space });
         expect(rendered.find("select").prop("value")).toEqual(["a"]);
 
         rendered
             .find('[displayString="a"]')
-            .simulate("keydown", { keyCode: keyCodeArrowDown, shiftKey: true });
+            .simulate("keydown", { keyCode: KeyCodes.arrowDown, shiftKey: true });
         expect(rendered.find("select").prop("value")).toEqual(["a", "b"]);
     });
 

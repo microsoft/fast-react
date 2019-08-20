@@ -1,14 +1,5 @@
 import React from "react";
-import {
-    keyCodeArrowDown,
-    keyCodeArrowLeft,
-    keyCodeArrowRight,
-    keyCodeArrowUp,
-    keyCodeEnd,
-    keyCodeEnter,
-    keyCodeHome,
-    keyCodeSpace,
-} from "@microsoft/fast-web-utilities";
+import { KeyCodes } from "@microsoft/fast-web-utilities";
 import Foundation, {
     FoundationProps,
     HandledProps,
@@ -499,28 +490,28 @@ export default class Navigation extends Foundation<
 
             if (e.target === e.currentTarget) {
                 switch (e.keyCode) {
-                    case keyCodeEnter:
-                    case keyCodeSpace:
+                    case KeyCodes.enter:
+                    case KeyCodes.space:
                         if (e.target === e.currentTarget) {
                             this.toggleItems(dataLocation, type);
                         }
                         break;
-                    case keyCodeArrowDown:
+                    case KeyCodes.arrowDown:
                         this.focusNextTreeItem(dataLocation);
                         break;
-                    case keyCodeArrowUp:
+                    case KeyCodes.arrowUp:
                         this.focusPreviousTreeItem(dataLocation);
                         break;
-                    case keyCodeArrowRight:
+                    case KeyCodes.arrowRight:
                         this.focusAndOpenTreeItems(dataLocation, type);
                         break;
-                    case keyCodeArrowLeft:
+                    case KeyCodes.arrowLeft:
                         this.focusAndCloseTreeItems(dataLocation, type);
                         break;
-                    case keyCodeHome:
+                    case KeyCodes.home:
                         this.focusFirstTreeItem();
                         break;
-                    case keyCodeEnd:
+                    case KeyCodes.end:
                         this.focusLastTreeItem();
                         break;
 

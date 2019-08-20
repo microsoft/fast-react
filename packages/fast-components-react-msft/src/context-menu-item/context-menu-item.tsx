@@ -1,13 +1,14 @@
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { ContextMenuItem as BaseContextMenuItem } from "@microsoft/fast-components-react-base";
-import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
-import { DisplayNamePrefix } from "../utilities";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import {
     ContextMenuItemHandledProps,
+    ContextMenuItemManagedClasses,
     ContextMenuItemProps,
     ContextMenuItemUnhandledProps,
 } from "./context-menu-item.props";
+import { ContextMenuItem as BaseContextMenuItem } from "@microsoft/fast-components-react-base";
+import { get } from "lodash-es";
+import { DisplayNamePrefix } from "../utilities";
 
 class ContextMenuItem extends Foundation<
     ContextMenuItemHandledProps,
@@ -15,9 +16,6 @@ class ContextMenuItem extends Foundation<
     {}
 > {
     public static displayName: string = `${DisplayNamePrefix}ContextMenuItem`;
-    public static defaultProps: Partial<ContextMenuItemProps> = {
-        managedClasses: {},
-    };
 
     protected handledProps: HandledProps<ContextMenuItemHandledProps> = {
         before: void 0,
@@ -28,8 +26,9 @@ class ContextMenuItem extends Foundation<
             <BaseContextMenuItem {...this.unhandledProps()}>
                 {this.props.before !== undefined ? this.props.before : undefined}
                 <span
-                    className={classNames(
-                        this.props.managedClasses.contextMenuItem_contentRegion
+                    className={get(
+                        this.props.managedClasses,
+                        "contextMenuItem_contentRegion"
                     )}
                 >
                     {this.props.children}

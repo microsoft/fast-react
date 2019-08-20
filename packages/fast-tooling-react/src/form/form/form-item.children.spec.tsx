@@ -1,11 +1,7 @@
 import React from "react";
 import Adapter from "enzyme-adapter-react-16";
 import { configure, mount, ReactWrapper } from "enzyme";
-import {
-    keyCodeArrowDown,
-    keyCodeArrowUp,
-    keyCodeEnter,
-} from "@microsoft/fast-web-utilities";
+import { KeyCodes } from "@microsoft/fast-web-utilities";
 import { FormItemChildren } from "./form-item.children";
 import {
     FormItemChildrenClassNameContract,
@@ -210,7 +206,7 @@ describe("Children", () => {
                 .props()["aria-selected"]
         ).toEqual(true);
 
-        input.simulate("keydown", { keyCode: keyCodeArrowDown });
+        input.simulate("keydown", { keyCode: KeyCodes.arrowDown });
 
         expect(
             rendered
@@ -225,7 +221,7 @@ describe("Children", () => {
                 .props()["aria-selected"]
         ).toEqual(true);
 
-        input.simulate("keydown", { keyCode: keyCodeArrowDown });
+        input.simulate("keydown", { keyCode: KeyCodes.arrowDown });
 
         expect(
             rendered
@@ -240,7 +236,7 @@ describe("Children", () => {
                 .props()["aria-selected"]
         ).toEqual(true);
 
-        input.simulate("keydown", { keyCode: keyCodeArrowDown });
+        input.simulate("keydown", { keyCode: KeyCodes.arrowDown });
 
         expect(
             rendered
@@ -271,7 +267,7 @@ describe("Children", () => {
                 .props()["aria-selected"]
         ).toEqual(true);
 
-        input.simulate("keydown", { keyCode: keyCodeArrowUp });
+        input.simulate("keydown", { keyCode: KeyCodes.arrowUp });
 
         expect(
             rendered
@@ -286,7 +282,7 @@ describe("Children", () => {
                 .props()["aria-selected"]
         ).toEqual(true);
 
-        input.simulate("keydown", { keyCode: keyCodeArrowUp });
+        input.simulate("keydown", { keyCode: KeyCodes.arrowUp });
 
         expect(
             rendered
@@ -301,7 +297,7 @@ describe("Children", () => {
                 .props()["aria-selected"]
         ).toEqual(true);
 
-        input.simulate("keydown", { keyCode: keyCodeArrowUp });
+        input.simulate("keydown", { keyCode: KeyCodes.arrowUp });
 
         expect(
             rendered
@@ -483,7 +479,7 @@ describe("Children", () => {
         );
 
         rendered.find("input").simulate("change", { target: { value: "" } });
-        rendered.find("input").simulate("keydown", { keyCode: keyCodeEnter });
+        rendered.find("input").simulate("keydown", { keyCode: KeyCodes.enter });
 
         expect(callback).not.toHaveBeenCalled();
     });
@@ -498,7 +494,7 @@ describe("Children", () => {
         );
 
         rendered.find("input").simulate("change", { target: { value: "echo" } });
-        rendered.find("input").simulate("keydown", { keyCode: keyCodeEnter });
+        rendered.find("input").simulate("keydown", { keyCode: KeyCodes.enter });
 
         expect(callback).not.toHaveBeenCalled();
     });
@@ -513,7 +509,7 @@ describe("Children", () => {
         );
 
         rendered.find("input").simulate("change", { target: { value: "b" } });
-        rendered.find("input").simulate("keydown", { keyCode: keyCodeEnter });
+        rendered.find("input").simulate("keydown", { keyCode: KeyCodes.enter });
 
         expect(callback).toHaveBeenCalled();
         expect(callback.mock.calls[0][1]).toEqual([{ id: "beta 1", props: {} }]);

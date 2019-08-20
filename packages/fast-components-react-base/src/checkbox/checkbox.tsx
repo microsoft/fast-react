@@ -1,15 +1,19 @@
-import { CheckboxClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { classNames } from "@microsoft/fast-web-utilities";
-import { get } from "lodash-es";
 import React from "react";
-import { DisplayNamePrefix } from "../utilities";
+import ReactDOM from "react-dom";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import {
     CheckboxHandledProps,
+    CheckboxManagedClasses,
     CheckboxProps,
     CheckboxSlot,
     CheckboxUnhandledProps,
 } from "./checkbox.props";
+import {
+    CheckboxClassNameContract,
+    ManagedClasses,
+} from "@microsoft/fast-components-class-name-contracts-base";
+import { get } from "lodash-es";
+import { DisplayNamePrefix } from "../utilities";
 
 /**
  * Checkbox state interface
@@ -24,10 +28,6 @@ class Checkbox extends Foundation<
     CheckboxState
 > {
     public static displayName: string = `${DisplayNamePrefix}Checkbox`;
-
-    public static defaultProps: Partial<CheckboxProps> = {
-        managedClasses: {},
-    };
 
     /**
      * React life-cycle method
@@ -101,7 +101,7 @@ class Checkbox extends Foundation<
         return (
             <div {...this.unhandledProps()} className={this.generateClassNames()}>
                 <input
-                    className={this.props.managedClasses.checkbox_input}
+                    className={get(this.props, "managedClasses.checkbox_input")}
                     id={this.props.inputId}
                     name={this.props.name}
                     type="checkbox"
@@ -111,7 +111,9 @@ class Checkbox extends Foundation<
                     checked={this.state.checked}
                     value={this.props.value}
                 />
-                <span className={this.props.managedClasses.checkbox_stateIndicator} />
+                <span
+                    className={get(this.props, "managedClasses.checkbox_stateIndicator")}
+                />
                 {this.renderLabel()}
             </div>
         );
@@ -121,21 +123,33 @@ class Checkbox extends Foundation<
      * Generates class names
      */
     protected generateClassNames(): string {
-        const {
-            checkbox,
-            checkbox__disabled,
-            checkbox__checked,
-            checkbox__indeterminate,
-        }: CheckboxClassNameContract = this.props.managedClasses;
+        let classes: string = get(this.props, "managedClasses.checkbox", "");
 
-        return super.generateClassNames(
-            classNames(
-                checkbox,
-                [checkbox__disabled, this.props.disabled],
-                [checkbox__checked, this.state.checked],
-                [checkbox__indeterminate, this.props.indeterminate]
-            )
-        );
+        if (this.props.disabled) {
+            classes = `${classes} ${get(
+                this.props,
+                "managedClasses.checkbox__disabled",
+                ""
+            )}`;
+        }
+
+        if (this.state.checked) {
+            classes = `${classes} ${get(
+                this.props,
+                "managedClasses.checkbox__checked",
+                ""
+            )}`;
+        }
+
+        if (this.props.indeterminate) {
+            classes = `${classes} ${get(
+                this.props,
+                "managedClasses.checkbox__indeterminate",
+                ""
+            )}`;
+        }
+
+        return super.generateClassNames(classes);
     }
 
     /**
@@ -145,7 +159,10 @@ class Checkbox extends Foundation<
         return React.Children.map(
             this.withSlot(CheckboxSlot.label),
             (label: React.ReactElement<any>): React.ReactElement<any> => {
-                let className: string | void = this.props.managedClasses.checkbox_label;
+                let className: string | undefined = get(
+                    this.props,
+                    "managedClasses.checkbox_label"
+                );
 
                 if (typeof className !== "string") {
                     return label;

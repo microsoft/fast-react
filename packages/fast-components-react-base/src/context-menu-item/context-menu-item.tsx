@@ -1,13 +1,14 @@
-import { ContextMenuItemClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { classNames, keyCodeEnter, keyCodeSpace } from "@microsoft/fast-web-utilities";
 import React from "react";
-import { DisplayNamePrefix } from "../utilities";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
+import { get } from "lodash-es";
+import { ContextMenuItemClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
+import { KeyCodes } from "@microsoft/fast-web-utilities";
 import {
     ContextMenuItemHandledProps,
     ContextMenuItemProps,
     ContextMenuItemUnhandledProps,
 } from "./context-menu-item.props";
+import { DisplayNamePrefix } from "../utilities";
 
 export enum ContextMenuItemRole {
     menuItem = "menuitem",
@@ -25,7 +26,6 @@ class ContextMenuItem extends Foundation<
     public static defaultProps: Partial<ContextMenuItemProps> = {
         role: ContextMenuItemRole.menuItem,
         disabled: false,
-        managedClasses: {},
     };
 
     protected handledProps: HandledProps<ContextMenuItemHandledProps> = {
@@ -58,25 +58,31 @@ class ContextMenuItem extends Foundation<
      * Create class-names
      */
     protected generateClassNames(): string {
-        const {
-            contextMenuItem,
-            contextMenuItem__checkbox,
-            contextMenuItem__radio,
-            contextMenuItem__disabled,
-        }: ContextMenuItemClassNameContract = this.props.managedClasses;
-        const role: ContextMenuItemRole = this.props.role;
+        let className: string = get(this.props.managedClasses, "contextMenuItem", "");
 
-        return super.generateClassNames(
-            classNames(
-                contextMenuItem,
-                [
-                    contextMenuItem__checkbox,
-                    role === ContextMenuItemRole.menuItemCheckbox,
-                ],
-                [contextMenuItem__radio, role === ContextMenuItemRole.menuItemRadio],
-                [contextMenuItem__disabled, this.props.disabled]
-            )
-        );
+        switch (this.props.role) {
+            case ContextMenuItemRole.menuItemCheckbox:
+                className = className.concat(
+                    " ",
+                    get(this.props.managedClasses, "contextMenuItem__checkbox", "")
+                );
+                break;
+            case ContextMenuItemRole.menuItemRadio:
+                className = className.concat(
+                    " ",
+                    get(this.props.managedClasses, "contextMenuItem__radio", "")
+                );
+                break;
+        }
+
+        if (this.props.disabled) {
+            className = className.concat(
+                " ",
+                get(this.props.managedClasses, "contextMenuItem__disabled", "")
+            );
+        }
+
+        return super.generateClassNames(className);
     }
 
     /**
@@ -84,8 +90,8 @@ class ContextMenuItem extends Foundation<
      */
     private handleMenuItemKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
         switch (e.keyCode) {
-            case keyCodeEnter:
-            case keyCodeSpace:
+            case KeyCodes.enter:
+            case KeyCodes.space:
                 this.handleInvoke(e);
                 break;
         }

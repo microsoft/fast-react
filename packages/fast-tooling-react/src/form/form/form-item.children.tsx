@@ -1,16 +1,11 @@
-import React from "react";
 import { canUseDOM } from "exenv-es6";
+import { generateExampleData } from "../utilities";
 import { arrayMove, SortableContainer, SortableElement } from "react-sortable-hoc";
 import { cloneDeep, get, inRange, uniqueId } from "lodash-es";
-import {
-    keyCodeArrowDown,
-    keyCodeArrowUp,
-    keyCodeEnter,
-    keyCodeTab,
-} from "@microsoft/fast-web-utilities";
+import { KeyCodes } from "@microsoft/fast-web-utilities";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import { generateExampleData } from "../utilities";
+import React from "react";
 import { getChildOptionBySchemaId } from "../../data-utilities/location";
 import { SortableListItem, sortingProps } from "./sorting";
 import { FormChildOptionItem } from "./form.props";
@@ -503,9 +498,9 @@ class FormItemChildren extends FormItemBase<
         e: React.KeyboardEvent<HTMLInputElement>
     ): void => {
         switch (e.keyCode) {
-            case keyCodeEnter:
+            case KeyCodes.enter:
                 e.preventDefault();
-            case keyCodeTab:
+            case KeyCodes.tab:
                 if (this.state.childrenSearchTerm !== "") {
                     this.onAddComponent(
                         this.state.filteredChildOptions[
@@ -519,10 +514,10 @@ class FormItemChildren extends FormItemBase<
                     hideChildrenList: true,
                 });
                 break;
-            case keyCodeArrowUp:
+            case KeyCodes.arrowUp:
                 this.selectPreviousFilteredChildOption();
                 break;
-            case keyCodeArrowDown:
+            case KeyCodes.arrowDown:
                 this.selectNextFilteredChildOption();
                 break;
         }

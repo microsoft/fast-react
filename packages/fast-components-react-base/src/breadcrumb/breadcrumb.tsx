@@ -1,13 +1,14 @@
-import { BreadcrumbClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
-import { DisplayNamePrefix } from "../utilities";
+import ReactDOM from "react-dom";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
+import { BreadcrumbClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
 import {
     BreadcrumbHandledProps,
     BreadcrumbProps,
     BreadcrumbUnhandledProps,
 } from "./breadcrumb.props";
+import { get } from "lodash-es";
+import { DisplayNamePrefix } from "../utilities";
 
 class Breadcrumb extends Foundation<
     BreadcrumbHandledProps,
@@ -15,9 +16,6 @@ class Breadcrumb extends Foundation<
     {}
 > {
     public static displayName: string = `${DisplayNamePrefix}Breadcrumb`;
-    public static defaultProps: Partial<BreadcrumbProps> = {
-        managedClasses: {},
-    };
 
     protected handledProps: HandledProps<BreadcrumbHandledProps> = {
         children: void 0,
@@ -47,35 +45,35 @@ class Breadcrumb extends Foundation<
      * Create class names
      */
     protected generateClassNames(): string {
-        return super.generateClassNames(classNames(this.props.managedClasses.breadcrumb));
+        return super.generateClassNames(get(this.props.managedClasses, "breadcrumb"));
     }
 
     /**
      * Create items container class names
      */
     protected generateItemsContainerClassNames(): string {
-        return classNames(this.props.managedClasses.breadcrumb_itemsContainer);
+        return get(this.props.managedClasses, "breadcrumb_itemsContainer");
     }
 
     /**
      * Create item class names
      */
     protected generateItemClassNames(): string {
-        return classNames(this.props.managedClasses.breadcrumb_item);
+        return get(this.props.managedClasses, "breadcrumb_item") || "";
     }
 
     /**
      * Create current item class names
      */
     protected generateCurrentItemClassNames(): string {
-        return classNames(this.props.managedClasses.breadcrumb_item__current);
+        return get(this.props.managedClasses, "breadcrumb_item__current") || "";
     }
 
     /**
      * Create separator class names
      */
     protected generateSeparatorClassNames(): string {
-        return classNames(this.props.managedClasses.breadcrumb_separator);
+        return get(this.props.managedClasses, "breadcrumb_separator") || "";
     }
 
     /**
@@ -98,24 +96,29 @@ class Breadcrumb extends Foundation<
     ): React.ReactFragment => {
         const childCount: number = React.Children.count(this.props.children);
         let augmentedChild: React.ReactNode = child;
-        const isLastItem: boolean = childCount - 1 === index;
-
+        let notLastItem: boolean = true;
         if (this.isClonableElement(child)) {
             const props: any = {
-                className: classNames(
-                    child.props && child.props.className,
-                    this.generateItemClassNames(),
-                    [this.generateCurrentItemClassNames(), isLastItem]
-                ),
-                "aria-current": isLastItem ? "page" : undefined,
+                className:
+                    child.props && typeof child.props.className === "string"
+                        ? `${child.props.className} ${this.generateItemClassNames()}`
+                        : this.generateItemClassNames(),
             };
+
+            if (childCount - 1 === index) {
+                props.className = `${
+                    props.className
+                } ${this.generateCurrentItemClassNames()}`;
+                props["aria-current"] = "page";
+                notLastItem = false;
+            }
 
             augmentedChild = React.cloneElement(child, props);
         }
         return (
             <li>
                 {augmentedChild}
-                {typeof this.props.separator === "function" && !isLastItem
+                {typeof this.props.separator === "function" && notLastItem
                     ? this.props.separator(this.generateSeparatorClassNames())
                     : null}
             </li>

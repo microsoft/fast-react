@@ -1,5 +1,11 @@
 import { DesignSystem } from "../../design-system";
-import { findClosestSwatchIndex, isDarkMode, Palette, swatchByContrast } from "./palette";
+import {
+    findClosestSwatchIndex,
+    isDarkMode,
+    Palette,
+    PaletteType,
+    swatchByContrast,
+} from "./palette";
 import { colorRecipeFactory, SwatchRecipe } from "./common";
 import { backgroundColor, neutralPalette } from "../design-system";
 
@@ -11,7 +17,7 @@ function neutralForegroundHintInitialIndexResolver(
     sourcePalette: Palette,
     designSystem: DesignSystem
 ): number {
-    return findClosestSwatchIndex(neutralPalette, referenceColor)(designSystem);
+    return findClosestSwatchIndex(PaletteType.neutral, referenceColor)(designSystem);
 }
 
 /**

@@ -6,14 +6,7 @@ import Slider, {
     SliderThumb,
     SliderUnhandledProps,
 } from "./slider";
-import {
-    keyCodeArrowDown,
-    keyCodeArrowLeft,
-    keyCodeArrowRight,
-    keyCodeArrowUp,
-    keyCodePageDown,
-    keyCodePageUp,
-} from "@microsoft/fast-web-utilities";
+import { KeyCodes } from "@microsoft/fast-web-utilities";
 import { DisplayNamePrefix } from "../utilities";
 import { SliderMode, SliderOrientation } from "./slider.props";
 
@@ -396,29 +389,29 @@ describe("Slider", (): void => {
 
         const thumb: any = rendered.find(`.${managedClasses.slider_thumb__upperValue}`);
         expect(rendered.state("isIncrementing")).toBe(false);
-        thumb.simulate("keydown", { keyCode: keyCodeArrowDown });
+        thumb.simulate("keydown", { keyCode: KeyCodes.arrowDown });
         expect(rendered.state("isIncrementing")).toBe(true);
         expect(rendered.state("incrementDirection")).toBe(-1);
         expect(rendered.state("activeThumb")).toBe(SliderThumb.upperThumb);
-        map.keyup({ keyCode: keyCodeArrowDown });
+        map.keyup({ keyCode: KeyCodes.arrowDown });
         expect(rendered.state("isIncrementing")).toBe(false);
 
-        thumb.simulate("keydown", { keyCode: keyCodeArrowRight });
+        thumb.simulate("keydown", { keyCode: KeyCodes.arrowRight });
         expect(rendered.state("isIncrementing")).toBe(true);
         expect(rendered.state("incrementDirection")).toBe(1);
-        map.keyup({ keyCode: keyCodeArrowRight });
+        map.keyup({ keyCode: KeyCodes.arrowRight });
         expect(rendered.state("isIncrementing")).toBe(false);
 
-        thumb.simulate("keydown", { keyCode: keyCodeArrowUp });
+        thumb.simulate("keydown", { keyCode: KeyCodes.arrowUp });
         expect(rendered.state("isIncrementing")).toBe(true);
         expect(rendered.state("incrementDirection")).toBe(1);
-        map.keyup({ keyCode: keyCodeArrowUp });
+        map.keyup({ keyCode: KeyCodes.arrowUp });
         expect(rendered.state("isIncrementing")).toBe(false);
 
-        thumb.simulate("keydown", { keyCode: keyCodeArrowLeft });
+        thumb.simulate("keydown", { keyCode: KeyCodes.arrowLeft });
         expect(rendered.state("isIncrementing")).toBe(true);
         expect(rendered.state("incrementDirection")).toBe(-1);
-        map.keyup({ keyCode: keyCodeArrowLeft });
+        map.keyup({ keyCode: KeyCodes.arrowLeft });
         expect(rendered.state("isIncrementing")).toBe(false);
 
         document.body.removeChild(container);
@@ -435,17 +428,17 @@ describe("Slider", (): void => {
         const thumb: any = rendered.find(`.${managedClasses.slider_thumb__upperValue}`);
         expect(rendered.state("isIncrementing")).toBe(false);
         expect(rendered.state("usePageStep")).toBe(false);
-        thumb.simulate("keydown", { keyCode: keyCodePageDown });
+        thumb.simulate("keydown", { keyCode: KeyCodes.pageDown });
         expect(rendered.state("isIncrementing")).toBe(false);
         expect(rendered.state("usePageStep")).toBe(false);
-        map.keyup({ keyCode: keyCodePageDown });
+        map.keyup({ keyCode: KeyCodes.pageDown });
         expect(rendered.state("isIncrementing")).toBe(false);
         expect(rendered.state("usePageStep")).toBe(false);
 
-        thumb.simulate("keydown", { keyCode: keyCodePageUp });
+        thumb.simulate("keydown", { keyCode: KeyCodes.pageUp });
         expect(rendered.state("isIncrementing")).toBe(false);
         expect(rendered.state("usePageStep")).toBe(false);
-        map.keyup({ keyCode: keyCodePageUp });
+        map.keyup({ keyCode: KeyCodes.pageUp });
         expect(rendered.state("isIncrementing")).toBe(false);
         expect(rendered.state("usePageStep")).toBe(false);
 
@@ -467,19 +460,19 @@ describe("Slider", (): void => {
         expect(rendered.state("isIncrementing")).toBe(false);
         expect(rendered.state("usePageStep")).toBe(false);
 
-        thumb.simulate("keydown", { keyCode: keyCodePageDown });
+        thumb.simulate("keydown", { keyCode: KeyCodes.pageDown });
         expect(rendered.state("isIncrementing")).toBe(true);
         expect(rendered.state("usePageStep")).toBe(true);
         expect(rendered.state("incrementDirection")).toBe(-1);
-        map.keyup({ keyCode: keyCodePageDown });
+        map.keyup({ keyCode: KeyCodes.pageDown });
         expect(rendered.state("isIncrementing")).toBe(false);
         expect(rendered.state("usePageStep")).toBe(false);
 
-        thumb.simulate("keydown", { keyCode: keyCodePageUp });
+        thumb.simulate("keydown", { keyCode: KeyCodes.pageUp });
         expect(rendered.state("isIncrementing")).toBe(true);
         expect(rendered.state("usePageStep")).toBe(true);
         expect(rendered.state("incrementDirection")).toBe(1);
-        map.keyup({ keyCode: keyCodePageUp });
+        map.keyup({ keyCode: KeyCodes.pageUp });
         expect(rendered.state("isIncrementing")).toBe(false);
         expect(rendered.state("usePageStep")).toBe(false);
 

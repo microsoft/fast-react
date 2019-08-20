@@ -1,18 +1,17 @@
-import { ProgressClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import {
-    Progress as BaseProgress,
-    ProgressType,
-} from "@microsoft/fast-components-react-base";
-import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
-import { DisplayNamePrefix } from "../utilities";
+import { get } from "lodash-es";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
+import { ProgressType } from "@microsoft/fast-components-react-base";
 import {
     ProgressHandledProps,
     ProgressProps,
     ProgressSize,
     ProgressUnhandledProps,
 } from "./progress.props";
+import { ProgressClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
+import { Progress as BaseProgress } from "@microsoft/fast-components-react-base";
+import { DisplayNamePrefix } from "../utilities";
+import { toPx } from "@microsoft/fast-jss-utilities";
 
 class Progress extends Foundation<ProgressHandledProps, ProgressUnhandledProps, {}> {
     public static defaultProps: Partial<ProgressProps> = {
@@ -20,7 +19,6 @@ class Progress extends Foundation<ProgressHandledProps, ProgressUnhandledProps, 
         maxValue: 100,
         circular: false,
         size: ProgressSize.container,
-        managedClasses: {},
     };
 
     public static displayName: string = `${DisplayNamePrefix}Progress`;
@@ -59,63 +57,63 @@ class Progress extends Foundation<ProgressHandledProps, ProgressUnhandledProps, 
      * Create class names
      */
     protected generateClassNames(): string {
-        const {
-            progress,
-            progress__circular,
-        }: Partial<ProgressClassNameContract> = this.props.managedClasses;
+        let className: string = get(this.props.managedClasses, "progress", "");
 
-        return super.generateClassNames(
-            classNames(progress, [progress__circular, this.props.circular])
-        );
+        if (this.props.circular) {
+            className = get(this.props.managedClasses, "progress__circular", "");
+        }
+
+        return super.generateClassNames(className);
     }
 
     private generateCircularValueIndicatorClassNames(): string {
-        const {
-            progress_valueIndicator,
-            progress_valueIndicator__indeterminate,
-        }: Partial<ProgressClassNameContract> = this.props.managedClasses;
+        let className: string = get(
+            this.props.managedClasses,
+            "progress_valueIndicator",
+            ""
+        );
 
-        return classNames(progress_valueIndicator, [
-            progress_valueIndicator__indeterminate,
-            !this.props.value,
-        ]);
+        if (!this.props.value) {
+            className = `${className} ${get(
+                this.props.managedClasses,
+                "progress_valueIndicator__indeterminate",
+                ""
+            )}`;
+        }
+
+        return className;
     }
 
     private generateSVGClassNames(): string {
-        const managedClasses: Partial<ProgressClassNameContract> = this.props
-            .managedClasses;
+        const className: string = this.props.size
+            ? get(
+                  this.props.managedClasses,
+                  `progress_circularSVG__${this.props.size}`,
+                  ""
+              )
+            : get(this.props.managedClasses, "progress_circularSVG__container", "");
 
-        return classNames(
-            managedClasses.progress_circularSVG__container,
-            managedClasses[`progress_circularSVG__${this.props.size}`]
-        );
+        return className;
     }
 
     private progressIndicatorClasses(): string {
-        const {
-            progress_indicator,
-            progress_indicator__determinate,
-        }: Partial<ProgressClassNameContract> = this.props.managedClasses;
-
-        return classNames(progress_indicator, progress_indicator__determinate);
+        return [
+            get(this.props.managedClasses, "progress_indicator"),
+            get(this.props.managedClasses, "progress_indicator__determinate"),
+        ].join(" ");
     }
 
     private renderIndeterminateItems(): JSX.Element[] {
-        const managedClasses: Partial<ProgressClassNameContract> = this.props
-            .managedClasses;
-        const dotClass: string = managedClasses.progress_dot;
         return new Array(Progress.indicatorCount)
             .fill(undefined)
             .map((item: undefined, index: number) => {
-                return (
-                    <span
-                        className={classNames(
-                            dotClass,
-                            managedClasses[`progress_dot__${index + 1}`]
-                        )}
-                        key={index}
-                    />
-                );
+                let className: string = get(this.props.managedClasses, "progress_dot");
+                className = `${className} ${get(
+                    this.props.managedClasses,
+                    `progress_dot__${index + 1}`
+                )}`;
+
+                return <span className={className} key={index} />;
             });
     }
 
@@ -124,17 +122,10 @@ class Progress extends Foundation<ProgressHandledProps, ProgressUnhandledProps, 
     }
 
     private renderCircularBackground(): JSX.Element {
-        return this.renderCircle(
-            classNames(this.props.managedClasses.progress_indicator)
-        );
+        return this.renderCircle(get(this.props.managedClasses, "progress_indicator"));
     }
 
     private renderProgress(): React.ReactFragment {
-        const {
-            progress_valueIndicator,
-            progress_indicator,
-        }: Partial<ProgressClassNameContract> = this.props.managedClasses;
-
         if (this.props.circular) {
             const strokeValue: number = (44 * this.props.value) / 100;
             return [
@@ -165,13 +156,13 @@ class Progress extends Foundation<ProgressHandledProps, ProgressUnhandledProps, 
                 key="0"
             >
                 <div
-                    className={classNames(progress_valueIndicator)}
+                    className={get(this.props.managedClasses, "progress_valueIndicator")}
                     style={{ width: `${this.props.value}%` }}
                 />
             </div>,
             <div
                 slot={ProgressType.indeterminate}
-                className={classNames(progress_indicator)}
+                className={get(this.props.managedClasses, "progress_indicator")}
                 key="1"
             >
                 {this.renderIndeterminateItems()}

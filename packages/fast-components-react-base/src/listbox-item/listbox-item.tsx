@@ -1,14 +1,15 @@
-import { ListboxItemClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { classNames, keyCodeEnter, keyCodeSpace } from "@microsoft/fast-web-utilities";
 import React from "react";
-import { ListboxContext, ListboxContextType } from "../listbox/listbox-context";
-import { DisplayNamePrefix } from "../utilities";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
+import { get } from "lodash-es";
+import { ListboxItemClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
 import {
     ListboxItemHandledProps,
     ListboxItemProps,
     ListboxItemUnhandledProps,
 } from "./listbox-item.props";
+import { ListboxContext, ListboxContextType } from "../listbox/listbox-context";
+import { KeyCodes } from "@microsoft/fast-web-utilities";
+import { DisplayNamePrefix } from "../utilities";
 
 class ListboxItem extends Foundation<
     ListboxItemHandledProps,
@@ -21,7 +22,6 @@ class ListboxItem extends Foundation<
 
     public static defaultProps: Partial<ListboxItemProps> = {
         disabled: false,
-        managedClasses: {},
     };
 
     protected handledProps: HandledProps<ListboxItemHandledProps> = {
@@ -58,19 +58,25 @@ class ListboxItem extends Foundation<
      * Create class-names
      */
     protected generateClassNames(): string {
-        const {
-            listboxItem,
-            listboxItem__disabled,
-            listboxItem__selected,
-        }: ListboxItemClassNameContract = this.props.managedClasses;
+        let classNames: string = get(this.props, "managedClasses.listboxItem", "");
 
-        return super.generateClassNames(
-            classNames(
-                listboxItem,
-                [listboxItem__disabled, this.props.disabled],
-                [listboxItem__selected, this.isItemSelected()]
-            )
-        );
+        if (this.props.disabled) {
+            classNames = `${classNames} ${get(
+                this.props,
+                "managedClasses.listboxItem__disabled",
+                ""
+            )}`;
+        }
+
+        if (this.isItemSelected()) {
+            classNames = `${classNames} ${get(
+                this.props,
+                "managedClasses.listboxItem__selected",
+                ""
+            )}`;
+        }
+
+        return super.generateClassNames(classNames);
     }
 
     /**
@@ -121,8 +127,8 @@ class ListboxItem extends Foundation<
         }
 
         switch (e.keyCode) {
-            case keyCodeEnter:
-            case keyCodeSpace:
+            case KeyCodes.enter:
+            case KeyCodes.space:
                 this.invokeOption(e);
                 break;
         }

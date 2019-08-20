@@ -1,10 +1,17 @@
-import { ImageClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { classNames } from "@microsoft/fast-web-utilities";
-import { get } from "lodash-es";
 import React from "react";
+import ReactDOM from "react-dom";
+import { get } from "lodash-es";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
+import {
+    ImageHandledProps,
+    ImageManagedClasses,
+    ImageUnhandledProps,
+} from "./image.props";
+import {
+    ImageClassNameContract,
+    ManagedClasses,
+} from "@microsoft/fast-components-class-name-contracts-base";
 import { DisplayNamePrefix } from "../utilities";
-import { ImageHandledProps, ImageProps, ImageUnhandledProps } from "./image.props";
 
 export enum ImageSlot {
     source = "source",
@@ -12,10 +19,6 @@ export enum ImageSlot {
 
 class Image extends Foundation<ImageHandledProps, ImageUnhandledProps, {}> {
     public static displayName: string = `${DisplayNamePrefix}Image`;
-
-    public static defaultProps: Partial<ImageProps> = {
-        managedClasses: {},
-    };
 
     protected handledProps: HandledProps<ImageHandledProps> = {
         managedClasses: void 0,
@@ -29,7 +32,7 @@ class Image extends Foundation<ImageHandledProps, ImageUnhandledProps, {}> {
      * Renders the component
      */
     public render(): React.ReactElement<HTMLImageElement | HTMLPictureElement> {
-        let className: string = classNames(this.props.managedClasses.image);
+        let className: string = get(this.props, "managedClasses.image", "");
 
         if (!this.props.children) {
             return (

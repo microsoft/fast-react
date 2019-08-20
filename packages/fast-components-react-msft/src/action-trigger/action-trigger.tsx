@@ -1,17 +1,14 @@
-import { ActionTriggerClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { actionTriggerButtonOverrides } from "@microsoft/fast-components-styles-msft";
-import { classNames } from "@microsoft/fast-web-utilities";
-import { isNil } from "lodash-es";
 import React from "react";
+import { get, isNil } from "lodash-es";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { Button, ButtonAppearance } from "../button";
-import { DisplayNamePrefix } from "../utilities";
 import {
     ActionTriggerAppearance,
     ActionTriggerHandledProps,
-    ActionTriggerProps,
     ActionTriggerUnhandledProps,
 } from "./action-trigger.props";
+import { actionTriggerButtonOverrides } from "@microsoft/fast-components-styles-msft";
+import { DisplayNamePrefix } from "../utilities";
 
 class ActionTrigger extends Foundation<
     ActionTriggerHandledProps,
@@ -19,10 +16,6 @@ class ActionTrigger extends Foundation<
     {}
 > {
     public static displayName: string = `${DisplayNamePrefix}ActionTrigger`;
-
-    public static defaultProps: Partial<ActionTriggerProps> = {
-        managedClasses: {},
-    };
 
     protected handledProps: HandledProps<ActionTriggerHandledProps> = {
         appearance: void 0,
@@ -57,29 +50,37 @@ class ActionTrigger extends Foundation<
      * Generates class names
      */
     protected generateClassNames(): string {
-        const {
-            actionTrigger,
-            actionTrigger__disabled,
-            actionTrigger__hasGlyphAndContent,
-        }: ActionTriggerClassNameContract = this.props.managedClasses;
+        let classNames: string = get(this.props, "managedClasses.actionTrigger", "");
 
-        return super.generateClassNames(
-            classNames(
-                actionTrigger,
-                [actionTrigger__disabled, this.props.disabled],
-                [
-                    this.props.managedClasses[`actionTrigger__${this.props.appearance}`],
-                    typeof this.props.appearance === "string",
-                ],
-                [actionTrigger__hasGlyphAndContent, this.hasGlyphAndContent()]
-            )
-        );
+        if (this.props.disabled) {
+            classNames = `${classNames} ${get(
+                this.props,
+                "managedClasses.actionTrigger__disabled",
+                ""
+            )}`;
+        }
+
+        if (this.props.appearance) {
+            classNames = `${classNames} ${get(
+                this.props,
+                `managedClasses.actionTrigger__${this.props.appearance}`,
+                ""
+            )}`;
+        }
+
+        if (this.hasGlyphAndContent()) {
+            classNames = `${classNames} ${get(
+                this.props,
+                "managedClasses.actionTrigger__hasGlyphAndContent",
+                ""
+            )}`;
+        }
+
+        return super.generateClassNames(classNames);
     }
 
     private generateGlyph = (): React.ReactNode => {
-        return this.props.glyph(
-            classNames(this.props.managedClasses.actionTrigger_glyph)
-        );
+        return this.props.glyph(get(this.props, "managedClasses.actionTrigger_glyph"));
     };
 
     /**

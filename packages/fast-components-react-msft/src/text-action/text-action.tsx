@@ -1,11 +1,5 @@
-import { TextActionClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { textFieldOverrides } from "@microsoft/fast-components-styles-msft";
-import { classNames } from "@microsoft/fast-web-utilities";
-import { get } from "lodash-es";
 import React from "react";
-import { TextField } from "../text-field";
-import { DisplayNamePrefix } from "../utilities";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import {
     TextActionAppearance,
     TextActionButtonPosition,
@@ -13,6 +7,15 @@ import {
     TextActionProps,
     TextActionUnhandledProps,
 } from "./text-action.props";
+import {
+    DesignSystemResolver,
+    neutralFillInputRest,
+    neutralFillRest,
+    textFieldOverrides,
+} from "@microsoft/fast-components-styles-msft";
+import { TextField } from "../text-field";
+import { get } from "lodash-es";
+import { DisplayNamePrefix } from "../utilities";
 
 /**
  * Text action state interface
@@ -29,7 +32,6 @@ class TextAction extends Foundation<
 
     public static defaultProps: Partial<TextActionProps> = {
         buttonPosition: TextActionButtonPosition.after,
-        managedClasses: {},
     };
 
     protected handledProps: HandledProps<TextActionHandledProps> = {
@@ -81,25 +83,34 @@ class TextAction extends Foundation<
      * Generates class names
      */
     protected generateClassNames(): string {
-        const {
-            textAction,
-            textAction__disabled,
-            textAction__focus,
-        }: Partial<TextActionClassNameContract> = this.props.managedClasses;
+        let classNames: string = get(this.props, "managedClasses.textAction", "");
 
-        return super.generateClassNames(
-            classNames(
-                textAction,
-                [
-                    this.props.managedClasses[
-                        `textAction__${TextActionAppearance[this.props.appearance]}`
-                    ],
-                    !!this.props.appearance,
-                ],
-                [textAction__disabled, this.props.disabled],
-                [textAction__focus, this.state.focused]
-            )
-        );
+        if (this.props.appearance) {
+            classNames = `${classNames} ${get(
+                this.props,
+                `managedClasses.textAction__${
+                    TextActionAppearance[this.props.appearance]
+                }`
+            )}`;
+        }
+
+        if (this.props.disabled) {
+            classNames = `${classNames} ${get(
+                this.props,
+                "managedClasses.textAction__disabled",
+                ""
+            )}`;
+        }
+
+        if (this.state.focused) {
+            classNames = `${classNames} ${get(
+                this.props,
+                "managedClasses.textAction__focus",
+                ""
+            )}`;
+        }
+
+        return super.generateClassNames(classNames);
     }
 
     /**
@@ -139,7 +150,7 @@ class TextAction extends Foundation<
      */
     private generateButton(): React.ReactNode {
         return this.props.button(
-            classNames(this.props.managedClasses.textAction_button),
+            get(this.props, "managedClasses.textAction_button", ""),
             this.props.disabled
         );
     }
@@ -150,7 +161,7 @@ class TextAction extends Foundation<
     private generateAfterGlyph(): React.ReactNode {
         if (typeof this.props.afterGlyph === "function") {
             return this.props.afterGlyph(
-                classNames(this.props.managedClasses.textAction_afterGlyph)
+                get(this.props, "managedClasses.textAction_afterGlyph", "")
             );
         }
     }
@@ -161,7 +172,7 @@ class TextAction extends Foundation<
     private generateBeforeGlyph(): React.ReactNode {
         if (typeof this.props.beforeGlyph === "function") {
             return this.props.beforeGlyph(
-                classNames(this.props.managedClasses.textAction_beforeGlyph)
+                get(this.props, "managedClasses.textAction_beforeGlyph", "")
             );
         }
     }
