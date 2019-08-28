@@ -33,6 +33,7 @@ class Paragraph extends Foundation<ParagraphHandledProps, ParagraphUnhandledProp
      * Renders the component
      */
     public render(): React.ReactElement<HTMLHeadingElement | HTMLParagraphElement> {
+        console.log("managed classes", this.props.managedClasses)
         return (
             <Typography
                 {...this.unhandledProps()}

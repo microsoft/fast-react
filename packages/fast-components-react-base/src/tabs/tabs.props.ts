@@ -65,6 +65,11 @@ export interface TabsHandledProps extends TabsManagedClasses {
      * The tabs' tab item
      */
     items?: TabsItem[];
+
+    /**
+     * The tabs' active Indicator
+     */
+    activeIndicator?: (className: string) => React.ReactNode;
 }
 
 export type TabsProps = TabsHandledProps & TabsUnhandledProps;

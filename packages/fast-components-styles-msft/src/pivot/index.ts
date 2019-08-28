@@ -28,10 +28,24 @@ const styles: ComponentStyles<PivotClassNameContract, DesignSystem> = {
         overflow: "hidden",
         color: neutralForegroundRest,
         transition: "all 0.2s ease-in-out",
+        display: "flex",
+        flexDirection: "column"
     },
     pivot_tabList: {
         display: "flex",
         boxSizing: "border-box",
+        position: "relative",
+        transition: "all 0.2s ease-in-out",
+        "&::before": {
+            content: "''",
+            height: toPx(activeIndicatorHeight),
+            background: "red",
+            position: "absolute",
+            transition: "all 0.2s ease-in-out",
+            bottom: "3px",
+            width: "20px",
+            ...applyCornerRadius(),
+        }
     },
     pivot_tab: {
         ...applyCursorPointer(),

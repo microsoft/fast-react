@@ -1,5 +1,5 @@
 import React from "react";
-import { get } from "lodash-es";
+import { get, memoize } from "lodash-es";
 import ReactDOM from "react-dom";
 import { canUseDOM } from "exenv-es6";
 import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
@@ -15,15 +15,17 @@ import {
 import { TabsClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
 import { Direction } from "@microsoft/fast-web-utilities";
 import { toPx } from "@microsoft/fast-jss-utilities";
-import { Tabs as BaseTabs } from "@microsoft/fast-components-react-base";
+import { PivotBase } from "../pivot-base";
+import { OutlineButton } from "../outline-button"
 import { PivotProps } from ".";
 import { DisplayNamePrefix } from "../utilities";
 
 export interface PivotState {
     offsetX: number;
+    indicatorWidth: number;
     activeId: string;
     tabPanelIndex: number;
-    windowInnerWidth: number;
+    // windowInnerWidth: number;
 }
 
 class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotState> {
@@ -45,13 +47,7 @@ class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotStat
         return null;
     }
 
-    protected handledProps: HandledProps<PivotHandledProps> = {
-        label: void 0,
-        items: void 0,
-        managedClasses: void 0,
-    };
-
-    private tabsRef: React.RefObject<BaseTabs>;
+    private tabsRef: React.RefObject<PivotBase>;
 
     private ltr: Direction;
 
@@ -66,16 +62,14 @@ class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotStat
         if (Array.isArray(this.props.items)) {
             this.state = {
                 offsetX: 0,
+                indicatorWidth: 0,
                 tabPanelIndex: 0,
                 activeId:
                     typeof this.props.activeId === "string"
                         ? this.props.activeId
                         : get(this.props.items[0], "id", ""),
-                windowInnerWidth: window.innerWidth
             };
         }
-
-        window.addEventListener("resize", this.handleResize.bind(this));
 
         this.tabsRef = React.createRef();
     }
@@ -97,38 +91,34 @@ class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotStat
             this.updateTabPanelIndex();
         }
 
-        if (this.state.windowInnerWidth !== prevState.windowInnerWidth) {
-            this.setActiveIndicatorOffset();
-        }
-
         if (this.state.tabPanelIndex !== prevState.tabPanelIndex) {
             this.prevTabPanelIndex = this.state.tabPanelIndex;
         }
     }
 
+    protected handledProps: HandledProps<PivotHandledProps> = {
+        label: void 0,
+        items: void 0,
+        managedClasses: void 0,
+    };
+
     /**
      * Renders the component
      */
     public render(): React.ReactElement<HTMLDivElement> {
+        console.log("managed classes", this.props.managedClasses)
         return (
-            <BaseTabs
+            <PivotBase
                 {...this.unhandledProps()}
                 ref={this.tabsRef}
-                managedClasses={this.generatePivotClassNames()}
                 activeId={this.state.activeId}
                 onUpdate={this.handleTabsUpdate}
                 items={this.props.items}
                 label={this.props.label}
-            >
-                <span
-                    style={{ transform: `translateX(${toPx(this.state.offsetX)})` }}
-                    className={get(
-                        this.props,
-                        "managedClasses.pivot_activeIndicator",
-                        ""
-                    )}
-                />
-            </BaseTabs>
+                
+                className={this.generateClassNames()}
+                jssStyleSheet={this.pivotStyleOverrides(this.state.offsetX)}
+            />
         );
     }
 
@@ -157,11 +147,14 @@ class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotStat
         }
     }
 
-    private handleResize(): void {
-        this.setState({
-            windowInnerWidth: window.innerWidth
-        });
-    }
+    private pivotStyleOverrides = memoize((offset: number) => ({
+        pivot_tabList: {
+            "&::before": {
+                left: `${toPx(offset)}`,
+                transition: "all 0.2s ease-in-out"
+            }
+        }
+      }))
 
     private handleTabsUpdate = (activeTabId: string): void => {
         this.setState({
@@ -189,28 +182,28 @@ class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotStat
         }
     }
 
-    private generateTabPanelsClassNames(): string {
-        let className: string = get(this.props, "managedClasses.pivot_tabPanels");
-        if (typeof className === "string") {
-            if (this.state.tabPanelIndex === this.prevTabPanelIndex) {
-                return className;
-            } else if (this.state.tabPanelIndex < this.prevTabPanelIndex) {
-                className = `${className} ${get(
-                    this.props,
-                    "managedClasses.pivot_tabPanels__animatePrevious",
-                    ""
-                )}`;
-            } else {
-                className = `${className} ${get(
-                    this.props,
-                    "managedClasses.pivot_tabPanels__animateNext",
-                    ""
-                )}`;
-            }
+    // private generateTabPanelsClassNames(): string {
+    //     let className: string = get(this.props, "managedClasses.pivot_tabPanels");
+    //     if (typeof className === "string") {
+    //         if (this.state.tabPanelIndex === this.prevTabPanelIndex) {
+    //             return className;
+    //         } else if (this.state.tabPanelIndex < this.prevTabPanelIndex) {
+    //             className = `${className} ${get(
+    //                 this.props,
+    //                 "managedClasses.pivot_tabPanels__animatePrevious",
+    //                 ""
+    //             )}`;
+    //         } else {
+    //             className = `${className} ${get(
+    //                 this.props,
+    //                 "managedClasses.pivot_tabPanels__animateNext",
+    //                 ""
+    //             )}`;
+    //         }
 
-            return className;
-        }
-    }
+    //         return className;
+    //     }
+    // }
 
     private setActiveIndicatorOffset(): void {
         if (canUseDOM() && this.tabsRef.current && Array.isArray(this.props.items)) {
@@ -223,16 +216,13 @@ class Pivot extends Foundation<PivotHandledProps, PivotUnhandledProps, PivotStat
             if (mytab !== null && tabElement !== null) {
                 const width: number = mytab.getBoundingClientRect().width;
                 const center: number = width / 2;
-                const offsetX: number =
-                    mytab.getBoundingClientRect().left -
-                    tabElement.getBoundingClientRect().left +
-                    center;
+                const offsetX: number = mytab.offsetLeft +
+                center - 10;
 
-                if (offsetX !== this.state.offsetX) {
-                    this.setState({
-                        offsetX,
-                    });
-                }
+                this.setState({
+                    offsetX,
+                    indicatorWidth: width
+                });
             }
         }
     }
