@@ -26,6 +26,17 @@ export default class SheetManager {
     private registry: SheetRegistry = new WeakMap();
 
     /**
+     * Creates a style element and attaches styles to the DOM
+     */
+    public attach(styles: ComponentStyles<unknown, unknown>, designSystem: any): void {
+        const tracker: SheetTracker | void = this.getTracker(styles, designSystem);
+
+        if (Array.isArray(tracker) && !tracker[0].attached) {
+            tracker[0].attach()
+        }
+    }
+
+    /**
      * Creates a new JSS stylesheet from a stylesheet and design-system.
      * If a JSS style sheet has been created with this stylesheet and design system already,
      * then simply track that another instance has been added
@@ -34,13 +45,13 @@ export default class SheetManager {
         styles: ComponentStyles<unknown, unknown>,
         designSystem: any,
         options?: JSSSheetOptions
-    ): void {
+    ): JSSStyleSheet {
         const tracker: SheetTracker | void = this.getTracker(styles, designSystem);
 
         if (Array.isArray(tracker)) {
             tracker[1]++;
 
-            return;
+            return tracker[0];
         }
 
         let designSystemRegistry: DesignSystemRegistry | void = this.registry.get(styles);
@@ -52,9 +63,13 @@ export default class SheetManager {
             this.registry.set(styles, designSystemRegistry);
         }
 
+        const sheet: JSSStyleSheet = this.createStyleSheet(styles, designSystem, options);
+
         this.registry
             .get(styles)
-            .set(designSystem, [this.createStyleSheet(styles, designSystem, options), 1]);
+            .set(designSystem, [sheet, 1]);
+
+        return sheet;
     }
 
     /**
@@ -82,7 +97,7 @@ export default class SheetManager {
         styles: ComponentStyles<unknown, unknown>,
         previousDesignSystem: any,
         nextDesignSystem: any
-    ): void {
+    ): JSSStyleSheet | void {
         const tracker: SheetTracker | void = this.getTracker(
             styles,
             previousDesignSystem
@@ -106,9 +121,11 @@ export default class SheetManager {
             tracker[0].update(nextDesignSystem);
             this.registry.get(styles).delete(previousDesignSystem);
             this.registry.get(styles).set(nextDesignSystem, tracker);
+
+            return tracker[0];
         } else {
             this.remove(styles, previousDesignSystem);
-            this.add(styles, nextDesignSystem, tracker[0].options);
+            return this.add(styles, nextDesignSystem, tracker[0].options);
         }
     }
 
@@ -191,7 +208,7 @@ export default class SheetManager {
             ...options,
         });
 
-        sheet.update(designSystem).attach();
+        sheet.update(designSystem);
         stylesheetRegistry.add(sheet);
 
         return sheet;

@@ -73,6 +73,23 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
     }
 
     /**
+     * Used to determine if stylesheet should be attached to the DOM.
+     * Sheet will be attached during the render method in which this
+     * value evaluates to true. Once attached, this property will no
+     * longer be evaluated.
+     */
+    public static shouldAttach:
+        | boolean
+        | ((
+              data: {
+                  managedComponent: React.ComponentType<unknown>,
+                  props: unknown,
+                  sheet: JSSStyleSheet,
+                  renderCount: number,
+              }
+          ) => boolean) = true;
+
+    /**
      * JSS allows us to use an index to order the created style elements. The higher the index,
      * the later in the document the style element will be created.
      *
@@ -127,6 +144,12 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
      */
     private designSystem: C;
 
+    /**
+     * Track how many times the component has gone through a render. This
+     * information is communicated to the JSSManagershouldAttach callback
+     */
+    private renderCount: number = 0;
+
     constructor(props: ManagedJSSProps<T, S, C>, context: C) {
         super(props, context);
 
@@ -135,16 +158,32 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
     }
 
     public render(): JSX.Element {
+        this.renderCount += 1;
+
         if (!this.hasCreatedIntialStyleSheets) {
             if (!!this.styles) {
-                JSSManager.sheetManager.add(this.styles, this.designSystem, {
-                    meta: this.managedComponent.displayName || this.managedComponent.name,
-                    index: this.index,
-                });
+                const sheet: JSSStyleSheet = JSSManager.sheetManager.add(
+                    this.styles,
+                    this.designSystem,
+                    {
+                        meta:
+                            this.managedComponent.displayName ||
+                            this.managedComponent.name,
+                        index: this.index,
+                    }
+                );
+
+                if (this.shouldAttachStylesheet(sheet)) {
+                    sheet.attach();
+                }
             }
 
             if (this.props.jssStyleSheet) {
-                this.createPropStyleSheet();
+                const sheet: JSSStyleSheet = this.createPropStyleSheet();
+
+                if (this.shouldAttachStylesheet(sheet)) {
+                    sheet.attach();
+                }
             }
 
             this.hasCreatedIntialStyleSheets = true;
@@ -212,6 +251,14 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
             this.createPropStyleSheet();
             this.forceUpdate();
         }
+
+        [this.primaryStyleSheet(), this.secondaryStyleSheet()].forEach(
+            (sheet: JSSStyleSheet | void): void => {
+                if (!!sheet && this.shouldAttachStylesheet(sheet)) {
+                    sheet.attach();
+                }
+            }
+        );
     }
 
     public componentWillUnmount(): void {
@@ -287,14 +334,28 @@ abstract class JSSManager<T, S, C> extends React.Component<ManagedJSSProps<T, S,
         return mergeWith(primaryClasses, secondaryClasses, mergeClassNames);
     }
 
-    private createPropStyleSheet(designSystem: C = this.designSystem): void {
+    private createPropStyleSheet(designSystem: C = this.designSystem): JSSStyleSheet {
         const stylesheet: any = this.primaryStyleSheet();
 
-        JSSManager.sheetManager.add(this.props.jssStyleSheet, designSystem, {
+        return JSSManager.sheetManager.add(this.props.jssStyleSheet, designSystem, {
             meta: `${this.managedComponent.displayName ||
                 this.managedComponent.name} - jssStyleSheet`,
             index: stylesheet ? stylesheet.options.index + 1 : this.index + 1,
         });
+    }
+
+    private shouldAttachStylesheet(sheet: JSSStyleSheet): boolean {
+        return (
+            !sheet.attached &&
+            (typeof JSSManager.shouldAttach === "function"
+                ? JSSManager.shouldAttach({
+                    props: this.props,
+                    managedComponent: this.managedComponent,
+                    renderCount: this.renderCount,
+                    sheet
+                  })
+                : JSSManager.shouldAttach)
+        );
     }
 }
 
