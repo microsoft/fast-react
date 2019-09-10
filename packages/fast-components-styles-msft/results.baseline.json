@@ -1,0 +1,472 @@
+[
+    {
+        "functionName": "baseline #FFFFFF",
+        "ops": 62890068.05255878,
+        "opsMs": 62890.06805255878
+    },
+    {
+        "functionName": "baseline #FCFCFC",
+        "ops": 68283469.34804282,
+        "opsMs": 68283.46934804281
+    },
+    {
+        "functionName": "baseline #FAFAFA",
+        "ops": 68138116.34071,
+        "opsMs": 68138.11634071
+    },
+    {
+        "functionName": "baseline #F7F7F7",
+        "ops": 69788654.12080394,
+        "opsMs": 69788.65412080394
+    },
+    {
+        "functionName": "baseline #F5F5F5",
+        "ops": 70146656.95738605,
+        "opsMs": 70146.65695738605
+    },
+    {
+        "functionName": "baseline #F2F2F2",
+        "ops": 67874244.94920698,
+        "opsMs": 67874.24494920697
+    },
+    {
+        "functionName": "baseline #EFEFEF",
+        "ops": 70270063.817141,
+        "opsMs": 70270.063817141
+    },
+    {
+        "functionName": "baseline #EDEDED",
+        "ops": 68977198.53433079,
+        "opsMs": 68977.19853433079
+    },
+    {
+        "functionName": "baseline #EAEAEA",
+        "ops": 70067402.70014374,
+        "opsMs": 70067.40270014374
+    },
+    {
+        "functionName": "baseline #E8E8E8",
+        "ops": 54410380.43901334,
+        "opsMs": 54410.38043901334
+    },
+    {
+        "functionName": "baseline #E5E5E5",
+        "ops": 69110768.42997211,
+        "opsMs": 69110.76842997211
+    },
+    {
+        "functionName": "baseline #E2E2E2",
+        "ops": 69742125.11087574,
+        "opsMs": 69742.12511087574
+    },
+    {
+        "functionName": "baseline #E0E0E0",
+        "ops": 69018232.10013291,
+        "opsMs": 69018.23210013291
+    },
+    {
+        "functionName": "baseline #DDDDDD",
+        "ops": 68796611.02564546,
+        "opsMs": 68796.61102564547
+    },
+    {
+        "functionName": "baseline #DBDBDB",
+        "ops": 69379812.93266313,
+        "opsMs": 69379.81293266313
+    },
+    {
+        "functionName": "baseline #D8D8D8",
+        "ops": 69794293.12436725,
+        "opsMs": 69794.29312436725
+    },
+    {
+        "functionName": "baseline #D6D6D6",
+        "ops": 63029974.05487688,
+        "opsMs": 63029.97405487688
+    },
+    {
+        "functionName": "baseline #D3D3D3",
+        "ops": 50565112.1119425,
+        "opsMs": 50565.1121119425
+    },
+    {
+        "functionName": "baseline #D0D0D0",
+        "ops": 69317704.00588147,
+        "opsMs": 69317.70400588147
+    },
+    {
+        "functionName": "baseline #CECECE",
+        "ops": 69915070.1374168,
+        "opsMs": 69915.0701374168
+    },
+    {
+        "functionName": "baseline #CBCBCB",
+        "ops": 67720777.84903388,
+        "opsMs": 67720.77784903388
+    },
+    {
+        "functionName": "baseline #C9C9C9",
+        "ops": 69132786.87825115,
+        "opsMs": 69132.78687825115
+    },
+    {
+        "functionName": "baseline #C6C6C6",
+        "ops": 67970176.67291276,
+        "opsMs": 67970.17667291276
+    },
+    {
+        "functionName": "baseline #C3C3C3",
+        "ops": 70008357.54890306,
+        "opsMs": 70008.35754890306
+    },
+    {
+        "functionName": "baseline #C1C1C1",
+        "ops": 53161875.54387258,
+        "opsMs": 53161.87554387258
+    },
+    {
+        "functionName": "baseline #BEBEBE",
+        "ops": 69055131.31924108,
+        "opsMs": 69055.13131924107
+    },
+    {
+        "functionName": "baseline #BCBCBC",
+        "ops": 69137768.86237808,
+        "opsMs": 69137.76886237807
+    },
+    {
+        "functionName": "baseline #B9B9B9",
+        "ops": 69986354.94749501,
+        "opsMs": 69986.35494749501
+    },
+    {
+        "functionName": "baseline #B6B6B6",
+        "ops": 67402851.36736691,
+        "opsMs": 67402.85136736691
+    },
+    {
+        "functionName": "baseline #B4B4B4",
+        "ops": 68445808.35935451,
+        "opsMs": 68445.80835935452
+    },
+    {
+        "functionName": "baseline #B1B1B1",
+        "ops": 69718680.4407768,
+        "opsMs": 69718.68044077679
+    },
+    {
+        "functionName": "baseline #AFAFAF",
+        "ops": 57204149.85497584,
+        "opsMs": 57204.14985497584
+    },
+    {
+        "functionName": "baseline #ACACAC",
+        "ops": 51117573.592689,
+        "opsMs": 51117.573592689
+    },
+    {
+        "functionName": "baseline #A9A9A9",
+        "ops": 69001572.0618564,
+        "opsMs": 69001.57206185641
+    },
+    {
+        "functionName": "baseline #A7A7A7",
+        "ops": 69712222.88836434,
+        "opsMs": 69712.22288836434
+    },
+    {
+        "functionName": "baseline #A4A4A4",
+        "ops": 68383814.94106555,
+        "opsMs": 68383.81494106555
+    },
+    {
+        "functionName": "baseline #A2A2A2",
+        "ops": 69643780.83886711,
+        "opsMs": 69643.78083886711
+    },
+    {
+        "functionName": "baseline #9F9F9F",
+        "ops": 68324244.8205778,
+        "opsMs": 68324.2448205778
+    },
+    {
+        "functionName": "baseline #9D9D9D",
+        "ops": 69688519.95711015,
+        "opsMs": 69688.51995711015
+    },
+    {
+        "functionName": "baseline #9A9A9A",
+        "ops": 53630114.44884771,
+        "opsMs": 53630.11444884771
+    },
+    {
+        "functionName": "baseline #979797",
+        "ops": 51885326.2133952,
+        "opsMs": 51885.3262133952
+    },
+    {
+        "functionName": "baseline #959595",
+        "ops": 69734922.3911777,
+        "opsMs": 69734.9223911777
+    },
+    {
+        "functionName": "baseline #929292",
+        "ops": 70998746.55947088,
+        "opsMs": 70998.74655947088
+    },
+    {
+        "functionName": "baseline #909090",
+        "ops": 69794351.50191215,
+        "opsMs": 69794.35150191214
+    },
+    {
+        "functionName": "baseline #8D8D8D",
+        "ops": 71271376.94584188,
+        "opsMs": 71271.37694584188
+    },
+    {
+        "functionName": "baseline #8A8A8A",
+        "ops": 69951397.25500076,
+        "opsMs": 69951.39725500076
+    },
+    {
+        "functionName": "baseline #888888",
+        "ops": 70858167.24987057,
+        "opsMs": 70858.16724987057
+    },
+    {
+        "functionName": "baseline #858585",
+        "ops": 64422813.606621385,
+        "opsMs": 64422.813606621385
+    },
+    {
+        "functionName": "baseline #838383",
+        "ops": 51516295.46358653,
+        "opsMs": 51516.29546358653
+    },
+    {
+        "functionName": "baseline #808080",
+        "ops": 70675654.55700213,
+        "opsMs": 70675.65455700213
+    },
+    {
+        "functionName": "baseline #7D7D7D",
+        "ops": 71402253.24457225,
+        "opsMs": 71402.25324457225
+    },
+    {
+        "functionName": "baseline #7B7B7B",
+        "ops": 70476852.60942948,
+        "opsMs": 70476.85260942948
+    },
+    {
+        "functionName": "baseline #787878",
+        "ops": 69826406.76108134,
+        "opsMs": 69826.40676108134
+    },
+    {
+        "functionName": "baseline #767676",
+        "ops": 63191553.20029158,
+        "opsMs": 63191.55320029158
+    },
+    {
+        "functionName": "baseline #737373",
+        "ops": 67955804.81643869,
+        "opsMs": 67955.80481643869
+    },
+    {
+        "functionName": "baseline #717171",
+        "ops": 64964923.23157354,
+        "opsMs": 64964.923231573535
+    },
+    {
+        "functionName": "baseline #6E6E6E",
+        "ops": 70569170.28806873,
+        "opsMs": 70569.17028806872
+    },
+    {
+        "functionName": "baseline #6B6B6B",
+        "ops": 61040398.802684754,
+        "opsMs": 61040.39880268475
+    },
+    {
+        "functionName": "baseline #696969",
+        "ops": 70627725.6906091,
+        "opsMs": 70627.72569060909
+    },
+    {
+        "functionName": "baseline #666666",
+        "ops": 70350031.27918729,
+        "opsMs": 70350.03127918729
+    },
+    {
+        "functionName": "baseline #646464",
+        "ops": 64336348.018866144,
+        "opsMs": 64336.34801886614
+    },
+    {
+        "functionName": "baseline #616161",
+        "ops": 65768160.21696785,
+        "opsMs": 65768.16021696785
+    },
+    {
+        "functionName": "baseline #5F5F5F",
+        "ops": 69902399.58258821,
+        "opsMs": 69902.39958258822
+    },
+    {
+        "functionName": "baseline #5C5C5C",
+        "ops": 71218094.81675495,
+        "opsMs": 71218.09481675495
+    },
+    {
+        "functionName": "baseline #5A5A5A",
+        "ops": 70395630.52846088,
+        "opsMs": 70395.63052846087
+    },
+    {
+        "functionName": "baseline #575757",
+        "ops": 52823848.23266065,
+        "opsMs": 52823.84823266065
+    },
+    {
+        "functionName": "baseline #545454",
+        "ops": 70741688.256472,
+        "opsMs": 70741.688256472
+    },
+    {
+        "functionName": "baseline #525252",
+        "ops": 70581182.81771775,
+        "opsMs": 70581.18281771775
+    },
+    {
+        "functionName": "baseline #4F4F4F",
+        "ops": 70056095.69704229,
+        "opsMs": 70056.09569704228
+    },
+    {
+        "functionName": "baseline #4D4D4D",
+        "ops": 71325595.2679151,
+        "opsMs": 71325.5952679151
+    },
+    {
+        "functionName": "baseline #4A4A4A",
+        "ops": 70741328.48109208,
+        "opsMs": 70741.32848109207
+    },
+    {
+        "functionName": "baseline #484848",
+        "ops": 71060258.11950363,
+        "opsMs": 71060.25811950363
+    },
+    {
+        "functionName": "baseline #454545",
+        "ops": 70209861.22795902,
+        "opsMs": 70209.86122795902
+    },
+    {
+        "functionName": "baseline #424242",
+        "ops": 53673815.21475742,
+        "opsMs": 53673.81521475742
+    },
+    {
+        "functionName": "baseline #404040",
+        "ops": 69570050.22411363,
+        "opsMs": 69570.05022411363
+    },
+    {
+        "functionName": "baseline #3D3D3D",
+        "ops": 67803853.29152864,
+        "opsMs": 67803.85329152865
+    },
+    {
+        "functionName": "baseline #3B3B3B",
+        "ops": 66575332.68018821,
+        "opsMs": 66575.3326801882
+    },
+    {
+        "functionName": "baseline #383838",
+        "ops": 68664698.44912378,
+        "opsMs": 68664.69844912378
+    },
+    {
+        "functionName": "baseline #363636",
+        "ops": 60748746.68625839,
+        "opsMs": 60748.74668625839
+    },
+    {
+        "functionName": "baseline #333333",
+        "ops": 64541462.69812119,
+        "opsMs": 64541.46269812119
+    },
+    {
+        "functionName": "baseline #313131",
+        "ops": 65923031.17197082,
+        "opsMs": 65923.03117197083
+    },
+    {
+        "functionName": "baseline #2E2E2E",
+        "ops": 52949491.10468882,
+        "opsMs": 52949.49110468882
+    },
+    {
+        "functionName": "baseline #2B2B2B",
+        "ops": 70410002.87340719,
+        "opsMs": 70410.00287340718
+    },
+    {
+        "functionName": "baseline #292929",
+        "ops": 71420721.6811941,
+        "opsMs": 71420.7216811941
+    },
+    {
+        "functionName": "baseline #262626",
+        "ops": 70870778.69136335,
+        "opsMs": 70870.77869136335
+    },
+    {
+        "functionName": "baseline #242424",
+        "ops": 71412081.0668508,
+        "opsMs": 71412.08106685079
+    },
+    {
+        "functionName": "baseline #212121",
+        "ops": 70756782.38226812,
+        "opsMs": 70756.78238226811
+    },
+    {
+        "functionName": "baseline #1E1E1E",
+        "ops": 71362431.31584959,
+        "opsMs": 71362.4313158496
+    },
+    {
+        "functionName": "baseline #1B1B1B",
+        "ops": 58219743.687996805,
+        "opsMs": 58219.74368799681
+    },
+    {
+        "functionName": "baseline #181818",
+        "ops": 51986484.2788369,
+        "opsMs": 51986.4842788369
+    },
+    {
+        "functionName": "baseline #151515",
+        "ops": 70751427.71390937,
+        "opsMs": 70751.42771390938
+    },
+    {
+        "functionName": "baseline #121212",
+        "ops": 70759444.62797476,
+        "opsMs": 70759.44462797476
+    },
+    {
+        "functionName": "baseline #101010",
+        "ops": 69735860.0445494,
+        "opsMs": 69735.86004454941
+    },
+    {
+        "functionName": "baseline #000000",
+        "ops": 71373791.73984903,
+        "opsMs": 71373.79173984902
+    }
+]
