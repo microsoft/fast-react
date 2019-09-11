@@ -1,16 +1,13 @@
-const baseline = require("./results.baseline.json");
-const delta = require("./results.post-memoize.json");
+const pre = require("./recipes-pre.json");
+const post = require("./recipes-post.json");
 
-function sum(a, b) {
-    return a + b;
-}
+const output = pre.map((preData, index) => {
+    const postData = post[index];
+    // console.log("pre: " + preData.ops + "\npost:" + postData.ops)
+    // return [preData.functionName, ((postData.ops - preData.ops) / preData.ops * 100) + "%"]
+    //
+    return preData.ops > postData.ops ? "pre" : "post";
+});
 
-function ops(data) {
-    return data.ops;
-}
-
-const baselineAccum = baseline.map(ops).reduce(sum);
-const deltaAccum = delta.map(ops).reduce(sum);
-
-console.log(( deltaAccum - baselineAccum ) / baselineAccum * 100)
+console.log(output)
 

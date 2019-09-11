@@ -74,7 +74,7 @@ const designSystems = [Object.assign({}, DesignSystem, { backgroundColor: Design
 
 recipeNames.forEach((recipeName) => {
     designSystems.forEach((designSystem) => {
-        suite.add(`${recipeName},${designSystem.backgroundColor.toStringHexRGB().toUpperCase()}`, () => recipes[recipeName](designSystem).toStringHexRGB())
+        suite.add(`${recipeName},${designSystem.backgroundColor.toStringHexRGB()}`, () => recipes[recipeName](designSystem).toStringHexRGB())
     });
 })
 
@@ -96,6 +96,10 @@ suite.on("complete", function() {
         }));
     fs.writeFileSync("./recipes-post.json", JSON.stringify(body, null, 4));
 
+});
+
+suite.on("cycle", function(arg) {
+    console.log(arg.target.name)
 });
 
 suite.run();
