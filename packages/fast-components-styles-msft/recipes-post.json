@@ -1,0 +1,227 @@
+[
+    {
+        "functionName": "neutralForegroundRest,#858585",
+        "ops": 4125718.8027993236,
+        "opsMs": 4125.718802799323
+    },
+    {
+        "functionName": "neutralForegroundHover,#858585",
+        "ops": 3829551.614977534,
+        "opsMs": 3829.551614977534
+    },
+    {
+        "functionName": "neutralForegroundActive,#858585",
+        "ops": 3789365.4309171503,
+        "opsMs": 3789.36543091715
+    },
+    {
+        "functionName": "accentForegroundCut,#858585",
+        "ops": 1334661.203630501,
+        "opsMs": 1334.661203630501
+    },
+    {
+        "functionName": "accentForegroundCutLarge,#858585",
+        "ops": 1338615.0269082254,
+        "opsMs": 1338.6150269082254
+    },
+    {
+        "functionName": "neutralForegroundHint,#858585",
+        "ops": 2297944.9283623793,
+        "opsMs": 2297.9449283623794
+    },
+    {
+        "functionName": "neutralForegroundHintLarge,#858585",
+        "ops": 2268591.46270291,
+        "opsMs": 2268.59146270291
+    },
+    {
+        "functionName": "accentForegroundRest,#858585",
+        "ops": 2611765.736647505,
+        "opsMs": 2611.765736647505
+    },
+    {
+        "functionName": "accentForegroundHover,#858585",
+        "ops": 3777569.262074534,
+        "opsMs": 3777.569262074534
+    },
+    {
+        "functionName": "accentForegroundActive,#858585",
+        "ops": 2621903.325267989,
+        "opsMs": 2621.903325267989
+    },
+    {
+        "functionName": "accentForegroundLargeRest,#858585",
+        "ops": 2646450.4102213695,
+        "opsMs": 2646.4504102213696
+    },
+    {
+        "functionName": "accentForegroundLargeHover,#858585",
+        "ops": 2608363.5547301425,
+        "opsMs": 2608.3635547301424
+    },
+    {
+        "functionName": "accentForegroundLargeActive,#858585",
+        "ops": 2634445.870063222,
+        "opsMs": 2634.445870063222
+    },
+    {
+        "functionName": "neutralFillRest,#858585",
+        "ops": 2245734.642354379,
+        "opsMs": 2245.734642354379
+    },
+    {
+        "functionName": "neutralFillHover,#858585",
+        "ops": 2270731.4059990444,
+        "opsMs": 2270.7314059990445
+    },
+    {
+        "functionName": "neutralFillActive,#858585",
+        "ops": 2229094.7831601272,
+        "opsMs": 2229.094783160127
+    },
+    {
+        "functionName": "neutralFillSelected,#858585",
+        "ops": 2235712.760870968,
+        "opsMs": 2235.712760870968
+    },
+    {
+        "functionName": "neutralFillStealthRest,#858585",
+        "ops": 2246693.5636024475,
+        "opsMs": 2246.6935636024473
+    },
+    {
+        "functionName": "neutralFillStealthHover,#858585",
+        "ops": 2230458.99386197,
+        "opsMs": 2230.45899386197
+    },
+    {
+        "functionName": "neutralFillStealthActive,#858585",
+        "ops": 2266439.375252793,
+        "opsMs": 2266.439375252793
+    },
+    {
+        "functionName": "neutralFillStealthSelected,#858585",
+        "ops": 2254080.3289211537,
+        "opsMs": 2254.0803289211535
+    },
+    {
+        "functionName": "neutralFillInputRest,#858585",
+        "ops": 2264923.7972207232,
+        "opsMs": 2264.9237972207234
+    },
+    {
+        "functionName": "neutralFillInputHover,#858585",
+        "ops": 2249723.721650553,
+        "opsMs": 2249.7237216505528
+    },
+    {
+        "functionName": "neutralFillInputActive,#858585",
+        "ops": 2263562.4878262444,
+        "opsMs": 2263.5624878262443
+    },
+    {
+        "functionName": "neutralFillInputSelected,#858585",
+        "ops": 2251781.160503106,
+        "opsMs": 2251.781160503106
+    },
+    {
+        "functionName": "accentFillRest,#858585",
+        "ops": 2608791.0645385273,
+        "opsMs": 2608.7910645385273
+    },
+    {
+        "functionName": "accentFillHover,#858585",
+        "ops": 2597428.504481675,
+        "opsMs": 2597.428504481675
+    },
+    {
+        "functionName": "accentFillActive,#858585",
+        "ops": 2566927.0099828555,
+        "opsMs": 2566.9270099828555
+    },
+    {
+        "functionName": "accentFillSelected,#858585",
+        "ops": 2630924.9054417345,
+        "opsMs": 2630.9249054417346
+    },
+    {
+        "functionName": "accentFillLargeRest,#858585",
+        "ops": 2599458.2214221545,
+        "opsMs": 2599.4582214221546
+    },
+    {
+        "functionName": "accentFillLargeHover,#858585",
+        "ops": 2619441.2108732457,
+        "opsMs": 2619.441210873246
+    },
+    {
+        "functionName": "accentFillLargeActive,#858585",
+        "ops": 2619675.75328395,
+        "opsMs": 2619.67575328395
+    },
+    {
+        "functionName": "accentFillLargeSelected,#858585",
+        "ops": 2607958.8974602446,
+        "opsMs": 2607.9588974602448
+    },
+    {
+        "functionName": "neutralFillCard,#858585",
+        "ops": 1704366.2477760266,
+        "opsMs": 1704.3662477760265
+    },
+    {
+        "functionName": "neutralOutlineRest,#858585",
+        "ops": 2162026.3892719904,
+        "opsMs": 2162.0263892719904
+    },
+    {
+        "functionName": "neutralOutlineHover,#858585",
+        "ops": 2200515.21833245,
+        "opsMs": 2200.51521833245
+    },
+    {
+        "functionName": "neutralOutlineActive,#858585",
+        "ops": 2173447.726472904,
+        "opsMs": 2173.447726472904
+    },
+    {
+        "functionName": "neutralDividerRest,#858585",
+        "ops": 2260479.30064616,
+        "opsMs": 2260.4793006461596
+    },
+    {
+        "functionName": "neutralLayerFloating,#858585",
+        "ops": 2266635.163048978,
+        "opsMs": 2266.635163048978
+    },
+    {
+        "functionName": "neutralLayerCard,#858585",
+        "ops": 2257105.26909098,
+        "opsMs": 2257.1052690909796
+    },
+    {
+        "functionName": "neutralLayerCardContainer,#858585",
+        "ops": 2258394.779474802,
+        "opsMs": 2258.394779474802
+    },
+    {
+        "functionName": "neutralLayerL1,#858585",
+        "ops": 2248417.715116279,
+        "opsMs": 2248.4177151162794
+    },
+    {
+        "functionName": "neutralLayerL2,#858585",
+        "ops": 2271715.822917129,
+        "opsMs": 2271.715822917129
+    },
+    {
+        "functionName": "neutralLayerL3,#858585",
+        "ops": 2233386.9603850394,
+        "opsMs": 2233.3869603850394
+    },
+    {
+        "functionName": "neutralLayerL4,#858585",
+        "ops": 2209858.7256792122,
+        "opsMs": 2209.858725679212
+    }
+]
