@@ -51,30 +51,15 @@ const recipeNames = [
     "neutralLayerL4",
 ];
 
-// const results = recipeNames.map((key) => {
-//     return recipes[key](DesignSystem).toStringHexRGB().toUpperCase()
-// });
-// 
-// const baseline = JSON.parse(fs.readFileSync("./initial-results.js"));
-// 
-// const delta = baseline.reduce((accum, baselineColor, index) => {
-//     return baselineColor !== results[index]
-//         ? accum.concat(results[index])
-//         : accum
-// }, [])
-// 
-// 
-// console.log(delta)
-
 // fs.writeFileSync("./change-results.js", JSON.stringify(keep, null, 2));
 //
 var suite = new Benchmark.Suite();
-// const designSystems = DesignSystem.neutralPalette.map((color) => Object.assign({}, DesignSystem, { backgroundColor: color }));
-const designSystems = [Object.assign({}, DesignSystem, { backgroundColor: DesignSystem.neutralPalette[Math.floor(DesignSystem.neutralPalette.length / 2)] })]
+const designSystems = DesignSystem.neutralPalette.map((color) => Object.assign({}, DesignSystem, { backgroundColor: color }));
+// const designSystems = [Object.assign({}, DesignSystem, { backgroundColor: DesignSystem.neutralPalette[Math.floor(DesignSystem.neutralPalette.length / 2)] })]
 
 recipeNames.forEach((recipeName) => {
     designSystems.forEach((designSystem) => {
-        suite.add(`${recipeName},${designSystem.backgroundColor.toStringHexRGB()}`, () => recipes[recipeName](designSystem).toStringHexRGB())
+        suite.add(`${recipeName},${designSystem.backgroundColor}`, () => recipes[recipeName](designSystem))
     });
 })
 
