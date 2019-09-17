@@ -1,0 +1,227 @@
+[
+    {
+        "functionName": "neutralForegroundRest",
+        "ops": 145.05558607766844,
+        "opsMs": 0.14505558607766844
+    },
+    {
+        "functionName": "neutralForegroundHover",
+        "ops": 152.83550459654776,
+        "opsMs": 0.15283550459654777
+    },
+    {
+        "functionName": "neutralForegroundActive",
+        "ops": 148.1200206270843,
+        "opsMs": 0.1481200206270843
+    },
+    {
+        "functionName": "accentForegroundCut",
+        "ops": 13700.394148675601,
+        "opsMs": 13.700394148675601
+    },
+    {
+        "functionName": "accentForegroundCutLarge",
+        "ops": 12933.956412324338,
+        "opsMs": 12.933956412324338
+    },
+    {
+        "functionName": "neutralForegroundHint",
+        "ops": 233.050885702297,
+        "opsMs": 0.23305088570229698
+    },
+    {
+        "functionName": "neutralForegroundHintLarge",
+        "ops": 303.6926570762808,
+        "opsMs": 0.3036926570762808
+    },
+    {
+        "functionName": "accentForegroundRest",
+        "ops": 316.9465639870494,
+        "opsMs": 0.3169465639870494
+    },
+    {
+        "functionName": "accentForegroundHover",
+        "ops": 371.1092612074019,
+        "opsMs": 0.3711092612074019
+    },
+    {
+        "functionName": "accentForegroundActive",
+        "ops": 360.882363114721,
+        "opsMs": 0.360882363114721
+    },
+    {
+        "functionName": "accentForegroundLargeRest",
+        "ops": 568.4263568481579,
+        "opsMs": 0.5684263568481579
+    },
+    {
+        "functionName": "accentForegroundLargeHover",
+        "ops": 572.4633374408468,
+        "opsMs": 0.5724633374408468
+    },
+    {
+        "functionName": "accentForegroundLargeActive",
+        "ops": 562.9097358587596,
+        "opsMs": 0.5629097358587596
+    },
+    {
+        "functionName": "neutralFillRest",
+        "ops": 4914.358508282731,
+        "opsMs": 4.9143585082827315
+    },
+    {
+        "functionName": "neutralFillHover",
+        "ops": 4726.732299171672,
+        "opsMs": 4.726732299171672
+    },
+    {
+        "functionName": "neutralFillActive",
+        "ops": 4667.010663512658,
+        "opsMs": 4.667010663512658
+    },
+    {
+        "functionName": "neutralFillSelected",
+        "ops": 4648.253314616899,
+        "opsMs": 4.648253314616899
+    },
+    {
+        "functionName": "neutralFillStealthRest",
+        "ops": 3953.1612737319047,
+        "opsMs": 3.953161273731905
+    },
+    {
+        "functionName": "neutralFillStealthHover",
+        "ops": 3744.415912907941,
+        "opsMs": 3.7444159129079413
+    },
+    {
+        "functionName": "neutralFillStealthActive",
+        "ops": 3729.4212988722943,
+        "opsMs": 3.7294212988722943
+    },
+    {
+        "functionName": "neutralFillStealthSelected",
+        "ops": 3546.72722277859,
+        "opsMs": 3.54672722277859
+    },
+    {
+        "functionName": "neutralFillInputRest",
+        "ops": 3332.5962175991112,
+        "opsMs": 3.3325962175991113
+    },
+    {
+        "functionName": "neutralFillInputHover",
+        "ops": 3128.8055027622568,
+        "opsMs": 3.1288055027622566
+    },
+    {
+        "functionName": "neutralFillInputActive",
+        "ops": 3119.4752632676064,
+        "opsMs": 3.1194752632676064
+    },
+    {
+        "functionName": "neutralFillInputSelected",
+        "ops": 2952.7169705694164,
+        "opsMs": 2.9527169705694165
+    },
+    {
+        "functionName": "accentFillRest",
+        "ops": 147.04260559497115,
+        "opsMs": 0.14704260559497115
+    },
+    {
+        "functionName": "accentFillHover",
+        "ops": 151.22779359684952,
+        "opsMs": 0.1512277935968495
+    },
+    {
+        "functionName": "accentFillActive",
+        "ops": 148.9659064772107,
+        "opsMs": 0.1489659064772107
+    },
+    {
+        "functionName": "accentFillSelected",
+        "ops": 150.40765884040331,
+        "opsMs": 0.1504076588404033
+    },
+    {
+        "functionName": "accentFillLargeRest",
+        "ops": 151.6619579610712,
+        "opsMs": 0.1516619579610712
+    },
+    {
+        "functionName": "accentFillLargeHover",
+        "ops": 143.2026600412953,
+        "opsMs": 0.1432026600412953
+    },
+    {
+        "functionName": "accentFillLargeActive",
+        "ops": 150.77448960548568,
+        "opsMs": 0.15077448960548567
+    },
+    {
+        "functionName": "accentFillLargeSelected",
+        "ops": 147.513616441743,
+        "opsMs": 0.14751361644174302
+    },
+    {
+        "functionName": "neutralFillCard",
+        "ops": 6619.570388930672,
+        "opsMs": 6.619570388930672
+    },
+    {
+        "functionName": "neutralOutlineRest",
+        "ops": 2902.6659935896355,
+        "opsMs": 2.9026659935896353
+    },
+    {
+        "functionName": "neutralOutlineHover",
+        "ops": 2844.634401582148,
+        "opsMs": 2.8446344015821476
+    },
+    {
+        "functionName": "neutralOutlineActive",
+        "ops": 2897.115947681584,
+        "opsMs": 2.897115947681584
+    },
+    {
+        "functionName": "neutralDividerRest",
+        "ops": 6586.79100395568,
+        "opsMs": 6.58679100395568
+    },
+    {
+        "functionName": "neutralLayerFloating",
+        "ops": 1512.7343409591333,
+        "opsMs": 1.5127343409591334
+    },
+    {
+        "functionName": "neutralLayerCard",
+        "ops": 1513.2056023269563,
+        "opsMs": 1.5132056023269562
+    },
+    {
+        "functionName": "neutralLayerCardContainer",
+        "ops": 1255.5505905083876,
+        "opsMs": 1.2555505905083877
+    },
+    {
+        "functionName": "neutralLayerL1",
+        "ops": 1352.4947389396293,
+        "opsMs": 1.3524947389396293
+    },
+    {
+        "functionName": "neutralLayerL2",
+        "ops": 1256.0561271827796,
+        "opsMs": 1.2560561271827797
+    },
+    {
+        "functionName": "neutralLayerL3",
+        "ops": 1273.2903550961414,
+        "opsMs": 1.2732903550961414
+    },
+    {
+        "functionName": "neutralLayerL4",
+        "ops": 1280.7936914149236,
+        "opsMs": 1.2807936914149236
+    }
+]

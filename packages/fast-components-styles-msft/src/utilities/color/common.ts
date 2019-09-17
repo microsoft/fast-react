@@ -80,7 +80,7 @@ export type ColorRecipe<T> = DesignSystemResolver<T> &
     DesignSystemResolverFromSwatchResolver<T>;
 
 export function colorRecipeFactory<T>(recipe: DesignSystemResolver<T>): ColorRecipe<T> {
-    const memoizedRecipe: typeof recipe = memoize(recipe);
+    const memoizedRecipe: typeof recipe =recipe;
 
     function curryRecipe(designSystem: DesignSystem): T;
     function curryRecipe(
@@ -121,7 +121,8 @@ export function swatchFamilyToSwatchRecipeFactory<T extends SwatchFamily>(
     type: keyof T,
     callback: SwatchFamilyResolver<T>
 ): SwatchRecipe {
-    const memoizedRecipe: typeof callback = memoize(callback);
+    const memoizedRecipe: typeof callback = callback;
+
     return (arg: DesignSystem | SwatchResolver): any => {
         if (typeof arg === "function") {
             return (designSystem: DesignSystem): Swatch => {

@@ -51,25 +51,14 @@ const recipeNames = [
     "neutralLayerL4",
 ];
 
-// fs.writeFileSync("./change-results.js", JSON.stringify(keep, null, 2));
-//
 var suite = new Benchmark.Suite();
 const designSystems = DesignSystem.neutralPalette.map((color) => Object.assign({}, DesignSystem, { backgroundColor: color }));
-// const designSystems = [Object.assign({}, DesignSystem, { backgroundColor: DesignSystem.neutralPalette[Math.floor(DesignSystem.neutralPalette.length / 2)] })]
 
 recipeNames.forEach((recipeName) => {
-    designSystems.forEach((designSystem) => {
-        suite.add(`${recipeName},${designSystem.backgroundColor}`, () => recipes[recipeName](designSystem))
-    });
+        suite.add(`${recipeName}`, () => designSystems.forEach((d) => recipes[recipeName](d)))
+    //});
 })
 
-
-// DesignSystem.neutralPalette
-//     .map((color) => Object.assign({}, DesignSystem, { backgroundColor: color }))
-//     .forEach((designSystem) => {
-//         suite.add("baseline " + designSystem.backgroundColor, () => neutralForegroundHint(designSystem))
-//     });
-// 
 suite.on("complete", function() {
     const body = Object.keys(this)
         .filter(key => this[key] && this[key].name && this[key].hz)
@@ -79,7 +68,7 @@ suite.on("complete", function() {
             opsMs: this[key].hz / 1000,
 
         }));
-    fs.writeFileSync("./recipes-post.json", JSON.stringify(body, null, 4));
+    fs.writeFileSync("./recipes-pre-bin-search.json", JSON.stringify(body, null, 4));
 
 });
 
