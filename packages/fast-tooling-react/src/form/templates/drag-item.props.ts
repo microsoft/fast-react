@@ -1,4 +1,4 @@
-import { ArrayAction } from "./control.props";
+import { ArrayAction } from "./template.control.abstract.props";
 
 export interface DragItemProps {
     /**

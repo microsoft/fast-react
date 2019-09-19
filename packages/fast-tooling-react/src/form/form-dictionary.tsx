@@ -1,28 +1,22 @@
 import React from "react";
-import { get, uniqueId } from "lodash-es";
+import { uniqueId } from "lodash-es";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
-import styles from "./control.dictionary.style";
-import {
-    DictionaryFormControlClassNameContract,
-    DictionaryFormControlProps,
-    DictionaryFormControlState,
-} from "./control.dictionary.props";
-import BaseFormControl from "./template.control.abstract";
-import FormControlSwitch from "../form-control-switch";
-import { generateExampleData } from "../utilities";
+import styles, { FormDictionaryClassNameContract } from "./form-dictionary.style";
+import { FormDictionaryProps, FormDictionaryState } from "./form-dictionary.props";
+import FormControlSwitch from "./form-control-switch";
+import { generateExampleData } from "./utilities";
 
 /**
- * Schema form component definition
- * @extends React.Component
+ * Form control definition
  */
-class DictionaryFormControl extends BaseFormControl<
-    DictionaryFormControlProps & ManagedClasses<DictionaryFormControlClassNameContract>,
-    DictionaryFormControlState
+class FormDictionary extends React.Component<
+    FormDictionaryProps & ManagedClasses<FormDictionaryClassNameContract>,
+    FormDictionaryState
 > {
-    public static displayName: string = "DictionaryFormControl";
+    public static displayName: string = "FormDictionary";
 
-    constructor(props: DictionaryFormControlProps) {
+    constructor(props: FormDictionaryProps) {
         super(props);
 
         this.state = {
@@ -33,7 +27,7 @@ class DictionaryFormControl extends BaseFormControl<
 
     public render(): React.ReactNode {
         return (
-            <div className={get(this.props.managedClasses, "dictionaryFormControl")}>
+            <div className={this.props.managedClasses.formDictionary}>
                 {this.renderControl()}
                 {this.renderFormControls()}
             </div>
@@ -41,33 +35,22 @@ class DictionaryFormControl extends BaseFormControl<
     }
 
     private renderControl(): React.ReactNode {
+        const {
+            formDictionary_controlAddTrigger,
+            formDictionary_controlLabel,
+            formDictionary_control,
+            formDictionary_controlRegion,
+        }: FormDictionaryClassNameContract = this.props.managedClasses;
+
         return (
-            <div
-                className={get(
-                    this.props.managedClasses,
-                    "dictionaryFormControl_controlRegion"
-                )}
-            >
-                <div
-                    className={get(
-                        this.props.managedClasses,
-                        "dictionaryFormControl_control"
-                    )}
-                >
-                    <label
-                        className={get(
-                            this.props.managedClasses,
-                            "dictionaryFormControl_controlLabel"
-                        )}
-                    >
+            <div className={formDictionary_controlRegion}>
+                <div className={formDictionary_control}>
+                    <label className={formDictionary_controlLabel}>
                         {this.props.label}
                     </label>
                 </div>
                 <button
-                    className={get(
-                        this.props.managedClasses,
-                        "dictionaryFormControl_controlAddTrigger"
-                    )}
+                    className={formDictionary_controlAddTrigger}
                     aria-label={"Select to add item"}
                     onClick={this.handleOnAddItem}
                 />
@@ -76,33 +59,23 @@ class DictionaryFormControl extends BaseFormControl<
     }
 
     private renderItemControl(propertyName: string): React.ReactNode {
+        const {
+            formDictionary_itemControlRegion,
+            formDictionary_itemControl,
+            formDictionary_itemControlLabel,
+            formDictionary_itemControlInput,
+            formDictionary_itemControlRemoveTrigger,
+        }: FormDictionaryClassNameContract = this.props.managedClasses;
+
         return (
-            <div
-                className={get(
-                    this.props.managedClasses,
-                    "dictionaryFormControl_itemControlRegion"
-                )}
-            >
-                <div
-                    className={get(
-                        this.props.managedClasses,
-                        "dictionaryFormControl_itemControl"
-                    )}
-                >
-                    <label
-                        className={get(
-                            this.props.managedClasses,
-                            "dictionaryFormControl_itemControlLabel"
-                        )}
-                    >
-                        {this.props.schema.propertyTitle || "Property key"}
+            <div className={formDictionary_itemControlRegion}>
+                <div className={formDictionary_itemControl}>
+                    <label className={formDictionary_itemControlLabel}>
+                        {this.props.propertyLabel}
                     </label>
                     <input
-                        className={get(
-                            this.props.managedClasses,
-                            "dictionaryFormControl_itemControlInput"
-                        )}
-                        type="text"
+                        className={formDictionary_itemControlInput}
+                        type={"text"}
                         value={
                             this.state.focusedPropertyKey === propertyName
                                 ? this.state.focusedPropertyKeyValue
@@ -113,10 +86,7 @@ class DictionaryFormControl extends BaseFormControl<
                         onChange={this.handleKeyChange(propertyName)}
                     />
                     <button
-                        className={get(
-                            this.props.managedClasses,
-                            "dictionaryFormControl_itemControlRemoveTrigger"
-                        )}
+                        className={formDictionary_itemControlRemoveTrigger}
                         onClick={this.handleOnRemoveItem(propertyName)}
                     />
                 </div>
@@ -142,17 +112,14 @@ class DictionaryFormControl extends BaseFormControl<
                                 {this.renderItemControl(currentKey)}
                                 <FormControlSwitch
                                     index={index}
-                                    untitled={this.props.untitled}
-                                    label={get(this.props.schema, "title", this.props)}
+                                    label={this.props.label}
                                     onChange={this.props.onChange}
                                     propertyName={currentKey}
                                     schemaLocation={this.getSchemaLocation(currentKey)}
                                     dataLocation={this.getDataLocation(currentKey)}
                                     data={this.getData(currentKey)}
-                                    schema={this.props.schema}
-                                    onUpdateActiveSection={
-                                        this.props.onUpdateActiveSection
-                                    }
+                                    schema={this.props.additionalProperties}
+                                    onUpdateSection={this.props.onUpdateSection}
                                     childOptions={this.props.childOptions}
                                     required={this.isRequired(currentKey)}
                                     invalidMessage={this.props.invalidMessage}
@@ -177,19 +144,19 @@ class DictionaryFormControl extends BaseFormControl<
                 }${key}`,
                 this.props.default
             );
-        } else if (Array.isArray(this.props.schema.examples)) {
+        } else if (Array.isArray(this.props.examples) && this.props.examples.length > 0) {
             this.props.onChange(
                 `${
                     this.props.dataLocation === "" ? "" : `${this.props.dataLocation}.`
                 }${key}`,
-                this.props.schema.examples[0]
+                this.props.examples[0]
             );
         } else {
             this.props.onChange(
                 `${
                     this.props.dataLocation === "" ? "" : `${this.props.dataLocation}.`
                 }${key}`,
-                generateExampleData(this.props.schema, "")
+                generateExampleData(this.props.additionalProperties, "")
             );
         }
     };
@@ -271,11 +238,11 @@ class DictionaryFormControl extends BaseFormControl<
 
     private isRequired(propertyName: string): any {
         return (
-            Array.isArray(this.props.schema.required) &&
-            this.props.schema.required.includes(propertyName)
+            Array.isArray(this.props.required) &&
+            this.props.required.includes(propertyName)
         );
     }
 }
 
-export { DictionaryFormControl };
-export default manageJss(styles)(DictionaryFormControl);
+export { FormDictionary };
+export default manageJss(styles)(FormDictionary);

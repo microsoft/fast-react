@@ -6,7 +6,7 @@ import {
     useDrag,
     useDrop,
 } from "react-dnd";
-import { ArrayAction } from "./control.props";
+import { ArrayAction } from "./template.control.abstract.props";
 import { DragItem, DragItemProps, ItemType } from "./drag-item.props";
 
 const DragItem: React.FC<DragItemProps> = ({

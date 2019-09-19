@@ -1,5 +1,5 @@
 import React from "react";
-import { get, omit, uniqueId } from "lodash-es";
+import { get, omit } from "lodash-es";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
 import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import FormCategory from "./form-category";
@@ -30,7 +30,7 @@ import {
 } from "./form-section.props";
 import FormControlSwitch from "./form-control-switch";
 import FormOneOfAnyOf from "./form-one-of-any-of";
-import DictionaryFormControl from "./controls/control.dictionary";
+import FormDictionary from "./form-dictionary";
 
 /**
  * Schema form component definition
@@ -134,7 +134,7 @@ class FormSection extends React.Component<
                 propertyName={propertyName}
                 schema={schema}
                 onChange={this.props.onChange}
-                onUpdateActiveSection={this.props.onUpdateActiveSection}
+                onUpdateSection={this.props.onUpdateSection}
                 invalidMessage={invalidMessage}
                 displayValidationBrowserDefault={
                     this.props.displayValidationBrowserDefault
@@ -360,19 +360,20 @@ class FormSection extends React.Component<
 
         if (typeof schema.additionalProperties === "object") {
             return (
-                <DictionaryFormControl
+                <FormDictionary
                     index={0}
-                    untitled={this.props.untitled}
                     dataLocation={this.props.dataLocation}
                     schemaLocation={this.getSchemaLocation()}
-                    schema={schema.additionalProperties}
+                    examples={get(schema, "examples")}
+                    propertyLabel={get(schema, "propertyTitle", "Property key")}
+                    additionalProperties={schema.additionalProperties}
                     enumeratedProperties={this.getEnumeratedProperties(schema)}
                     data={this.props.data}
                     required={schema.required}
                     label={schema.title || this.props.untitled}
                     childOptions={this.props.childOptions}
                     onChange={this.props.onChange}
-                    onUpdateActiveSection={this.props.onUpdateActiveSection}
+                    onUpdateSection={this.props.onUpdateSection}
                     invalidMessage={getErrorFromDataLocation(
                         this.props.dataLocation,
                         this.props.validationErrors

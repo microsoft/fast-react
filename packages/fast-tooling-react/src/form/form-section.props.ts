@@ -46,10 +46,15 @@ export interface OneOfAnyOf {
     activeIndex: number;
 }
 
-export type updateActiveSection = (
+export type UpdateActiveSection = (
     schemaLocation: string,
     dataLocation: string,
     schema?: any
+) => void;
+
+export type AddExampleData = (
+    propertyLocation: string,
+    additionalSchemaPathSyntax?: string
 ) => void;
 
 /* tslint:disable-next-line */
@@ -94,7 +99,7 @@ export interface FormSectionProps {
     /**
      * The update event to trigger a new active section and/or component
      */
-    onUpdateActiveSection: updateActiveSection;
+    onUpdateSection: UpdateActiveSection;
 
     /**
      * The string to be used if a prop is untitled

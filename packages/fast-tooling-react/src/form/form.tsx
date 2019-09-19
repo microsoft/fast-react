@@ -23,6 +23,8 @@ import styles from "./form.style";
 import { mapPluginsToSchema } from "./utilities";
 import Navigation, { NavigationItem } from "./utilities/navigation";
 import { BreadcrumbItem, getBreadcrumbs } from "./utilities/breadcrumb";
+import { DragDropContext } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
 
 /**
  * Schema form component definition
@@ -354,7 +356,7 @@ class Form extends React.Component<
                     currentSchema
                 )}
                 onChange={this.handleOnChange}
-                onUpdateActiveSection={this.handleUpdateActiveSection}
+                onUpdateSection={this.handleUpdateActiveSection}
                 data={this.getData("data", "props")}
                 schemaLocation={lastNavigationItem.schemaLocation}
                 default={lastNavigationItem.default}
@@ -461,4 +463,4 @@ class Form extends React.Component<
 }
 
 export { FormChildOptionItem, FormClassNameContract };
-export default manageJss(styles)(Form);
+export default DragDropContext(HTML5Backend)(manageJss(styles)(Form));
