@@ -1,16 +1,17 @@
 import { black, white } from "./color-constants";
 import { DesignSystem } from "../../design-system";
-import { contrast, Swatch, SwatchRecipe, SwatchResolver } from "./common";
+import { curriedContrast, Swatch, SwatchRecipe, SwatchResolver } from "./common";
 import { accentBaseColor } from "../design-system";
 
 /**
  * Function to derive accentForegroundCut from an input background and target contrast ratio
  */
+const contrastFn: (value: string) => number = curriedContrast(white);
 const accentForegroundCutAlgorithm: (
     backgroundColor: Swatch,
     targetContrast: number
 ) => Swatch = (backgroundColor: Swatch, targetContrast: number): Swatch => {
-    return contrast(white, backgroundColor) >= targetContrast ? white : black;
+    return contrastFn(backgroundColor) >= targetContrast ? white : black;
 };
 
 /**

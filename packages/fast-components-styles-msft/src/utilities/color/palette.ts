@@ -8,13 +8,12 @@ import { accentPalette, neutralPalette } from "../design-system";
 import {
     clamp,
     colorMatches,
-    contrast,
+    curriedContrast,
     isValidColor,
     luminance,
     Swatch,
     SwatchResolver,
 } from "./common";
-import { black, white } from "./color-constants";
 
 /**
  * The named palettes of the MSFT design system
@@ -254,44 +253,44 @@ export function swatchByContrast(referenceColor: string | SwatchResolver) {
                             paletteResolver,
                             designSystem
                         );
-                        const length: number = sourcePalette.length;
+                        const lastIndex: number = sourcePalette.length - 1;
                         const initialSearchIndex: number = clamp(
                             indexResolver(color, sourcePalette, designSystem),
                             0,
-                            length - 1
-                        );
-                        const direction: 1 | -1 = directionResolver(
-                            initialSearchIndex,
-                            sourcePalette,
-                            designSystem
+                            lastIndex
                         );
 
-                        function contrastSearchCondition(
+                        const contrastFn = curriedContrast(color);
+
+                        const contrastSearchCondition: (value: Swatch) => boolean = (
                             valueToCheckAgainst: Swatch
-                        ): boolean {
-                            return contrastCondition(
-                                contrast(color, valueToCheckAgainst)
-                            );
-                        }
+                        ): boolean => {
+                            return contrastCondition(contrastFn(valueToCheckAgainst));
+                        };
 
                         const constrainedSourcePalette: Palette = [].concat(
                             sourcePalette
                         );
-                        const endSearchIndex: number = length - 1;
                         let startSearchIndex: number = initialSearchIndex;
 
-                        if (direction === -1) {
+                        if (
+                            directionResolver(
+                                initialSearchIndex,
+                                sourcePalette,
+                                designSystem
+                            ) === -1
+                        ) {
                             // reverse the palette array when the direction that
                             // the contrast resolves for is reversed
                             constrainedSourcePalette.reverse();
-                            startSearchIndex = endSearchIndex - startSearchIndex;
+                            startSearchIndex = lastIndex - startSearchIndex;
                         }
 
                         return binarySearch(
                             constrainedSourcePalette,
                             contrastSearchCondition,
                             startSearchIndex,
-                            endSearchIndex
+                            lastIndex
                         );
                     };
                 };

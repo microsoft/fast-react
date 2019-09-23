@@ -146,7 +146,7 @@ export function swatchFamilyToSwatchRecipeFactory<T extends SwatchFamily>(
 export function parseColorString(color: string): ColorRGBA64 {
     let parsed: ColorRGBA64 | null = parseColorHexRGB(color);
 
-    if (color !== null)  {
+    if (parsed !== null)  {
         return parsed;
     } else {
         parsed = parseColorWebRGB(color)
@@ -190,6 +190,14 @@ export const contrast: (a: string, b: string) => number = memoize(
     },
     (a: string, b: string): string => a + b
 );
+
+export function curriedContrast(a: string): (b: string) => number {
+    const _a: ColorRGBA64 = parseColorString(a);
+
+    return (b: string): number => {
+        return contrastRatio(_a, parseColorString(b))
+    }
+}
 
 /**
  * Returns the relative luminance of a color. If the value is not a color, -1 will be returned
