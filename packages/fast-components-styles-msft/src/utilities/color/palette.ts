@@ -1,4 +1,3 @@
-import { clamp } from "lodash-es";
 import {
     checkDesignSystemResolver,
     DesignSystem,
@@ -7,6 +6,7 @@ import {
 import { backgroundColor } from "../../utilities/design-system";
 import { accentPalette, neutralPalette } from "../design-system";
 import {
+    clamp,
     colorMatches,
     contrast,
     isValidColor,
@@ -140,11 +140,14 @@ export function findClosestSwatchIndex(
 
 /**
  * Determines if the design-system should be considered in "dark mode".
+ * We're in dark mode if we have more contrast between #000 and our background color
+ * than #FFF and our background color. That threshold can be expressed using the
+ * contrast ratio formula as (1 + 0.5) / (b + 0.05) === (b + 0.05) / (0 + 0.05)
  */
-export function isDarkMode(designSystem: DesignSystem): boolean {
-    const bg: string = backgroundColor(designSystem);
+const darkModeThreshold: number = (-0.1 + Math.sqrt(0.21)) / 2;
 
-    return contrast(white, bg) >= contrast(black, bg);
+export function isDarkMode(designSystem: DesignSystem): boolean {
+    return luminance(backgroundColor(designSystem)) <= darkModeThreshold;
 }
 
 /**

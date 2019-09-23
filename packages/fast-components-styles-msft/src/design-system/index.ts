@@ -277,9 +277,7 @@ export function checkDesignSystemResolver<T>(
     arg: T | DesignSystemResolver<T>,
     designSystem: DesignSystem
 ): T {
-    const value: T =
-        typeof arg === "function" ? (arg as DesignSystemResolver<T>)(designSystem) : arg;
-    return value;
+    return typeof arg === "function" ? (arg as DesignSystemResolver<T>)(designSystem) : arg;
 }
 
 /**

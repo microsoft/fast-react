@@ -80,7 +80,8 @@ export type ColorRecipe<T> = DesignSystemResolver<T> &
     DesignSystemResolverFromSwatchResolver<T>;
 
 export function colorRecipeFactory<T>(recipe: DesignSystemResolver<T>): ColorRecipe<T> {
-    const memoizedRecipe: typeof recipe = memoize(recipe);
+    // TODO: add memoization back
+    const memoizedRecipe: typeof recipe = recipe; // memoize(recipe);
 
     function curryRecipe(designSystem: DesignSystem): T;
     function curryRecipe(
@@ -121,7 +122,8 @@ export function swatchFamilyToSwatchRecipeFactory<T extends SwatchFamily>(
     type: keyof T,
     callback: SwatchFamilyResolver<T>
 ): SwatchRecipe {
-    const memoizedRecipe: typeof callback = memoize(callback);
+    // TODO: add memoization back
+    const memoizedRecipe: typeof callback = callback; // memoize(callback);
     return (arg: DesignSystem | SwatchResolver): any => {
         if (typeof arg === "function") {
             return (designSystem: DesignSystem): Swatch => {
@@ -142,10 +144,16 @@ export function swatchFamilyToSwatchRecipeFactory<T extends SwatchFamily>(
  * Supports #RRGGBB and rgb(r, g, b) formats
  */
 export function parseColorString(color: string): ColorRGBA64 {
-    if (isColorStringHexRGB(color)) {
-        return parseColorHexRGB(color);
-    } else if (isColorStringWebRGB(color)) {
-        return parseColorWebRGB(color);
+    let parsed: ColorRGBA64 | null = parseColorHexRGB(color);
+
+    if (color !== null)  {
+        return parsed;
+    } else {
+        parsed = parseColorWebRGB(color)
+
+        if (parsed !== null) {
+            return parsed;
+        }
     }
 
     throw new Error(
@@ -199,4 +207,8 @@ export function designSystemResolverMax(
             null,
             args.map((fn: DesignSystemResolver<number>) => fn(designSystem))
         );
+}
+
+export function clamp(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
 }
