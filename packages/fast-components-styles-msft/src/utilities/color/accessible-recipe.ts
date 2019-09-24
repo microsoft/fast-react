@@ -33,14 +33,14 @@ function indexToSwatchFamily(
             : direction * restDelta > direction * hoverDelta;
 
     const restIndex: number = indexOneIsRestState ? accessibleIndex : accessibleIndex2;
-    const hoverIndex: number = indexOneIsRestState ? accessibleIndex2 : accessibleIndex;
-
-    const activeIndex: number = restIndex + direction * activeDelta;
 
     return {
         rest: getSwatch(restIndex, palette),
-        hover: getSwatch(hoverIndex, palette),
-        active: getSwatch(activeIndex, palette),
+        hover: getSwatch(
+            indexOneIsRestState ? accessibleIndex2 : accessibleIndex,
+            palette
+        ),
+        active: getSwatch(restIndex + direction * activeDelta, palette),
     };
 }
 
@@ -75,23 +75,13 @@ export function accessibleAlgorithm(
             designSystem // Pass the design system
         );
 
-        const accessibleIndex: number = findSwatchIndex(palette, accessibleSwatch)(
-            designSystem
-        );
-        const resolvedRest: number = checkDesignSystemResolver(restDelta, designSystem);
-        const resolvedHover: number = checkDesignSystemResolver(hoverDelta, designSystem);
-        const resolvedActive: number = checkDesignSystemResolver(
-            activeDelta,
-            designSystem
-        );
-
         return indexToSwatchFamily(
-            accessibleIndex,
+            findSwatchIndex(palette, accessibleSwatch)(designSystem),
             resolvedPalette,
             direction,
-            resolvedRest,
-            resolvedHover,
-            resolvedActive
+            checkDesignSystemResolver(restDelta, designSystem),
+            checkDesignSystemResolver(hoverDelta, designSystem),
+            checkDesignSystemResolver(activeDelta, designSystem)
         );
     };
 }
