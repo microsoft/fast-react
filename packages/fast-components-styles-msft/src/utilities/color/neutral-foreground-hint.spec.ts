@@ -50,8 +50,7 @@ describe("neutralForegroundHint", (): void => {
 
     function retrieveContrast(resolvedSwatch: Swatch, fn: SwatchRecipe): number {
         return parseFloat(
-            contrast(
-                fn(() => resolvedSwatch)(designSystemDefaults),
+            contrast(fn(() => resolvedSwatch)(designSystemDefaults))(
                 resolvedSwatch
             ).toPrecision(3)
         );

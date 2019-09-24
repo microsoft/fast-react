@@ -80,19 +80,19 @@ describe("parseColorHexRGB", (): void => {
 
 describe("contrast", (): void => {
     test("should return the contrast between two colors", (): void => {
-        expect(contrast("#000", "#FFF")).toBe(21);
-        expect(contrast("#000000", "#FFFFFF")).toBe(21);
-        expect(contrast("rgb(0, 0, 0)", "rgb(255, 255, 255)")).toBe(21);
+        expect(contrast("#000")("#FFF")).toBe(21);
+        expect(contrast("#000000")("#FFFFFF")).toBe(21);
+        expect(contrast("rgb(0, 0, 0)")("rgb(255, 255, 255)")).toBe(21);
     });
     test("should throw if either color cannot be converted to a color", (): void => {
         expect(
             (): void => {
-                contrast("oogabooga", "#000");
+                contrast("oogabooga")("#000");
             }
         ).toThrow();
         expect(
             (): void => {
-                contrast("#000", "oogabooga");
+                contrast("#000")("oogabooga");
             }
         ).toThrow();
     });

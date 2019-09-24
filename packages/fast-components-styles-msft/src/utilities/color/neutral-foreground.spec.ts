@@ -7,6 +7,8 @@ import designSystemDefaults from "../../design-system";
 import { contrast } from "./common";
 
 describe("neutralForeground", (): void => {
+    const whiteContrast: ReturnType<typeof contrast> = contrast("#FFF");
+
     test("should return a string when invoked with an object", (): void => {
         expect(typeof neutralForegroundRest(designSystemDefaults)).toBe("string");
         expect(typeof neutralForegroundHover(designSystemDefaults)).toBe("string");
@@ -21,57 +23,52 @@ describe("neutralForeground", (): void => {
 
     test("should operate on default design system if no design system is supplied", (): void => {
         expect(
-            contrast(neutralForegroundRest(undefined as any), "#FFF")
+            whiteContrast(neutralForegroundRest(undefined as any))
         ).toBeGreaterThanOrEqual(14);
         expect(
-            contrast(
-                neutralForegroundRest(() => undefined as any)(undefined as any),
-                "#FFF"
-            )
+            whiteContrast(neutralForegroundRest(() => undefined as any)(undefined as any))
         ).toBeGreaterThanOrEqual(14);
         expect(
-            contrast(neutralForegroundRest(() => "#FFF")(undefined as any), "#FFF")
+            whiteContrast(neutralForegroundRest(() => "#FFF")(undefined as any))
         ).toBeGreaterThanOrEqual(14);
         expect(
-            contrast(neutralForegroundRest(() => "#FFFFFF")(undefined as any), "#FFF")
+            whiteContrast(neutralForegroundRest(() => "#FFFFFF")(undefined as any))
         ).toBeGreaterThanOrEqual(14);
 
         expect(
-            contrast(neutralForegroundHover(undefined as any), "#FFF")
+            whiteContrast(neutralForegroundHover(undefined as any))
         ).toBeGreaterThanOrEqual(14);
         expect(
-            contrast(
-                neutralForegroundHover(() => undefined as any)(undefined as any),
-                "#FFF"
+            whiteContrast(
+                neutralForegroundHover(() => undefined as any)(undefined as any)
             )
         ).toBeGreaterThanOrEqual(14);
         expect(
-            contrast(neutralForegroundHover(() => "#FFF")(undefined as any), "#FFF")
+            whiteContrast(neutralForegroundHover(() => "#FFF")(undefined as any))
         ).toBeGreaterThanOrEqual(14);
         expect(
-            contrast(neutralForegroundHover(() => "#FFFFFF")(undefined as any), "#FFF")
+            whiteContrast(neutralForegroundHover(() => "#FFFFFF")(undefined as any))
         ).toBeGreaterThanOrEqual(14);
 
         expect(
-            contrast(neutralForegroundActive(undefined as any), "#FFF")
+            whiteContrast(neutralForegroundActive(undefined as any))
         ).toBeGreaterThanOrEqual(14);
         expect(
-            contrast(
-                neutralForegroundActive(() => undefined as any)(undefined as any),
-                "#FFF"
+            whiteContrast(
+                neutralForegroundActive(() => undefined as any)(undefined as any)
             )
         ).toBeGreaterThanOrEqual(14);
         expect(
-            contrast(neutralForegroundActive(() => "#FFF")(undefined as any), "#FFF")
+            whiteContrast(neutralForegroundActive(() => "#FFF")(undefined as any))
         ).toBeGreaterThanOrEqual(14);
         expect(
-            contrast(neutralForegroundActive(() => "#FFFFFF")(undefined as any), "#FFF")
+            whiteContrast(neutralForegroundActive(() => "#FFFFFF")(undefined as any))
         ).toBeGreaterThanOrEqual(14);
     });
 
     test("should return correct result with default design system values", (): void => {
         expect(
-            contrast(neutralForegroundRest(designSystemDefaults), "#FFF")
+            whiteContrast(neutralForegroundRest(designSystemDefaults))
         ).toBeGreaterThanOrEqual(14);
     });
 
@@ -82,9 +79,8 @@ describe("neutralForeground", (): void => {
                     Object.assign({}, designSystemDefaults, {
                         backgroundColor: "#000",
                     })
-                ),
-                "#000"
-            )
+                )
+            )("#000")
         ).toBeGreaterThanOrEqual(14);
     });
 });

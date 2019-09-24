@@ -150,10 +150,10 @@ export function parseColorString(color: string): ColorRGBA64 {
         return parsed;
     } else {
         parsed = parseColorWebRGB(color)
+    }
 
-        if (parsed !== null) {
-            return parsed;
-        }
+    if (parsed !== null) {
+        return parsed;
     }
 
     throw new Error(
@@ -178,20 +178,10 @@ export function colorMatches(a: string, b: string): boolean {
 }
 
 /**
- * Returns the contrast value between two colors. If either value is not a color, -1 will be returned
+ * Returns the contrast value between two colors
  * Supports #RRGGBB and rgb(r, g, b) formats
  */
-export const contrast: (a: string, b: string) => number = memoize(
-    (a: string, b: string): number => {
-        const alpha: ColorRGBA64 = parseColorString(a);
-        const beta: ColorRGBA64 = parseColorString(b);
-
-        return contrastRatio(alpha, beta);
-    },
-    (a: string, b: string): string => a + b
-);
-
-export function curriedContrast(a: string): (b: string) => number {
+export function contrast(a: string): (b: string) => number {
     const _a: ColorRGBA64 = parseColorString(a);
 
     return (b: string): number => {
@@ -211,10 +201,10 @@ export function designSystemResolverMax(
     ...args: Array<DesignSystemResolver<number>>
 ): DesignSystemResolver<number> {
     return (designSystem: DesignSystem): number =>
-        Math.max.apply(
-            null,
-            args.map((fn: DesignSystemResolver<number>) => fn(designSystem))
-        );
+    Math.max.apply(
+        null,
+        args.map((fn: DesignSystemResolver<number>) => fn(designSystem))
+    );
 }
 
 export function clamp(value: number, min: number, max: number): number {

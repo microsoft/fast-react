@@ -8,7 +8,7 @@ import { accentPalette, neutralPalette } from "../design-system";
 import {
     clamp,
     colorMatches,
-    curriedContrast,
+    contrast,
     isValidColor,
     luminance,
     Swatch,
@@ -55,27 +55,25 @@ export function findSwatchIndex(
     swatch: Swatch
 ): DesignSystemResolver<number> {
     return (designSystem: DesignSystem): number => {
-        if (!isValidColor(swatch)) {
-            return -1;
-        }
-
         const colorPalette: Palette = checkDesignSystemResolver(
             paletteResolver,
             designSystem
         );
         const index: number = colorPalette.indexOf(swatch);
 
-        // If we don't find the string exactly, it might be because of color formatting differences
-        return index !== -1
-            ? index
-            : colorPalette.findIndex(
-                  (paletteSwatch: Swatch): boolean => {
-                      return (
-                          isValidColor(paletteSwatch) &&
-                          colorMatches(swatch, paletteSwatch)
-                      );
-                  }
-              );
+        if (index !== -1) {
+            return index;
+        } else if (!isValidColor(swatch)) {
+            return -1;
+        } else {
+            return colorPalette.findIndex(
+                (paletteSwatch: Swatch): boolean => {
+                    return (
+                        isValidColor(paletteSwatch) && colorMatches(swatch, paletteSwatch)
+                    );
+                }
+            );
+        }
     };
 }
 
@@ -102,10 +100,6 @@ export function findClosestSwatchIndex(
         try {
             swatchLuminance = luminance(swatch);
         } catch (e) {
-            swatchLuminance = -1;
-        }
-
-        if (swatchLuminance === -1) {
             return 0;
         }
 
@@ -260,7 +254,7 @@ export function swatchByContrast(referenceColor: string | SwatchResolver) {
                             lastIndex
                         );
 
-                        const contrastFn = curriedContrast(color);
+                        const contrastFn = contrast(color);
 
                         const contrastSearchCondition: (value: Swatch) => boolean = (
                             valueToCheckAgainst: Swatch
@@ -298,6 +292,7 @@ export function swatchByContrast(referenceColor: string | SwatchResolver) {
         };
     };
 }
+/* tslint:enable:typedef */
 
 function binarySearch<T>(
     valuesToSearch: T[],
@@ -341,7 +336,6 @@ export function referenceColorInitialIndexResolver(
     return findClosestSwatchIndex(sourcePalette, referenceColor)(designSystem);
 }
 
-/* tslint:enable:typedef */
 export function findClosestBackgroundIndex(designSystem: DesignSystem): number {
     return findClosestSwatchIndex(neutralPalette, backgroundColor(designSystem))(
         designSystem

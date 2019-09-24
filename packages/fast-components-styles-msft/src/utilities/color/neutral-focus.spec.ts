@@ -12,7 +12,7 @@ describe("neutralFocus", (): void => {
     });
 
     test("should operate on default design system if no design system is supplied", (): void => {
-        expect(contrast(neutralFocus({} as DesignSystem), "#FFF")).toBeGreaterThanOrEqual(
+        expect(contrast(neutralFocus({} as DesignSystem))("#FFF")).toBeGreaterThanOrEqual(
             3.5
         );
     });

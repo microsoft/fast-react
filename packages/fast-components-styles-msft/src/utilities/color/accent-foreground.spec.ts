@@ -74,6 +74,7 @@ describe("accentForeground", (): void => {
             (accent: Swatch): void => {
                 neutralPalette.forEach(
                     (swatch: Swatch): void => {
+                        const contrastFn: (swatch: Swatch) => number = contrast(swatch);
                         const designSystem: DesignSystem = Object.assign(
                             {},
                             designSystemDefaults,
@@ -88,18 +89,18 @@ describe("accentForeground", (): void => {
                         );
 
                         expect(
-                            contrast(swatch, accentForegroundRest(designSystem))
+                            contrastFn(accentForegroundRest(designSystem))
                             // There are a few states that are impossible to meet contrast on
                         ).toBeGreaterThanOrEqual(4.47);
                         expect(
-                            contrast(swatch, accentForegroundHover(designSystem))
+                            contrastFn(accentForegroundHover(designSystem))
                             // There are a few states that are impossible to meet contrast on
                         ).toBeGreaterThanOrEqual(3.7);
                         expect(
-                            contrast(swatch, accentForegroundLargeRest(designSystem))
+                            contrastFn(accentForegroundLargeRest(designSystem))
                         ).toBeGreaterThanOrEqual(3);
                         expect(
-                            contrast(swatch, accentForegroundLargeHover(designSystem))
+                            contrastFn(accentForegroundLargeHover(designSystem))
                         ).toBeGreaterThanOrEqual(3);
                     }
                 );

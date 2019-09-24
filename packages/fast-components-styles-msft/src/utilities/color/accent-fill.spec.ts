@@ -86,26 +86,22 @@ describe("accentFill", (): void => {
                         );
 
                         expect(
-                            contrast(
-                                accentForegroundCutColor,
+                            contrast(accentForegroundCutColor)(
                                 accentFillRest(designSystem)
                             )
                         ).toBeGreaterThanOrEqual(4.5);
                         expect(
-                            contrast(
-                                accentForegroundCutColor,
+                            contrast(accentForegroundCutColor)(
                                 accentFillHover(designSystem)
                             )
                         ).toBeGreaterThanOrEqual(4.5);
                         expect(
-                            contrast(
-                                accentForegroundCutColor,
+                            contrast(accentForegroundCutColor)(
                                 accentFillLargeRest(designSystem)
                             )
                         ).toBeGreaterThanOrEqual(3);
                         expect(
-                            contrast(
-                                accentForegroundCutColor,
+                            contrast(accentForegroundCutColor)(
                                 accentFillLargeHover(designSystem)
                             )
                         ).toBeGreaterThanOrEqual(3);

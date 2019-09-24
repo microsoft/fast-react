@@ -2,7 +2,7 @@ import { black, white } from "./color-constants";
 import { DesignSystem } from "../../design-system";
 import {
     colorRecipeFactory,
-    curriedContrast,
+    contrast,
     Swatch,
     SwatchRecipe,
     SwatchResolver,
@@ -13,7 +13,7 @@ import { backgroundColor } from "../design-system";
 /**
  * Function to derive neutralForegroundToggle from an input background and target contrast ratio
  */
-const contrastFn: (value: string) => number = curriedContrast(white);
+const contrastFn: (value: string) => number = contrast(white);
 
 function neutralForegroundToogleAlgorithmFactory(
     targetContrast: number

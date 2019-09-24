@@ -12,7 +12,7 @@ import {
 import { accentForegroundCut } from "./accent-foreground-cut";
 import {
     colorRecipeFactory,
-    curriedContrast,
+    contrast,
     designSystemResolverMax,
     FillSwatchFamily,
     Swatch,
@@ -58,17 +58,16 @@ function accentFillAlgorithm(
         const accentIndex: number = findClosestSwatchIndex(accentPalette, accent)(
             designSystem
         );
-        const contrastFn: (value: string) => number = curriedContrast(textColor);
+        const contrastFn: (value: string) => number = contrast(textColor);
 
         let accessibleOffset: number = 0;
 
         // Move the accent color the direction of hover, while maintaining the foreground color.
         while (
-            accessibleOffset < direction * hoverDelta &&
-            inRange(accentIndex + accessibleOffset + direction, 0, paletteLength) &&
-            contrastFn(palette[accentIndex + accessibleOffset + direction]) >=
-                contrastTarget &&
-            inRange(accentIndex + accessibleOffset + direction + direction, 0, maxIndex)
+            accessibleOffset < direction * hoverDelta
+            && inRange(accentIndex + accessibleOffset + direction, 0, paletteLength)
+            && contrastFn(palette[accentIndex + accessibleOffset + direction]) >= contrastTarget
+            && inRange(accentIndex + accessibleOffset + direction + direction, 0, maxIndex)
         ) {
             accessibleOffset += direction;
         }
