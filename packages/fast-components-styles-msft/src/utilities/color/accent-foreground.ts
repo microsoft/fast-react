@@ -28,6 +28,12 @@ import {
 function accentForegroundAlgorithm(
     contrastTarget: number
 ): DesignSystemResolver<SwatchFamily> {
+    const contrastFn: (contrast: number) => boolean = (contrast: number): boolean =>
+        contrast >= contrastTarget;
+    const curriedSwatchByContrast: ReturnType<
+        ReturnType<typeof swatchByContrast>
+    > = swatchByContrast(backgroundColor)(accentPalette);
+
     return (designSystem: DesignSystem): SwatchFamily => {
         const palette: Palette = accentPalette(designSystem);
         const accent: Swatch = accentBaseColor(designSystem);
@@ -35,31 +41,20 @@ function accentForegroundAlgorithm(
             designSystem
         );
 
-        const stateDeltas: any = {
-            rest: accentForegroundRestDelta(designSystem),
-            hover: accentForegroundHoverDelta(designSystem),
-            active: accentForegroundActiveDelta(designSystem),
-        };
-
+        const restDelta: number = accentForegroundRestDelta(designSystem);
+        const hoverDelta: number = accentForegroundHoverDelta(designSystem);
         const direction: 1 | -1 = isDarkMode(designSystem) ? -1 : 1;
-
         const startIndex: number =
             accentIndex +
             (direction === 1
-                ? Math.min(stateDeltas.rest, stateDeltas.hover)
-                : Math.max(direction * stateDeltas.rest, direction * stateDeltas.hover));
+                ? Math.min(restDelta, hoverDelta)
+                : Math.max(direction * restDelta, direction * hoverDelta));
 
-        const accessibleSwatch: Swatch = swatchByContrast(
-            backgroundColor // Compare swatches against the background
-        )(
-            accentPalette // Use the accent palette
-        )(
+        const accessibleSwatch: Swatch = curriedSwatchByContrast(
             () => startIndex // Begin searching based on accent index, direction, and deltas
         )(
             () => direction // Search direction based on light/dark mode
-        )(
-            (swatchContrast: number) => swatchContrast >= contrastTarget // A swatch is only valid if the contrast is greater than indicated
-        )(
+        )(contrastFn)(
             designSystem // Pass the design system
         );
 
@@ -68,12 +63,12 @@ function accentForegroundAlgorithm(
             designSystem
         );
         const accessibleIndex2: number =
-            accessibleIndex1 + direction * Math.abs(stateDeltas.rest - stateDeltas.hover);
+            accessibleIndex1 + direction * Math.abs(restDelta - hoverDelta);
 
         const indexOneIsRestState: boolean =
             direction === 1
-                ? stateDeltas.rest < stateDeltas.hover
-                : direction * stateDeltas.rest > direction * stateDeltas.hover;
+                ? restDelta < hoverDelta
+                : direction * restDelta > direction * hoverDelta;
 
         const restIndex: number = indexOneIsRestState
             ? accessibleIndex1
@@ -82,7 +77,7 @@ function accentForegroundAlgorithm(
             ? accessibleIndex2
             : accessibleIndex1;
 
-        const activeIndex: number = restIndex + direction * stateDeltas.active;
+        const activeIndex: number = restIndex + direction * accentForegroundActiveDelta(designSystem);
 
         return {
             rest: getSwatch(restIndex, palette),
