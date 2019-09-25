@@ -135,7 +135,8 @@ export function findClosestSwatchIndex(
  * Determines if the design-system should be considered in "dark mode".
  * We're in dark mode if we have more contrast between #000 and our background color
  * than #FFF and our background color. That threshold can be expressed using the
- * contrast ratio formula as (1 + 0.5) / (b + 0.05) === (b + 0.05) / (0 + 0.05)
+ * contrast ratio formula as (1 + 0.5) / (b + 0.05) === (b + 0.05) / (0 + 0.05),
+ * which reduces to the following
  */
 const darkModeThreshold: number = (-0.1 + Math.sqrt(0.21)) / 2;
 

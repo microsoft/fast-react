@@ -143,23 +143,25 @@ export function swatchFamilyToSwatchRecipeFactory<T extends SwatchFamily>(
  * Converts a color string into a ColorRGBA64 instance.
  * Supports #RRGGBB and rgb(r, g, b) formats
  */
-export function parseColorString(color: string): ColorRGBA64 {
-    let parsed: ColorRGBA64 | null = parseColorHexRGB(color);
+export const parseColorString: (color: string) => ColorRGBA64 = memoize(
+    (color: string): ColorRGBA64 => {
+        let parsed: ColorRGBA64 | null = parseColorHexRGB(color);
 
-    if (parsed !== null)  {
-        return parsed;
-    } else {
-        parsed = parseColorWebRGB(color)
+        if (parsed !== null) {
+            return parsed;
+        } else {
+            parsed = parseColorWebRGB(color);
+        }
+
+        if (parsed !== null) {
+            return parsed;
+        }
+
+        throw new Error(
+            `${color} cannot be converted to a ColorRGBA64. Color strings must be one of the following formats: "#RGB", "#RRGGBB", or "rgb(r, g, b)"`
+        );
     }
-
-    if (parsed !== null) {
-        return parsed;
-    }
-
-    throw new Error(
-        `${color} cannot be converted to a ColorRGBA64. Color strings must be one of the following formats: "#RGB", "#RRGGBB", or "rgb(r, g, b)"`
-    );
-}
+);
 
 /**
  * Determines if a string value represents a color
@@ -185,8 +187,8 @@ export function contrast(a: string): (b: string) => number {
     const _a: ColorRGBA64 = parseColorString(a);
 
     return (b: string): number => {
-        return contrastRatio(_a, parseColorString(b))
-    }
+        return contrastRatio(_a, parseColorString(b));
+    };
 }
 
 /**
@@ -201,10 +203,10 @@ export function designSystemResolverMax(
     ...args: Array<DesignSystemResolver<number>>
 ): DesignSystemResolver<number> {
     return (designSystem: DesignSystem): number =>
-    Math.max.apply(
-        null,
-        args.map((fn: DesignSystemResolver<number>) => fn(designSystem))
-    );
+        Math.max.apply(
+            null,
+            args.map((fn: DesignSystemResolver<number>) => fn(designSystem))
+        );
 }
 
 export function clamp(value: number, min: number, max: number): number {
