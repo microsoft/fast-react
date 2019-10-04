@@ -243,3 +243,4 @@ export * from "./utilities/high-contrast";
 export * from "./utilities/important";
 export * from "./utilities/keyof-to-type";
 export * from "./utilities/typography";
+export * from "./utilities/motion";

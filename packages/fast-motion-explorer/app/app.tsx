@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import { bezier, duration } from "@microsoft/fast-components-styles-msft";
 
 export default class App extends Component {
     public render(): JSX.Element {
@@ -99,5 +100,3 @@ export default class App extends Component {
         return `${150 + value * 250}ms`;
     }
 }
-
-// render(<App />, document.getElementById("root"));
