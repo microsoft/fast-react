@@ -114,6 +114,8 @@ export const disabledOpacity: DesignSystemResolver<number> = getDesignSystemValu
     "disabledOpacity"
 );
 
+export const relativeMotion: DesignSystemResolver<number> = getDesignSystemValue("relativeMotion");
+
 export const accentFillRestDelta: DesignSystemResolver<number> = getDesignSystemValue(
     "accentFillRestDelta"
 );
