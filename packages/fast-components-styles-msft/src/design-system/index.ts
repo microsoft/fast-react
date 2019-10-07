@@ -226,7 +226,7 @@ const designSystemDefaults: DesignSystem = {
     neutralPalette,
     accentPalette,
     accentBaseColor: "#0078D4",
-    relativeMotion: 0.5,
+    relativeMotion: 0.6,
 
     /**
      * Recipe Deltas

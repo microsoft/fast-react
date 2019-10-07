@@ -1,4 +1,11 @@
-import { Heading, HeadingSize, HeadingTag } from "@microsoft/fast-components-react-msft";
+import {
+    Heading,
+    HeadingSize,
+    HeadingTag,
+    Label,
+    Slider,
+    SliderLabel,
+} from "@microsoft/fast-components-react-msft";
 import {
     backgroundColor,
     DesignSystem,
@@ -15,13 +22,15 @@ import { get } from "lodash-es";
 import React from "react";
 import { connect } from "react-redux";
 import { AppState } from "./state";
+import { updateDesignSystem } from "./actions";
 
 export interface ControlPaneClassNameContract {
     controlPane: string;
 }
 
 export interface ControlPaneProps extends ManagedClasses<ControlPaneClassNameContract> {
-    designSystem: DesignSystem;
+    designSystem: DesignSystem,
+    updateDesignSystem: typeof updateDesignSystem
 }
 
 const styles: any = (
@@ -45,13 +54,6 @@ const styles: any = (
     };
 };
 
-function titleCase(str: string): string {
-    return str
-        .split("")
-        .reduce((accumulated: string, value: string, index: number): string => {
-            return accumulated.concat(index === 0 ? value.toUpperCase() : value);
-        }, "");
-}
 class ControlPaneBase extends React.Component<ControlPaneProps> {
     private labelStyles: React.CSSProperties = {
         marginBottom: "8px",
@@ -73,6 +75,7 @@ class ControlPaneBase extends React.Component<ControlPaneProps> {
                     >
                         Settings
                     </Heading>
+                    {this.renderRelativeMotionInput()}
                 </form>
             </Pane>
         );
@@ -81,6 +84,32 @@ class ControlPaneBase extends React.Component<ControlPaneProps> {
     private handleFormSubmit(e: React.FormEvent<HTMLFormElement>): void {
         e.preventDefault();
     }
+
+    private renderRelativeMotionInput(): JSX.Element {
+        return (
+            <React.Fragment>
+                <Label htmlFor="motion-level">Relative motion</Label>
+                <Slider
+                    id="motion-level"
+                    onValueChange={this.onRelativeMotionChange}
+                    range={{ minValue: 0, maxValue: 1 }}
+                    step={0.01}
+                    value={this.props.designSystem.relativeMotion}
+                >
+                    <SliderLabel valuePositionBinding={0} label="None" />
+                    <SliderLabel valuePositionBinding={0.2} label="Minimal" />
+                    <SliderLabel valuePositionBinding={0.4} label="Subtle" />
+                    <SliderLabel valuePositionBinding={0.6} label="Default" />
+                    <SliderLabel valuePositionBinding={0.8} label="Extra" />
+                    <SliderLabel valuePositionBinding={1} label="Expressive" />
+                </Slider>
+            </React.Fragment>
+        );
+    }
+
+    private onRelativeMotionChange = (value: number): void => {
+        this.props.updateDesignSystem("relativeMotion", value);
+    };
 }
 
 function mapStateToProps(state: AppState): AppState {
@@ -88,6 +117,11 @@ function mapStateToProps(state: AppState): AppState {
 }
 
 /* tslint:disable-next-line */
-const ControlPane = connect(mapStateToProps)(manageJss(styles)(ControlPaneBase));
+const ControlPane = connect(
+    mapStateToProps,
+    {
+        updateDesignSystem,
+    }
+)(manageJss(styles)(ControlPaneBase));
 type ControlPane = InstanceType<typeof ControlPane>;
 export { ControlPane };

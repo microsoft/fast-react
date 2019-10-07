@@ -29,7 +29,8 @@ class App extends React.Component<AppProps, {}> {
                     <Row fill={true}>
                         <Canvas>
                             <Container jssStyleSheet={this.containerStyleOverrides}>
-                                <Row fill={true}>Hello world</Row>
+                                <Row fill={true}>
+                                </Row>
                             </Container>
                         </Canvas>
                         <Background value={neutralLayerL4}>

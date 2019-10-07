@@ -1,6 +1,11 @@
 import { Action, createStore } from "redux";
-import { ColorRGBA64 } from "@microsoft/fast-colors";
-import { createColorPalette, DesignSystem, DesignSystemDefaults  } from "@microsoft/fast-components-styles-msft";
+import {
+    DesignSystem,
+    DesignSystemDefaults,
+} from "@microsoft/fast-components-styles-msft";
+import { UPDATE_DESIGN_SYSTEM } from "./actions";
+import { merge } from "lodash-es";
+
 
 export interface AppState {
     /**
@@ -9,15 +14,15 @@ export interface AppState {
     designSystem: DesignSystem;
 }
 
-export interface Action {
-    type: symbol;
-}
-
 function rootReducer(state: AppState, action: any): AppState {
+    switch (action.type) {
+        case UPDATE_DESIGN_SYSTEM:
+            return merge({}, state, { designSystem: action.data })
+    }
+
     return state;
 }
 
 export const store: any = createStore(rootReducer, {
     designSystem: DesignSystemDefaults,
 });
-
