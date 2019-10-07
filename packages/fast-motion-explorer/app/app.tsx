@@ -1,102 +1,61 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
-import { bezier, duration } from "@microsoft/fast-components-styles-msft";
+/* tslint:disable:jsx-no-lambda */
+/* tslint:disable:no-empty */
+import { Background } from "@microsoft/fast-components-react-msft";
+import { neutralLayerL4 } from "@microsoft/fast-components-styles-msft";
+import { DesignSystem } from "@microsoft/fast-components-styles-msft";
+import manageJss, { DesignSystemProvider } from "@microsoft/fast-jss-manager-react";
+import { Canvas, Container, Row } from "@microsoft/fast-layouts-react";
+import React from "react";
+import { connect } from "react-redux";
+import { ControlPane } from "./control-pane";
+import { AppState } from "./state";
 
-export default class App extends Component {
-    public render(): JSX.Element {
+interface AppProps {
+    designSystem: DesignSystem;
+}
+
+class App extends React.Component<AppProps, {}> {
+    private containerStyleOverrides: any = {
+        container: {
+            width: "100%",
+            height: "100%",
+        },
+    };
+
+    public render(): React.ReactNode {
         return (
-            <div>
-                <table>
-                    <caption>Design spec</caption>
-                    <thead>
-                        <tr>
-                            <td>Level</td>
-                            <td>Multiplier</td>
-                            <td>Base duration</td>
-                            <td>Bezier curve</td>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>None</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>None</td>
-                    </tr>
-                    <tr>
-                        <td>Minimal</td>
-                        <td>1</td>
-                        <td>200ms</td>
-                        <td>0.10, 0.40, 0.00, 1.00</td>
-                    </tr>
-                    <tr>
-                        <td>Subtle</td>
-                        <td>2</td>
-                        <td>250ms</td>
-                        <td>0.20, 0.30, 0.10, 1.00</td>
-                    </tr>
-                    <tr>
-                        <td>Default</td>
-                        <td>3</td>
-                        <td>300ms</td>
-                        <td>0.30, 0.20, 0.20,1.00</td>
-                    </tr>
-                    <tr>
-                        <td>Extra</td>
-                        <td>4</td>
-                        <td>350ms</td>
-                        <td>0.40, 0.10, 0.30, 1.00</td>
-                    </tr>
-                    <tr>
-                        <td>Expressive</td>
-                        <td>5</td>
-                        <td>400ms</td>
-                        <td>0.50, 0.00, 0.40, 1.00</td>
-                    </tr>
-                </table>
-                <table>
-                    <caption>Relational</caption>
-                    <thead>
-                        <tr>
-                            <td>Level</td>
-                            <td>Multiplier</td>
-                            <td>Base duration</td>
-                            <td>Bezier curve</td>
-                        </tr>
-                    </thead>
-                    {[
-                        [0, "None"],
-                        [0.2, "Minimal"],
-                        [0.4, "Subtle"],
-                        [0.6, "Default"],
-                        [0.8, "Extra"],
-                        [1, "Expressive"],
-                    ].map((conf: [number, string]): JSX.Element => {
-                        const [value, label]: [number, string] = conf;
-
-                        return (
-                            <tr>
-                                <td>{label}</td>
-                                <td>{value}</td>
-                                <td>{this.duration(value)}</td>
-                                <td>{this.bezier(value)}</td>
-                            </tr>
-                        );
-                    })}
-                </table>
-            </div>
+            <DesignSystemProvider designSystem={this.props.designSystem}>
+                <Container>
+                    <Row fill={true}>
+                        <Canvas>
+                            <Container jssStyleSheet={this.containerStyleOverrides}>
+                                <Row fill={true}>Hello world</Row>
+                            </Container>
+                        </Canvas>
+                        <Background value={neutralLayerL4}>
+                            <ControlPane />
+                        </Background>
+                    </Row>
+                </Container>
+            </DesignSystemProvider>
         );
     }
-    private toFixed(value: number): string {
-        return Math.max(Math.min(value, 1), 0).toFixed(2);
-    }
-
-    private bezier(value: number): string {
-        return `${this.toFixed(value / 2)}, ${this.toFixed(
-            0.5 - value / 2
-        )}, ${this.toFixed(value / 2 - 0.1)}, ${this.toFixed(1)}`;
-    }
-
-    private duration(value: number): string {
-        return `${150 + value * 250}ms`;
-    }
 }
+
+function mapStateToProps(state: AppState): Partial<AppProps> {
+    return {
+        designSystem: state.designSystem,
+    };
+}
+
+export default connect(mapStateToProps)(
+    manageJss({
+        "@global": {
+            body: {
+                fontFamily: '"Segoe UI", Arial, sans-serif',
+                fontSize: "14px",
+                margin: "0"
+            },
+        },
+    })(App)
+);

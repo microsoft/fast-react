@@ -1,6 +1,6 @@
 {
   "name": "@microsoft/fast-motion-explorer",
-  "version": "0.0.0",
+  "version": "1.4.1",
   "description": "Motion explorations",
   "sideEffects": false,
   "private": true,

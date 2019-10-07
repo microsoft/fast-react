@@ -1,5 +1,5 @@
 # Introduction 
-Application for testing UI color system.
+Application for testing UI motion system.
 
 ## Getting Started
 Follow setup instructions in (https://github.com/Microsoft/fast-dna/blob/master/CONTRIBUTING.md)(https://github.com/Microsoft/fast-dna/blob/master/CONTRIBUTING.md)

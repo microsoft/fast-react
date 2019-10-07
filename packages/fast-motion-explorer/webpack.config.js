@@ -61,7 +61,7 @@ module.exports = (env, args) => {
         plugins: [
             new CleanWebpackPlugin([outDir]),
             new HtmlWebpackPlugin({
-                title: "FAST color explorer",
+                title: "FAST motion explorer",
                 contentBase: outDir,
             }),
             new BundleAnalyzerPlugin({
