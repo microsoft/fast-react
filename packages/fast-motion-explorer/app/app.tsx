@@ -1,6 +1,6 @@
 /* tslint:disable:jsx-no-lambda */
 /* tslint:disable:no-empty */
-import { Background } from "@microsoft/fast-components-react-msft";
+import { Background, Dialog } from "@microsoft/fast-components-react-msft";
 import { neutralLayerL4 } from "@microsoft/fast-components-styles-msft";
 import { DesignSystem } from "@microsoft/fast-components-styles-msft";
 import manageJss, { DesignSystemProvider } from "@microsoft/fast-jss-manager-react";
@@ -30,6 +30,7 @@ class App extends React.Component<AppProps, {}> {
                         <Canvas>
                             <Container jssStyleSheet={this.containerStyleOverrides}>
                                 <Row fill={true}>
+                                    <Dialog visible={true} />
                                 </Row>
                             </Container>
                         </Canvas>

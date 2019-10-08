@@ -5,9 +5,9 @@ export function bezier(designSystem: DesignSystem): string {
     // TODO: should this be [number, number, number, number] and require formatting?
     const value: number = relativeMotion(designSystem);
 
-    return `${this.toFixed(value / 2)}, ${this.toFixed(0.5 - value / 2)}, ${this.toFixed(
+    return `bezier(${(value / 2)}, ${(0.5 - value / 2)}, ${(
         value / 2 - 0.1
-    )}, ${this.toFixed(1)}`;
+    )}, ${(1)})`;
 }
 
 export function duration(designSystem: DesignSystem): number {
