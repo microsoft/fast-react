@@ -33,7 +33,7 @@ export class Page extends Foundation<PageHandledProps, PageUnhandledProps, {}> {
 
     private generateAttributes(): React.HTMLAttributes<HTMLDivElement> {
         const columns: string = `${this.props.margin} minmax(0, ${this.props.maxWidth}) ${
-            this.props.margin
+            this.props. margin
         }`;
 
         const attributes: React.HTMLAttributes<HTMLDivElement> = {
