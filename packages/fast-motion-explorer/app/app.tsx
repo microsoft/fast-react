@@ -2,7 +2,10 @@
 /* tslint:disable:no-empty */
 import React from "react";
 import { Background, Button } from "@microsoft/fast-components-react-msft";
-import { DesignSystem, ElevationMultiplier } from "@microsoft/fast-components-styles-msft";
+import {
+    DesignSystem,
+    ElevationMultiplier,
+} from "@microsoft/fast-components-styles-msft";
 import manageJss, { DesignSystemProvider } from "@microsoft/fast-jss-manager-react";
 import { Canvas, Container, Row } from "@microsoft/fast-layouts-react";
 import { duration, neutralLayerL4 } from "@microsoft/fast-components-styles-msft";
@@ -12,11 +15,19 @@ import { Animations, AppState } from "./state";
 import { CSSTransition } from "react-transition-group";
 import Dialog from "./dialog";
 import Elevation from "./elevation";
+import Expand from "./expand";
+import Slide from "./slide";
 
 /* tslint:disable-next-line */
 interface AppProps extends AppState {}
 
-class App extends React.Component<AppProps, { visible: boolean, elevated: boolean }> {
+interface AppComponentState {
+    visible: boolean;
+    elevated: boolean;
+    expanded: boolean;
+    slide: boolean;
+}
+class App extends React.Component<AppProps, AppComponentState> {
     private containerStyleOverrides: any = {
         container: {
             width: "100%",
@@ -29,7 +40,9 @@ class App extends React.Component<AppProps, { visible: boolean, elevated: boolea
 
         this.state = {
             visible: false,
-            elevated: false
+            elevated: false,
+            expanded: false,
+            slide: false
         };
     }
 
@@ -41,22 +54,40 @@ class App extends React.Component<AppProps, { visible: boolean, elevated: boolea
                         <Canvas>
                             <Container jssStyleSheet={this.containerStyleOverrides}>
                                 <Row fill={true}>
-                                    <div style={{display: "flex", justifyContent: "center", width: "100%", height: "100%"}}>
-                                    {this.props.animation === Animations.revealDismiss ? (
-                                        <Dialog
-                                            width={600}
-                                            height={400}
-                                            visible={this.state.visible}
-                                        />
-                                    ) : null}
-                                    {this.props.animation === Animations.elevate ? (
-                                        <Elevation
-                                            width={200}
-                                            height={200}
-                                            elevated={this.state.elevated}
-                                        />
-                                    ) : null}
-                                </div>
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            width: "100%",
+                                            height: "100%",
+                                        }}
+                                    >
+                                        {this.props.animation ===
+                                        Animations.revealDismiss ? (
+                                            <Dialog
+                                                width={200}
+                                                height={200}
+                                                visible={this.state.visible}
+                                            />
+                                        ) : null}
+                                        {this.props.animation === Animations.elevate ? (
+                                            <Elevation
+                                                width={200}
+                                                height={200}
+                                                elevated={this.state.elevated}
+                                            />
+                                        ) : null}
+                                        {this.props.animation === Animations.expand ? (
+                                            <Expand
+                                                expanded={this.state.expanded}
+                                            />
+                                        ) : null}
+                                        {this.props.animation === Animations.slide ? (
+                                            <Slide
+                                                slide={this.state.slide}
+                                            />
+                                        ) : null}
+                                    </div>
                                 </Row>
                             </Container>
                         </Canvas>
@@ -72,13 +103,19 @@ class App extends React.Component<AppProps, { visible: boolean, elevated: boolea
     private handlePlayAnimationClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
         switch (this.props.animation) {
             case Animations.revealDismiss:
-                this.setState({visible: !this.state.visible});
+                this.setState({ visible: !this.state.visible });
                 break;
             case Animations.elevate:
-                this.setState({ elevated: !this.state.elevated })
+                this.setState({ elevated: !this.state.elevated });
+                break;
+            case Animations.expand:
+                this.setState({ expanded: !this.state.expanded });
+                break;
+            case Animations.slide:
+                this.setState({ slide: !this.state.slide });
                 break;
         }
-    }
+    };
 }
 
 function mapStateToProps(state: AppState): Partial<AppProps> {

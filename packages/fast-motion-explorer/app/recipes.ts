@@ -1,10 +1,8 @@
 import {
-    applyElevation,
     bezier,
     DesignSystem,
     DesignSystemResolver,
     duration,
-    ElevationMultiplier,
     relativeMotion,
 } from "@microsoft/fast-components-styles-msft";
 import { toMs, toPx } from "@microsoft/fast-jss-utilities";
@@ -13,10 +11,7 @@ import { CSSRules } from "../../fast-jss-manager/dist";
 /**
  * Reveal
  */
-
-
 export const revealDuration: DesignSystemResolver<number> = duration(150);
-
 export function revealTransform(dimension: number): DesignSystemResolver<string> {
     return (designSystem: DesignSystem): string => {
         const scaledMotion: number = relativeMotion(designSystem) * 20;
@@ -64,6 +59,38 @@ export function elevateTransition(designSystem: DesignSystem): string {
     return `box-shadow ${toMs(duration(designSystem))} ${bezier(designSystem)}`;
 }
 
+/**
+ * Expand
+ */
+export function expandTransition(designSystem: DesignSystem): string {
+    return ["width", "height"]
+        .map(
+            (value: string) =>
+                `${value} ${toMs(duration(150)(designSystem))} ${bezier(designSystem)}`
+        )
+        .join(",");
+}
+
+export function slideTransition(
+    distance: number
+): (properties: string | string[]) => DesignSystemResolver<string> {
+    return (properties: string | string[]): DesignSystemResolver<string> => {
+        return (designSystem: DesignSystem): string => {
+            return (Array.isArray(properties) ? properties : [properties])
+                .map(
+                    (value: string) =>
+                        `${value} ${toMs(
+                            duration(150 + distance / 5)(designSystem)
+                        )} ${bezier(designSystem)}`
+                )
+                .join(",");
+        };
+    };
+}
+
+/**
+ * Slide
+ */
 
 // Config packs
 export const revealInitial: CSSRules<DesignSystem> = {
@@ -76,11 +103,10 @@ export const revealProgress: CSSRules<DesignSystem> = {
     transition: revealTransition,
     transform: "translateX(0) scale(1)",
     opacity: "1",
-}
-
+};
 
 export const dismissProgress: CSSRules<DesignSystem> = {
     transition: dismissTransition,
     opacity: "0",
     transform: dismissTransform(400),
-}
+};

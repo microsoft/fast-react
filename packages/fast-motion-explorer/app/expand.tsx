@@ -1,83 +1,73 @@
-import {
-    applyElevatedCornerRadius,
-    applyElevation,
-    backgroundColor,
-    bezier,
-    DesignSystem,
-    ElevationMultiplier,
-    relativeDuration,
-} from "@microsoft/fast-components-styles-msft";
-import manageJss, {
-    ComponentStyleSheet,
-    ManagedClasses,
-} from "@microsoft/fast-jss-manager-react";
+import { applyElevatedCornerRadius, backgroundColor, DesignSystem, relativeDuration, applyElevation, ElevationMultiplier } from "@microsoft/fast-components-styles-msft";
+import manageJss, { ComponentStyleSheet, ManagedClasses } from "@microsoft/fast-jss-manager-react";
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { connect } from "react-redux";
-import { revealProgress, elevateTransition } from "./recipes";
+import { expandTransition } from "./recipes";
 import { AppState } from "./state";
 import { TransitionStates, useTransition } from "./useTransition";
 
-export interface ElevationClassNameContract {
-    elevation: string;
-    elevation_initial: string;
-    elevation_entering: string;
-    elevation_exiting: string;
+export interface ExpandClassNameContract {
+    expand: string;
+    expand_initial: string;
+    expand_entering: string;
+    expand_exiting: string;
 }
 
-export interface ElevationProps extends ManagedClasses<ElevationClassNameContract> {
+export interface ExpandProps extends ManagedClasses<ExpandClassNameContract> {
     children?: React.ReactNode;
-    managedClasses: ElevationClassNameContract;
-    width: number;
-    height: number;
-    elevated: boolean;
+    managedClasses: ExpandClassNameContract;
+    expanded: boolean;
     designSystem: DesignSystem;
 }
 
-const stylesheet: ComponentStyleSheet<ElevationClassNameContract, DesignSystem> = {
-    elevation: {
+const stylesheet: ComponentStyleSheet<ExpandClassNameContract, DesignSystem> = {
+    expand: {
         "margin-top": "auto",
         "margin-bottom": "auto",
         background: backgroundColor,
         ...applyElevatedCornerRadius(),
+        ...applyElevation(ElevationMultiplier.e10),
         "z-index": "1",
-        transition: elevateTransition,
+        transition: expandTransition,
     },
-    elevation_initial: {
-        ...applyElevation(ElevationMultiplier.e4),
+    expand_initial: {
+        width: "200px",
+        height: "200px",
     },
-    elevation_entering: {
-        ...applyElevation(ElevationMultiplier.e12),
+    expand_entering: {
+        width: "800px",
+        height: "800px",
     },
-    elevation_exiting: {
-        ...applyElevation(ElevationMultiplier.e4),
+    expand_exiting: {
+        width: "200px",
+        height: "200px",
     },
 };
 
-function Elevation(props: ElevationProps): JSX.Element {
+function Expand(props: ExpandProps): JSX.Element {
     const {
-        elevation,
-        elevation_initial,
-        elevation_entering,
-        elevation_exiting,
-    }: ElevationClassNameContract = props.managedClasses;
+        expand,
+        expand_initial,
+        expand_entering,
+        expand_exiting,
+    }: ExpandClassNameContract = props.managedClasses;
     const value: TransitionStates = useTransition(
-        props.elevated,
+        props.expanded,
         relativeDuration(props.designSystem)
     );
 
     return (
         <div
-            style={{width: props.width, height: props.height}}
             className={classNames(
-                elevation,
-                [elevation_initial, value === TransitionStates.initial],
+                expand,
+                [expand_initial, value === TransitionStates.initial],
                 [
-                    elevation_entering,
+                    expand_entering,
                     value === TransitionStates.entered ||
                         value === TransitionStates.entering,
                 ],
-                [elevation_exiting, value === TransitionStates.exiting]
+                [expand_exiting, value === TransitionStates.exiting]
             )}
         >
             {props.children}
@@ -85,10 +75,10 @@ function Elevation(props: ElevationProps): JSX.Element {
     );
 }
 
-function mapStateToProps(state: AppState): Partial<ElevationProps> {
+function mapStateToProps(state: AppState): Partial<ExpandProps> {
     return {
         designSystem: state.designSystem,
     };
 }
 
-export default (connect(mapStateToProps) as any)(manageJss(stylesheet)(Elevation));
+export default (connect(mapStateToProps) as any)(manageJss(stylesheet)(Expand));
