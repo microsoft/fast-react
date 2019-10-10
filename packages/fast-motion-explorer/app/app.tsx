@@ -1,22 +1,17 @@
 /* tslint:disable:jsx-no-lambda */
 /* tslint:disable:no-empty */
-import React from "react";
-import { Background, Button } from "@microsoft/fast-components-react-msft";
-import {
-    DesignSystem,
-    ElevationMultiplier,
-} from "@microsoft/fast-components-styles-msft";
+import { Background } from "@microsoft/fast-components-react-msft";
+import { neutralLayerL4 } from "@microsoft/fast-components-styles-msft";
 import manageJss, { DesignSystemProvider } from "@microsoft/fast-jss-manager-react";
 import { Canvas, Container, Row } from "@microsoft/fast-layouts-react";
-import { duration, neutralLayerL4 } from "@microsoft/fast-components-styles-msft";
+import React from "react";
 import { connect } from "react-redux";
 import { ControlPane } from "./control-pane";
-import { Animations, AppState } from "./state";
-import { CSSTransition } from "react-transition-group";
 import Dialog from "./dialog";
 import Elevation from "./elevation";
 import Expand from "./expand";
 import Slide from "./slide";
+import { Animations, AppState } from "./state";
 
 /* tslint:disable-next-line */
 interface AppProps extends AppState {}
@@ -42,7 +37,7 @@ class App extends React.Component<AppProps, AppComponentState> {
             visible: false,
             elevated: false,
             expanded: false,
-            slide: false
+            slide: false,
         };
     }
 
@@ -58,6 +53,7 @@ class App extends React.Component<AppProps, AppComponentState> {
                                         style={{
                                             display: "flex",
                                             justifyContent: "center",
+                                            alignItems: "center",
                                             width: "100%",
                                             height: "100%",
                                         }}
@@ -78,14 +74,10 @@ class App extends React.Component<AppProps, AppComponentState> {
                                             />
                                         ) : null}
                                         {this.props.animation === Animations.expand ? (
-                                            <Expand
-                                                expanded={this.state.expanded}
-                                            />
+                                            <Expand expanded={this.state.expanded} />
                                         ) : null}
                                         {this.props.animation === Animations.slide ? (
-                                            <Slide
-                                                slide={this.state.slide}
-                                            />
+                                            <Slide slide={this.state.slide} />
                                         ) : null}
                                     </div>
                                 </Row>

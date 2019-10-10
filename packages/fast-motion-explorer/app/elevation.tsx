@@ -14,7 +14,7 @@ import manageJss, {
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { connect } from "react-redux";
-import { revealProgress, elevateTransition } from "./recipes";
+import { elevateTransition, elevateToProperties, elevateFromProperties } from "./recipies/elevate";
 import { AppState } from "./state";
 import { TransitionStates, useTransition } from "./useTransition";
 
@@ -44,13 +44,13 @@ const stylesheet: ComponentStyleSheet<ElevationClassNameContract, DesignSystem> 
         transition: elevateTransition,
     },
     elevation_initial: {
-        ...applyElevation(ElevationMultiplier.e4),
+        ...elevateFromProperties(ElevationMultiplier.e4),
     },
     elevation_entering: {
-        ...applyElevation(ElevationMultiplier.e12),
+        ...elevateToProperties(ElevationMultiplier.e12),
     },
     elevation_exiting: {
-        ...applyElevation(ElevationMultiplier.e4),
+        ...elevateToProperties(ElevationMultiplier.e4),
     },
 };
 

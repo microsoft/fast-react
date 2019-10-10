@@ -1,7 +1,6 @@
 import {
     applyElevatedCornerRadius,
     applyElevation,
-    backgroundColor,
     DesignSystem,
     ElevationMultiplier,
 } from "@microsoft/fast-components-styles-msft";
@@ -12,13 +11,12 @@ import manageJss, {
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { connect } from "react-redux";
+import { dismissDuration, dismissToProperties } from "./recipies/dismiss";
 import {
-    dismissDuration,
-    dismissProgress,
     revealDuration,
-    revealInitial,
-    revealProgress,
-} from "./recipes";
+    revealFromProperties,
+    revealToProperties,
+} from "./recipies/reveal";
 import { AppState } from "./state";
 import { TransitionStates, useTransition } from "./useTransition";
 
@@ -27,9 +25,6 @@ export interface DialogClassNameContract {
     dialog_initial: string;
     dialog_entering: string;
     dialog_exiting: string;
-    dialog_modalOverlay: string;
-    dialog_positioningRegion: string;
-    dialog_contentRegion: string;
 }
 
 export interface DialogProps extends ManagedClasses<DialogClassNameContract> {
@@ -42,55 +37,26 @@ export interface DialogProps extends ManagedClasses<DialogClassNameContract> {
 }
 
 const stylesheet: ComponentStyleSheet<DialogClassNameContract, DesignSystem> = {
-    dialog: {},
-    dialog_positioningRegion: {
-        display: "flex",
-        "justify-content": "center",
-        position: "fixed",
-        top: "0",
-        bottom: "0",
-        left: "0",
-        right: "0",
-        overflow: "auto",
-    },
-    dialog_modalOverlay: {
-        position: "fixed",
-        top: "0",
-        left: "0",
-        right: "0",
-        bottom: "0",
-        background: "rgba(0, 0, 0, 0.3)",
-    },
-    dialog_contentRegion: {
-        "margin-top": "auto",
-        "margin-bottom": "auto",
-        background: backgroundColor,
+    dialog: {
         ...applyElevatedCornerRadius(),
         ...applyElevation(ElevationMultiplier.e14),
-        "z-index": "1",
+        width: "200px",
+        height: "200px",
     },
     dialog_initial: {
-        "& $dialog_contentRegion": {
-            ...revealInitial,
-        },
+        ...revealFromProperties(200),
     },
     dialog_entering: {
-        "& $dialog_contentRegion": {
-            ...revealProgress,
-        },
+        ...revealToProperties,
     },
     dialog_exiting: {
-        "& $dialog_contentRegion": {
-            ...dismissProgress,
-        },
+        ...dismissToProperties(200),
     },
 };
 
 function Dialog(props: DialogProps): JSX.Element {
     const {
         dialog,
-        dialog_positioningRegion,
-        dialog_contentRegion,
         dialog_initial,
         dialog_entering,
         dialog_exiting,
@@ -101,34 +67,20 @@ function Dialog(props: DialogProps): JSX.Element {
     });
 
     return (
-        <React.Fragment>
-            <div
-                className={classNames(
-                    dialog,
-                    [dialog_initial, value === TransitionStates.initial],
-                    [
-                        dialog_entering,
-                        value === TransitionStates.entered ||
-                            value === TransitionStates.entering,
-                    ],
-                    [dialog_exiting, value === TransitionStates.exiting]
-                )}
-            >
-                <div className={classNames(dialog_positioningRegion)}>
-                    <div
-                        role="dialog"
-                        tabIndex={-1}
-                        className={classNames(dialog_contentRegion)}
-                        style={{
-                            height: props.height,
-                            width: props.width,
-                        }}
-                    >
-                        {props.children}
-                    </div>
-                </div>
-            </div>
-        </React.Fragment>
+        <div
+            className={classNames(
+                dialog,
+                [dialog_initial, value === TransitionStates.initial],
+                [
+                    dialog_entering,
+                    value === TransitionStates.entered ||
+                        value === TransitionStates.entering,
+                ],
+                [dialog_exiting, value === TransitionStates.exiting]
+            )}
+        >
+            {props.children}
+        </div>
     );
 }
 

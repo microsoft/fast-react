@@ -13,7 +13,7 @@ import manageJss, {
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { connect } from "react-redux";
-import { slideTransition } from "./recipes";
+import { slideTransition } from "./recipies/slide";
 import { AppState } from "./state";
 import { TransitionStates, useTransition } from "./useTransition";
 

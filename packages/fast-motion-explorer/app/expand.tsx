@@ -3,7 +3,7 @@ import manageJss, { ComponentStyleSheet, ManagedClasses } from "@microsoft/fast-
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { connect } from "react-redux";
-import { expandTransition } from "./recipes";
+import { expandTransition } from "./recipies/expand";
 import { AppState } from "./state";
 import { TransitionStates, useTransition } from "./useTransition";
 
@@ -29,7 +29,7 @@ const stylesheet: ComponentStyleSheet<ExpandClassNameContract, DesignSystem> = {
         ...applyElevatedCornerRadius(),
         ...applyElevation(ElevationMultiplier.e10),
         "z-index": "1",
-        transition: expandTransition,
+        transition: expandTransition("width", "height"),
     },
     expand_initial: {
         width: "200px",
