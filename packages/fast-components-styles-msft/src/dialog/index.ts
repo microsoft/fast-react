@@ -4,7 +4,7 @@ import { applyElevatedCornerRadius } from "../utilities/border";
 import { backgroundColor, relativeMotion } from "../utilities/design-system";
 import { applyElevation, ElevationMultiplier } from "../utilities/elevation";
 import { highContrastBorder } from "../utilities/high-contrast";
-import { multiply, toPx, toMs } from "@microsoft/fast-jss-utilities";
+import { multiply, toMs, toPx } from "@microsoft/fast-jss-utilities";
 import { DialogClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
 import { bezier, duration } from "../utilities/motion";
 
@@ -34,21 +34,47 @@ function revealTransform(dimension: number): DesignSystemResolver<string> {
 // };
 
 const styles: ComponentStyles<DialogClassNameContract, DesignSystem> = {
-    "@keyframes reveal": {
-        from: {
-            opacity: "0",
-            "box-shadow": "none",
-            transform: revealTransform(400),
+    // "@keyframes reveal": {
+    //     from: {
+    //         opacity: "0",
+    //         "box-shadow": "none",
+    //         transform: revealTransform(400),
+    //     },
+    //     to: {
+    //         opacity: "1",
+    //         ...applyElevation(ElevationMultiplier.e14),
+    //         transform: "translateX(0) scale(1)",
+    //     },
+    // },
+    // "@keyframes dismiss": {
+    //     from: {
+    //         opacity: "0",
+    //         "box-shadow": "none",
+    //         transform: revealTransform(400),
+    //     },
+    //     to: {
+    //         opacity: "1",
+    //         ...applyElevation(ElevationMultiplier.e14),
+    //         transform: "translateX(0) scale(1)",
+    //     },
+    // },
+    dialog: {
+        display: "none",
+        "&.enter": {
+            display: "block",
+            "& $dialog_contentRegion": {
+            }
         },
-        to: {
+        "&.enter-active $dialog_contentRegion": {
             opacity: "1",
             ...applyElevation(ElevationMultiplier.e14),
-            transform: "translateX(0) scale(1)",
+            transform: "translateX(0), scale(1)"
         },
-    },
-    dialog: {
-        '&[aria-hidden="false"]': {
+        "&.enter-done": {
+            display: "block",
         },
+        "&.exit-active": {},
+        "&.exit-done": {},
     },
     dialog_positioningRegion: {
         display: "flex",
@@ -76,9 +102,10 @@ const styles: ComponentStyles<DialogClassNameContract, DesignSystem> = {
         ...applyElevation(ElevationMultiplier.e14),
         "z-index": "1",
         ...highContrastBorder,
-        "animation-name": "reveal",
-        "animation-duration": toMs(duration),
-        "animation-timing-function": bezier
+        // initial transition state
+        opacity: "0",
+        "box-shadow": "none",
+        transform: revealTransform(400)
     },
 };
 
