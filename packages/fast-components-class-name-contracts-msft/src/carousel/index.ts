@@ -49,6 +49,11 @@ export interface CarouselClassNameContract {
     carousel_tabPanelContent?: string;
 
     /**
+     * The carousel flipper
+     */
+    carousel_flipper?: string;
+
+    /**
      * The carousel's previous flipper
      */
     carousel_flipperPrevious?: string;
