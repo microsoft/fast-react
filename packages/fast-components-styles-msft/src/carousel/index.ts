@@ -105,9 +105,8 @@ function applyThemeStyles(theme: "light" | "dark"): CSSRules<DesignSystem> {
 const styles: ComponentStyles<CarouselClassNameContract, DesignSystem> = {
     carousel: {
         position: "relative",
-        display: "inline-block",
         "&:hover": {
-            "& $carousel_flipperPrevious, & $carousel_flipperNext": {
+            "& $carousel_flipper": {
                 opacity: "1",
             },
         },
