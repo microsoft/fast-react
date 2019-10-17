@@ -36,15 +36,72 @@ const lightModeNeutralOutlineRest: DesignSystemResolver<string> = neutralOutline
     (): string => white
 );
 
-function flipperStyles(): CSSRules<{}> {
+function applyThemeStyles(theme: "light" | "dark"): CSSRules<DesignSystem> {
+    const isDark: boolean = theme === "dark";
+    const currentNeutralForegroudRest: DesignSystemResolver<string> = isDark
+        ? darkModeNeutralForegroundRest
+        : lightModeNeutralForegroundRest;
+    const currentNeutralFillStealthRest: DesignSystemResolver<string> = isDark
+        ? darkModeNeutralFillStealthRest
+        : lightModeNeutralFillStealthRest;
+    const currentNeutralOutlineRest: DesignSystemResolver<string> = isDark
+        ? darkModeNeutralOutlineRest
+        : lightModeNeutralOutlineRest;
+
     return {
-        position: "absolute",
-        top: "calc(50% - 20px)",
-        "z-index": "100",
-        opacity: "0",
-        transition: "all 0.2s ease-in-out",
+        "& $carousel_flipperPrevious, & $carousel_flipperNext": {
+            "&::before": {
+                color: currentNeutralForegroudRest,
+                fill: currentNeutralForegroudRest,
+                background: currentNeutralFillStealthRest,
+                border: format(
+                    "{0} solid {1}",
+                    toPx<DesignSystem>(outlineWidth),
+                    currentNeutralOutlineRest
+                ),
+            },
+            "& span::before": {
+                "border-color": currentNeutralOutlineRest,
+            },
+            "&:hover": {
+                "&::before": {
+                    background: neutralFillStealthHover(
+                        (): string => (isDark ? black : white)
+                    ),
+                    [highContrastSelector]: {
+                        background: "Highlight",
+                        border: format(
+                            "{0} solid HighlightText",
+                            toPx<DesignSystem>(outlineWidth)
+                        ),
+                    },
+                },
+                "& span::before": {
+                    "border-color": currentNeutralForegroudRest,
+                },
+            },
+            "& > svg": {
+                fill: currentNeutralForegroudRest,
+                [highContrastSelector]: {
+                    fill: "ButtonText",
+                },
+            },
+        },
+        "& $carousel_sequenceIndicator": {
+            "&::before": {
+                background: currentNeutralFillStealthRest,
+                "border-color": currentNeutralOutlineRest,
+            },
+            "&$carousel_sequenceIndicator__active": {
+                "&::before": {
+                    background: currentNeutralFillStealthRest,
+                    ...highContrastHighlightBackground,
+                },
+            },
+        },
     };
 }
+
 const styles: ComponentStyles<CarouselClassNameContract, DesignSystem> = {
     carousel: {
         position: "relative",
@@ -117,116 +174,27 @@ const styles: ComponentStyles<CarouselClassNameContract, DesignSystem> = {
         display: "none",
     },
     carousel_tabPanels: {},
-    carousel_tabPanelContent: {},
+    arousel_tabPanelContent: {},
+    carousel_flipper: {
+        position: "absolute",
+        top: "calc(50% - 20px)",
+        "z-index": "100",
+        opacity: "0",
+        transition: "all 0.2s ease-in-out",
+    },
     carousel_flipperPrevious: {
-        ...flipperStyles(),
         left: directionSwitch("6px", ""),
         right: directionSwitch("", "6px"),
     },
     carousel_flipperNext: {
-        ...flipperStyles(),
         right: directionSwitch("6px", ""),
         left: directionSwitch("", "6px"),
     },
     carousel__themeDark: {
-        "& $carousel_flipperPrevious, & $carousel_flipperNext": {
-            "&::before": {
-                color: darkModeNeutralForegroundRest,
-                fill: darkModeNeutralForegroundRest,
-                background: darkModeNeutralFillStealthRest,
-                border: format(
-                    "{0} solid {1}",
-                    toPx<DesignSystem>(outlineWidth),
-                    darkModeNeutralOutlineRest
-                ),
-            },
-            "& span::before": {
-                "border-color": darkModeNeutralForegroundRest,
-            },
-            "&:hover": {
-                "&::before": {
-                    background: neutralFillStealthHover((): string => black),
-                    [highContrastSelector]: {
-                        background: "Highlight",
-                        border: format(
-                            "{0} solid HighlightText",
-                            toPx<DesignSystem>(outlineWidth)
-                        ),
-                    },
-                },
-                "& span::before": {
-                    "border-color": darkModeNeutralForegroundRest,
-                },
-            },
-            "& > svg": {
-                fill: darkModeNeutralForegroundRest,
-                [highContrastSelector]: {
-                    fill: "ButtonText",
-                },
-            },
-        },
-        "& $carousel_sequenceIndicator": {
-            "&::before": {
-                background: darkModeNeutralFillStealthRest,
-                "border-color": darkModeNeutralOutlineRest,
-            },
-            "&$carousel_sequenceIndicator__active": {
-                "&::before": {
-                    background: darkModeNeutralFillStealthRest,
-                    ...highContrastHighlightBackground,
-                },
-            },
-        },
+        ...applyThemeStyles("dark")
     },
     carousel__themeLight: {
-        "& $carousel_flipperPrevious, & $carousel_flipperNext": {
-            "&::before": {
-                color: lightModeNeutralForegroundRest,
-                fill: lightModeNeutralForegroundRest,
-                background: lightModeNeutralFillStealthRest,
-                border: format(
-                    "{0} solid {1}",
-                    toPx<DesignSystem>(outlineWidth),
-                    lightModeNeutralOutlineRest
-                ),
-            },
-            "& span::before": {
-                "border-color": lightModeNeutralForegroundRest,
-            },
-            "&:hover": {
-                "&::before": {
-                    background: neutralFillStealthHover((): string => white),
-                    [highContrastSelector]: {
-                        background: "Highlight",
-                        border: format(
-                            "{0} solid HighlightText",
-                            toPx<DesignSystem>(outlineWidth)
-                        ),
-                    },
-                },
-                "& span::before": {
-                    "border-color": lightModeNeutralForegroundRest,
-                },
-            },
-            "& > svg": {
-                fill: lightModeNeutralForegroundRest,
-                [highContrastSelector]: {
-                    fill: "ButtonText",
-                },
-            },
-        },
-        "& $carousel_sequenceIndicator": {
-            "&::before": {
-                background: lightModeNeutralFillStealthRest,
-                "border-color": lightModeNeutralOutlineRest,
-            },
-            "&$carousel_sequenceIndicator__active": {
-                "&::before": {
-                    background: lightModeNeutralFillStealthRest,
-                    ...highContrastHighlightBackground,
-                },
-            },
-        },
+        ...applyThemeStyles("light")
     },
     carousel__slideAnimatePrevious: {},
     carousel__slideAnimateNext: {},
