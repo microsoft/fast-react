@@ -44,13 +44,13 @@ const stylesheet: ComponentStyleSheet<SlideClassNameContract, DesignSystem> = {
         height: "200px",
     },
     slide_initial: {
-        transform: "translateX(-400px)"
+        transform: "translateY(-200px)"
     },
     slide_entering: {
-        transform: "translateX(400px)"
+        transform: "translatey(200px)"
     },
     slide_exiting: {
-        transform: "translateX(-400px)"
+        transform: "translateY(-200px)"
     },
 };
 

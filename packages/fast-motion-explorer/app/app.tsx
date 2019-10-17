@@ -1,9 +1,8 @@
-/* tslint:disable:jsx-no-lambda */
-/* tslint:disable:no-empty */
-import { Background } from "@microsoft/fast-components-react-msft";
-import { neutralLayerL4 } from "@microsoft/fast-components-styles-msft";
+import { Background, Heading, HeadingSize } from "@microsoft/fast-components-react-msft";
+import { DesignSystem, neutralLayerL4 } from "@microsoft/fast-components-styles-msft";
 import manageJss, { DesignSystemProvider } from "@microsoft/fast-jss-manager-react";
 import { Canvas, Container, Row } from "@microsoft/fast-layouts-react";
+import { memoize } from "lodash-es";
 import React from "react";
 import { connect } from "react-redux";
 import { ControlPane } from "./control-pane";
@@ -11,7 +10,12 @@ import Dialog from "./dialog";
 import Elevation from "./elevation";
 import Expand from "./expand";
 import Slide from "./slide";
-import { Animations, AppState } from "./state";
+import {
+    Animations,
+    AppState,
+    RelativeMotionExampleTypes,
+    relativeMotionPresets,
+} from "./state";
 
 /* tslint:disable-next-line */
 interface AppProps extends AppState {}
@@ -29,6 +33,18 @@ class App extends React.Component<AppProps, AppComponentState> {
             height: "100%",
         },
     };
+
+    private headingStyleOverrides: any = {
+        heading: {
+            margin: "16px 0",
+        },
+    };
+
+    private designSystemByRelativeMotion: (
+        value: number
+    ) => Partial<DesignSystem> = memoize((value: number) => {
+        return { relativeMotion: value };
+    });
 
     constructor(props: AppProps) {
         super(props);
@@ -49,36 +65,10 @@ class App extends React.Component<AppProps, AppComponentState> {
                         <Canvas>
                             <Container jssStyleSheet={this.containerStyleOverrides}>
                                 <Row fill={true}>
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            width: "100%",
-                                            height: "100%",
-                                        }}
-                                    >
-                                        {this.props.animation ===
-                                        Animations.revealDismiss ? (
-                                            <Dialog
-                                                width={200}
-                                                height={200}
-                                                visible={this.state.visible}
-                                            />
-                                        ) : null}
-                                        {this.props.animation === Animations.elevate ? (
-                                            <Elevation
-                                                width={200}
-                                                height={200}
-                                                elevated={this.state.elevated}
-                                            />
-                                        ) : null}
-                                        {this.props.animation === Animations.expand ? (
-                                            <Expand expanded={this.state.expanded} />
-                                        ) : null}
-                                        {this.props.animation === Animations.slide ? (
-                                            <Slide slide={this.state.slide} />
-                                        ) : null}
+                                    <div style={{ display: "flex", width: "100%" }}>
+                                        {this.props.activeRelativeMotionExamples.map(
+                                            this.renderAnimationPane
+                                        )}
                                     </div>
                                 </Row>
                             </Container>
@@ -91,6 +81,56 @@ class App extends React.Component<AppProps, AppComponentState> {
             </DesignSystemProvider>
         );
     }
+
+    private renderAnimationPane = (type: RelativeMotionExampleTypes): JSX.Element => {
+        const designSystem: Partial<DesignSystem> =
+            type === "custom"
+                ? this.props.designSystem
+                : this.designSystemByRelativeMotion(relativeMotionPresets[type]);
+
+        return (
+            <DesignSystemProvider designSystem={designSystem} key={type}>
+                <div style={{ flex: "1", textAlign: "center" }}>
+                    <Heading
+                        size={HeadingSize._7}
+                        jssStyleSheet={this.headingStyleOverrides}
+                    >
+                        {type}
+                    </Heading>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            width: "100%",
+                            height: "100%",
+                        }}
+                    >
+                        {this.props.animation === Animations.revealDismiss ? (
+                            <Dialog
+                                width={200}
+                                height={200}
+                                visible={this.state.visible}
+                            />
+                        ) : null}
+                        {this.props.animation === Animations.elevate ? (
+                            <Elevation
+                                width={200}
+                                height={200}
+                                elevated={this.state.elevated}
+                            />
+                        ) : null}
+                        {this.props.animation === Animations.expand ? (
+                            <Expand expanded={this.state.expanded} />
+                        ) : null}
+                        {this.props.animation === Animations.slide ? (
+                            <Slide slide={this.state.slide} />
+                        ) : null}
+                    </div>
+                </div>
+            </DesignSystemProvider>
+        );
+    };
 
     private handlePlayAnimationClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
         switch (this.props.animation) {

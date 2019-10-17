@@ -25,8 +25,8 @@ import { Pane } from "@microsoft/fast-layouts-react";
 import { get } from "lodash-es";
 import React from "react";
 import { connect } from "react-redux";
-import { Animations, AppState } from "./state";
 import { updateAnimation, updateDesignSystem } from "./action-creators";
+import { Animations, AppState, relativeMotionPresets } from "./state";
 
 export interface ControlPaneClassNameContract {
     controlPane: string;
@@ -114,12 +114,17 @@ class ControlPaneBase extends React.Component<ControlPaneProps> {
                     step={0.01}
                     value={this.props.designSystem.relativeMotion}
                 >
-                    <SliderLabel valuePositionBinding={0} label="None" />
-                    <SliderLabel valuePositionBinding={0.2} label="Minimal" />
-                    <SliderLabel valuePositionBinding={0.4} label="Subtle" />
-                    <SliderLabel valuePositionBinding={0.6} label="Default" />
-                    <SliderLabel valuePositionBinding={0.8} label="Extra" />
-                    <SliderLabel valuePositionBinding={1} label="Expressive" />
+                    {Object.entries(relativeMotionPresets).map(
+                        (value: [string, number]): JSX.Element => {
+                            return (
+                                <SliderLabel
+                                    key={value[0]}
+                                    valuePositionBinding={value[1]}
+                                    label={value[0]}
+                                />
+                            );
+                        }
+                    )}
                 </Slider>
             </div>
         );
@@ -142,13 +147,14 @@ class ControlPaneBase extends React.Component<ControlPaneProps> {
                     onValueChange={this.props.updateAnimation}
                 >
                     {Object.entries(Animations).map(
-                        (val: [string, string]): JSX.Element => {
+                        (value: [string, string]): JSX.Element => {
+                            const val: string = value[1];
                             return (
                                 <SelectOption
-                                    key={val[1]}
-                                    id={val[1]}
-                                    value={val[1]}
-                                    displayString={val[1]}
+                                    key={val}
+                                    id={val}
+                                    value={val}
+                                    displayString={val}
                                 />
                             );
                         }
