@@ -4,7 +4,12 @@ import {
 } from "@microsoft/fast-components-styles-msft";
 import { merge } from "lodash-es";
 import { createStore, Store } from "redux";
-import { UPDATE_ANIMATION, UPDATE_DESIGN_SYSTEM } from "./actions";
+import {
+    ADD_VISIBLE_RELATIVE_MOTION_TYPE,
+    REMOVE_VISIBLE_RELATIVE_MOTION_TYPE,
+    UPDATE_ANIMATION,
+    UPDATE_DESIGN_SYSTEM,
+} from "./actions";
 
 export enum Animations {
     revealDismiss = "reveal-dismiss",
@@ -29,7 +34,7 @@ export const relativeMotionPresets: {
     expressive: 1,
 };
 
-export type RelativeMotionExampleTypes = keyof (typeof relativeMotionPresets) | "custom"
+export type RelativeMotionExampleTypes = keyof (typeof relativeMotionPresets) | "custom";
 
 export interface AppState {
     /**
@@ -57,6 +62,18 @@ function rootReducer(state: AppState, action: any): AppState {
             return merge({}, state, { designSystem: action.data });
         case UPDATE_ANIMATION:
             return merge({}, state, { animation: action.data });
+        case ADD_VISIBLE_RELATIVE_MOTION_TYPE:
+            return merge({}, state, {
+                activeRelativeMotionExamples: state.activeRelativeMotionExamples.concat(
+                    action.value
+                ),
+            });
+        case REMOVE_VISIBLE_RELATIVE_MOTION_TYPE:
+            return merge({}, state, {
+                activeRelativeMotionExamples: state.activeRelativeMotionExamples.filter(
+                    (type: RelativeMotionExampleTypes): boolean => type === action.value
+                ),
+            });
     }
 
     return state;
@@ -65,5 +82,5 @@ function rootReducer(state: AppState, action: any): AppState {
 export const store: Store<AppState> = createStore(rootReducer, {
     designSystem: DesignSystemDefaults,
     animation: Animations.revealDismiss,
-    activeRelativeMotionExamples: ["custom", "expressive"]
+    activeRelativeMotionExamples: ["custom", "expressive"],
 });

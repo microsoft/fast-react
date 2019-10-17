@@ -1,6 +1,11 @@
 import { DesignSystem } from "@microsoft/fast-components-styles-msft";
-import { UPDATE_ANIMATION, UPDATE_DESIGN_SYSTEM } from "./actions";
-import { Animations } from "./state";
+import {
+    ADD_VISIBLE_RELATIVE_MOTION_TYPE,
+    REMOVE_VISIBLE_RELATIVE_MOTION_TYPE,
+    UPDATE_ANIMATION,
+    UPDATE_DESIGN_SYSTEM,
+} from "./actions";
+import { Animations, RelativeMotionExampleTypes } from "./state";
 
 /**
  * Action creators
@@ -19,4 +24,25 @@ export function updateAnimation(
     animation: Animations
 ): { type: string; data: Animations } {
     return { type: UPDATE_ANIMATION, data: animation };
+}
+
+export function addRelativeMotiontype(
+    value: RelativeMotionExampleTypes
+): { type: typeof ADD_VISIBLE_RELATIVE_MOTION_TYPE; value: RelativeMotionExampleTypes } {
+    return {
+        type: ADD_VISIBLE_RELATIVE_MOTION_TYPE,
+        value,
+    };
+}
+
+export function removeRelativeMotiontype(
+    value: RelativeMotionExampleTypes
+): {
+    type: typeof REMOVE_VISIBLE_RELATIVE_MOTION_TYPE;
+    value: RelativeMotionExampleTypes;
+} {
+    return {
+        type: REMOVE_VISIBLE_RELATIVE_MOTION_TYPE,
+        value,
+    };
 }
