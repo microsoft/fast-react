@@ -85,6 +85,6 @@ function rootReducer(state: AppState, action: any): AppState {
 
 export const store: Store<AppState> = createStore(rootReducer, {
     designSystem: DesignSystemDefaults,
-    animation: Animations.revealDismiss,
+    animation: Animations.slide,
     activeRelativeMotionExamples: ["default"],
 });

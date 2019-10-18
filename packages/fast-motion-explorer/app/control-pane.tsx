@@ -195,7 +195,7 @@ class ControlPaneBase extends React.Component<ControlPaneProps> {
     private renderRelativeMotionOptions(): JSX.Element {
         return (
             <div>
-                <Label style={this.labelStyles}>Preset</Label>
+                <Label style={this.labelStyles}>Relative motion</Label>
                 {allRelativeMotionExampleTypes.map(this.renderRelativeMotionOption)}
             </div>
         );
