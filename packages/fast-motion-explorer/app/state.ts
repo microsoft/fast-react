@@ -35,6 +35,7 @@ export const relativeMotionPresets: {
 };
 
 export type RelativeMotionExampleTypes = keyof (typeof relativeMotionPresets) | "custom";
+export const allRelativeMotionExampleTypes: RelativeMotionExampleTypes[] = ["custom"].concat(Object.keys(relativeMotionPresets)) as RelativeMotionExampleTypes[];
 
 export interface AppState {
     /**
@@ -63,15 +64,18 @@ function rootReducer(state: AppState, action: any): AppState {
         case UPDATE_ANIMATION:
             return merge({}, state, { animation: action.data });
         case ADD_VISIBLE_RELATIVE_MOTION_TYPE:
-            return merge({}, state, {
-                activeRelativeMotionExamples: state.activeRelativeMotionExamples.concat(
-                    action.value
-                ),
-            });
+            // Ensure we don't have duplicates
+            return !state.activeRelativeMotionExamples.includes(action.value)
+                ? Object.assign({}, state, {
+                      activeRelativeMotionExamples: state.activeRelativeMotionExamples.concat(
+                          action.value
+                      ),
+                  })
+                : state;
         case REMOVE_VISIBLE_RELATIVE_MOTION_TYPE:
-            return merge({}, state, {
+            return Object.assign({}, state, {
                 activeRelativeMotionExamples: state.activeRelativeMotionExamples.filter(
-                    (type: RelativeMotionExampleTypes): boolean => type === action.value
+                    (type: RelativeMotionExampleTypes): boolean => type !== action.value
                 ),
             });
     }
@@ -82,5 +86,5 @@ function rootReducer(state: AppState, action: any): AppState {
 export const store: Store<AppState> = createStore(rootReducer, {
     designSystem: DesignSystemDefaults,
     animation: Animations.revealDismiss,
-    activeRelativeMotionExamples: ["custom", "expressive"],
+    activeRelativeMotionExamples: ["default"],
 });

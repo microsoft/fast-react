@@ -1,5 +1,16 @@
-import { applyElevatedCornerRadius, backgroundColor, DesignSystem, relativeDuration, applyElevation, ElevationMultiplier } from "@microsoft/fast-components-styles-msft";
-import manageJss, { ComponentStyleSheet, ManagedClasses } from "@microsoft/fast-jss-manager-react";
+import {
+    applyElevatedCornerRadius,
+    applyElevation,
+    backgroundColor,
+    DesignSystem,
+    ElevationMultiplier,
+    neutralFillCard,
+    relativeDuration,
+} from "@microsoft/fast-components-styles-msft";
+import manageJss, {
+    ComponentStyleSheet,
+    ManagedClasses,
+} from "@microsoft/fast-jss-manager-react";
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { connect } from "react-redux";
@@ -25,7 +36,7 @@ const stylesheet: ComponentStyleSheet<ExpandClassNameContract, DesignSystem> = {
     expand: {
         "margin-top": "auto",
         "margin-bottom": "auto",
-        background: backgroundColor,
+        background: neutralFillCard,
         ...applyElevatedCornerRadius(),
         ...applyElevation(ElevationMultiplier.e10),
         "z-index": "1",
@@ -36,8 +47,8 @@ const stylesheet: ComponentStyleSheet<ExpandClassNameContract, DesignSystem> = {
         height: "200px",
     },
     expand_entering: {
-        width: "800px",
-        height: "800px",
+        width: "290px",
+        height: "290px",
     },
     expand_exiting: {
         width: "200px",

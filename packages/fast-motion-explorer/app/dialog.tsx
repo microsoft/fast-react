@@ -3,6 +3,7 @@ import {
     applyElevation,
     DesignSystem,
     ElevationMultiplier,
+    neutralFillCard
 } from "@microsoft/fast-components-styles-msft";
 import manageJss, {
     ComponentStyleSheet,
@@ -42,6 +43,7 @@ const stylesheet: ComponentStyleSheet<DialogClassNameContract, DesignSystem> = {
         ...applyElevation(ElevationMultiplier.e14),
         width: "200px",
         height: "200px",
+        background: neutralFillCard
     },
     dialog_initial: {
         ...revealFromProperties(200),

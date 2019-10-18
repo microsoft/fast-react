@@ -11,6 +11,7 @@ import Elevation from "./elevation";
 import Expand from "./expand";
 import Slide from "./slide";
 import {
+    allRelativeMotionExampleTypes,
     Animations,
     AppState,
     RelativeMotionExampleTypes,
@@ -65,8 +66,14 @@ class App extends React.Component<AppProps, AppComponentState> {
                         <Canvas>
                             <Container jssStyleSheet={this.containerStyleOverrides}>
                                 <Row fill={true}>
-                                    <div style={{ display: "flex", width: "100%" }}>
-                                        {this.props.activeRelativeMotionExamples.map(
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            minWidth: "100%",
+                                            overflow: "auto",
+                                        }}
+                                    >
+                                        {allRelativeMotionExampleTypes.map(
                                             this.renderAnimationPane
                                         )}
                                     </div>
@@ -82,7 +89,13 @@ class App extends React.Component<AppProps, AppComponentState> {
         );
     }
 
-    private renderAnimationPane = (type: RelativeMotionExampleTypes): JSX.Element => {
+    private renderAnimationPane = (
+        type: RelativeMotionExampleTypes
+    ): JSX.Element | null => {
+        if (!this.props.activeRelativeMotionExamples.includes(type)) {
+            return null;
+        }
+
         const designSystem: Partial<DesignSystem> =
             type === "custom"
                 ? this.props.designSystem
@@ -90,7 +103,15 @@ class App extends React.Component<AppProps, AppComponentState> {
 
         return (
             <DesignSystemProvider designSystem={designSystem} key={type}>
-                <div style={{ flex: "1", textAlign: "center" }}>
+                <div
+                    style={{
+                        flex: "1",
+                        display: "flex",
+                        flexDirection: "column",
+                        textAlign: "center",
+                        minWidth: "300px",
+                    }}
+                >
                     <Heading
                         size={HeadingSize._7}
                         jssStyleSheet={this.headingStyleOverrides}
@@ -100,10 +121,9 @@ class App extends React.Component<AppProps, AppComponentState> {
                     <div
                         style={{
                             display: "flex",
+                            flex: "1",
                             justifyContent: "center",
                             alignItems: "center",
-                            width: "100%",
-                            height: "100%",
                         }}
                     >
                         {this.props.animation === Animations.revealDismiss ? (

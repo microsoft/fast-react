@@ -4,6 +4,7 @@ import {
     backgroundColor,
     DesignSystem,
     ElevationMultiplier,
+    neutralFillCard,
     relativeDuration,
 } from "@microsoft/fast-components-styles-msft";
 import manageJss, {
@@ -33,24 +34,22 @@ export interface SlideProps extends ManagedClasses<SlideClassNameContract> {
 
 const stylesheet: ComponentStyleSheet<SlideClassNameContract, DesignSystem> = {
     slide: {
-        "margin-top": "auto",
-        "margin-bottom": "auto",
-        background: backgroundColor,
+        background: neutralFillCard,
         ...applyElevatedCornerRadius(),
         ...applyElevation(ElevationMultiplier.e10),
         "z-index": "1",
-        transition: slideTransition(800)("transform"),
+        transition: slideTransition(200)("transform"),
         width: "200px",
         height: "200px",
     },
     slide_initial: {
-        transform: "translateY(-200px)"
+        transform: "translateY(-100px)",
     },
     slide_entering: {
-        transform: "translatey(200px)"
+        transform: "translatey(100px)",
     },
     slide_exiting: {
-        transform: "translateY(-200px)"
+        transform: "translateY(-100px)",
     },
 };
 

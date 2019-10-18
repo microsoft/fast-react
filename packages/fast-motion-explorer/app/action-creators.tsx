@@ -26,7 +26,7 @@ export function updateAnimation(
     return { type: UPDATE_ANIMATION, data: animation };
 }
 
-export function addRelativeMotiontype(
+export function addActiveRelativeMotionType(
     value: RelativeMotionExampleTypes
 ): { type: typeof ADD_VISIBLE_RELATIVE_MOTION_TYPE; value: RelativeMotionExampleTypes } {
     return {
@@ -35,7 +35,7 @@ export function addRelativeMotiontype(
     };
 }
 
-export function removeRelativeMotiontype(
+export function removeActiveRelativeMotionType(
     value: RelativeMotionExampleTypes
 ): {
     type: typeof REMOVE_VISIBLE_RELATIVE_MOTION_TYPE;

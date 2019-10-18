@@ -1,6 +1,7 @@
 import {
     Button,
     ButtonAppearance,
+    Checkbox,
     Heading,
     HeadingSize,
     HeadingTag,
@@ -22,22 +23,38 @@ import manageJss, {
     ManagedClasses,
 } from "@microsoft/fast-jss-manager-react";
 import { Pane } from "@microsoft/fast-layouts-react";
-import { get } from "lodash-es";
+import { get, memoize } from "lodash-es";
 import React from "react";
 import { connect } from "react-redux";
-import { updateAnimation, updateDesignSystem } from "./action-creators";
-import { Animations, AppState, relativeMotionPresets } from "./state";
+import {
+    addActiveRelativeMotionType,
+    removeActiveRelativeMotionType,
+    updateAnimation,
+    updateDesignSystem,
+} from "./action-creators";
+import {
+    allRelativeMotionExampleTypes,
+    Animations,
+    AppState,
+    RelativeMotionExampleTypes,
+    relativeMotionPresets,
+} from "./state";
+import { RegExpLiteral } from "@babel/types";
 
 export interface ControlPaneClassNameContract {
     controlPane: string;
 }
 
-export interface ControlPaneProps extends ManagedClasses<ControlPaneClassNameContract> {
+export interface ControlPaneProps
+    extends ManagedClasses<ControlPaneClassNameContract>,
+        AppState {
     designSystem: DesignSystem;
     updateDesignSystem: typeof updateDesignSystem;
     updateAnimation: typeof updateAnimation;
     animation: Animations;
     onPlayClick: React.MouseEventHandler<HTMLButtonElement>;
+    removeActiveRelativeMotionType: typeof removeActiveRelativeMotionType;
+    addActiveRelativeMotionType: typeof addActiveRelativeMotionType;
 }
 
 const styles: any = (
@@ -63,13 +80,23 @@ const styles: any = (
 
 class ControlPaneBase extends React.Component<ControlPaneProps> {
     private labelStyles: React.CSSProperties = {
-        marginBottom: "8px",
+        margin: "8px 0",
     };
 
     private inputStyles: React.CSSProperties = {
         marginBottom: "18px",
         width: "100%",
     };
+
+    private renderRelativeMotionLabel: (
+        value: string
+    ) => (className: string) => JSX.Element = memoize((value: string): ((
+        className: string
+    ) => JSX.Element) => {
+        return (className: string): JSX.Element => {
+            return <Label className={className}>{value}</Label>;
+        };
+    });
 
     public render(): React.ReactNode {
         return (
@@ -90,7 +117,8 @@ class ControlPaneBase extends React.Component<ControlPaneProps> {
                         Play animation
                     </Button>
                     {this.renderAnimationInput()}
-                    {this.renderRelativeMotionInput()}
+                    {this.renderRelativeMotionOptions()}
+                    {this.renderCustomRelativeMotionInput()}
                 </form>
             </Pane>
         );
@@ -100,11 +128,11 @@ class ControlPaneBase extends React.Component<ControlPaneProps> {
         e.preventDefault();
     }
 
-    private renderRelativeMotionInput(): JSX.Element {
-        return (
+    private renderCustomRelativeMotionInput(): JSX.Element | null {
+        return this.props.activeRelativeMotionExamples.includes("custom") ? (
             <div>
-                <Label style={this.labelStyles} htmlFor="motion-level">
-                    Relative motion
+                <Label style={Object.assign({}, this.labelStyles, { marginTop: "12px"})} htmlFor="motion-level">
+                    Custom motion
                 </Label>
                 <Slider
                     style={this.inputStyles}
@@ -127,7 +155,7 @@ class ControlPaneBase extends React.Component<ControlPaneProps> {
                     )}
                 </Slider>
             </div>
-        );
+        ) : null;
     }
 
     private onRelativeMotionChange = (value: number): void => {
@@ -143,7 +171,7 @@ class ControlPaneBase extends React.Component<ControlPaneProps> {
                 <Select
                     id={"animation"}
                     selectedItems={[this.props.animation]}
-                    style={{ zIndex: 1, position: "relative", ...this.inputStyles }}
+                    style={{ zIndex: 2, position: "relative", ...this.inputStyles }}
                     onValueChange={this.props.updateAnimation}
                 >
                     {Object.entries(Animations).map(
@@ -163,6 +191,43 @@ class ControlPaneBase extends React.Component<ControlPaneProps> {
             </div>
         );
     }
+
+    private renderRelativeMotionOptions(): JSX.Element {
+        return (
+            <div>
+                <Label style={this.labelStyles}>Preset</Label>
+                {allRelativeMotionExampleTypes.map(this.renderRelativeMotionOption)}
+            </div>
+        );
+    }
+
+    private renderRelativeMotionOption = (
+        value: RelativeMotionExampleTypes
+    ): JSX.Element => {
+        return (
+            <div key={value}>
+                <Checkbox
+                    inputId={value}
+                    checked={this.props.activeRelativeMotionExamples.includes(value)}
+                    value={value}
+                    label={this.renderRelativeMotionLabel(value)}
+                    onChange={this.handleRelativeMotionOptionChange}
+                />
+            </div>
+        );
+    };
+
+    private handleRelativeMotionOptionChange = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ): void => {
+        const checked: boolean = e.target.checked;
+        const value: RelativeMotionExampleTypes = e.target
+            .value as RelativeMotionExampleTypes;
+
+        checked
+            ? this.props.addActiveRelativeMotionType(value)
+            : this.props.removeActiveRelativeMotionType(value);
+    };
 }
 
 function mapStateToProps(state: AppState): AppState {
@@ -175,6 +240,8 @@ const ControlPane = connect(
     {
         updateDesignSystem,
         updateAnimation,
+        addActiveRelativeMotionType,
+        removeActiveRelativeMotionType,
     }
 )(manageJss(styles)(ControlPaneBase));
 type ControlPane = InstanceType<typeof ControlPane>;

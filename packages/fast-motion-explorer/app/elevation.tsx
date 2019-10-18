@@ -5,6 +5,7 @@ import {
     bezier,
     DesignSystem,
     ElevationMultiplier,
+    neutralFillCard,
     relativeDuration,
 } from "@microsoft/fast-components-styles-msft";
 import manageJss, {
@@ -14,7 +15,11 @@ import manageJss, {
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { connect } from "react-redux";
-import { elevateTransition, elevateToProperties, elevateFromProperties } from "./recipies/elevate";
+import {
+    elevateFromProperties,
+    elevateToProperties,
+    elevateTransition,
+} from "./recipies/elevate";
 import { AppState } from "./state";
 import { TransitionStates, useTransition } from "./useTransition";
 
@@ -38,7 +43,7 @@ const stylesheet: ComponentStyleSheet<ElevationClassNameContract, DesignSystem> 
     elevation: {
         "margin-top": "auto",
         "margin-bottom": "auto",
-        background: backgroundColor,
+        background: neutralFillCard,
         ...applyElevatedCornerRadius(),
         "z-index": "1",
         transition: elevateTransition,
@@ -68,7 +73,7 @@ function Elevation(props: ElevationProps): JSX.Element {
 
     return (
         <div
-            style={{width: props.width, height: props.height}}
+            style={{ width: props.width, height: props.height }}
             className={classNames(
                 elevation,
                 [elevation_initial, value === TransitionStates.initial],
