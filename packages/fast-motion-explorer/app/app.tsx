@@ -80,8 +80,10 @@ class App extends React.Component<AppProps, AppComponentState> {
                                 </Row>
                             </Container>
                         </Canvas>
-                        <Background value={neutralLayerL4}>
-                            <ControlPane onPlayClick={this.handlePlayAnimationClick} />
+                        <Background value={"#000000"} tag={null}>
+                            <Background value={neutralLayerL4}>
+                                <ControlPane onPlayClick={this.handlePlayAnimationClick} />
+                            </Background>
                         </Background>
                     </Row>
                 </Container>
@@ -98,18 +100,18 @@ class App extends React.Component<AppProps, AppComponentState> {
 
         const designSystem: Partial<DesignSystem> =
             type === "custom"
-                ? this.props.designSystem
-                : this.designSystemByRelativeMotion(relativeMotionPresets[type]);
+            ? this.props.designSystem
+            : this.designSystemByRelativeMotion(relativeMotionPresets[type]);
 
         return (
             <DesignSystemProvider designSystem={designSystem} key={type}>
                 <div
                     style={{
                         flex: "1",
-                        display: "flex",
-                        flexDirection: "column",
-                        textAlign: "center",
-                        minWidth: "300px",
+                            display: "flex",
+                            flexDirection: "column",
+                            textAlign: "center",
+                            minWidth: "300px",
                     }}
                 >
                     <Heading
@@ -121,9 +123,9 @@ class App extends React.Component<AppProps, AppComponentState> {
                     <div
                         style={{
                             display: "flex",
-                            flex: "1",
-                            justifyContent: "center",
-                            alignItems: "center",
+                                flex: "1",
+                                justifyContent: "center",
+                                alignItems: "center",
                         }}
                     >
                         {this.props.animation === Animations.revealDismiss ? (
