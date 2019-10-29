@@ -24,7 +24,7 @@ describe("button", (): void => {
     const href: string = "https://www.microsoft.com";
 
     test("should have a displayName that matches the component name", () => {
-        expect(`${DisplayNamePrefix}${(Button as any).name}`).toBe(Button.displayName);
+        expect(typeof Button.displayName).toBe("string");
     });
 
     test("should not throw if managedClasses are not provided", () => {
@@ -69,7 +69,7 @@ describe("button", (): void => {
             <Button href={href} managedClasses={managedClasses} disabled={true} />
         );
 
-        expect(rendered.prop("disabled")).toBe(undefined);
+        expect(rendered.prop("disabled")).toBe(null);
         expect(rendered.prop("aria-disabled")).toBe(true);
     });
 
@@ -78,7 +78,7 @@ describe("button", (): void => {
             <Button disabled={true} managedClasses={managedClasses} />
         );
 
-        expect(rendered.prop("aria-disabled")).toBe(undefined);
+        expect(rendered.prop("aria-disabled")).toBe(null);
         expect(rendered.prop("disabled")).toBe(true);
     });
 
@@ -104,7 +104,7 @@ describe("button", (): void => {
                 "should correctly assign className when is disabled and root class name is empty",
             buttonHandledProps: { disabled: true } as ButtonHandledProps,
             className: "",
-            expectedClassName: null,
+            expectedClassName: null
         },
         {
             name: "should correctly assign className when is disabled",

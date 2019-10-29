@@ -25,9 +25,7 @@ describe("button", (): void => {
     };
 
     test("should have a displayName that matches the component name", () => {
-        expect(`${DisplayNamePrefix}${(ButtonBase as any).name}`).toBe(
-            ButtonBase.displayName
-        );
+        expect(typeof ButtonBase.displayName).toBe("string")
     });
 
     test("should not throw if managedClasses are not provided", () => {
@@ -114,7 +112,7 @@ describe("button", (): void => {
         expect(
             rendered
                 .find("button")
-                .childAt(1)
+                .childAt(0)
                 .type()
         ).toEqual("svg");
     });

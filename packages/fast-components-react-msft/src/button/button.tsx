@@ -1,5 +1,5 @@
 import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
-import { Button as BaseButton, ButtonProps } from "@microsoft/fast-components-react-base";
+import { Button as BaseButton } from "@microsoft/fast-components-react-base";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { get } from "lodash-es";
 import React from "react";
@@ -8,6 +8,7 @@ import { DisplayNamePrefix } from "../utilities";
 import {
     ButtonAppearance,
     ButtonHandledProps,
+    ButtonProps,
     ButtonUnhandledProps,
 } from "./button.props";
 
@@ -19,7 +20,31 @@ export enum ButtonSlot {
     after = "after",
 }
 
-class Button extends Foundation<ButtonHandledProps, ButtonUnhandledProps, {}> {
+// tslint:disable-next-line
+const Button = React.forwardRef(
+    (props: ButtonProps, ref: React.RefObject<any>): JSX.Element => {
+        const {
+            appearance,
+            managedClasses,
+            className,
+            children,
+            ...unhandledProps
+        }: ButtonProps = props;
+
+        return (
+            <BaseButton
+                {...unhandledProps}
+                className={classNames(
+                    managedClasses[`button__${ButtonAppearance[appearance]}`]
+                )}
+            >
+                <span>{children}</span>
+            </BaseButton>
+        );
+    }
+);
+
+class ButtonTwo extends Foundation<ButtonHandledProps, ButtonUnhandledProps, {}> {
     public static displayName: string = `${DisplayNamePrefix}Button`;
 
     public static defaultProps: ButtonProps = {

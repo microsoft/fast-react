@@ -1,20 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./app";
-import HTML5Backend from "react-dnd-html5-backend";
-import { DragDropContext } from "react-dnd";
+import {
+    ActionTrigger,
+    Background,
+    Badge,
+    Button,
+    Card,
+    Heading,
+    Hypertext,
+    Image,
+    Paragraph,
+    StealthButton,
+} from "@microsoft/fast-components-react-msft";
 
-/**
- * Create the root node
- */
-const root: HTMLElement = document.createElement("div");
-root.setAttribute("id", "root");
-document.body.appendChild(root);
-
-const DragDropApp: any = DragDropContext(HTML5Backend)(App);
-
-function render(): void {
-    ReactDOM.render(<DragDropApp />, root);
-}
-
-render();
+const a: any = ActionTrigger;
+const b: any = Background;
+const c: any = Badge;
+const d: any = Button;
+const e: any = Card;
+const f: any = Heading;
+const g: any = Hypertext;
+const h: any = Image;
+const i: any = Paragraph;
+const j: any = StealthButton;

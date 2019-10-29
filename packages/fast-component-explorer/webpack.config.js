@@ -77,7 +77,7 @@ module.exports = (env, args) => {
             }),
             new BundleAnalyzerPlugin({
                 // Remove this to inspect bundle sizes.
-                analyzerMode: "disabled",
+                // analyzerMode: "disabled",
             }),
             new WorkboxPlugin.GenerateSW({
                 exclude: [/\.map$/, /^manifest.*\.js(?:on)?$/, /\.html$/],
