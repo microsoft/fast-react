@@ -1,7 +1,7 @@
 import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { Button as BaseButton } from "@microsoft/fast-components-react-base";
 import { classNames } from "@microsoft/fast-web-utilities";
-import { get } from "lodash-es";
+import { get, isFunction } from "lodash-es";
 import React from "react";
 import { ButtonClassNameContract } from ".";
 import { DisplayNamePrefix } from "../utilities";
@@ -25,6 +25,8 @@ const Button = React.forwardRef(
     (props: ButtonProps, ref: React.RefObject<any>): JSX.Element => {
         const {
             appearance,
+            beforeContent,
+            afterContent,
             managedClasses,
             className,
             children,
@@ -35,93 +37,20 @@ const Button = React.forwardRef(
             <BaseButton
                 {...unhandledProps}
                 className={classNames(
-                    managedClasses[`button__${ButtonAppearance[appearance]}`]
+                    managedClasses[`button__${ButtonAppearance[appearance]}`],
+                    className
                 )}
+                managedClasses={managedClasses}
             >
-                <span>{children}</span>
+                {isFunction(beforeContent) &&
+                    beforeContent(managedClasses.button_beforeContent)}
+                <span className={managedClasses.button_contentRegion}>{children}</span>
+                {isFunction(afterContent) &&
+                    afterContent(managedClasses.button_afterContent)}
             </BaseButton>
         );
     }
 );
-
-class ButtonTwo extends Foundation<ButtonHandledProps, ButtonUnhandledProps, {}> {
-    public static displayName: string = `${DisplayNamePrefix}Button`;
-
-    public static defaultProps: ButtonProps = {
-        managedClasses: {},
-    };
-
-    protected handledProps: HandledProps<ButtonHandledProps> = {
-        appearance: void 0,
-        beforeContent: void 0,
-        afterContent: void 0,
-        disabled: void 0,
-        href: void 0,
-        managedClasses: void 0,
-    };
-
-    /**
-     * Renders the component
-     */
-    public render(): React.ReactElement<HTMLButtonElement | HTMLAnchorElement> {
-        const managedClasses: ButtonClassNameContract = this.props.managedClasses;
-
-        return (
-            <BaseButton
-                {...this.unhandledProps()}
-                className={this.generateClassNames()}
-                managedClasses={managedClasses}
-                href={this.props.href}
-                disabled={this.props.disabled}
-            >
-                {this.withSlot(ButtonSlot.before)}
-                {this.generateBeforeContent()}
-                <span className={classNames(managedClasses.button_contentRegion)}>
-                    {this.withoutSlot([ButtonSlot.before, ButtonSlot.after])}
-                </span>
-                {this.withSlot(ButtonSlot.after)}
-                {this.generateAfterContent()}
-            </BaseButton>
-        );
-    }
-
-    /**
-     * Generates class names
-     */
-    protected generateClassNames(): string {
-        const className: string = this.props.appearance
-            ? get(
-                  this.props,
-                  `managedClasses.button__${ButtonAppearance[this.props.appearance]}`
-              )
-            : "";
-
-        return super.generateClassNames(
-            classNames([
-                this.props.managedClasses[
-                    `button__${ButtonAppearance[this.props.appearance]}`
-                ],
-                typeof this.props.appearance === "string",
-            ])
-        );
-    }
-
-    private generateBeforeContent(): React.ReactNode {
-        if (typeof this.props.beforeContent === "function") {
-            return this.props.beforeContent(
-                classNames(this.props.managedClasses.button_beforeContent)
-            );
-        }
-    }
-
-    private generateAfterContent(): React.ReactNode {
-        if (typeof this.props.afterContent === "function") {
-            return this.props.afterContent(
-                classNames(this.props.managedClasses.button_afterContent)
-            );
-        }
-    }
-}
 
 export default Button;
 export * from "./button.props";

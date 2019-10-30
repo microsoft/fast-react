@@ -12,83 +12,53 @@ import {
     ActionTriggerProps,
     ActionTriggerUnhandledProps,
 } from "./action-trigger.props";
+import { useMemo } from "@storybook/addons";
 
-class ActionTrigger extends Foundation<
-    ActionTriggerHandledProps,
-    ActionTriggerUnhandledProps,
-    {}
-> {
-    public static displayName: string = `${DisplayNamePrefix}ActionTrigger`;
+/* tslint:disable:jsx-no-lambda */
+// tslint:disable-next-line
+const ActionTrigger = React.forwardRef(
+    (props: ActionTriggerProps): JSX.Element => {
+        const {
+            appearance,
+            className,
+            glyph,
+            children,
+            managedClasses,
+            disabled,
+            ...unhandledProps
+        }: ActionTriggerProps = props;
 
-    public static defaultProps: Partial<ActionTriggerProps> = {
-        managedClasses: {},
-    };
-
-    protected handledProps: HandledProps<ActionTriggerHandledProps> = {
-        appearance: void 0,
-        href: void 0,
-        managedClasses: void 0,
-        disabled: void 0,
-        glyph: void 0,
-    };
-
-    /**
-     * Renders the component
-     */
-    public render(): React.ReactElement<HTMLButtonElement | HTMLAnchorElement> {
         return (
             <Button
-                {...this.unhandledProps()}
-                className={this.generateClassNames()}
-                disabled={this.props.disabled}
-                href={this.props.href}
-                appearance={
-                    ButtonAppearance[ActionTriggerAppearance[this.props.appearance]]
+                {...unhandledProps}
+                className={classNames(
+                    managedClasses.actionTrigger,
+                    [managedClasses.actionTrigger__disabled, disabled],
+                    managedClasses[`actionTrigger__${appearance}`],
+                    [
+                        managedClasses.actionTrigger__hasGlyphAndContent,
+                        !isNil(glyph) && !isNil(children),
+                    ],
+                    className
+                )}
+                appearance={ButtonAppearance[ActionTriggerAppearance[appearance]]}
+                disabled={disabled}
+                beforeContent={(): React.ReactNode =>
+                    glyph(managedClasses.actionTrigger_glyph)
                 }
                 jssStyleSheet={actionTriggerButtonOverrides}
-                beforeContent={this.generateGlyph}
             >
-                {this.props.children}
+                {children}
             </Button>
         );
     }
+);
 
-    /**
-     * Generates class names
-     */
-    protected generateClassNames(): string {
-        const {
-            actionTrigger,
-            actionTrigger__disabled,
-            actionTrigger__hasGlyphAndContent,
-        }: ActionTriggerClassNameContract = this.props.managedClasses;
-
-        return super.generateClassNames(
-            classNames(
-                actionTrigger,
-                [actionTrigger__disabled, this.props.disabled],
-                [
-                    this.props.managedClasses[`actionTrigger__${this.props.appearance}`],
-                    typeof this.props.appearance === "string",
-                ],
-                [actionTrigger__hasGlyphAndContent, this.hasGlyphAndContent()]
-            )
-        );
-    }
-
-    private generateGlyph = (): React.ReactNode => {
-        return this.props.glyph(
-            classNames(this.props.managedClasses.actionTrigger_glyph)
-        );
-    };
-
-    /**
-     * Checks to see if action trigger is displaying both glyph and content or not
-     */
-    private hasGlyphAndContent(): boolean {
-        return !isNil(this.props.glyph) && !isNil(this.props.children);
-    }
-}
+ActionTrigger.displayName = `${DisplayNamePrefix}ActionTrigger`;
+ActionTrigger.defaultProps = {
+    managedClasses: {},
+};
 
 export default ActionTrigger;
 export * from "./action-trigger.props";
+/* tslint:enable:jsx-no-lambda */
