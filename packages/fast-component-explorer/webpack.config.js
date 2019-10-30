@@ -16,11 +16,11 @@ module.exports = (env, args) => {
         devtool: isProduction ? "none" : "inline-source-map",
         entry: {
             main: path.resolve(appDir, "index.tsx"),
-            serviceWorker: path.resolve(appDir, "service-worker-registration.ts"),
-            focusVisible: path.resolve(
-                rootNodeModules,
-                "focus-visible/dist/focus-visible.min.js"
-            ),
+            // serviceWorker: path.resolve(appDir, "service-worker-registration.ts"),
+            // focusVisible: path.resolve(
+            //     rootNodeModules,
+            //     "focus-visible/dist/focus-visible.min.js"
+            // ),
         },
         output: {
             path: outDir,

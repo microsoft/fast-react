@@ -1,4 +1,3 @@
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import {
     DesignSystem,
     DesignSystemDefaults,
@@ -11,12 +10,7 @@ import {
 } from "@microsoft/fast-jss-manager-react";
 import { get, has, isFunction, isString, memoize } from "lodash-es";
 import React from "react";
-import { Omit } from "utility-types";
-import {
-    BackgroundHandledProps,
-    BackgroundProps,
-    BackgroundUnhandledProps,
-} from "./background.props";
+import { BackgroundProps } from "./background.props";
 
 const getDesignSystemOverrides: (color: string) => Partial<DesignSystem> = memoize(
     (color: string): Partial<DesignSystem> => {
@@ -63,7 +57,7 @@ const Background = React.forwardRef(
                             {tag
                                 ? React.createElement(
                                       tag,
-                                      { ...unhandled, style },
+                                      { ...unhandled, mergedStyle },
                                       children
                                   )
                                 : children}

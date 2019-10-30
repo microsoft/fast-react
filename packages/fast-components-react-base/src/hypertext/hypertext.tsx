@@ -1,12 +1,7 @@
 import { HypertextClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import React from "react";
 import { DisplayNamePrefix } from "../utilities";
-import {
-    HypertextHandledProps,
-    HypertextProps,
-    HypertextUnhandledProps,
-} from "./hypertext.props";
+import { HypertextProps } from "./hypertext.props";
 import { classNames } from "@microsoft/fast-web-utilities";
 
 // tslint:disable-next-line

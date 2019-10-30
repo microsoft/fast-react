@@ -12,62 +12,42 @@ import {
     ParagraphUnhandledProps,
 } from "./paragraph.props";
 
-class Paragraph extends Foundation<ParagraphHandledProps, ParagraphUnhandledProps, {}> {
-    public static defaultProps: Partial<ParagraphProps> = {
-        size: ParagraphSize._3,
-        managedClasses: {},
-    };
+// tslint:disable-next-line
+const Paragraph = React.forwardRef(
+    (props: ParagraphProps, ref: any): JSX.Element => {
+        const {
+            size,
+            managedClasses,
+            className,
+            ...unhandledProps
+        }: ParagraphProps = props;
 
-    public static displayName: string = `${DisplayNamePrefix}Paragraph`;
-
-    protected handledProps: HandledProps<ParagraphHandledProps> = {
-        size: void 0,
-        managedClasses: void 0,
-    };
-
-    /**
-     * Renders the component
-     */
-    public render(): React.ReactElement<HTMLHeadingElement | HTMLParagraphElement> {
         return (
             <Typography
-                {...this.unhandledProps()}
+                {...unhandledProps}
                 tag={TypographyTag.p}
-                size={this.size}
-                className={this.generateClassNames()}
-            >
-                {this.props.children}
-            </Typography>
+                size={
+                    size === ParagraphSize._1
+                        ? TypographySize._5
+                        : size === ParagraphSize._2
+                            ? TypographySize._6
+                            : TypographySize._7
+                }
+                className={classNames(
+                    managedClasses.paragraph,
+                    managedClasses[`paragraph__${size}`],
+                    className
+                )}
+            />
         );
     }
+);
 
-    /**
-     * Generates class names based on props
-     */
-    protected generateClassNames(): string {
-        const managedClasses: ParagraphClassNameContract = this.props.managedClasses;
-        return super.generateClassNames(
-            classNames(
-                managedClasses.paragraph,
-                managedClasses[`paragraph__${this.props.size}`]
-            )
-        );
-    }
-
-    /**
-     * Stores size for use in render
-     */
-    private get size(): TypographySize {
-        switch (this.props.size) {
-            case ParagraphSize._1:
-                return TypographySize._5;
-            case ParagraphSize._2:
-                return TypographySize._6;
-            default:
-                return TypographySize._7;
-        }
-    }
-}
+Paragraph.displayName = `${DisplayNamePrefix}Paragraph`;
+Paragraph.defaultProps = {
+    size: ParagraphSize._3,
+    managedClasses: {},
+};
 
 export default Paragraph;
 export * from "./paragraph.props";

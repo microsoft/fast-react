@@ -1,16 +1,10 @@
 import { HeadingClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { TypographySize, TypographyTag } from "@microsoft/fast-components-react-base";
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { Typography } from "../typography";
 import { DisplayNamePrefix } from "../utilities";
-import {
-    HeadingHandledProps,
-    HeadingProps,
-    HeadingSize,
-    HeadingUnhandledProps,
-} from "./heading.props";
+import { HeadingProps, HeadingSize } from "./heading.props";
 
 // tslint:disable-next-line
 const Heading = React.forwardRef((props: HeadingProps, ref: any) => {

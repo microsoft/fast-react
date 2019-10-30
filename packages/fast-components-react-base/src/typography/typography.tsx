@@ -1,15 +1,8 @@
 import { TypographyClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { DisplayNamePrefix } from "../utilities";
-import {
-    TypographyHandledProps,
-    TypographyProps,
-    TypographySize,
-    TypographyTag,
-    TypographyUnhandledProps,
-} from "./typography.props";
+import { TypographyProps, TypographySize, TypographyTag } from "./typography.props";
 
 // tslint:disable-next-line
 const Typography = React.forwardRef(

@@ -1,9 +1,8 @@
 import { ButtonClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { DisplayNamePrefix } from "../utilities";
-import { ButtonHandledProps, ButtonProps, ButtonUnhandledProps } from "./button.props";
+import { ButtonProps } from "./button.props";
 import { isString } from "lodash-es";
 
 /**
@@ -15,40 +14,42 @@ export enum ButtonHTMLTags {
 }
 
 // tslint:disable-next-line
-const Button = React.forwardRef((
-    props: ButtonProps,
-    ref: React.RefObject<HTMLAnchorElement | HTMLButtonElement>
-): JSX.Element => {
-    const {
-        disabled,
-        href,
-        managedClasses,
-        className,
-        children,
-        ...unhandledProps
-    }: ButtonProps = props;
-    const isAnchor: boolean = isString(href);
-    const Tag: any = isAnchor ? ButtonHTMLTags.a : ButtonHTMLTags.button;
+const Button = React.forwardRef(
+    (
+        props: ButtonProps,
+        ref: React.RefObject<HTMLAnchorElement | HTMLButtonElement>
+    ): JSX.Element => {
+        const {
+            disabled,
+            href,
+            managedClasses,
+            className,
+            children,
+            ...unhandledProps
+        }: ButtonProps = props;
+        const isAnchor: boolean = isString(href);
+        const Tag: any = isAnchor ? ButtonHTMLTags.a : ButtonHTMLTags.button;
 
-    return (
-        <Tag
-            ref={ref}
-            {...unhandledProps}
-            className={
-                classNames(
-                    managedClasses.button,
-                    [managedClasses.button__disabled, disabled],
-                    className
-                ) || null
-            }
-            href={isAnchor ? href : null}
-            disabled={(disabled && !isAnchor) || null}
-            aria-disabled={(disabled && isAnchor) || null}
-        >
-            {children}
-        </Tag>
-    );
-});
+        return (
+            <Tag
+                ref={ref}
+                {...unhandledProps}
+                className={
+                    classNames(
+                        managedClasses.button,
+                        [managedClasses.button__disabled, disabled],
+                        className
+                    ) || null
+                }
+                href={isAnchor ? href : null}
+                disabled={(disabled && !isAnchor) || null}
+                aria-disabled={(disabled && isAnchor) || null}
+            >
+                {children}
+            </Tag>
+        );
+    }
+);
 
 Button.displayName = `${DisplayNamePrefix}Button`;
 Button.defaultProps = {

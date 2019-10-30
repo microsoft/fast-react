@@ -1,16 +1,8 @@
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { Button as BaseButton } from "@microsoft/fast-components-react-base";
 import { classNames } from "@microsoft/fast-web-utilities";
-import { get, isFunction } from "lodash-es";
+import { isFunction } from "lodash-es";
 import React from "react";
-import { ButtonClassNameContract } from ".";
-import { DisplayNamePrefix } from "../utilities";
-import {
-    ButtonAppearance,
-    ButtonHandledProps,
-    ButtonProps,
-    ButtonUnhandledProps,
-} from "./button.props";
+import { ButtonAppearance, ButtonProps } from "./button.props";
 
 /**
  * Button slot options

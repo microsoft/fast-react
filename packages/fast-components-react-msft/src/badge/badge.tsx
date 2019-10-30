@@ -1,15 +1,8 @@
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { Badge as BaseBadge } from "@microsoft/fast-components-react-base";
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { DisplayNamePrefix } from "../utilities";
-import {
-    BadgeHandledProps,
-    BadgeProps,
-    BadgeSize,
-    BadgeUnhandledProps,
-} from "./badge.props";
-import { BadgeClassNameContract } from "./index";
+import { BadgeProps, BadgeSize } from "./badge.props";
 
 // tslint:disable-next-line
 const Badge = React.forwardRef(

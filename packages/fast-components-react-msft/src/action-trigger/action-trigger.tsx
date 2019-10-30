@@ -1,18 +1,10 @@
-import { ActionTriggerClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { actionTriggerButtonOverrides } from "@microsoft/fast-components-styles-msft";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { isNil } from "lodash-es";
 import React from "react";
 import { Button, ButtonAppearance } from "../button";
 import { DisplayNamePrefix } from "../utilities";
-import {
-    ActionTriggerAppearance,
-    ActionTriggerHandledProps,
-    ActionTriggerProps,
-    ActionTriggerUnhandledProps,
-} from "./action-trigger.props";
-import { useMemo } from "@storybook/addons";
+import { ActionTriggerAppearance, ActionTriggerProps } from "./action-trigger.props";
 
 /* tslint:disable:jsx-no-lambda */
 // tslint:disable-next-line

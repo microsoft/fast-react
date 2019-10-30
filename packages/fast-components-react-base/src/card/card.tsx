@@ -1,9 +1,8 @@
 import { CardClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { DisplayNamePrefix } from "../utilities";
-import { CardHandledProps, CardProps, CardTag, CardUnhandledProps } from "./card.props";
+import { CardProps, CardTag } from "./card.props";
 
 // tslint:disable-next-line
 const Card = React.forwardRef(

@@ -1,10 +1,8 @@
 import { ImageClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { classNames } from "@microsoft/fast-web-utilities";
-import { get } from "lodash-es";
 import React from "react";
 import { DisplayNamePrefix } from "../utilities";
-import { ImageHandledProps, ImageProps, ImageUnhandledProps } from "./image.props";
+import { ImageProps } from "./image.props";
 
 export enum ImageSlot {
     source = "source",
