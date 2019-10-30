@@ -11,69 +11,34 @@ import {
     TypographyUnhandledProps,
 } from "./typography.props";
 
-class Typography extends Foundation<
-    TypographyHandledProps,
-    TypographyUnhandledProps,
-    {}
-> {
-    public static defaultProps: Partial<TypographyProps> = {
-        tag: TypographyTag.p,
-        size: TypographySize._1,
-        managedClasses: {},
-    };
+// tslint:disable-next-line
+const Typography = React.forwardRef(
+    (props: TypographyProps, ref: any): JSX.Element => {
+        const {
+            tag,
+            className,
+            managedClasses,
+            size,
+            ...unhandledProps
+        }: TypographyProps = props;
 
-    public static displayName: string = `${DisplayNamePrefix}Typography`;
-
-    protected handledProps: HandledProps<TypographyHandledProps> = {
-        managedClasses: void 0,
-        tag: void 0,
-        size: void 0,
-    };
-
-    /**
-     * Stores HTML tag for use in render
-     */
-    private get tag(): any {
-        return this.generateHTMLTag();
-    }
-
-    /**
-     * Renders the component
-     */
-    public render(): React.ReactElement<
-        | HTMLHeadingElement
-        | HTMLParagraphElement
-        | HTMLSpanElement
-        | HTMLTableCaptionElement
-    > {
-        return (
-            <this.tag {...this.unhandledProps()} className={this.generateClassNames()}>
-                {this.props.children}
-            </this.tag>
-        );
-    }
-
-    /**
-     * Generates class names based on props
-     */
-    protected generateClassNames(): string {
-        const managedClasses: TypographyClassNameContract = this.props.managedClasses;
-
-        return super.generateClassNames(
-            classNames(
+        return React.createElement(TypographyTag[tag] || TypographyTag.p, {
+            ...unhandledProps,
+            className: classNames(
                 managedClasses.typography,
-                managedClasses[`typography__${this.props.size}`]
-            )
-        );
+                managedClasses[`typography___${size}`],
+                className
+            ),
+        });
     }
+);
 
-    /**
-     * Creates tags for rendering based on href
-     */
-    private generateHTMLTag(): string {
-        return TypographyTag[this.props.tag] || TypographyTag.p;
-    }
-}
+Typography.displayName = `${DisplayNamePrefix}Typography`;
+Typography.defaultProps = {
+    tag: TypographyTag.p,
+    size: TypographySize._1,
+    managedClasses: {},
+};
 
 export default Typography;
 export * from "./typography.props";

@@ -5,43 +5,20 @@ import React from "react";
 import { DisplayNamePrefix } from "../utilities";
 import { CardHandledProps, CardProps, CardTag, CardUnhandledProps } from "./card.props";
 
-class Card extends Foundation<CardHandledProps, CardUnhandledProps, {}> {
-    public static displayName: string = `${DisplayNamePrefix}Card`;
-    public static defaultProps: Partial<CardProps> = {
-        managedClasses: {},
-    };
-
-    protected handledProps: HandledProps<CardHandledProps> = {
-        children: void 0,
-        managedClasses: void 0,
-        tag: void 0,
-    };
-
-    /**
-     * Renders the component
-     */
-    public render(): React.ReactElement<HTMLDivElement | HTMLElement> {
-        return (
-            <this.tag {...this.unhandledProps()} className={this.generateClassNames()}>
-                {this.props.children}
-            </this.tag>
-        );
+// tslint:disable-next-line
+const Card = React.forwardRef(
+    (props: CardProps, ref: any): JSX.Element => {
+        const { tag, className, managedClasses, ...unhandledProps }: CardProps = props;
+        return React.createElement(CardTag[tag] || CardTag.div, {
+            ...unhandledProps,
+            className: classNames(managedClasses.card, className),
+        });
     }
-
-    /**
-     * Generates class names
-     */
-    protected generateClassNames(): string {
-        return super.generateClassNames(classNames(this.props.managedClasses.card));
-    }
-
-    /**
-     * Stores HTML tag for use in render
-     */
-    private get tag(): any {
-        return CardTag[this.props.tag] || CardTag.div;
-    }
-}
+);
+Card.displayName = `${DisplayNamePrefix}Card`;
+Card.defaultProps = {
+    managedClasses: {},
+};
 
 export default Card;
 export * from "./card.props";

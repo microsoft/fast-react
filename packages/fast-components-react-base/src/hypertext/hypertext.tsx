@@ -7,36 +7,24 @@ import {
     HypertextProps,
     HypertextUnhandledProps,
 } from "./hypertext.props";
+import { classNames } from "@microsoft/fast-web-utilities";
 
-class Hypertext extends Foundation<HypertextHandledProps, HypertextUnhandledProps, {}> {
-    public static displayName: string = `${DisplayNamePrefix}Hypertext`;
-
-    public static defaultProps: Partial<HypertextProps> = {
-        managedClasses: {},
-    };
-
-    protected handledProps: HandledProps<HypertextHandledProps> = {
-        managedClasses: void 0,
-    };
-
-    /**
-     * Renders the component
-     */
-    public render(): React.ReactElement<HTMLAnchorElement> {
+// tslint:disable-next-line
+const Hypertext = React.forwardRef(
+    (props: HypertextProps, ref: any): JSX.Element => {
+        const { className, managedClasses, ...unhandledProps }: HypertextProps = props;
         return (
-            <a {...this.unhandledProps()} className={this.generateClassNames()}>
-                {this.props.children}
-            </a>
+            <a
+                {...unhandledProps}
+                className={classNames(managedClasses.hypertext, className)}
+            />
         );
     }
-
-    /**
-     * Generates class names
-     */
-    protected generateClassNames(): string {
-        return super.generateClassNames(this.props.managedClasses.hypertext);
-    }
-}
+);
+Hypertext.displayName = `${DisplayNamePrefix}Hypertext`;
+Hypertext.defaultProps = {
+    managedClasses: {},
+};
 
 export default Hypertext;
 export * from "./hypertext.props";

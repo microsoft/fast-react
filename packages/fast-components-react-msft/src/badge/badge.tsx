@@ -11,55 +11,35 @@ import {
 } from "./badge.props";
 import { BadgeClassNameContract } from "./index";
 
-class Badge extends Foundation<BadgeHandledProps, BadgeUnhandledProps, {}> {
-    public static displayName: string = `${DisplayNamePrefix}Badge`;
-
-    public static defaultProps: Partial<BadgeProps> = {
-        size: BadgeSize.small,
-        filled: true,
-        managedClasses: {},
-    };
-
-    protected handledProps: HandledProps<BadgeHandledProps> = {
-        filled: void 0,
-        size: void 0,
-        managedClasses: void 0,
-    };
-
-    /**
-     * Renders the component
-     */
-    public render(): JSX.Element {
+// tslint:disable-next-line
+const Badge = React.forwardRef(
+    (props: BadgeProps, ref: any): JSX.Element => {
+        const {
+            className,
+            managedClasses,
+            filled,
+            size,
+            ...unhandledProps
+        }: BadgeProps = props;
         return (
             <BaseBadge
-                {...this.unhandledProps()}
-                className={this.generateClassNames()}
-                managedClasses={this.props.managedClasses}
-            >
-                {this.props.children}
-            </BaseBadge>
+                {...unhandledProps}
+                className={classNames(
+                    [managedClasses.badge__filled, filled],
+                    [managedClasses.badge__large, size === BadgeSize.large],
+                    [managedClasses.badge__small, size === BadgeSize.small]
+                )}
+            />
         );
     }
+);
 
-    /**
-     * Generates class names
-     */
-    protected generateClassNames(): string {
-        const {
-            badge__filled,
-            badge__small,
-            badge__large,
-        }: Partial<BadgeClassNameContract> = this.props.managedClasses;
-
-        return super.generateClassNames(
-            classNames(
-                [badge__filled, this.props.filled],
-                [badge__large, this.props.size === BadgeSize.large],
-                [badge__small, this.props.size === BadgeSize.small]
-            )
-        );
-    }
-}
+Badge.displayName = `${DisplayNamePrefix}Badge`;
+Badge.defaultProps = {
+    size: BadgeSize.small,
+    filled: true,
+    managedClasses: {},
+};
 
 export default Badge;
 export * from "./badge.props";

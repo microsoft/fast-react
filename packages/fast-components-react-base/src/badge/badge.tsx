@@ -4,37 +4,25 @@ import { classNames } from "@microsoft/fast-web-utilities";
 import React from "react";
 import { DisplayNamePrefix } from "../utilities";
 import { BadgeHandledProps, BadgeProps, BadgeUnhandledProps } from "./badge.props";
+// tslint:disable-next-line
+const Badge = React.forwardRef(
+    (props: BadgeProps): JSX.Element => {
+        const { managedClasses, className, ...unhandledProps }: BadgeProps = props;
 
-class Badge extends Foundation<BadgeHandledProps, BadgeUnhandledProps, {}> {
-    public static displayName: string = `${DisplayNamePrefix}Badge`;
-
-    public static defaultProps: Partial<BadgeProps> = {
-        managedClasses: {},
-    };
-
-    protected handledProps: HandledProps<BadgeHandledProps> = {
-        managedClasses: void 0,
-    };
-
-    /**
-     * Renders the component
-     */
-    public render(): JSX.Element {
         return (
-            <span {...this.unhandledProps()} className={this.generateClassNames()}>
-                {this.props.children}
-            </span>
+            <span
+                {...unhandledProps}
+                className={classNames(managedClasses.badge, className)}
+            />
         );
     }
+);
 
-    /**
-     * Generates class names
-     */
-    protected generateClassNames(): string {
-        return super.generateClassNames(classNames(this.props.managedClasses.badge));
-    }
-}
+Badge.displayName = `${DisplayNamePrefix}Badge`;
+Badge.defaultProps = {
+    managedClasses: {},
+};
 
-export default Badge;
+export default React.memo(Badge);
 export * from "./badge.props";
 export { BadgeClassNameContract };

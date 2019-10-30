@@ -10,61 +10,49 @@ export enum ImageSlot {
     source = "source",
 }
 
-class Image extends Foundation<ImageHandledProps, ImageUnhandledProps, {}> {
-    public static displayName: string = `${DisplayNamePrefix}Image`;
+// tslint:disable-next-line
+const Image = React.forwardRef(
+    (props: ImageProps, ref: any): JSX.Element => {
+        const {
+            className,
+            managedClasses,
+            alt,
+            src,
+            srcSet,
+            sizes,
+            children,
+            ...unhandledProps
+        }: ImageProps = props;
 
-    public static defaultProps: Partial<ImageProps> = {
-        managedClasses: {},
-    };
-
-    protected handledProps: HandledProps<ImageHandledProps> = {
-        managedClasses: void 0,
-        alt: void 0,
-        sizes: void 0,
-        src: void 0,
-        srcSet: void 0,
-    };
-
-    /**
-     * Renders the component
-     */
-    public render(): React.ReactElement<HTMLImageElement | HTMLPictureElement> {
-        let className: string = classNames(this.props.managedClasses.image);
-
-        if (!this.props.children) {
-            return (
-                <img
-                    {...this.unhandledProps()}
-                    className={super.generateClassNames(className)}
-                    alt={this.props.alt}
-                    sizes={this.props.sizes ? this.props.sizes : null}
-                    src={this.props.src}
-                    srcSet={this.props.srcSet ? this.props.srcSet : null}
-                />
-            );
-        } else {
-            className = `${className} ${get(
-                this.props,
-                "managedClasses.image__picture",
-                ""
-            )}`;
-
-            return (
-                <picture
-                    {...this.unhandledProps()}
-                    className={super.generateClassNames(className)}
-                >
-                    {this.withSlot(ImageSlot.source)}
-                    <img
-                        src={this.props.src}
-                        alt={this.props.alt}
-                        className={get(this.props, "managedClasses.image_img", "")}
-                    />
-                </picture>
-            );
-        }
+        return !children ? (
+            <img
+                {...unhandledProps}
+                className={classNames(managedClasses.image, className)}
+                alt={alt}
+                src={src}
+                sizes={sizes || null}
+                srcSet={srcSet || null}
+            />
+        ) : (
+            <picture
+                {...unhandledProps}
+                className={classNames(
+                    managedClasses.image,
+                    managedClasses.image__picture,
+                    className
+                )}
+            >
+                {children}
+                <img src={src} alt={alt} className={managedClasses.image_img} />
+            </picture>
+        );
     }
-}
+);
+
+Image.displayName = `${DisplayNamePrefix}Image`;
+Image.defaultProps = {
+    managedClasses: {},
+};
 
 export default Image;
 export * from "./image.props";

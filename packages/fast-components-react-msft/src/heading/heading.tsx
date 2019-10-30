@@ -12,62 +12,35 @@ import {
     HeadingUnhandledProps,
 } from "./heading.props";
 
-class Heading extends Foundation<HeadingHandledProps, HeadingUnhandledProps, {}> {
-    public static displayName: string = `${DisplayNamePrefix}Heading`;
-    public static defaultProps: Partial<HeadingProps> = {
-        size: HeadingSize._1,
-        managedClasses: {},
-    };
+// tslint:disable-next-line
+const Heading = React.forwardRef((props: HeadingProps, ref: any) => {
+    const {
+        className,
+        size,
+        managedClasses,
+        tag,
+        ...unhandledProps
+    }: HeadingProps = props;
 
-    protected handledProps: HandledProps<HeadingHandledProps> = {
-        size: void 0,
-        managedClasses: void 0,
-        tag: void 0,
-    };
-
-    /**
-     * Stores HTML tag for use in render
-     */
-    private get tag(): TypographyTag {
-        return this.props.tag ? TypographyTag[this.props.tag] : TypographyTag.h1;
-    }
-
-    /**
-     * Stores size for use in render
-     */
-    private get size(): TypographySize {
-        return TypographySize[`_${this.props.size}`];
-    }
-
-    /**
-     * Renders the component
-     */
-    public render(): React.ReactElement<HTMLHeadingElement | HTMLParagraphElement> {
-        return (
-            <Typography
-                {...this.unhandledProps()}
-                tag={this.tag}
-                size={this.size}
-                className={this.generateClassNames()}
-            >
-                {this.props.children}
-            </Typography>
-        );
-    }
-
-    /**
-     * Generates class names based on props
-     */
-    protected generateClassNames(): string {
-        const managedClasses: HeadingClassNameContract = this.props.managedClasses;
-        return super.generateClassNames(
-            classNames(
+    return (
+        <Typography
+            {...unhandledProps}
+            tag={TypographyTag[tag] || TypographyTag.h1}
+            size={TypographySize[`_${size}`]}
+            className={classNames(
                 managedClasses.heading,
-                managedClasses[`heading__${this.props.size}`]
-            )
-        );
-    }
-}
+                managedClasses[`heading__${size}`],
+                className
+            )}
+        />
+    );
+});
+
+Heading.displayName = `${DisplayNamePrefix}Heading`;
+Heading.defaultProps = {
+    size: HeadingSize._1,
+    managedClasses: {},
+};
 
 export default Heading;
 export * from "./heading.props";
