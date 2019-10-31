@@ -16,7 +16,7 @@ export enum TargetPosition {
 export interface UpdateDataWithSourceConfig {
     targetDataLocation: string;
     targetDataType: DataType;
-    sourceData: string;
+    sourceData: any;
     data: unknown;
     targetPosition: TargetPosition;
 }

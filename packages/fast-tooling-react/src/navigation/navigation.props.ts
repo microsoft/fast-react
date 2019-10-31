@@ -1,6 +1,7 @@
 import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import { ChildOptionItem } from "../data-utilities";
 import { NavigationClassNameContract } from "./navigation.style";
+import { ReactComponentProps } from "./navigation.utilities";
 
 export enum NavigationDataType {
     object = "object",
@@ -17,46 +18,85 @@ export interface NavigationState {
     navigation: TreeNavigation;
 
     /**
-     * The open items tracked by data location
+     * A copy of the prop data
+     * used so that source data can be removed
+     * when drag starts and added when drag ends
      */
-    openItems: string[];
+    data: ReactComponentProps;
+
+    expandedNavigationIds: string[];
 
     /**
-     * The current active item
+     * The root items id
      */
-    activeItem: null | string;
+    rootNavigationItemId: string;
+
+    /**
+     * The data currently being moved
+     */
+    relocatingData: any;
+
+    /**
+     * The active navigation item id
+     */
+    activeNavigationItemId: string;
+
+    /**
+     * The dragging navigation id
+     */
+    draggingNavigationId: null | string;
+
+    /**
+     * The dragging items source data location
+     */
+    draggingSourceDataLocation: null | string;
 
     /**
      * The hovered tree item
      */
-    dragHoverDataLocation: null | string;
+    dragHoverNavigationId: null | string;
 
     /**
      * The hovered location before
      */
-    dragHoverBeforeDataLocation: null | string;
+    dragHoverBeforeNavigationId: null | string;
 
     /**
      * The hovered location after
      */
-    dragHoverAfterDataLocation: null | string;
+    dragHoverAfterNavigationId: null | string;
 
     /**
      * The hovered location center
      */
-    dragHoverCenterDataLocation: null | string;
+    dragHoverCenterNavigationId: null | string;
 }
 
-export interface TreeNavigation {
+export interface TreeNavigationItem {
     /**
-     * The navigation item text
+     * The ID for this item
      */
-    text: string;
+    self: string;
 
     /**
-     * The data location of this item
+     * The ID for the parent of this item
      */
-    dataLocation: string;
+    parent?: string;
+
+    /**
+     * The relative data location
+     */
+    relativeDataLocation: string;
+
+    /**
+     * The schema location
+     */
+    schemaLocation: string;
+
+    /**
+     * The display text
+     */
+    text: string;
 
     /**
      * The data type, this will result in a different
@@ -65,9 +105,16 @@ export interface TreeNavigation {
     type: NavigationDataType;
 
     /**
-     * The items belonging to the text as a dropdown
+     * The ids belonging to the text as a dropdown
      */
-    items?: TreeNavigation[] | void;
+    items: string[];
+}
+
+export interface TreeNavigation {
+    /**
+     * A dictionary of items
+     */
+    [key: string]: TreeNavigationItem;
 }
 
 export interface NavigationHandledProps
@@ -80,7 +127,7 @@ export interface NavigationHandledProps
     /**
      * The data mapped to the schema
      */
-    data: any;
+    data: ReactComponentProps;
 
     /**
      * The React child options

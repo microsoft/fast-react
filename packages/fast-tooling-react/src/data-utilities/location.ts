@@ -21,6 +21,7 @@ import { isPrimitiveReactNode } from "./node-types";
  */
 
 export const squareBracketsRegex: RegExp = /\[(\d+)\]/g;
+export const endsWithSquareBracketsRegex: RegExp = /\[(\d+)\]$/;
 export const firstCharacterDotRegex: RegExp = /^(\.)/;
 
 /**
@@ -43,6 +44,39 @@ export function getDataLocationsOfChildren(
     data: any,
     childOptions: ChildOptionItem[]
 ): string[] {
+    const dataLocationsOfChildren: string[] = getDataLocationsOfChildrenInComponent(
+        schema,
+        data
+    );
+
+    // for every child location get nested data locations of children
+    dataLocationsOfChildren.forEach((dataLocationOfChildren: string) => {
+        const dataLocation: string = `${dataLocationOfChildren}.${propsKeyword}`;
+        const subData: any = get(data, dataLocation);
+        const childOption: ChildOptionItem = getChildOptionBySchemaId(
+            get(data, `${dataLocationOfChildren}.${idKeyword}`),
+            childOptions
+        );
+        const nestedDataLocationsOfChildren: string[] = getDataLocationsOfChildren(
+            get(childOption, "schema", schema),
+            subData,
+            childOptions
+        );
+
+        nestedDataLocationsOfChildren.forEach((nestedDataLocationOfChildren: string) => {
+            dataLocationsOfChildren.push(
+                `${dataLocation}.${nestedDataLocationOfChildren}`
+            );
+        });
+    });
+
+    return dataLocationsOfChildren;
+}
+
+/**
+ * Finds the data locations of children in a component
+ */
+export function getDataLocationsOfChildrenInComponent(schema: any, data: any): string[] {
     const schemaLocationInstance: SchemaLocation = new SchemaLocation(schema);
 
     // get all data locations from the data
@@ -98,27 +132,6 @@ export function getDataLocationsOfChildren(
 
             dataLocationsOfChildren.push(dataLocation);
         }
-    });
-
-    // for every child location get nested data locations of children
-    dataLocationsOfChildren.forEach((dataLocationOfChildren: string) => {
-        const dataLocation: string = `${dataLocationOfChildren}.${propsKeyword}`;
-        const subData: any = get(data, dataLocation);
-        const childOption: ChildOptionItem = getChildOptionBySchemaId(
-            get(data, `${dataLocationOfChildren}.${idKeyword}`),
-            childOptions
-        );
-        const nestedDataLocationsOfChildren: string[] = getDataLocationsOfChildren(
-            get(childOption, "schema", schema),
-            subData,
-            childOptions
-        );
-
-        nestedDataLocationsOfChildren.forEach((nestedDataLocationOfChildren: string) => {
-            dataLocationsOfChildren.push(
-                `${dataLocation}.${nestedDataLocationOfChildren}`
-            );
-        });
     });
 
     return dataLocationsOfChildren.map((dataLocationOfChildren: string) => {
@@ -357,12 +370,16 @@ function isAdditionalProperty(dataLocationSegment: string, schema: any): boolean
     return !enumeratedKeys.includes(dataLocationSegment);
 }
 
-class SchemaLocation {
+export class SchemaLocation {
     private childrenLocations: string[];
+    private objectLocations: string[];
+    private arrayLocations: string[];
     private schemaLocations: string[];
 
     constructor(schema: any) {
         this.childrenLocations = [];
+        this.objectLocations = [];
+        this.arrayLocations = [];
         this.schemaLocations = this.getSchemaLocationsFromSchema(schema);
     }
 
@@ -372,6 +389,14 @@ class SchemaLocation {
 
     public getSchemaLocations(): string[] {
         return this.schemaLocations;
+    }
+
+    public getObjectLocations(): string[] {
+        return this.objectLocations;
+    }
+
+    public getArrayLocations(): string[] {
+        return this.arrayLocations;
     }
 
     /**
@@ -437,6 +462,8 @@ class SchemaLocation {
                 this.childrenLocations.push(locationSegments.join("."));
                 return locations;
             case DataType.array:
+                this.arrayLocations.push(locationSegments.join("."));
+
                 return this.getSchemaLocationsFromSchemaItem(
                     get(schema, itemsKeyword),
                     locations.concat(locationSegments.concat(itemsKeyword).join(".")),
@@ -472,6 +499,8 @@ class SchemaLocation {
                         )
                     );
                 }
+
+                this.objectLocations.push(locationSegments.join("."));
 
                 return objectSchemaLocations;
         }

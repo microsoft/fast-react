@@ -1,15 +1,24 @@
 import "jest";
 import {
-    getDataWithDuplicate,
-    getNavigationFromData,
-    getUpdatedData,
+    ComponentDataNavigation,
+    ComponentNavigation,
+    ComponentSchemaNavigation,
+    getDragHoverState,
+    getNavigation,
+    getNavigationFromComponent,
+    getNavigationFromComponentData,
+    getNavigationFromComponentSchema,
+    ReactChildren,
+    ReactComponent,
+    ReactComponentProps,
+    TreeNavigationConfig,
 } from "./navigation.utilities";
-import { NavigationDataType, TreeNavigation } from "./navigation.props";
+import { NavigationDataType, NavigationState, TreeNavigation } from "./navigation.props";
 import { ChildOptionItem } from "../data-utilities";
 
 import noChildrenSchema from "../../app/configs/no-children.schema.json";
 import childrenSchema from "../../app/configs/children.schema.json";
-import { VerticalDragDirection } from "./navigation-tree-item.props";
+import { TargetPosition } from "../data-utilities/relocate";
 
 const childOptions: ChildOptionItem[] = [
     {
@@ -25,1217 +34,582 @@ const childOptions: ChildOptionItem[] = [
 /**
  * Gets the navigation
  */
-describe("getNavigationFromData", () => {
-    test("should return a single item if no data is passed", () => {
-        expect(getNavigationFromData({}, {}, [])).toEqual({
-            dataLocation: "",
-            items: void 0,
-            text: "Undefined",
-            type: NavigationDataType.object,
-        });
-    });
-    test("should return a single item if a single string child has been passed", () => {
-        const childrenText: string = "Foo";
-        const data: any = {
-            children: childrenText,
-        };
-        const navigationFromData: TreeNavigation[] | void = getNavigationFromData(
-            data,
-            childrenSchema,
-            childOptions
-        ).items;
-        expect(navigationFromData).toHaveLength(1);
-        expect(navigationFromData[0].items).toHaveLength(1);
-        expect(navigationFromData[0].dataLocation).toEqual("children");
-        expect(navigationFromData[0].text).toEqual(
-            childrenSchema.reactProperties.children.title
-        );
-        expect(navigationFromData[0].type).toEqual(NavigationDataType.children);
-        expect(navigationFromData[0].items[0].items).toEqual(void 0);
-        expect(navigationFromData[0].items[0].dataLocation).toEqual("children");
-        expect(navigationFromData[0].items[0].text).toEqual(childrenText);
-        expect(navigationFromData[0].items[0].type).toEqual(
-            NavigationDataType.primitiveChild
-        );
-    });
-    test("should return a single item if a single child has been passed", () => {
-        const data: any = {
-            children: {
-                id: childOptions[0].schema.id,
-                props: {},
+describe("getNavigation", () => {
+    test("should get the navigation of a component containing a single primitive", () => {
+        const navigation: TreeNavigationConfig = getNavigation(
+            {
+                children: "a",
             },
-        };
-
-        const navigationFromData: TreeNavigation[] | void = getNavigationFromData(
-            data,
-            childrenSchema,
-            childOptions
-        ).items;
-        expect(navigationFromData).toHaveLength(1);
-        expect(navigationFromData[0].items).toHaveLength(1);
-        expect(navigationFromData[0].dataLocation).toEqual("children");
-        expect(navigationFromData[0].text).toEqual(
-            childrenSchema.reactProperties.children.title
+            {
+                type: "object",
+                reactProperties: {
+                    children: {
+                        type: "children",
+                    },
+                    otherChildren: {
+                        type: "children",
+                    },
+                },
+            }
         );
-        expect(navigationFromData[0].type).toEqual(NavigationDataType.children);
-        expect(navigationFromData[0].items[0].items).toEqual(void 0);
-        expect(navigationFromData[0].items[0].dataLocation).toEqual("children.props");
-        expect(navigationFromData[0].items[0].text).toEqual(childOptions[0].schema.title);
-        expect(navigationFromData[0].items[0].type).toEqual(NavigationDataType.component);
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(4);
+        expect(navigation[0][navigationKeys[3]].text).toEqual("a");
+        expect(navigation[0][navigationKeys[3]].relativeDataLocation).toEqual("children");
+        expect(navigation[0][navigationKeys[3]].parent).toEqual(navigationKeys[1]);
     });
-    test("should return multiple items if multiple children have been passed", () => {
-        const childrenText: string = "Bar";
-        const data: any = {
+    test("should get the navigation of a componant containing multiple primitives", () => {
+        const navigation: TreeNavigationConfig = getNavigation(
+            {
+                children: ["a", "b"],
+            },
+            {
+                type: "object",
+                reactProperties: {
+                    children: {
+                        type: "children",
+                    },
+                    otherChildren: {
+                        type: "children",
+                    },
+                },
+            }
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(5);
+        expect(navigation[0][navigationKeys[3]].text).toEqual("a");
+        expect(navigation[0][navigationKeys[3]].relativeDataLocation).toEqual(
+            "children[0]"
+        );
+        expect(navigation[0][navigationKeys[3]].parent).toEqual(navigationKeys[1]);
+        expect(navigation[0][navigationKeys[4]].text).toEqual("b");
+        expect(navigation[0][navigationKeys[4]].relativeDataLocation).toEqual(
+            "children[1]"
+        );
+        expect(navigation[0][navigationKeys[4]].parent).toEqual(navigationKeys[1]);
+    });
+    test("should get the navigation of a component containing a single child component", () => {
+        const navigation: TreeNavigationConfig = getNavigation(
+            {
+                children: {
+                    id: childOptions[0].schema.id,
+                    props: {},
+                },
+            },
+            childOptions[1].schema,
+            childOptions
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(4);
+        expect(navigation[0][navigationKeys[0]].parent).toEqual(undefined);
+        expect(navigation[0][navigationKeys[0]].items).toEqual([
+            navigationKeys[1],
+            navigationKeys[2],
+        ]);
+        expect(navigation[0][navigationKeys[1]].parent).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[1]].items).toEqual([navigationKeys[3]]);
+        expect(navigation[0][navigationKeys[2]].parent).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[3]].parent).toEqual(navigationKeys[1]);
+    });
+    test("should get the navigation of a component containing nested child components", () => {
+        const navigation: TreeNavigationConfig = getNavigation(
+            {
+                children: {
+                    id: childOptions[1].schema.id,
+                    props: {
+                        children: {
+                            id: childOptions[0].schema.id,
+                            props: {},
+                        },
+                    },
+                },
+            },
+            childOptions[1].schema,
+            childOptions
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(7);
+        expect(navigation[0][navigationKeys[0]].parent).toEqual(undefined);
+        expect(navigation[0][navigationKeys[0]].items).toEqual([
+            navigationKeys[1],
+            navigationKeys[2],
+        ]);
+        expect(navigation[0][navigationKeys[1]].parent).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[1]].items).toEqual([navigationKeys[3]]);
+        expect(navigation[0][navigationKeys[2]].parent).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[3]].parent).toEqual(navigationKeys[1]);
+        expect(navigation[1]).toEqual(navigationKeys[0]);
+    });
+    test("should get the navigation of a component with complex objects containing nested child components", () => {
+        const navigation: TreeNavigationConfig = getNavigation(
+            {
+                a: {
+                    b: {
+                        id: childOptions[0].schema.id,
+                        props: {},
+                    },
+                },
+            },
+            {
+                type: "object",
+                properties: {
+                    a: {
+                        type: "object",
+                        reactProperties: {
+                            b: {
+                                type: "children",
+                            },
+                        },
+                    },
+                },
+            },
+            childOptions
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(4);
+        expect(navigation[0][navigationKeys[0]].parent).toEqual(undefined);
+        expect(navigation[0][navigationKeys[0]].items).toEqual([navigationKeys[2]]);
+        expect(navigation[0][navigationKeys[1]].parent).toEqual(navigationKeys[2]);
+        expect(navigation[0][navigationKeys[1]].items).toEqual([navigationKeys[3]]);
+        expect(navigation[0][navigationKeys[2]].parent).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[2]].items).toEqual([navigationKeys[1]]);
+        expect(navigation[0][navigationKeys[3]].parent).toEqual(navigationKeys[1]);
+        expect(navigation[0][navigationKeys[3]].items).toEqual([]);
+        expect(navigation[1]).toEqual(navigationKeys[0]);
+    });
+    test("should return multiple properties if a data blob with multiple components have nested components has been passed", () => {
+        const childrenComponent: ReactComponentProps = {
             children: [
                 {
-                    id: childOptions[0].schema.id,
-                    props: {},
+                    id: childOptions[1].schema.id,
+                    props: {
+                        children: {
+                            id: childOptions[0].schema.id,
+                            props: {},
+                        },
+                    },
                 },
-                {
-                    id: childOptions[0].schema.id,
-                    props: {},
-                },
-                childrenText,
+                "Foo",
             ],
         };
-
-        const navigationFromData: TreeNavigation[] | void = getNavigationFromData(
+        const data: any = childrenComponent;
+        const navigation: TreeNavigationConfig = getNavigation(
             data,
             childrenSchema,
             childOptions
-        ).items;
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
 
-        expect(navigationFromData).toHaveLength(1);
-        expect(navigationFromData[0].text).toEqual(
-            childrenSchema.reactProperties.children.title
-        );
-        expect(navigationFromData[0].type).toEqual(NavigationDataType.children);
-        expect(navigationFromData[0].dataLocation).toEqual("children");
-        expect(navigationFromData[0].items).toHaveLength(3);
-        expect(navigationFromData[0].items[0].text).toEqual(childOptions[0].schema.title);
-        expect(navigationFromData[0].items[0].type).toEqual(NavigationDataType.component);
-        expect(navigationFromData[0].items[0].dataLocation).toEqual("children[0].props");
-        expect(navigationFromData[0].items[0].items).toEqual(void 0);
-        expect(navigationFromData[0].items[1].text).toEqual(childOptions[0].schema.title);
-        expect(navigationFromData[0].items[1].type).toEqual(NavigationDataType.component);
-        expect(navigationFromData[0].items[1].dataLocation).toEqual("children[1].props");
-        expect(navigationFromData[0].items[1].items).toEqual(void 0);
-        expect(navigationFromData[0].items[2].text).toEqual(childrenText);
-        expect(navigationFromData[0].items[2].type).toEqual(
-            NavigationDataType.primitiveChild
-        );
-        expect(navigationFromData[0].items[2].dataLocation).toEqual("children[2]");
-        expect(navigationFromData[0].items[2].items).toEqual(undefined);
+        expect(navigationKeys).toHaveLength(8);
+        expect(navigation[0][navigationKeys[0]].parent).toEqual(undefined);
+        expect(navigation[0][navigationKeys[0]].items).toEqual([
+            navigationKeys[1],
+            navigationKeys[2],
+        ]);
+        expect(navigation[0][navigationKeys[1]].parent).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[1]].items).toEqual([
+            navigationKeys[3],
+            navigationKeys[7],
+        ]);
+        expect(navigation[0][navigationKeys[2]].parent).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[2]].items).toEqual([]);
+        expect(navigation[0][navigationKeys[3]].parent).toEqual(navigationKeys[1]);
+        expect(navigation[0][navigationKeys[3]].items).toEqual([
+            navigationKeys[4],
+            navigationKeys[5],
+        ]);
+        expect(navigation[0][navigationKeys[4]].parent).toEqual(navigationKeys[3]);
+        expect(navigation[0][navigationKeys[4]].items).toEqual([navigationKeys[6]]);
+        expect(navigation[0][navigationKeys[5]].parent).toEqual(navigationKeys[3]);
+        expect(navigation[0][navigationKeys[5]].items).toEqual([]);
+        expect(navigation[0][navigationKeys[6]].parent).toEqual(navigationKeys[4]);
+        expect(navigation[0][navigationKeys[6]].items).toEqual([]);
+        expect(navigation[0][navigationKeys[7]].parent).toEqual(navigationKeys[1]);
+        expect(navigation[0][navigationKeys[7]].items).toEqual([]);
     });
-    test("should return a nested item if nested children have been passed", () => {
-        const data: any = {
-            children: {
-                id: childOptions[1].schema.id,
-                props: {
-                    children: {
-                        id: childOptions[0].schema.id,
-                        props: {},
-                    },
-                },
-            },
-        };
+});
 
-        const navigationFromData: TreeNavigation[] | void = getNavigationFromData(
-            data,
-            childrenSchema,
-            childOptions
-        ).items;
-        expect(navigationFromData).toHaveLength(1);
-        expect(navigationFromData[0].dataLocation).toEqual("children");
-        expect(navigationFromData[0].text).toEqual(
-            childrenSchema.reactProperties.children.title
-        );
-        expect(navigationFromData[0].type).toEqual(NavigationDataType.children);
-        expect(navigationFromData[0].items).toHaveLength(1);
-        expect(navigationFromData[0].items[0].dataLocation).toEqual("children.props");
-        expect(navigationFromData[0].items[0].text).toEqual(childOptions[1].schema.title);
-        expect(navigationFromData[0].items[0].type).toEqual(NavigationDataType.component);
-        expect(navigationFromData[0].items[0].items).toHaveLength(1);
-        expect(navigationFromData[0].items[0].items[0].dataLocation).toEqual(
-            "children.props.children"
-        );
-        expect(navigationFromData[0].items[0].items[0].text).toEqual(
-            childOptions[1].schema.reactProperties.children.title
-        );
-        expect(navigationFromData[0].items[0].items[0].type).toEqual(
-            NavigationDataType.children
-        );
-        expect(navigationFromData[0].items[0].items[0].items).toHaveLength(1);
-        expect(navigationFromData[0].items[0].items[0].items[0].dataLocation).toEqual(
-            "children.props.children.props"
-        );
-        expect(navigationFromData[0].items[0].items[0].items[0].text).toEqual(
-            childOptions[0].schema.title
-        );
-        expect(navigationFromData[0].items[0].items[0].items[0].type).toEqual(
+/**
+ * Gets the navigation from a component
+ */
+describe("getNavigationFromComponent", () => {
+    test("should get the navigation from a component with no properties", () => {
+        const navigation: ComponentNavigation = getNavigationFromComponent({}, {});
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(1);
+        expect(navigation[0][navigationKeys[0]].self).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual("");
+        expect(navigation[0][navigationKeys[0]].schemaLocation).toEqual("");
+        expect(navigation[0][navigationKeys[0]].type).toEqual(
             NavigationDataType.component
         );
-        expect(navigationFromData[0].items[0].items[0].items[0].items).toEqual(void 0);
+        expect(navigation[1]).toEqual([]);
+        expect(navigation[2]).toEqual([]);
+        expect(navigation[3]).toEqual(navigationKeys[0]);
     });
-    test("should return multiple nested items if multiple nested children have been passed", () => {
-        const data: any = {
-            children: {
-                id: childOptions[1].schema.id,
-                props: {
-                    children: [
-                        {
-                            id: childOptions[0].schema.id,
-                            props: {},
-                        },
-                        {
-                            id: childOptions[0].schema.id,
-                            props: {},
-                        },
-                    ],
-                },
-            },
-        };
-
-        const navigationFromData: TreeNavigation[] | void = getNavigationFromData(
-            data,
-            childrenSchema,
-            childOptions
-        ).items;
-        expect(navigationFromData).toHaveLength(1);
-        expect(navigationFromData[0].dataLocation).toEqual("children");
-        expect(navigationFromData[0].text).toEqual(
-            childrenSchema.reactProperties.children.title
-        );
-        expect(navigationFromData[0].type).toEqual(NavigationDataType.children);
-        expect(navigationFromData[0].items).toHaveLength(1);
-        expect(navigationFromData[0].items[0].dataLocation).toEqual("children.props");
-        expect(navigationFromData[0].items[0].text).toEqual(childOptions[1].schema.title);
-        expect(navigationFromData[0].items[0].type).toEqual(NavigationDataType.component);
-        expect(navigationFromData[0].items[0].items).toHaveLength(1);
-        expect(navigationFromData[0].items[0].items[0].dataLocation).toEqual(
-            "children.props.children"
-        );
-        expect(navigationFromData[0].items[0].items[0].text).toEqual(
-            childrenSchema.reactProperties.children.title
-        );
-        expect(navigationFromData[0].items[0].items[0].type).toEqual(
-            NavigationDataType.children
-        );
-        expect(navigationFromData[0].items[0].items[0].items).toHaveLength(2);
-        expect(navigationFromData[0].items[0].items[0].items[0].dataLocation).toEqual(
-            "children.props.children[0].props"
-        );
-        expect(navigationFromData[0].items[0].items[0].items[0].text).toEqual(
-            childOptions[0].schema.title
-        );
-        expect(navigationFromData[0].items[0].items[0].items[0].type).toEqual(
-            NavigationDataType.component
-        );
-        expect(navigationFromData[0].items[0].items[0].items[0].items).toEqual(void 0);
-        expect(navigationFromData[0].items[0].items[0].items[1].dataLocation).toEqual(
-            "children.props.children[1].props"
-        );
-        expect(navigationFromData[0].items[0].items[0].items[1].text).toEqual(
-            childOptions[0].schema.title
-        );
-        expect(navigationFromData[0].items[0].items[0].items[1].type).toEqual(
-            NavigationDataType.component
-        );
-        expect(navigationFromData[0].items[0].items[0].items[1].items).toEqual(void 0);
-    });
-    test("should return an object if an object is passed", () => {
-        const data: any = {
-            testObject: {
-                foo: "bar",
-            },
-        };
-
-        const navigationFromData: TreeNavigation[] | void = getNavigationFromData(
-            data,
+    test("should get the navigation from a component with child components", () => {
+        const navigation: ComponentNavigation = getNavigationFromComponent(
             {
-                title: "root title",
+                children: {
+                    id: "a",
+                    props: {},
+                },
+            },
+            {
                 type: "object",
-                properties: {
-                    testObject: {
-                        title: "testObject title",
-                        type: "object",
-                        properties: {
-                            foo: {
-                                title: "foo title",
-                                type: "string",
-                            },
-                        },
+                reactProperties: {
+                    children: {
+                        type: "children",
+                    },
+                    otherChildren: {
+                        type: "children",
+                    },
+                },
+            }
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(3);
+        expect(navigation[0][navigationKeys[0]].schemaLocation).toEqual("");
+        expect(navigation[0][navigationKeys[0]].items).toEqual([
+            navigationKeys[1],
+            navigationKeys[2],
+        ]);
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual("");
+        expect(navigation[0][navigationKeys[1]].schemaLocation).toEqual(
+            "reactProperties.children"
+        );
+        expect(navigation[0][navigationKeys[1]].parent).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[1]].relativeDataLocation).toEqual(null);
+        expect(navigation[0][navigationKeys[2]].schemaLocation).toEqual(
+            "reactProperties.otherChildren"
+        );
+        expect(navigation[0][navigationKeys[2]].parent).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[2]].relativeDataLocation).toEqual(null);
+        expect(navigation[1]).toEqual([navigationKeys[2], navigationKeys[1]]);
+        expect(navigation[2]).toEqual(["children"]);
+        expect(navigation[3]).toEqual(navigationKeys[0]);
+    });
+});
+
+/**
+ * Gets the navigation from a schema
+ */
+describe("getNavigationFromComponentSchema", () => {
+    test("should return an empty object", () => {
+        expect(getNavigationFromComponentSchema({ type: "string" })[0]).toEqual({});
+    });
+    test("should return children locations", () => {
+        const navigation: ComponentSchemaNavigation = getNavigationFromComponentSchema({
+            id: "a",
+            type: "object",
+            reactProperties: {
+                children: {
+                    type: "children",
+                },
+                otherChildren: {
+                    type: "children",
+                },
+            },
+        });
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(2);
+        expect(navigation[0][navigationKeys[0]].self).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[0]].type).toEqual(
+            NavigationDataType.children
+        );
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual(null);
+        expect(navigation[0][navigationKeys[0]].schemaLocation).toEqual(
+            "reactProperties.children"
+        );
+        expect(navigation[0][navigationKeys[1]].self).toEqual(navigationKeys[1]);
+        expect(navigation[0][navigationKeys[1]].type).toEqual(
+            NavigationDataType.children
+        );
+        expect(navigation[0][navigationKeys[1]].relativeDataLocation).toEqual(null);
+        expect(navigation[0][navigationKeys[1]].schemaLocation).toEqual(
+            "reactProperties.otherChildren"
+        );
+        expect(navigation[1]).toEqual([navigationKeys[1], navigationKeys[0]]);
+    });
+    test("should return array locations", () => {
+        const navigation: ComponentSchemaNavigation = getNavigationFromComponentSchema({
+            id: "a",
+            type: "object",
+            properties: {
+                array: {
+                    type: "array",
+                    items: {
+                        type: "string",
                     },
                 },
             },
-            childOptions
-        ).items;
-
-        expect(navigationFromData).toHaveLength(1);
-        expect(navigationFromData[0].text).toEqual("testObject title");
-        expect(navigationFromData[0].dataLocation).toEqual("testObject");
-        expect(navigationFromData[0].type).toEqual(NavigationDataType.object);
-        expect(navigationFromData[0].items).toEqual(void 0);
-    });
-    test("should return an array if an array is passed", () => {
-        const data: any = ["bar"];
-
-        const navigationFromData: TreeNavigation = getNavigationFromData(
-            data,
-            {
-                title: "root title",
-                type: "array",
-                items: {
-                    title: "foo title",
-                    type: "string",
-                },
-            },
-            childOptions
+        });
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+        expect(navigationKeys).toHaveLength(1);
+        expect(navigation[0][navigationKeys[0]].self).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[0]].type).toEqual(NavigationDataType.array);
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual(null);
+        expect(navigation[0][navigationKeys[0]].schemaLocation).toEqual(
+            "properties.array"
         );
-
-        expect(navigationFromData.text).toEqual("root title");
-        expect(navigationFromData.dataLocation).toEqual("");
-        expect(navigationFromData.type).toEqual(NavigationDataType.array);
-        expect(navigationFromData.items).toEqual(void 0);
+        expect(navigation[1]).toEqual([]);
     });
-    test("should return an array item with square brackets for the data location if an array item is passed", () => {
-        const data: any = [{ a: "bar" }];
-        const navigationFromData: TreeNavigation = getNavigationFromData(
-            data,
-            {
-                title: "root title",
-                type: "array",
-                items: {
-                    title: "foo title",
+    test("should return object locations", () => {
+        const navigation: ComponentSchemaNavigation = getNavigationFromComponentSchema({
+            id: "a",
+            type: "object",
+            properties: {
+                object: {
                     type: "object",
-                    properties: {
-                        a: {
-                            type: "string",
-                        },
-                    },
                 },
             },
-            childOptions
+        });
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+        expect(navigationKeys).toHaveLength(1);
+        expect(navigation[0][navigationKeys[0]].self).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[0]].type).toEqual(NavigationDataType.object);
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual(null);
+        expect(navigation[0][navigationKeys[0]].schemaLocation).toEqual(
+            "properties.object"
         );
-
-        expect(navigationFromData.items[0].dataLocation).toEqual("[0]");
-
-        const dataWithArrayInObject: any = {
-            foo: [
-                {
-                    a: "bar",
-                },
-            ],
-        };
-        const navigationFromDataArrayInObject: TreeNavigation = getNavigationFromData(
-            dataWithArrayInObject,
-            {
-                type: "object",
-                properties: {
-                    foo: {
-                        type: "array",
-                        items: {
-                            type: "object",
-                            properties: {
-                                a: {
-                                    type: "string",
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-            childOptions
-        );
-
-        expect(navigationFromDataArrayInObject.items[0].items[0].dataLocation).toEqual(
-            "foo[0]"
-        );
+        expect(navigation[1]).toEqual([]);
     });
-    test("should return deeply nested array items that terminate in a single children item", () => {
-        const data: any = {
-            children: {
-                id: childOptions[1].schema.id,
-                props: {
-                    children: [
-                        {
-                            id: childOptions[1].schema.id,
-                            props: {
-                                children: {
-                                    id: childOptions[1].schema.id,
-                                    props: {
-                                        children: [
-                                            {
-                                                id: childOptions[0].schema.id,
-                                                props: {},
-                                            },
-                                        ],
-                                    },
-                                },
-                            },
-                        },
-                        "Foo",
-                    ],
-                },
-            },
-        };
+});
 
-        const navigationFromData: TreeNavigation[] | void = getNavigationFromData(
+/**
+ * Gets the navigation from data
+ */
+describe("getNavigationFromComponentData", () => {
+    test("should return an single object if no data is passed", () => {
+        const navigation: ComponentDataNavigation = getNavigationFromComponentData(
+            {},
+            {}
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(1);
+        expect(navigation[0][navigationKeys[0]].self).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[0]].text).toEqual(undefined);
+        expect(navigation[0][navigationKeys[0]].type).toEqual(
+            NavigationDataType.component
+        );
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual("");
+        expect(navigation[1]).toEqual([]);
+        expect(navigation[2]).toEqual(navigationKeys[0]);
+    });
+    test("should return a single property if a data blob with a single primitive item has been passed", () => {
+        const children: ReactComponentProps = {
+            children: "Foo",
+        };
+        const data: any = children;
+        const navigation: ComponentDataNavigation = getNavigationFromComponentData(
             data,
-            childrenSchema,
-            childOptions
-        ).items;
+            childrenSchema
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
 
-        expect(navigationFromData[0].dataLocation).toEqual("children");
-        expect(navigationFromData[0].items[0].dataLocation).toEqual("children.props");
-        expect(navigationFromData[0].items[0].items[0].dataLocation).toEqual(
-            "children.props.children"
+        expect(navigationKeys).toHaveLength(1);
+        expect(navigation[0][navigationKeys[0]].self).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[0]].text).toEqual(childrenSchema.title);
+        expect(navigation[0][navigationKeys[0]].type).toEqual(
+            NavigationDataType.component
         );
-        expect(navigationFromData[0].items[0].items[0].items[0].dataLocation).toEqual(
-            "children.props.children[0].props"
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual("");
+        expect(navigation[1]).toEqual(["children"]);
+        expect(navigation[2]).toEqual(navigationKeys[0]);
+    });
+    test("should return a single property if a data blob with a multiple primitive items has been passed", () => {
+        const children: ReactComponentProps = {
+            children: ["Foo", "Bar"],
+        };
+        const data: any = children;
+        const navigation: ComponentDataNavigation = getNavigationFromComponentData(
+            data,
+            childrenSchema
         );
-        expect(navigationFromData[0].items[0].items[0].items[1].dataLocation).toEqual(
-            "children.props.children[1]"
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(1);
+        expect(navigation[0][navigationKeys[0]].self).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[0]].text).toEqual(childrenSchema.title);
+        expect(navigation[0][navigationKeys[0]].type).toEqual(
+            NavigationDataType.component
         );
-        expect(
-            navigationFromData[0].items[0].items[0].items[0].items[0].dataLocation
-        ).toEqual("children.props.children[0].props.children");
-        expect(
-            navigationFromData[0].items[0].items[0].items[0].items[0].items[0]
-                .dataLocation
-        ).toEqual("children.props.children[0].props.children.props");
-        expect(
-            navigationFromData[0].items[0].items[0].items[0].items[0].items[0].items[0]
-                .dataLocation
-        ).toEqual("children.props.children[0].props.children.props.children");
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual("");
+        expect(navigation[1]).toEqual(["children[0]", "children[1]"]);
+        expect(navigation[2]).toEqual(navigationKeys[0]);
+    });
+    test("should return a single property if a data blob with a sing component item has been passed", () => {
+        const children: ReactComponentProps = {
+            children: { id: "", props: {} },
+        };
+        const data: any = children;
+        const navigation: ComponentDataNavigation = getNavigationFromComponentData(
+            data,
+            childrenSchema
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(1);
+        expect(navigation[0][navigationKeys[0]].self).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[0]].text).toEqual(childrenSchema.title);
+        expect(navigation[0][navigationKeys[0]].type).toEqual(
+            NavigationDataType.component
+        );
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual("");
+        expect(navigation[1]).toEqual(["children"]);
+        expect(navigation[2]).toEqual(navigationKeys[0]);
+    });
+    test("should return a single property if a data blob with a multiple component items has been passed", () => {
+        const children: ReactComponentProps = {
+            children: [{ id: "", props: {} }, { id: "", props: {} }],
+        };
+        const data: any = children;
+        const navigation: ComponentDataNavigation = getNavigationFromComponentData(
+            data,
+            childrenSchema
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(1);
+        expect(navigation[0][navigationKeys[0]].self).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[0]].text).toEqual(childrenSchema.title);
+        expect(navigation[0][navigationKeys[0]].type).toEqual(
+            NavigationDataType.component
+        );
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual("");
+        expect(navigation[1]).toEqual(["children[0]", "children[1]"]);
+        expect(navigation[2]).toEqual(navigationKeys[0]);
+    });
+    test("should return a single property if a data blob with a single component item has been passed", () => {
+        const childrenComponent: ReactComponentProps = {};
+        const data: any = childrenComponent;
+        const navigation: ComponentDataNavigation = getNavigationFromComponentData(
+            data,
+            childOptions[0].schema
+        );
+        const navigationKeys: string[] = Object.keys(navigation[0]);
+
+        expect(navigationKeys).toHaveLength(1);
+        expect(navigation[0][navigationKeys[0]].self).toEqual(navigationKeys[0]);
+        expect(navigation[0][navigationKeys[0]].text).toEqual(
+            childOptions[0].schema.title
+        );
+        expect(navigation[0][navigationKeys[0]].type).toEqual(
+            NavigationDataType.component
+        );
+        expect(navigation[0][navigationKeys[0]].relativeDataLocation).toEqual("");
+        expect(navigation[1]).toEqual([]);
+        expect(navigation[2]).toEqual(navigationKeys[0]);
     });
 });
 
-/**
- * Gets updated data by adding data
- */
-describe("getUpdatedData", () => {
-    describe("should return updated data when moving a children item to a component", () => {
-        test("when the children property contains a string and targets a string", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    foo: "b",
-                    bar: "a",
-                },
-                targetDataLocation: "foo",
-                sourceDataLocation: "bar",
-                type: NavigationDataType.primitiveChild,
-                direction: VerticalDragDirection.center,
-            });
+describe("getDragHoverState", () => {
+    const currentState: TreeNavigation = {
+        a: {
+            self: "a",
+            parent: "root",
+            relativeDataLocation: "children[0]",
+            schemaLocation: "",
+            text: "A",
+            type: NavigationDataType.component,
+            items: [],
+        },
+        b: {
+            self: "b",
+            parent: "root",
+            relativeDataLocation: "children[1]",
+            schemaLocation: null,
+            text: "B",
+            type: NavigationDataType.component,
+            items: ["bChildren"],
+        },
+        c: {
+            self: "c",
+            parent: "root",
+            relativeDataLocation: "children[2]",
+            schemaLocation: null,
+            text: "C",
+            type: NavigationDataType.component,
+            items: [],
+        },
+        bChildren: {
+            self: "bChildren",
+            parent: "b children",
+            relativeDataLocation: "",
+            schemaLocation: "reactProperties.children",
+            text: "Children",
+            type: NavigationDataType.children,
+            items: [],
+        },
+        root: {
+            self: "root",
+            relativeDataLocation: "",
+            schemaLocation: "",
+            text: "Root",
+            type: NavigationDataType.component,
+            items: ["a", "b", "c"],
+        },
+    };
 
-            expect(updatedData).toEqual({ foo: ["a", "b"] });
-        });
-        test("when the children property contains a string and targets a react child", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    foo: {
-                        id: "b",
-                        props: {},
-                    },
-                    bar: "a",
-                },
-                targetDataLocation: "foo",
-                sourceDataLocation: "bar",
-                type: NavigationDataType.primitiveChild,
-                direction: VerticalDragDirection.center,
-            });
+    test("should place the item inserted into the component", () => {
+        const updatedState: Partial<NavigationState> = getDragHoverState(
+            currentState,
+            "b", // target
+            "a", // source
+            TargetPosition.insert
+        );
 
-            expect(updatedData).toEqual({
-                foo: [
-                    "a",
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                ],
-            });
-        });
-        test("when the children property contains a react child and targets a react child", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    foo: {
-                        id: "bar",
-                        props: {},
-                    },
-                    bar: {
-                        id: "a",
-                    },
-                },
-                targetDataLocation: "foo",
-                sourceDataLocation: "bar",
-                type: NavigationDataType.primitiveChild,
-                direction: VerticalDragDirection.center,
-            });
-
-            expect(updatedData).toEqual({
-                foo: [
-                    {
-                        id: "a",
-                    },
-                    {
-                        id: "bar",
-                        props: {},
-                    },
-                ],
-            });
-        });
-        test("when the children property contains a react child and targets a string", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    foo: "a",
-                    bar: {
-                        id: "b",
-                        props: {},
-                    },
-                },
-                targetDataLocation: "foo",
-                sourceDataLocation: "bar",
-                type: NavigationDataType.primitiveChild,
-                direction: VerticalDragDirection.center,
-            });
-
-            expect(updatedData).toEqual({
-                foo: [
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                    "a",
-                ],
-            });
-        });
-        test("when the children property is undefined", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    bar: {
-                        id: "b",
-                        props: {},
-                    },
-                },
-                targetDataLocation: "foo",
-                sourceDataLocation: "bar",
-                type: NavigationDataType.children,
-                direction: VerticalDragDirection.center,
-            });
-
-            expect(updatedData).toEqual({
-                foo: {
-                    id: "b",
-                    props: {},
-                },
-            });
-        });
-        test("when the children property is in an array and targets on a single child", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    foo: ["a", "b"],
-                    bar: {
-                        id: "b",
-                        props: {},
-                    },
-                },
-                targetDataLocation: "bar",
-                sourceDataLocation: "foo.1",
-                type: NavigationDataType.primitiveChild,
-                direction: VerticalDragDirection.center,
-            });
-
-            expect(updatedData).toEqual({
-                foo: "a",
-                bar: [
-                    "b",
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                ],
-            });
-        });
-        test("when the children property is in an array and targets above a single child", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    foo: ["a", "b"],
-                    bar: {
-                        id: "b",
-                        props: {},
-                    },
-                },
-                targetDataLocation: "bar",
-                sourceDataLocation: "foo.1",
-                type: NavigationDataType.component,
-                direction: VerticalDragDirection.up,
-            });
-
-            expect(updatedData).toEqual({
-                foo: "a",
-                bar: [
-                    "b",
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                ],
-            });
-        });
-        test("when the children property is in an array and targets below a single child", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    foo: ["a", "b"],
-                    bar: {
-                        id: "b",
-                        props: {},
-                    },
-                },
-                targetDataLocation: "bar",
-                sourceDataLocation: "foo.1",
-                type: NavigationDataType.component,
-                direction: VerticalDragDirection.down,
-            });
-
-            expect(updatedData).toEqual({
-                foo: "a",
-                bar: [
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                    "b",
-                ],
-            });
-        });
-        test("when the children property is in an array and the target is in a different array", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    foo: ["a", "b"],
-                    bar: [
-                        {
-                            id: "b",
-                            props: {},
-                        },
-                        "c",
-                    ],
-                },
-                targetDataLocation: "bar",
-                sourceDataLocation: "foo.1",
-                type: NavigationDataType.children,
-                direction: VerticalDragDirection.center,
-            });
-
-            expect(updatedData).toEqual({
-                foo: "a",
-                bar: [
-                    "b",
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                    "c",
-                ],
-            });
-        });
-        test("when the children property is in an array and the target is above an item in a different array", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    foo: ["a", "b"],
-                    bar: [
-                        {
-                            id: "b",
-                            props: {},
-                        },
-                        "c",
-                    ],
-                },
-                targetDataLocation: "bar.1",
-                sourceDataLocation: "foo.1",
-                type: NavigationDataType.component,
-                direction: VerticalDragDirection.up,
-            });
-
-            expect(updatedData).toEqual({
-                foo: "a",
-                bar: [
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                    "b",
-                    "c",
-                ],
-            });
-        });
-        test("when the children property is in an array and the target is below an item in a different array", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    foo: ["a", "b"],
-                    bar: [
-                        {
-                            id: "b",
-                            props: {},
-                        },
-                        "c",
-                    ],
-                },
-                targetDataLocation: "bar.1",
-                sourceDataLocation: "foo.1",
-                type: NavigationDataType.component,
-                direction: VerticalDragDirection.down,
-            });
-
-            expect(updatedData).toEqual({
-                foo: "a",
-                bar: [
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                    "c",
-                    "b",
-                ],
-            });
-        });
-        test("when the children property is not in an array and targets a single child", () => {
-            const updatedData: any = getUpdatedData({
-                data: {
-                    children: {
-                        id: childOptions[1].schema.id,
-                        props: {
-                            children: {
-                                id: childOptions[0].schema.id,
-                                props: {},
-                            },
-                        },
-                    },
-                },
-                targetDataLocation: "children",
-                sourceDataLocation: "children.props.children",
-                type: NavigationDataType.children,
-                direction: VerticalDragDirection.center,
-            });
-
-            expect(updatedData).toEqual({
-                children: [
-                    {
-                        id: childOptions[0].schema.id,
-                        props: {},
-                    },
-                    {
-                        id: childOptions[1].schema.id,
-                        props: {},
-                    },
-                ],
-            });
-        });
+        expect(updatedState.navigation.root.items).toEqual(["b", "c"]);
+        expect(updatedState.navigation.a.parent).toEqual("bChildren");
+        expect(updatedState.navigation.bChildren.items).toEqual(["a"]);
     });
-    describe("should return updated data when moving a children item adjacent to a children item", () => {
-        describe("containing string(s)", () => {
-            test("when the children item targets a different children property above the existing item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: "b",
-                        bar: "a",
-                    },
-                    targetDataLocation: "foo",
-                    sourceDataLocation: "bar",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.up,
-                });
+    test("should place the item after the component", () => {
+        const updatedState: Partial<NavigationState> = getDragHoverState(
+            currentState,
+            "a", // target
+            "b", // source
+            TargetPosition.append
+        );
 
-                expect(updatedData.foo).toEqual(["a", "b"]);
-            });
-            test("when the children item targets a different children property above the existing item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: "b",
-                        bar: "a",
-                    },
-                    targetDataLocation: "foo",
-                    sourceDataLocation: "bar",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.down,
-                });
+        expect(updatedState.navigation.root.items).toEqual(["a", "c", "b"]);
+        expect(updatedState.navigation.a.parent).toEqual("root");
+    });
+    test("should place the item before the component", () => {
+        const updatedState: Partial<NavigationState> = getDragHoverState(
+            currentState,
+            "c", // target
+            "b", // source
+            TargetPosition.prepend
+        );
 
-                expect(updatedData.foo).toEqual(["b", "a"]);
-            });
-            test("when the children item targets a different children property array above an item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: ["a", "b", "c"],
-                        bar: "d",
-                    },
-                    targetDataLocation: "foo.1",
-                    sourceDataLocation: "bar",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.up,
-                });
-
-                expect(updatedData).toEqual({ foo: ["a", "d", "b", "c"] });
-            });
-            test("when the children item targets a different children property array below an item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: ["a", "b", "c"],
-                        bar: "d",
-                    },
-                    targetDataLocation: "foo.1",
-                    sourceDataLocation: "bar",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.down,
-                });
-
-                expect(updatedData).toEqual({ foo: ["a", "b", "d", "c"] });
-            });
-            test("when the children item targets the same children property array", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: ["a", "b", "c"],
-                    },
-                    targetDataLocation: "foo.0",
-                    sourceDataLocation: "foo.2",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.down,
-                });
-
-                expect(updatedData).toEqual({ foo: ["a", "c", "b"] });
-            });
-            test("when the children item targets the same children property array above an item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: ["a", "b", "c"],
-                    },
-                    targetDataLocation: "foo.0",
-                    sourceDataLocation: "foo.2",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.up,
-                });
-
-                expect(updatedData).toEqual({ foo: ["c", "a", "b"] });
-            });
-            test("when the children item targets the same children property array below an item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: ["a", "b", "c"],
-                    },
-                    targetDataLocation: "foo.0",
-                    sourceDataLocation: "foo.2",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.down,
-                });
-
-                expect(updatedData.foo).toEqual(["a", "c", "b"]);
-            });
-            test("when the children items target the same children property array below the source item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: ["a", "b", "c"],
-                    },
-                    targetDataLocation: "foo.1",
-                    sourceDataLocation: "foo.0",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.down,
-                });
-
-                expect(updatedData.foo).toEqual(["b", "a", "c"]);
-            });
-            test("when the children items target the same children property array at the end of the source item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: ["a", "b", "c"],
-                    },
-                    targetDataLocation: "foo.2",
-                    sourceDataLocation: "foo.0",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.down,
-                });
-
-                expect(updatedData.foo).toEqual(["b", "c", "a"]);
-            });
-        });
-        describe("containing children item(s)", () => {
-            test("when the children item targets a different children property above the existing item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: {
-                            id: "b",
-                            props: {},
-                        },
-                        bar: {
-                            id: "a",
-                            props: {},
-                        },
-                    },
-                    targetDataLocation: "foo",
-                    sourceDataLocation: "bar",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.up,
-                });
-
-                expect(updatedData).toEqual({
-                    foo: [
-                        {
-                            id: "a",
-                            props: {},
-                        },
-                        {
-                            id: "b",
-                            props: {},
-                        },
-                    ],
-                });
-            });
-            test("when the children item targets a different children property above the existing item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: {
-                            id: "b",
-                            props: {},
-                        },
-                        bar: {
-                            id: "a",
-                            props: {},
-                        },
-                    },
-                    targetDataLocation: "foo",
-                    sourceDataLocation: "bar",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.down,
-                });
-
-                expect(updatedData).toEqual({
-                    foo: [
-                        {
-                            id: "b",
-                            props: {},
-                        },
-                        {
-                            id: "a",
-                            props: {},
-                        },
-                    ],
-                });
-            });
-            test("when the children item targets a different children property array", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: [
-                            {
-                                id: "b",
-                                props: {},
-                            },
-                            {
-                                id: "c",
-                                props: {},
-                            },
-                        ],
-                        bar: {
-                            id: "a",
-                            props: {},
-                        },
-                    },
-                    targetDataLocation: "foo.1",
-                    sourceDataLocation: "bar",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.down,
-                });
-
-                expect(updatedData).toEqual({
-                    foo: [
-                        {
-                            id: "b",
-                            props: {},
-                        },
-                        {
-                            id: "c",
-                            props: {},
-                        },
-                        {
-                            id: "a",
-                            props: {},
-                        },
-                    ],
-                });
-            });
-            test("when the children item targets a different children property array above an item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: [
-                            {
-                                id: "a",
-                                props: {},
-                            },
-                            {
-                                id: "b",
-                                props: {},
-                            },
-                            {
-                                id: "c",
-                                props: {},
-                            },
-                        ],
-                        bar: {
-                            id: "d",
-                            props: {},
-                        },
-                    },
-                    targetDataLocation: "foo.1",
-                    sourceDataLocation: "bar",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.up,
-                });
-
-                expect(updatedData).toEqual({
-                    foo: [
-                        {
-                            id: "a",
-                            props: {},
-                        },
-                        {
-                            id: "d",
-                            props: {},
-                        },
-                        {
-                            id: "b",
-                            props: {},
-                        },
-                        {
-                            id: "c",
-                            props: {},
-                        },
-                    ],
-                });
-            });
-            test("when the children item targets a different children property array below an item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: [
-                            {
-                                id: "a",
-                                props: {},
-                            },
-                            {
-                                id: "b",
-                                props: {},
-                            },
-                            {
-                                id: "c",
-                                props: {},
-                            },
-                        ],
-                        bar: {
-                            id: "d",
-                            props: {},
-                        },
-                    },
-                    targetDataLocation: "foo.1",
-                    sourceDataLocation: "bar",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.down,
-                });
-
-                expect(updatedData.foo).toEqual([
-                    {
-                        id: "a",
-                        props: {},
-                    },
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                    {
-                        id: "d",
-                        props: {},
-                    },
-                    {
-                        id: "c",
-                        props: {},
-                    },
-                ]);
-            });
-            test("when the children item targets the same children property array", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: [
-                            {
-                                id: "c",
-                                props: {},
-                            },
-                            {
-                                id: "a",
-                                props: {},
-                            },
-                            {
-                                id: "b",
-                                props: {},
-                            },
-                        ],
-                    },
-                    targetDataLocation: "foo.0",
-                    sourceDataLocation: "foo.2",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.up,
-                });
-
-                expect(updatedData.foo).toEqual([
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                    {
-                        id: "c",
-                        props: {},
-                    },
-                    {
-                        id: "a",
-                        props: {},
-                    },
-                ]);
-            });
-            test("when the children item targets the same children property array above an item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: [
-                            {
-                                id: "a",
-                                props: {},
-                            },
-                            {
-                                id: "b",
-                                props: {},
-                            },
-                            {
-                                id: "c",
-                                props: {},
-                            },
-                        ],
-                    },
-                    targetDataLocation: "foo.0",
-                    sourceDataLocation: "foo.2",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.up,
-                });
-
-                expect(updatedData.foo).toEqual([
-                    {
-                        id: "c",
-                        props: {},
-                    },
-                    {
-                        id: "a",
-                        props: {},
-                    },
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                ]);
-            });
-            test("when the children item targets the same children property array below an item", () => {
-                const updatedData: any = getUpdatedData({
-                    data: {
-                        foo: [
-                            {
-                                id: "a",
-                                props: {},
-                            },
-                            {
-                                id: "b",
-                                props: {},
-                            },
-                            {
-                                id: "c",
-                                props: {},
-                            },
-                        ],
-                    },
-                    targetDataLocation: "foo.0",
-                    sourceDataLocation: "foo.2",
-                    type: NavigationDataType.component,
-                    direction: VerticalDragDirection.down,
-                });
-
-                expect(updatedData.foo).toEqual([
-                    {
-                        id: "a",
-                        props: {},
-                    },
-                    {
-                        id: "c",
-                        props: {},
-                    },
-                    {
-                        id: "b",
-                        props: {},
-                    },
-                ]);
-            });
-        });
+        expect(updatedState.navigation.root.items).toEqual(["a", "c", "b"]);
+        expect(updatedState.navigation.a.parent).toEqual("root");
     });
 });
 
-/**
- * Gets duplicated data
- */
-describe("getDataWithDuplicate", () => {
-    test("should duplicate data inside an array", () => {
-        const data: any = {
-            foo: ["Hello"],
-        };
-        const updatedData: any = getDataWithDuplicate("foo[0]", data);
-
-        expect(updatedData).toEqual({ foo: ["Hello", "Hello"] });
+describe("getDragEndUpdatedData", () => {
+    test("should add data into an array", () => {
+        console.log("begin");
     });
-    test("should duplicate a string and convert the target string to an array", () => {
-        const data: any = {
-            foo: "Hello",
-        };
-        const updatedData: any = getDataWithDuplicate("foo", data);
+    // test("should add data into an undefined location", () => {
 
-        expect(updatedData).toEqual({ foo: ["Hello", "Hello"] });
-    });
-    test("should duplicate an object and convert the target object to an array", () => {
-        const data: any = {
-            foo: { bar: "Hello" },
-        };
-        const updatedData: any = getDataWithDuplicate("foo", data);
+    // });
+    // test("should add data into an object", () => {
 
-        expect(updatedData).toEqual({
-            foo: [{ bar: "Hello" }, { bar: "Hello" }],
-        });
-    });
-    test("should duplicate component data inside an array", () => {
-        const componentData: any = {
-            id: "foo",
-            props: {
-                children: "bar",
-            },
-        };
-        const data: any = {
-            foo: [componentData],
-        };
-        const updatedData: any = getDataWithDuplicate("foo[0]", data);
+    // });
+    // test("should add data above an item in an array", () => {
 
-        expect(updatedData).toEqual({
-            foo: [componentData, componentData],
-        });
-    });
-    test("should duplicate component data inside an object", () => {
-        const componentData: any = {
-            id: "foo",
-            props: {
-                children: "bar",
-            },
-        };
-        const data: any = {
-            foo: componentData,
-        };
-        const updatedData: any = getDataWithDuplicate("foo", data);
+    // });
+    // test("should add data below an item in an array", () => {
 
-        expect(updatedData).toEqual({
-            foo: [componentData, componentData],
-        });
-    });
+    // });
 });
