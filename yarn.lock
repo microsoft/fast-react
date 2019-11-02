@@ -991,6 +991,15 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@edge-web-ui/edge-icons@^1.2.2":
+  version "1.2.2"
+  resolved "https://pkgs.dev.azure.com/edgewebui/_packaging/edge-web-ui/npm/registry/@edge-web-ui/edge-icons/-/edge-icons-1.2.2.tgz#ca8fd0cd8da0f4335ece483016dda41a7b2bbacf"
+  integrity sha1-yo/QzY2g9DNezkgwFt2kGnsrus8=
+  dependencies:
+    "@microsoft/fast-components-foundation-react" "^3.1.1"
+    exenv-es6 "^1.0.0"
+    utility-types "^2.1.0"
+
 "@emotion/cache@^10.0.17":
   version "10.0.19"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.19.tgz#d258d94d9c707dcadaf1558def968b86bb87ad71"

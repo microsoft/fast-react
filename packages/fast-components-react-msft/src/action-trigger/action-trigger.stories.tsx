@@ -3,13 +3,17 @@ import React, { useState } from "react";
 import { ActionTrigger, ActionTriggerAppearance } from "./";
 import { glyphFactory, SVGGlyph } from "../../assets/svg-element";
 import { action } from "@storybook/addon-actions";
+import { SettingsIcon } from "@edge-web-ui/edge-icons";
+
+function glyphExample(glyph: JSX.Element): (className?: string) => React.ReactNode {
+    return (className?: string): React.ReactNode => {
+        return React.cloneElement(glyph, { className });
+    };
+}
 
 storiesOf("Action trigger", module)
     .add("Default", () => (
-        <ActionTrigger
-            glyph={glyphFactory(SVGGlyph.download)}
-            onClick={action("onClick")}
-        >
+        <ActionTrigger glyph={glyphExample(<SettingsIcon />)} onClick={action("onClick")}>
             Download
         </ActionTrigger>
     ))

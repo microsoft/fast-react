@@ -2,9 +2,14 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { StealthButton } from "./";
 import { glyphFactory, SVGGlyph } from "../../assets/svg-element";
+import { EdgeIcon } from "@edge-web-ui/edge-icons";
 
 storiesOf("Stealth button", module)
-    .add("Default", () => <StealthButton>Stealth button</StealthButton>)
+    .add("Default", () => (
+        <StealthButton>
+            <EdgeIcon /> Stealth button
+        </StealthButton>
+    ))
     .add("Anchor", () => (
         <StealthButton
             href="#"

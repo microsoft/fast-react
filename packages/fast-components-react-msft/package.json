@@ -116,6 +116,7 @@
     "react-dom": "^16.6.0"
   },
   "dependencies": {
+    "@edge-web-ui/edge-icons": "^1.2.2",
     "@microsoft/fast-components-class-name-contracts-base": "^4.4.0",
     "@microsoft/fast-components-class-name-contracts-msft": "^4.7.6",
     "@microsoft/fast-components-foundation-react": "^3.1.2",

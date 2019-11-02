@@ -7,6 +7,14 @@ import { ComponentStyleSheet } from "@microsoft/fast-jss-manager-react";
 import { DesignSystem, designUnit } from "@microsoft/fast-components-styles-msft";
 import { DividerManagedClasses } from "@microsoft/fast-components-react-base";
 import { format, toPx } from "@microsoft/fast-jss-utilities";
+import { ActionTrigger, ActionTriggerAppearance } from "../action-trigger";
+import { EdgeIcon } from "@edge-web-ui/edge-icons";
+
+function glyphExample(glyph: JSX.Element): (className?: string) => React.ReactNode {
+    return (className?: string): React.ReactNode => {
+        return React.cloneElement(glyph, { className });
+    };
+}
 
 const styles: ComponentStyleSheet<DividerManagedClasses, DesignSystem> = {
     divider: {
@@ -19,7 +27,17 @@ storiesOf("Context menu", module)
         <ContextMenu>
             <ContextMenuItem>Menu item 1</ContextMenuItem>
             <ContextMenuItem>Menu item 2</ContextMenuItem>
-            <ContextMenuItem>Menu item 3</ContextMenuItem>
+            <ContextMenuItem before={<EdgeIcon />}>
+                <span>Label here</span>
+            </ContextMenuItem>
+            <ContextMenuItem>
+                <ActionTrigger
+                    appearance={ActionTriggerAppearance.stealth}
+                    glyph={glyphExample(<EdgeIcon />)}
+                >
+                    Label here
+                </ActionTrigger>
+            </ContextMenuItem>
         </ContextMenu>
     ))
     .add("With autofocus", () => (

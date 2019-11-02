@@ -2,6 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { Button, ButtonAppearance } from "./";
 import { glyphFactory, SVGGlyph } from "../../assets/svg-element";
+import { EdgeIcon, CancelIcon } from "@edge-web-ui/edge-icons";
 
 storiesOf("Button", module)
     .add("Default", () => <Button>Button</Button>)
@@ -74,6 +75,11 @@ storiesOf("Button", module)
     .add("Justified - disabled", () => (
         <Button appearance={ButtonAppearance.justified} disabled={true}>
             Justified Button
+        </Button>
+    ))
+    .add("Stealth Icon", () => (
+        <Button appearance={ButtonAppearance.stealth}>
+            <CancelIcon />
         </Button>
     ))
     .add("Stealth", () => (
