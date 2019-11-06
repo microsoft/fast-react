@@ -72,13 +72,9 @@ function Expand(props: ExpandProps): JSX.Element {
         <div
             className={classNames(
                 expand,
-                [expand_initial, value === TransitionStates.initial],
-                [
-                    expand_entering,
-                    value === TransitionStates.entered ||
-                        value === TransitionStates.entering,
-                ],
-                [expand_exiting, value === TransitionStates.exiting]
+                [expand_initial, value === TransitionStates.from],
+                [expand_entering, value === TransitionStates.to],
+                [expand_exiting, value === TransitionStates.out]
             )}
         >
             {props.children}

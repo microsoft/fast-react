@@ -69,13 +69,9 @@ function Slide(props: SlideProps): JSX.Element {
         <div
             className={classNames(
                 slide,
-                [slide_initial, value === TransitionStates.initial],
-                [
-                    slide_entering,
-                    value === TransitionStates.entered ||
-                        value === TransitionStates.entering,
-                ],
-                [slide_exiting, value === TransitionStates.exiting]
+                [slide_initial, value === TransitionStates.from],
+                [slide_entering, value === TransitionStates.to],
+                [slide_exiting, value === TransitionStates.out]
             )}
         >
             {props.children}

@@ -76,13 +76,9 @@ function Elevation(props: ElevationProps): JSX.Element {
             style={{ width: props.width, height: props.height }}
             className={classNames(
                 elevation,
-                [elevation_initial, value === TransitionStates.initial],
-                [
-                    elevation_entering,
-                    value === TransitionStates.entered ||
-                        value === TransitionStates.entering,
-                ],
-                [elevation_exiting, value === TransitionStates.exiting]
+                [elevation_initial, value === TransitionStates.from],
+                [elevation_entering, value === TransitionStates.to],
+                [elevation_exiting, value === TransitionStates.out]
             )}
         >
             {props.children}

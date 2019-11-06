@@ -3,7 +3,7 @@ import {
     applyElevation,
     DesignSystem,
     ElevationMultiplier,
-    neutralFillCard
+    neutralFillCard,
 } from "@microsoft/fast-components-styles-msft";
 import manageJss, {
     ComponentStyleSheet,
@@ -43,7 +43,7 @@ const stylesheet: ComponentStyleSheet<DialogClassNameContract, DesignSystem> = {
         ...applyElevation(ElevationMultiplier.e14),
         width: "200px",
         height: "200px",
-        background: neutralFillCard
+        background: neutralFillCard,
     },
     dialog_initial: {
         ...revealFromProperties(200),
@@ -72,13 +72,9 @@ function Dialog(props: DialogProps): JSX.Element {
         <div
             className={classNames(
                 dialog,
-                [dialog_initial, value === TransitionStates.initial],
-                [
-                    dialog_entering,
-                    value === TransitionStates.entered ||
-                        value === TransitionStates.entering,
-                ],
-                [dialog_exiting, value === TransitionStates.exiting]
+                [dialog_initial, value === TransitionStates.from],
+                [dialog_entering, value === TransitionStates.to],
+                [dialog_exiting, value === TransitionStates.out]
             )}
         >
             {props.children}
