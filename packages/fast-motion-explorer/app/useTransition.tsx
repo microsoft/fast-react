@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { EventListener } from "popmotion/lib/input/listen/types";
+import { isNumber } from "util";
 
 export enum TransitionStates {
     from,
@@ -13,40 +14,30 @@ export function useTransition(
     duration: number | { in: number; out: number }
 ): TransitionStates {
     // TODO what if duration changes across calls?
-    const [visible, setVisible]: [boolean, (val: boolean) => void] = useState<boolean>(
-        false
+    const [visible, setVisible]: [
+        boolean,
+        React.Dispatch<React.SetStateAction<boolean>>
+    ] = useState<boolean>(false);
+    const [id, setId]: [symbol, React.Dispatch<React.SetStateAction<symbol>>] = useState(
+        Symbol()
     );
-    const [id, setId]: [symbol, (val: symbol) => void] = useState(Symbol());
 
-    if (visible === true && value === true) {
-        return TransitionStates.to;
-    } else if (visible === false && value === false) {
-        return TransitionStates.from;
-    } else if (value && !visible) {
-        if (typeof listener.get(id) !== "number") {
-            listener.set(
-                id,
-                window.setTimeout(() => {
-                    listener.set(id, window.clearTimeout(listener.get(id) as number));
-                    setVisible(value);
-                }, typeof duration === "number" ? duration : duration.in)
-            );
-        }
+    const state: TransitionStates =
+        (visible && value) || (value && !visible)
+            ? TransitionStates.to
+            : !visible && !value
+                ? TransitionStates.from
+                : TransitionStates.out;
 
-        return TransitionStates.to;
-    } else if (!value && visible) {
-        if (typeof listener.get(id) !== "number") {
-            listener.set(
-                id,
-                window.setTimeout(() => {
-                    listener.set(id, window.clearTimeout(listener.get(id) as number));
-                    setVisible(value);
-                }, typeof duration === "number" ? duration : duration.out)
-            );
-        }
-
-        return TransitionStates.out;
-    } else {
-        return TransitionStates.from;
+    if (value !== visible && !isNumber(id)) {
+        listener.set(
+            id,
+            window.setTimeout(() => {
+                listener.set(id, window.clearTimeout(listener.get(id) as number));
+                setVisible(value);
+            }, isNumber(duration) ? duration : state === TransitionStates.to ? duration.in : duration.out)
+        );
     }
+
+    return state;
 }
