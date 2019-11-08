@@ -16,7 +16,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { slideTransition } from "./recipies/slide";
 import { AppState } from "./state";
-import { TransitionStates, useTransition } from "./useTransition";
+import { TransitionStates, useTransitionState } from "./useTransition";
 
 export interface SlideClassNameContract {
     slide: string;
@@ -60,7 +60,7 @@ function Slide(props: SlideProps): JSX.Element {
         slide_entering,
         slide_exiting,
     }: SlideClassNameContract = props.managedClasses;
-    const value: TransitionStates = useTransition(
+    const value: TransitionStates = useTransitionState(
         props.slide,
         relativeDuration(props.designSystem)
     );

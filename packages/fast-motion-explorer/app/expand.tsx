@@ -16,7 +16,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { expandTransition } from "./recipies/expand";
 import { AppState } from "./state";
-import { TransitionStates, useTransition } from "./useTransition";
+import { TransitionStates, useTransitionState } from "./useTransition";
 
 export interface ExpandClassNameContract {
     expand: string;
@@ -63,7 +63,7 @@ function Expand(props: ExpandProps): JSX.Element {
         expand_entering,
         expand_exiting,
     }: ExpandClassNameContract = props.managedClasses;
-    const value: TransitionStates = useTransition(
+    const value: TransitionStates = useTransitionState(
         props.expanded,
         relativeDuration(props.designSystem)
     );

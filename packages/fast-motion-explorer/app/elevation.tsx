@@ -21,7 +21,7 @@ import {
     elevateTransition,
 } from "./recipies/elevate";
 import { AppState } from "./state";
-import { TransitionStates, useTransition } from "./useTransition";
+import { TransitionStates, useTransitionState } from "./useTransition";
 
 export interface ElevationClassNameContract {
     elevation: string;
@@ -66,7 +66,7 @@ function Elevation(props: ElevationProps): JSX.Element {
         elevation_entering,
         elevation_exiting,
     }: ElevationClassNameContract = props.managedClasses;
-    const value: TransitionStates = useTransition(
+    const value: TransitionStates = useTransitionState(
         props.elevated,
         relativeDuration(props.designSystem)
     );

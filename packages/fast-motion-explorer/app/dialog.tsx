@@ -19,7 +19,7 @@ import {
     revealToProperties,
 } from "./recipies/reveal";
 import { AppState } from "./state";
-import { TransitionStates, useTransition } from "./useTransition";
+import { TransitionStates, useTransitionState } from "./useTransition";
 
 export interface DialogClassNameContract {
     dialog: string;
@@ -63,10 +63,12 @@ function Dialog(props: DialogProps): JSX.Element {
         dialog_entering,
         dialog_exiting,
     }: DialogClassNameContract = props.managedClasses;
-    const value: TransitionStates = useTransition(props.visible, {
+    const value: TransitionStates = useTransitionState(props.visible, {
         in: revealDuration(props.designSystem),
         out: dismissDuration(props.designSystem),
     });
+
+    console.log(TransitionStates[value]);
 
     return (
         <div
