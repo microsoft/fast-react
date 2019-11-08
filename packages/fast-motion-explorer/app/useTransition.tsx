@@ -87,35 +87,12 @@ export const useTransitionState: ReturnType<
     }
 );
 
-// export function useTransitionState(
-//     value: boolean,
-//     duration: number | { in: number; out: number }
-// ): TransitionStates {
-//     const [visible, setVisible]: [
-//         boolean,
-//         React.Dispatch<React.SetStateAction<boolean>>
-//     ] = useState<boolean>(false);
-//     const [id, setId]: [symbol, React.Dispatch<React.SetStateAction<symbol>>] = useState(
-//         Symbol()
-//     );
-//
-//     const state: TransitionStates =
-//         (visible && value) || (value && !visible)
-//             ? TransitionStates.to
-//             : visible && !value
-//             ? TransitionStates.from
-//             : TransitionStates.out;
-//
-//     const dur: number = isNumber(duration)
-//         ? duration
-//         : state === TransitionStates.to
-//         ? duration.in
-//         : duration.out;
-//     useInterval(() => {
-//         if (value !== visible && !isNumber(id)) {
-//             setVisible(value);
-//         }
-//     }, dur);
-//
-//     return state;
-// }
+export const useBinaryTransitionState: ReturnType<
+    typeof useTransitionStateFactory
+> = useTransitionStateFactory(
+    (previous: boolean, next: boolean): TransitionStates => {
+        return (previous && next) || (!previous && next)
+            ? TransitionStates.to
+            : TransitionStates.from;
+    }
+);

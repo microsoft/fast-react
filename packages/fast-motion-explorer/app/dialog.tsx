@@ -68,8 +68,6 @@ function Dialog(props: DialogProps): JSX.Element {
         out: dismissDuration(props.designSystem),
     });
 
-    console.log(TransitionStates[value]);
-
     return (
         <div
             className={classNames(

@@ -16,13 +16,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { slideTransition } from "./recipies/slide";
 import { AppState } from "./state";
-import { TransitionStates, useTransitionState } from "./useTransition";
+import { TransitionStates, useBinaryTransitionState } from "./useTransition";
 
 export interface SlideClassNameContract {
     slide: string;
     slide_initial: string;
     slide_entering: string;
-    slide_exiting: string;
 }
 
 export interface SlideProps extends ManagedClasses<SlideClassNameContract> {
@@ -46,10 +45,7 @@ const stylesheet: ComponentStyleSheet<SlideClassNameContract, DesignSystem> = {
         transform: "translateY(-100px)",
     },
     slide_entering: {
-        transform: "translatey(100px)",
-    },
-    slide_exiting: {
-        transform: "translateY(-100px)",
+        transform: "translateY(100px)",
     },
 };
 
@@ -58,9 +54,8 @@ function Slide(props: SlideProps): JSX.Element {
         slide,
         slide_initial,
         slide_entering,
-        slide_exiting,
     }: SlideClassNameContract = props.managedClasses;
-    const value: TransitionStates = useTransitionState(
+    const value: TransitionStates = useBinaryTransitionState(
         props.slide,
         relativeDuration(props.designSystem)
     );
@@ -70,8 +65,7 @@ function Slide(props: SlideProps): JSX.Element {
             className={classNames(
                 slide,
                 [slide_initial, value === TransitionStates.from],
-                [slide_entering, value === TransitionStates.to],
-                [slide_exiting, value === TransitionStates.out]
+                [slide_entering, value === TransitionStates.to]
             )}
         >
             {props.children}

@@ -16,13 +16,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { expandTransition } from "./recipies/expand";
 import { AppState } from "./state";
-import { TransitionStates, useTransitionState } from "./useTransition";
+import { TransitionStates, useBinaryTransitionState } from "./useTransition";
 
 export interface ExpandClassNameContract {
     expand: string;
     expand_initial: string;
     expand_entering: string;
-    expand_exiting: string;
 }
 
 export interface ExpandProps extends ManagedClasses<ExpandClassNameContract> {
@@ -50,10 +49,6 @@ const stylesheet: ComponentStyleSheet<ExpandClassNameContract, DesignSystem> = {
         width: "290px",
         height: "290px",
     },
-    expand_exiting: {
-        width: "200px",
-        height: "200px",
-    },
 };
 
 function Expand(props: ExpandProps): JSX.Element {
@@ -61,9 +56,8 @@ function Expand(props: ExpandProps): JSX.Element {
         expand,
         expand_initial,
         expand_entering,
-        expand_exiting,
     }: ExpandClassNameContract = props.managedClasses;
-    const value: TransitionStates = useTransitionState(
+    const value: TransitionStates = useBinaryTransitionState(
         props.expanded,
         relativeDuration(props.designSystem)
     );
@@ -73,8 +67,7 @@ function Expand(props: ExpandProps): JSX.Element {
             className={classNames(
                 expand,
                 [expand_initial, value === TransitionStates.from],
-                [expand_entering, value === TransitionStates.to],
-                [expand_exiting, value === TransitionStates.out]
+                [expand_entering, value === TransitionStates.to]
             )}
         >
             {props.children}

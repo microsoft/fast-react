@@ -21,13 +21,12 @@ import {
     elevateTransition,
 } from "./recipies/elevate";
 import { AppState } from "./state";
-import { TransitionStates, useTransitionState } from "./useTransition";
+import { TransitionStates, useBinaryTransitionState } from "./useTransition";
 
 export interface ElevationClassNameContract {
     elevation: string;
     elevation_initial: string;
     elevation_entering: string;
-    elevation_exiting: string;
 }
 
 export interface ElevationProps extends ManagedClasses<ElevationClassNameContract> {
@@ -54,9 +53,6 @@ const stylesheet: ComponentStyleSheet<ElevationClassNameContract, DesignSystem> 
     elevation_entering: {
         ...elevateToProperties(ElevationMultiplier.e12),
     },
-    elevation_exiting: {
-        ...elevateToProperties(ElevationMultiplier.e4),
-    },
 };
 
 function Elevation(props: ElevationProps): JSX.Element {
@@ -64,9 +60,8 @@ function Elevation(props: ElevationProps): JSX.Element {
         elevation,
         elevation_initial,
         elevation_entering,
-        elevation_exiting,
     }: ElevationClassNameContract = props.managedClasses;
-    const value: TransitionStates = useTransitionState(
+    const value: TransitionStates = useBinaryTransitionState(
         props.elevated,
         relativeDuration(props.designSystem)
     );
@@ -77,8 +72,7 @@ function Elevation(props: ElevationProps): JSX.Element {
             className={classNames(
                 elevation,
                 [elevation_initial, value === TransitionStates.from],
-                [elevation_entering, value === TransitionStates.to],
-                [elevation_exiting, value === TransitionStates.out]
+                [elevation_entering, value === TransitionStates.to]
             )}
         >
             {props.children}
