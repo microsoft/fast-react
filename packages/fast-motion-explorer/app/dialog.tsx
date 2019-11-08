@@ -19,7 +19,7 @@ import {
     revealToProperties,
 } from "./recipies/reveal";
 import { AppState } from "./state";
-import { TransitionStates, useTransitionState } from "./useTransition";
+import { TransitionStates, useTransitionState } from "./use-transition";
 
 export interface DialogClassNameContract {
     dialog: string;

@@ -21,7 +21,7 @@ import {
     elevateTransition,
 } from "./recipies/elevate";
 import { AppState } from "./state";
-import { TransitionStates, useBinaryTransitionState } from "./useTransition";
+import { TransitionStates, useBinaryTransitionState } from "./use-transition";
 
 export interface ElevationClassNameContract {
     elevation: string;

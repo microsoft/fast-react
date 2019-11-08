@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { EventListener } from "popmotion/lib/input/listen/types";
 import { isFunction, isNumber } from "lodash-es";
+import { useTimeout } from "./use-timeout";
 
 export enum TransitionStates {
     from,
@@ -9,35 +10,8 @@ export enum TransitionStates {
 }
 
 /**
- * React hook to call setIterval
+ * Factory function for useTransition hooks
  */
-export function useTimeout(callback: () => any, delay: number | null): void {
-    const savedCallback: React.MutableRefObject<(() => any) | undefined> = useRef();
-
-    useEffect(
-        () => {
-            savedCallback.current = callback;
-        },
-        [callback]
-    );
-
-    useEffect(
-        () => {
-            function tick(): void {
-                if (isFunction(savedCallback.current)) {
-                    savedCallback.current();
-                }
-            }
-
-            if (delay !== null) {
-                const id: number = window.setTimeout(tick, delay);
-                return (): void => window.clearTimeout(id);
-            }
-        },
-        [delay]
-    );
-}
-
 function useTransitionStateFactory(
     stateResovler: (previous: boolean, next: boolean) => TransitionStates
 ): (
@@ -87,6 +61,12 @@ export const useTransitionState: ReturnType<
     }
 );
 
+/**
+ * Hook to manage transtions states based on timeouts.
+ * Similar to useTransitionState, however this impelments a simple binary switch
+ * instead of a tri-state model. Use this when the reverse transition is a simple
+ * reverse of the forward transition
+ */
 export const useBinaryTransitionState: ReturnType<
     typeof useTransitionStateFactory
 > = useTransitionStateFactory(

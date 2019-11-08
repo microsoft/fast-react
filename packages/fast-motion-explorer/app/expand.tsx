@@ -16,7 +16,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { expandTransition } from "./recipies/expand";
 import { AppState } from "./state";
-import { TransitionStates, useBinaryTransitionState } from "./useTransition";
+import { TransitionStates, useBinaryTransitionState } from "./use-transition";
 
 export interface ExpandClassNameContract {
     expand: string;
