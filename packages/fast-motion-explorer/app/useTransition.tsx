@@ -9,6 +9,9 @@ export enum TransitionStates {
     out,
 }
 
+/**
+ * React hook to call setIterval
+ */
 export function useInterval(callback: () => any, delay: number | null): void {
     const savedCallback: React.MutableRefObject<(() => any) | undefined> = useRef();
 
@@ -36,36 +39,13 @@ export function useInterval(callback: () => any, delay: number | null): void {
     );
 }
 
-// function useInterval(callback, delay) {
-//     const savedCallback = useRef();
-//
-//     //  Remember the latest callback.
-//     useEffect(() => {
-//         savedCallback.current = callback;
-//     }, [callback]);
-//
-//     // Set up the interval.
-//     useEffect(() => {
-//         function tick() {
-//             savedCallback.current();
-//         }
-//         if (delay !== null) {
-//             let id = setInterval(tick, delay);
-//             return () => clearInterval(id);
-//         }
-//     }, [delay]);
-// }
-//                                    }
-//                      }
-//                  })
-//        })
-// }
-const listener: Map<symbol, number | void> = new Map(); // This won't work for multiple items, need a way to have a listener context for each function
+/**
+ * Hook to manage transition states based on timeouts
+ */
 export function useTransition(
     value: boolean,
     duration: number | { in: number; out: number }
 ): TransitionStates {
-    // TODO what if duration changes across calls?
     const [visible, setVisible]: [
         boolean,
         React.Dispatch<React.SetStateAction<boolean>>
@@ -77,7 +57,7 @@ export function useTransition(
     const state: TransitionStates =
         (visible && value) || (value && !visible)
             ? TransitionStates.to
-            : !visible && !value
+            : visible && !value
                 ? TransitionStates.from
                 : TransitionStates.out;
 
