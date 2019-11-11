@@ -19,7 +19,7 @@ import {
     revealToProperties,
 } from "./recipies/reveal";
 import { AppState } from "./state";
-import { TransitionStates, useTransitionState } from "./use-transition";
+import { TransitionStates, useTransition, useTransitionState } from "./use-transition";
 
 export interface DialogClassNameContract {
     dialog: string;
@@ -63,18 +63,36 @@ function Dialog(props: DialogProps): JSX.Element {
         dialog_entering,
         dialog_exiting,
     }: DialogClassNameContract = props.managedClasses;
-    const value: TransitionStates = useTransitionState(props.visible, {
-        in: revealDuration(props.designSystem),
-        out: dismissDuration(props.designSystem),
-    });
+    //    const value: TransitionStates = useTransitionState(props.visible, {
+    //        in: revealDuration(props.designSystem),
+    //        out: dismissDuration(props.designSystem),
+    //    });
+
+    const transition: any = useTransition(
+        {
+            duration: [
+                revealDuration(props.designSystem),
+                dismissDuration(props.designSystem),
+            ],
+            timingFunction: "linear",
+            to: {
+                opacity: 0,
+            },
+            from: {
+                opacity: 1,
+            },
+        },
+        props.visible
+    );
 
     return (
         <div
             className={classNames(
                 dialog,
-                [dialog_initial, value === TransitionStates.from],
-                [dialog_entering, value === TransitionStates.to],
-                [dialog_exiting, value === TransitionStates.out]
+                transition
+                // [dialog_initial, value === TransitionStates.from],
+                // [dialog_entering, value === TransitionStates.to],
+                // [dialog_exiting, value === TransitionStates.out]
             )}
         >
             {props.children}
