@@ -9,6 +9,16 @@ export enum TransitionStates {
     deactivating, // The middle state going from end -> start
 }
 
+export function getTransitionState(prev, next): TransitionStates {
+    return prev && next
+        ? TransitionStates.active
+        : !prev && !next
+            ? TransitionStates.inactive
+            : next && !prev
+                ? TransitionStates.activating
+                : TransitionStates.deactivating;
+}
+
 export function useTransitionState(
     value: boolean,
     duration: number | { activating: number; deactivating: number }
@@ -17,26 +27,23 @@ export function useTransitionState(
         boolean,
         React.Dispatch<React.SetStateAction<boolean>>
     ] = useState<boolean>(value);
-    const state: TransitionStates =
-        value && valueState
-            ? TransitionStates.active
-            : !value && !valueState
-                ? TransitionStates.inactive
-                : value && !valueState
-                    ? TransitionStates.activating
-                    : TransitionStates.deactivating;
+    const transitionState: TransitionStates = getTransitionState(valueState, value);
 
     const _duration: number = isNumber(duration)
         ? duration
-        : state === TransitionStates.activating || TransitionStates.inactive
+        : transitionState === TransitionStates.activating || TransitionStates.inactive
             ? duration.activating
             : duration.deactivating;
 
-    useTimeout(() => {
-        if (value !== valueState) {
-            setValueState(value);
-        }
-    }, _duration);
+    useTimeout(
+        () => {
+            if (value !== valueState) {
+                setValueState(value);
+            }
+        },
+        _duration,
+        [value, valueState]
+    );
 
-    return state;
+    return transitionState;
 }

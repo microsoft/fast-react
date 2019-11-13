@@ -13,8 +13,12 @@ configure({ adapter: new Adapter() });
  */
 jest.useFakeTimers();
 
-function UseTimeout(props: { timeout: number | null; callback: () => any }): JSX.Element {
-    useTimeout(props.callback, props.timeout);
+function UseTimeout(props: {
+    timeout: number | null;
+    callback: () => any;
+    reregister?: any[];
+}): JSX.Element {
+    useTimeout(props.callback, props.timeout, props.reregister);
 
     return <div />;
 }
@@ -74,5 +78,29 @@ describe("use-timeout", (): void => {
         jest.runAllTimers();
 
         expect(spy).toHaveBeenCalledTimes(0);
+    });
+    test("should not call an additional callback if component renders after callback is called", (): void => {
+        const spy: jest.Mock = jest.fn();
+        const rendered: ReactWrapper = mount(<UseTimeout timeout={300} callback={spy} />);
+        jest.runAllTimers();
+        rendered.update();
+
+        rendered.setProps({ timeout: 300 });
+        jest.runAllTimers();
+
+        expect(spy).toHaveBeenCalledTimes(1);
+    });
+    test("should reregister timeout function after first invocation if new reregister keys are provided", (): void => {
+        const spy: jest.Mock = jest.fn();
+        const rendered: ReactWrapper = mount(
+            <UseTimeout timeout={300} callback={spy} reregister={[Symbol()]} />
+        );
+        jest.runAllTimers();
+        rendered.update();
+
+        rendered.setProps({ reregister: [Symbol()] });
+        jest.runAllTimers();
+
+        expect(spy).toHaveBeenCalledTimes(2);
     });
 });

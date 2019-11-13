@@ -1,7 +1,11 @@
 import React from "react";
 import Adapter from "enzyme-adapter-react-16";
 import { configure, mount, ReactWrapper, shallow } from "enzyme";
-import { TransitionStates, useTransitionState } from "./use-transition-state";
+import {
+    TransitionStates,
+    useTransitionState,
+    getTransitionState,
+} from "./use-transition-state";
 
 /*
  * Configure Enzyme
@@ -128,4 +132,19 @@ describe("useTransitionState", (): void => {
 
     //     expect(spy).toHaveBeenCalledTimes(0);
     // });
+});
+
+describe("getTransitionState", (): void => {
+    test("should return inactive if both current and previous values are false", (): void => {
+        expect(getTransitionState(false, false)).toBe(TransitionStates.inactive);
+    });
+    test("should return active if both current and previous values are true", (): void => {
+        expect(getTransitionState(true, true)).toBe(TransitionStates.active);
+    });
+    test("should return activating if the previous value is false and current value is true", (): void => {
+        expect(getTransitionState(false, true)).toBe(TransitionStates.activating);
+    });
+    test("should return deactiving if the previous value is true and current value is false", (): void => {
+        expect(getTransitionState(true, false)).toBe(TransitionStates.deactivating);
+    });
 });
