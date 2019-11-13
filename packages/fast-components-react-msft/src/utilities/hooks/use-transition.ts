@@ -52,6 +52,26 @@ export function normalizeAnimationConfigValue<T>(value: T | [T, T]): [T, T] {
 }
 
 /**
+ * Formats useAnimation config args into keyframe objects. Will return one object when
+ * the animation is binary, and two when the forward animation is different than the reverse.
+ */
+export function formatKeyframes(
+    inactive: React.CSSProperties,
+    active: React.CSSProperties,
+    deactivating?: React.CSSProperties
+): {
+    0: { from: React.CSSProperties; to: React.CSSProperties };
+    1: { from: React.CSSProperties; to: React.CSSProperties };
+} {
+    return [
+        { from: inactive, to: active },
+        !!deactivating
+            ? { from: active, to: deactivating }
+            : { from: active, to: inactive },
+    ];
+}
+
+/**
  * Returns class-names to apply to the transitioning component.
  * Classes will apply CSS properties and animation based on the 'active' argument,
  * transitioning from
