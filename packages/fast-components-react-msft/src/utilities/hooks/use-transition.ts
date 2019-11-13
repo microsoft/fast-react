@@ -1,9 +1,11 @@
+import { isUndefined } from "util";
+
 /**
  * Configuration object provided to the use-transition
  * utility. Describes the transition and CSS properties
  * to transition between
  */
-export interface UseAnimationConfig {
+export interface UseTransitionConfig {
     /**
      * The duration of the transition. When value is an array, the first index
      * describes the 'activating' duration and the second describes the
@@ -55,7 +57,23 @@ export function normalizeAnimationConfigValue<T>(value: T | [T, T]): [T, T] {
  * transitioning from
  */
 export function useTransition(
-    active: boolean,
-    config: UseAnimationConfig,
+    activeState: boolean,
+    config: UseTransitionConfig,
     transitionIn: boolean = false
-): void {}
+): void {
+    const {
+        duration,
+        delay,
+        timingFunction,
+        inactive,
+        active,
+        deactivating,
+    }: UseTransitionConfig = config;
+    const durations: [number, number] = normalizeAnimationConfigValue(duration);
+    const delays: [number, number] = normalizeAnimationConfigValue(
+        isUndefined(duration) ? 0 : delay
+    );
+    const timingFunctions: [string, string] = normalizeAnimationConfigValue(
+        config.timingFunction
+    );
+}
