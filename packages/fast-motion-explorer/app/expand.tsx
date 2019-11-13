@@ -16,7 +16,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { expandTransition } from "./recipies/expand";
 import { AppState } from "./state";
-import { TransitionStates, useBinaryTransitionState } from "./use-transition";
+import {
+    TransitionStates,
+    useTransitionState,
+} from "@microsoft/fast-components-react-msft";
 
 export interface ExpandClassNameContract {
     expand: string;
@@ -57,7 +60,7 @@ function Expand(props: ExpandProps): JSX.Element {
         expand_initial,
         expand_entering,
     }: ExpandClassNameContract = props.managedClasses;
-    const value: TransitionStates = useBinaryTransitionState(
+    const value: TransitionStates = useTransitionState(
         props.expanded,
         relativeDuration(props.designSystem)
     );
@@ -66,8 +69,16 @@ function Expand(props: ExpandProps): JSX.Element {
         <div
             className={classNames(
                 expand,
-                [expand_initial, value === TransitionStates.from],
-                [expand_entering, value === TransitionStates.to]
+                [
+                    expand_initial,
+                    value === TransitionStates.inactive ||
+                        value === TransitionStates.deactivating,
+                ],
+                [
+                    expand_entering,
+                    value === TransitionStates.active ||
+                        value === TransitionStates.activating,
+                ]
             )}
         >
             {props.children}

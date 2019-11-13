@@ -21,7 +21,10 @@ import {
     elevateTransition,
 } from "./recipies/elevate";
 import { AppState } from "./state";
-import { TransitionStates, useBinaryTransitionState } from "./use-transition";
+import {
+    useTransitionState,
+    TransitionStates,
+} from "@microsoft/fast-components-react-msft";
 
 export interface ElevationClassNameContract {
     elevation: string;
@@ -61,7 +64,7 @@ function Elevation(props: ElevationProps): JSX.Element {
         elevation_initial,
         elevation_entering,
     }: ElevationClassNameContract = props.managedClasses;
-    const value: TransitionStates = useBinaryTransitionState(
+    const value: TransitionStates = useTransitionState(
         props.elevated,
         relativeDuration(props.designSystem)
     );
@@ -71,8 +74,16 @@ function Elevation(props: ElevationProps): JSX.Element {
             style={{ width: props.width, height: props.height }}
             className={classNames(
                 elevation,
-                [elevation_initial, value === TransitionStates.from],
-                [elevation_entering, value === TransitionStates.to]
+                [
+                    elevation_initial,
+                    value === TransitionStates.inactive ||
+                        value === TransitionStates.deactivating,
+                ],
+                [
+                    elevation_entering,
+                    value === TransitionStates.active ||
+                        value === TransitionStates.activating,
+                ]
             )}
         >
             {props.children}

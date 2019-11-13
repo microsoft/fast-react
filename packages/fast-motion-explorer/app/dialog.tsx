@@ -19,7 +19,10 @@ import {
     revealToProperties,
 } from "./recipies/reveal";
 import { AppState } from "./state";
-import { TransitionStates, useTransition, useTransitionState } from "./use-transition";
+import {
+    useTransitionState,
+    TransitionStates,
+} from "@microsoft/fast-components-react-msft";
 
 export interface DialogClassNameContract {
     dialog: string;
@@ -63,36 +66,22 @@ function Dialog(props: DialogProps): JSX.Element {
         dialog_entering,
         dialog_exiting,
     }: DialogClassNameContract = props.managedClasses;
-    //    const value: TransitionStates = useTransitionState(props.visible, {
-    //        in: revealDuration(props.designSystem),
-    //        out: dismissDuration(props.designSystem),
-    //    });
-
-    const transition: any = useTransition(
-        {
-            duration: [
-                revealDuration(props.designSystem),
-                dismissDuration(props.designSystem),
-            ],
-            timingFunction: "linear",
-            to: {
-                opacity: 0,
-            },
-            from: {
-                opacity: 1,
-            },
-        },
-        props.visible
-    );
+    const value: TransitionStates = useTransitionState(props.visible, {
+        activating: revealDuration(props.designSystem),
+        deactivating: dismissDuration(props.designSystem),
+    });
 
     return (
         <div
             className={classNames(
                 dialog,
-                transition
-                // [dialog_initial, value === TransitionStates.from],
-                // [dialog_entering, value === TransitionStates.to],
-                // [dialog_exiting, value === TransitionStates.out]
+                [dialog_initial, value === TransitionStates.inactive],
+                [
+                    dialog_entering,
+                    value === TransitionStates.activating ||
+                        value === TransitionStates.active,
+                ],
+                [dialog_exiting, value === TransitionStates.deactivating]
             )}
         >
             {props.children}

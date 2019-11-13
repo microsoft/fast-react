@@ -18,9 +18,8 @@ import { slideTransition } from "./recipies/slide";
 import { AppState } from "./state";
 import {
     TransitionStates,
-    useBinaryTransitionState,
-    useTransition,
-} from "./use-transition";
+    useTransitionState,
+} from "@microsoft/fast-components-react-msft";
 
 export interface SlideClassNameContract {
     slide: string;
@@ -59,7 +58,7 @@ function Slide(props: SlideProps): JSX.Element {
         slide_initial,
         slide_entering,
     }: SlideClassNameContract = props.managedClasses;
-    const value: TransitionStates = useBinaryTransitionState(
+    const value: TransitionStates = useTransitionState(
         props.slide,
         relativeDuration(props.designSystem)
     );
@@ -68,8 +67,16 @@ function Slide(props: SlideProps): JSX.Element {
         <div
             className={classNames(
                 slide,
-                [slide_initial, value === TransitionStates.from],
-                [slide_entering, value === TransitionStates.to]
+                [
+                    slide_initial,
+                    value === TransitionStates.inactive ||
+                        value === TransitionStates.deactivating,
+                ],
+                [
+                    slide_entering,
+                    value === TransitionStates.active ||
+                        value === TransitionStates.activating,
+                ]
             )}
         >
             {props.children}
