@@ -47,6 +47,10 @@ export interface UseTransitionConfig {
     deactivating?: React.CSSProperties;
 }
 
+/**
+ * normalize config arguments for transition metadata
+ * @private
+ */
 export function normalizeAnimationConfigValue<T>(value: T | [T, T]): [T, T] {
     return Array.isArray(value) ? value : [value, value];
 }
@@ -54,6 +58,7 @@ export function normalizeAnimationConfigValue<T>(value: T | [T, T]): [T, T] {
 /**
  * Formats useAnimation config args into keyframe objects. Will return one object when
  * the animation is binary, and two when the forward animation is different than the reverse.
+ * @private
  */
 export function formatKeyframes(
     inactive: React.CSSProperties,
