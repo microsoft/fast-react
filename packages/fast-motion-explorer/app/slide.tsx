@@ -16,7 +16,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { slideTransition } from "./recipies/slide";
 import { AppState } from "./state";
-import { TransitionStates, useBinaryTransitionState } from "./use-transition";
+import {
+    TransitionStates,
+    useBinaryTransitionState,
+    useTransition,
+} from "./use-transition";
 
 export interface SlideClassNameContract {
     slide: string;

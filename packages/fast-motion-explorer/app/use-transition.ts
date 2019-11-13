@@ -1,9 +1,8 @@
 import CSS from "csstype";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { EventListener } from "popmotion/lib/input/listen/types";
-import { isFunction, isNumber } from "lodash-es";
-import { useTimeout } from "./use-timeout";
 import jss from "jss";
+import { isNumber } from "lodash-es";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useTimeout } from "./use-timeout";
 
 jss.setup();
 
@@ -35,8 +34,8 @@ function useTransitionStateFactory(
         const _duration: number = isNumber(duration)
             ? duration
             : state === TransitionStates.to
-            ? duration.in
-            : duration.out;
+                ? duration.in
+                : duration.out;
 
         useTimeout(() => {
             if (nextVisible !== visible) {
@@ -60,8 +59,8 @@ export const useTransitionState: ReturnType<
         return (previous && next) || (next && !previous)
             ? TransitionStates.to
             : previous && !next
-            ? TransitionStates.out
-            : TransitionStates.from;
+                ? TransitionStates.out
+                : TransitionStates.from;
     }
 );
 
@@ -111,11 +110,12 @@ function normalizeConfigArg<T>(value: T | [T, T]): [T, T] {
 /**
  * Creates a set of CSS animation package selectors and returns
  * the appropriate class-name to apply based on animation state
+ *
+ * - How do we know when we should start without animation?
+ * - How do we know when we should start with animation?
+ * - What happens if this data needs to go in base components?
  */
 export function useTransition(config: UseAnimationConfig, value: boolean): string {
-    const classNames: React.MutableRefObject<
-        { in: string; out: string } | undefined
-    > = useRef();
     const keyframes: ReturnType<typeof formatKeyframes> = formatKeyframes(config);
     const duration: [number, number] = normalizeConfigArg(config.duration);
     const delay: ReturnType<typeof normalizeConfigArg> = normalizeConfigArg(
@@ -126,44 +126,82 @@ export function useTransition(config: UseAnimationConfig, value: boolean): strin
         in: duration[0] + (delay[0] as number),
         out: duration[1] + (delay[1] as number),
     });
+    const mounted: React.MutableRefObject<boolean> = useRef(false);
+    const configHash: string = JSON.stringify(config);
 
-    useLayoutEffect((): (() => void) => {
-        const sheet: any = {
-            "@keyframes from": keyframes[0],
-            "@keyframes to": keyframes[1],
-            in: {
-                "animation-duration": duration[0] + "ms",
-                "animation-delay": delay[0] + "ms",
-                "animating-timing-function": timingFunction[0],
-                "animation-fill-mode": "both",
-                "animation-name": "to",
-            },
-            out: {
-                "animation-duration": duration[1] + "ms",
-                "animation-delay": delay[1] + "ms",
-                "animating-timing-function": timingFunction[1],
-                "animation-fill-mode": "both",
-                "animation-name": "from",
-            },
-        };
+    const [state, setState]: [any, any] = useState(
+        (): any => {
+            const sheet: any = {
+                "@keyframes from": keyframes[0],
+                "@keyframes to": keyframes[1],
+                to: {
+                    "animation-duration": duration[0] + "ms",
+                    "animation-delay": delay[0] + "ms",
+                    "animating-timing-function": timingFunction[0],
+                    "animation-fill-mode": "both",
+                    "animation-name": "to",
+                },
+                from: {
+                    "animation-duration": duration[1] + "ms",
+                    "animation-delay": delay[1] + "ms",
+                    "animating-timing-function": timingFunction[1],
+                    "animation-fill-mode": "both",
+                    "animation-name": "from",
+                },
+            };
 
-        const jssStyleSheet: any = jss.createStyleSheet(sheet).attach();
-        classNames.current = jssStyleSheet.classes;
+            return jss.createStyleSheet(sheet);
+        }
+    );
 
-        return (): void => {
-            jss.removeStyleSheet(jssStyleSheet);
-        };
-    }, [
-        duration[0],
-        duration[1],
-        delay[0],
-        delay[1],
-        timingFunction[0],
-        timingFunction[1],
-        JSON.stringify(keyframes[0]),
-        JSON.stringify(keyframes[1]),
-    ]);
+    useLayoutEffect(
+        (): void => {
+            if (mounted.current) {
+                setState(() => {
+                    const sheet: any = {
+                        "@keyframes from": keyframes[0],
+                        "@keyframes to": keyframes[1],
+                        to: {
+                            "animation-duration": duration[0] + "ms",
+                            "animation-delay": delay[0] + "ms",
+                            "animating-timing-function": timingFunction[0],
+                            "animation-fill-mode": "both",
+                            "animation-name": "to",
+                        },
+                        from: {
+                            "animation-duration": duration[1] + "ms",
+                            "animation-delay": delay[1] + "ms",
+                            "animating-timing-function": timingFunction[1],
+                            "animation-fill-mode": "both",
+                            "animation-name": "from",
+                        },
+                    };
 
+                    return jss.createStyleSheet(sheet);
+                });
+            }
+        },
+        [configHash]
+    );
+
+    // Attach the sheet if we're not attached yet
+    useLayoutEffect(
+        (): void => {
+            if (!state.attached) {
+                state.attach();
+            }
+        },
+        [configHash]
+    );
+
+    useEffect(
+        () => (): void => {
+            jss.removeStyleSheet(state);
+        },
+        []
+    );
+
+    return state.classes[TransitionStates[transitionState]];
     /**
      * 1. Process incoming config to a JSS object
      *      a. how do we prevent duplicate creation of CSS? JSON.stringify?
@@ -173,11 +211,13 @@ export function useTransition(config: UseAnimationConfig, value: boolean): strin
      *      a. if keyframes or no "back" property, use binary
      *      b. otherwise use tertiary
      */
-    if (!classNames.current) {
-        return "";
-    }
-    return transitionState === TransitionStates.to
-        ? (classNames.current as any).in
-        : (classNames.current as any).out;
     // This isn't syncronous, so we don't have classes intially. How do we get the classes out of this when using layout effects?
+}
+
+export function useTransitionTwo(
+    value: boolean,
+    config: UseAnimationConfig,
+    animateInitial: boolean = false
+): string {
+    return "foo";
 }

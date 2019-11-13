@@ -35,7 +35,9 @@ export const relativeMotionPresets: {
 };
 
 export type RelativeMotionExampleTypes = keyof (typeof relativeMotionPresets) | "custom";
-export const allRelativeMotionExampleTypes: RelativeMotionExampleTypes[] = ["custom"].concat(Object.keys(relativeMotionPresets)) as RelativeMotionExampleTypes[];
+export const allRelativeMotionExampleTypes: RelativeMotionExampleTypes[] = [
+    "custom",
+].concat(Object.keys(relativeMotionPresets)) as RelativeMotionExampleTypes[];
 
 export interface AppState {
     /**
@@ -85,6 +87,6 @@ function rootReducer(state: AppState, action: any): AppState {
 
 export const store: Store<AppState> = createStore(rootReducer, {
     designSystem: DesignSystemDefaults,
-    animation: Animations.slide,
+    animation: Animations.revealDismiss,
     activeRelativeMotionExamples: ["default"],
 });

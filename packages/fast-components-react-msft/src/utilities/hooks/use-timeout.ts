@@ -4,7 +4,7 @@ import { isFunction } from "lodash-es";
 /**
  * React hook to call set a timeout
  */
-export function useTimeout(callback: () => any, delay: number | null): void {
+export function useTimeout(callback: () => void, delay: number | null): void {
     const savedCallback: React.MutableRefObject<(() => any)> = useRef(callback);
 
     useEffect(
