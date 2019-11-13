@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { isFunction } from "lodash-es";
 
 /**
  * React hook to call set a timeout
