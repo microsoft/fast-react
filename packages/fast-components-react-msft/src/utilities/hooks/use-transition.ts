@@ -96,4 +96,9 @@ export function useTransition(
     const timingFunctions: [string, string] = normalizeAnimationConfigValue(
         config.timingFunction
     );
+    const keyframes: ReturnType<typeof formatKeyframes> = formatKeyframes(
+        inactive,
+        active,
+        deactivating
+    );
 }
