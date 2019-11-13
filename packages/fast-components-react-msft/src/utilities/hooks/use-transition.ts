@@ -3,7 +3,7 @@
  * utility. Describes the transition and CSS properties
  * to transition between
  */
-interface UseAnimationConfig {
+export interface UseAnimationConfig {
     /**
      * The duration of the transition. When value is an array, the first index
      * describes the 'activating' duration and the second describes the
@@ -43,6 +43,10 @@ interface UseAnimationConfig {
      * different then the transition *from* the active state
      */
     deactivating?: React.CSSProperties;
+}
+
+export function normalizeAnimationConfigValue<T>(value: T | [T, T]): [T, T] {
+    return Array.isArray(value) ? value : [value, value];
 }
 
 /**

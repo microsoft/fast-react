@@ -2,9 +2,9 @@ import React from "react";
 import Adapter from "enzyme-adapter-react-16";
 import { configure, mount, ReactWrapper, shallow } from "enzyme";
 import {
+    getTransitionState,
     TransitionStates,
     useTransitionState,
-    getTransitionState,
 } from "./use-transition-state";
 
 /*
