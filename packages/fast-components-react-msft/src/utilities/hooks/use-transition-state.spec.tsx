@@ -53,85 +53,39 @@ describe("useTransitionState", (): void => {
         expect(rendered.find("div").text()).toBe(TransitionStates.activating.toString());
 
         jest.runAllTimers();
-        console.log("running timers");
         expect(rendered.find("div").text()).toBe(TransitionStates.active.toString());
     });
 
-    // test("should move from a 'from' state to a 'enter' state when value goes from false -> true" , (): void => {
-    //     const rendered: ReactWrapper = mount(
-    //         <UseTransitionState duration={300} value={false} />
-    //     );
+    test("should move from a 'from' state to a 'enter' state when value goes from false -> true", (): void => {
+        const rendered: ReactWrapper = mount(
+            <UseTransitionState duration={300} value={false} />
+        );
 
-    //     jest.runAllTimers();
-    //     expect(rendered.find("div").text()).toBe(TransitionStates.from.toString());
+        jest.runAllTimers();
+        expect(rendered.find("div").text()).toBe(TransitionStates.inactive.toString());
 
-    //     rendered.setProps({value: true})
+        rendered.setProps({ value: true });
+        expect(rendered.find("div").text()).toBe(TransitionStates.activating.toString());
+        jest.runAllTimers();
+        expect(rendered.find("div").text()).toBe(TransitionStates.active.toString());
+    });
 
-    //     expect(rendered.find("div").text()).toBe(TransitionStates.enter.toString());
-    //     jest.runAllTimers();
-    //     expect(rendered.find("div").text()).toBe(TransitionStates.enter.toString());
-    // });
+    test("should move from a 'enter' state to a 'leave' state when value goes from true -> false", (): void => {
+        const rendered: ReactWrapper = mount(
+            <UseTransitionState duration={300} value={true} />
+        );
 
-    // test("should move from a 'enter' state to a 'leave' state when value goes from true -> false" , (): void => {
-    //     const rendered: ReactWrapper = mount(
-    //         <UseTransitionState duration={300} value={true} />
-    //     );
+        jest.runAllTimers();
+        expect(rendered.find("div").text()).toBe(TransitionStates.active.toString());
 
-    //     jest.runAllTimers();
-    //     expect(rendered.find("div").text()).toBe(TransitionStates.enter.toString());
+        rendered.setProps({ value: false });
 
-    //     rendered.setProps({value: false})
-
-    //     expect(rendered.find("div").text()).toBe(TransitionStates.leave.toString());
-    //     jest.runAllTimers();
-    //     expect(rendered.find("div").text()).toBe(TransitionStates.leave.toString());
-    // });
-
-    // test("should call a callback after the provided period of time", (): void => {
-    //     const spy: jest.Mock = jest.fn();
-    //     const rendered: ReactWrapper = mount(<UseTransitionState timeout={300} callback={spy} />);
-
-    //     jest.runAllTimers();
-    //     expect(spy).toHaveBeenCalledTimes(1);
-    // });
-    // test("should provided callback when delay is changed", (): void => {
-    //     const spy: jest.Mock = jest.fn();
-    //     const rendered: ReactWrapper = mount(<UseTransitionState timeout={300} callback={spy} />);
-
-    //     rendered.setProps({ delay: 200 });
-
-    //     jest.runAllTimers();
-    //     expect(spy).toHaveBeenCalledTimes(1);
-    // });
-    // test("should call new callback when one is provided", (): void => {
-    //     const spy: jest.Mock = jest.fn();
-    //     const spy2: jest.Mock = jest.fn();
-    //     const rendered: ReactWrapper = mount(<UseTransitionState timeout={300} callback={spy} />);
-
-    //     rendered.setProps({ callback: spy2 });
-
-    //     jest.runAllTimers();
-    //     expect(spy).toHaveBeenCalledTimes(0);
-    //     expect(spy2).toHaveBeenCalledTimes(1);
-    // });
-    // test("should not call timer if component unmounts before timeout", (): void => {
-    //     const spy: jest.Mock = jest.fn();
-    //     const rendered: ReactWrapper = mount(<UseTransitionState timeout={300} callback={spy} />);
-
-    //     rendered.unmount();
-    //     jest.runAllTimers();
-
-    //     expect(spy).toHaveBeenCalledTimes(0);
-    // });
-    // test("should not invoke callback if timeout is set to null", (): void => {
-    //     const spy: jest.Mock = jest.fn();
-    //     const rendered: ReactWrapper = mount(<UseTransitionState timeout={300} callback={spy} />);
-    //     rendered.setProps({ timeout: null });
-
-    //     jest.runAllTimers();
-
-    //     expect(spy).toHaveBeenCalledTimes(0);
-    // });
+        expect(rendered.find("div").text()).toBe(
+            TransitionStates.deactivating.toString()
+        );
+        jest.runAllTimers();
+        expect(rendered.find("div").text()).toBe(TransitionStates.inactive.toString());
+    });
 });
 
 describe("getTransitionState", (): void => {
