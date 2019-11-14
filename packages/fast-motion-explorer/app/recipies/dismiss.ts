@@ -7,6 +7,7 @@ import {
 } from "@microsoft/fast-components-styles-msft";
 import { CSSRules } from "@microsoft/fast-jss-manager-react";
 import { formatTransition } from "./utilities";
+import { format } from "@microsoft/fast-jss-utilities";
 
 /**
  * The duration of the dismiss animation

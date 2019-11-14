@@ -29,21 +29,19 @@ export function revealTransform(dimension: number): DesignSystemResolver<string>
 /**
  * The CSS transition property value for a reveal transition
  */
-export const revealTransition: DesignSystemResolver<string> = formatTransition(revealDuration)(bezier)("transform", "opacity", "box-shadow") 
-
-
+export const revealTransition: DesignSystemResolver<string> = formatTransition(
+    revealDuration
+)(bezier)("transform", "opacity", "box-shadow");
 
 export function revealFromProperties(size: number): CSSRules<DesignSystem> {
     return {
         opacity: "0",
         "box-shadow": "none",
-        transform: revealTransform(size), // How do we tie this to props?
-    }
+        transform: revealTransform(size),
+    };
 }
 
 export const revealToProperties: CSSRules<DesignSystem> = {
-    transition: revealTransition,
     transform: "translateX(0) scale(1)",
     opacity: "1",
 };
-
