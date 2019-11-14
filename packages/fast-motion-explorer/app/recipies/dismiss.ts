@@ -16,7 +16,9 @@ export const dismissDuration: DesignSystemResolver<number> = duration(50);
 /**
  * The CSS Transition property value for a dismiss transition
  */
-export const dismissTransition: DesignSystemResolver<string> = formatTransition(dismissDuration)(bezier)("transform", "opacity", "box-shadow") 
+export const dismissTransition: DesignSystemResolver<string> = formatTransition(
+    dismissDuration
+)(bezier)("transform", "opacity", "box-shadow");
 
 /**
  * The CSS transform property value
@@ -33,7 +35,7 @@ export function dismissTransform(dimension: number): DesignSystemResolver<string
  */
 export function dismissToProperties(size: number): CSSRules<DesignSystem> {
     return {
-        transition: dismissTransition,
+        // transition: dismissTransition,
         opacity: "0",
         transform: dismissTransform(size),
         boxShadow: "none",

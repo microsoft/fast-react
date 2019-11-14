@@ -1,16 +1,18 @@
 import {
     applyElevatedCornerRadius,
     applyElevation,
+    bezier,
     DesignSystem,
     ElevationMultiplier,
     neutralFillCard,
 } from "@microsoft/fast-components-styles-msft";
 import manageJss, {
     ComponentStyleSheet,
+    designSystemContext,
     ManagedClasses,
 } from "@microsoft/fast-jss-manager-react";
 import { classNames } from "@microsoft/fast-web-utilities";
-import React from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 import { dismissDuration, dismissToProperties } from "./recipies/dismiss";
 import {
@@ -20,15 +22,13 @@ import {
 } from "./recipies/reveal";
 import { AppState } from "./state";
 import {
-    useTransitionState,
     TransitionStates,
+    useTransition,
+    useTransitionState,
 } from "@microsoft/fast-components-react-msft";
 
 export interface DialogClassNameContract {
     dialog: string;
-    dialog_initial: string;
-    dialog_entering: string;
-    dialog_exiting: string;
 }
 
 export interface DialogProps extends ManagedClasses<DialogClassNameContract> {
@@ -48,45 +48,26 @@ const stylesheet: ComponentStyleSheet<DialogClassNameContract, DesignSystem> = {
         height: "200px",
         background: neutralFillCard,
     },
-    dialog_initial: {
-        ...revealFromProperties(200),
-    },
-    dialog_entering: {
-        ...revealToProperties,
-    },
-    dialog_exiting: {
-        ...dismissToProperties(200),
-    },
 };
 
 function Dialog(props: DialogProps): JSX.Element {
-    const {
-        dialog,
-        dialog_initial,
-        dialog_entering,
-        dialog_exiting,
-    }: DialogClassNameContract = props.managedClasses;
-    const value: TransitionStates = useTransitionState(props.visible, {
-        activating: revealDuration(props.designSystem),
-        deactivating: dismissDuration(props.designSystem),
+    const { dialog }: DialogClassNameContract = props.managedClasses;
+    const context: DesignSystem = useContext<DesignSystem>(designSystemContext as any);
+
+    const transition: string = useTransition(props.visible, {
+        duration: [revealDuration(context), dismissDuration(context)],
+        timingFunction: bezier(context),
+        inactive: { ...revealFromProperties(props.width) },
+        active: {
+            transform: "translateX(0) scale(1)",
+            opacity: "1",
+        },
+        deactivating: {
+            ...dismissToProperties(props.width),
+        },
     });
 
-    return (
-        <div
-            className={classNames(
-                dialog,
-                [dialog_initial, value === TransitionStates.inactive],
-                [
-                    dialog_entering,
-                    value === TransitionStates.activating ||
-                        value === TransitionStates.active,
-                ],
-                [dialog_exiting, value === TransitionStates.deactivating]
-            )}
-        >
-            {props.children}
-        </div>
-    );
+    return <div className={classNames(dialog, transition)}>{props.children}</div>;
 }
 
 function mapStateToProps(state: AppState): Partial<DialogProps> {
