@@ -35,7 +35,6 @@ export function dismissTransform(dimension: number): DesignSystemResolver<string
  */
 export function dismissToProperties(size: number): CSSRules<DesignSystem> {
     return {
-        // transition: dismissTransition,
         opacity: "0",
         transform: dismissTransform(size),
         boxShadow: "none",
