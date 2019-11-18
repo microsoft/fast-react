@@ -115,3 +115,7 @@ export * from "./utilities/intersection-observer-entry";
 import ViewportPositioner from "./viewport-positioner";
 export { ViewportPositioner };
 export * from "./viewport-positioner";
+
+import ViewportVirrtualizer from "./viewport-virtualizer";
+export { ViewportVirrtualizer };
+export * from "./viewport-virtualizer";

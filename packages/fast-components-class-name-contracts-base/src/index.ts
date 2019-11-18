@@ -27,3 +27,4 @@ export * from "./text-field";
 export * from "./toggle";
 export * from "./typography";
 export * from "./viewport-positioner";
+export * from "./viewport-virtualizer";
