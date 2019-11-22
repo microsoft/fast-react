@@ -1,4 +1,4 @@
-import { ViewportVirtualizerClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
+import { LazyLoaderClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
 import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { canUseDOM } from "exenv-es6";
@@ -7,37 +7,46 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { DisplayNamePrefix, IntersectionObserverEntry } from "../utilities";
 import {
-    ViewportVirtualizerHandledProps,
-    ViewportVirtualizerProps,
-    ViewportVirtualizerUnhandledProps,
-} from "./viewport-virtualizer.props";
+    LazyLoaderHandledProps,
+    LazyLoaderMode,
+    LazyLoaderProps,
+    LazyLoaderUnhandledProps,
+} from "./lazy-loader.props";
 import {
     ViewportContext,
     ViewportContextType,
 } from "../viewport-positioner/viewport-context";
 
-export interface ViewportVirtualizerState {
+export interface LazyLoaderState {
     disabled: boolean;
     validRefChecksRemaining: number;
+    hasLoaded: boolean;
     isInview: boolean;
 }
 
-class ViewportVirtualizer extends Foundation<
-    ViewportVirtualizerHandledProps,
-    ViewportVirtualizerUnhandledProps,
-    ViewportVirtualizerState
+class LazyLoader extends Foundation<
+    LazyLoaderHandledProps,
+    LazyLoaderUnhandledProps,
+    LazyLoaderState
 > {
-    public static displayName: string = `${DisplayNamePrefix}ViewportVirtualizer`;
+    public static displayName: string = `${DisplayNamePrefix}LazyLoader`;
 
     public static contextType: React.Context<ViewportContextType> = ViewportContext;
 
-    public static defaultProps: Partial<ViewportVirtualizerProps> = {
+    public static defaultProps: Partial<LazyLoaderProps> = {
         managedClasses: {},
+        lazyLoaderMode: LazyLoaderMode.lazyLoad,
+        rootMargin: "100px 100px 100px 100px",
+        threshold: [0],
     };
 
-    protected handledProps: HandledProps<ViewportVirtualizerHandledProps> = {
+    protected handledProps: HandledProps<LazyLoaderHandledProps> = {
         managedClasses: void 0,
         viewport: void 0,
+        onVisibilityChange: void 0,
+        lazyLoaderMode: void 0,
+        rootMargin: void 0,
+        threshold: void 0,
     };
 
     private rootElement: React.RefObject<HTMLDivElement> = React.createRef<
@@ -45,18 +54,20 @@ class ViewportVirtualizer extends Foundation<
     >();
 
     private openRequestAnimationFrame: number = null;
-
     private collisionDetector: IntersectionObserver;
+    private isInView: boolean = false;
+    private hasRenderedInternals = false;
 
     /**
      * constructor
      */
-    constructor(props: ViewportVirtualizerProps) {
+    constructor(props: LazyLoaderProps) {
         super(props);
 
         this.state = {
+            hasLoaded: false,
             isInview: false,
-            disabled: isNil(this.props.disabled) ? false : this.props.disabled,
+            disabled: false,
             validRefChecksRemaining: 2,
         };
     }
@@ -69,11 +80,8 @@ class ViewportVirtualizer extends Foundation<
         this.disable();
     }
 
-    public componentDidUpdate(prevProps: ViewportVirtualizerProps): void {
-        if (
-            prevProps.disabled !== this.props.disabled ||
-            this.state.validRefChecksRemaining > 0
-        ) {
+    public componentDidUpdate(prevProps: LazyLoaderProps): void {
+        if (this.state.validRefChecksRemaining > 0) {
             this.updateDisabledState();
         }
     }
@@ -88,7 +96,7 @@ class ViewportVirtualizer extends Foundation<
                 ref={this.rootElement}
                 className={this.generateClassNames()}
             >
-                {this.state.isInview || this.state.disabled ? this.props.children : null}
+                {this.renderChildren()}
             </div>
         );
     }
@@ -98,17 +106,50 @@ class ViewportVirtualizer extends Foundation<
      */
     protected generateClassNames(): string {
         const {
-            viewportVirtualizer,
-        }: ViewportVirtualizerClassNameContract = this.props.managedClasses;
+            lazyLoader,
+            lazyLoader__isInView,
+        }: LazyLoaderClassNameContract = this.props.managedClasses;
 
-        return super.generateClassNames(classNames(viewportVirtualizer));
+        return super.generateClassNames(
+            classNames(lazyLoader, [lazyLoader__isInView, this.state.isInview])
+        );
+    }
+
+    /**
+     *  Checks whether component should render internals
+     */
+    private shouldRenderInternals = (): boolean => {
+        if (
+            this.state.disabled ||
+            this.props.lazyLoaderMode === LazyLoaderMode.onlyCSS ||
+            (this.state.isInview &&
+                this.props.lazyLoaderMode === LazyLoaderMode.lazyLoad) ||
+            (this.state.isInview &&
+                this.props.lazyLoaderMode === LazyLoaderMode.unloadWhenOutOfView) ||
+            (this.props.lazyLoaderMode === LazyLoaderMode.lazyLoad &&
+                this.hasRenderedInternals)
+        ) {
+            return true;
+        }
+        return false;
+    };
+
+    /**
+     * Render childrend
+     */
+    private renderChildren(): React.ReactNode {
+        if (this.shouldRenderInternals()) {
+            this.hasRenderedInternals = true;
+            return this.props.children;
+        }
+        return null;
     }
 
     /**
      *  Checks whether component should be disabled or not
      */
     private updateDisabledState = (): void => {
-        if (!canUseDOM() || this.props.disabled === true) {
+        if (!canUseDOM()) {
             this.disable();
             return;
         }
@@ -131,11 +172,7 @@ class ViewportVirtualizer extends Foundation<
     private enableComponent = (): void => {
         const viewportElement: HTMLElement | null = this.getViewportElement();
 
-        if (
-            this.props.disabled ||
-            isNil(viewportElement) ||
-            isNil(this.rootElement.current)
-        ) {
+        if (isNil(viewportElement) || isNil(this.rootElement.current)) {
             return;
         }
 
@@ -157,8 +194,8 @@ class ViewportVirtualizer extends Foundation<
             this.handleCollision,
             {
                 root: viewportElement,
-                rootMargin: "0px",
-                threshold: [0, 1],
+                rootMargin: this.props.rootMargin,
+                threshold: this.props.threshold,
             }
         );
         this.collisionDetector.observe(this.rootElement.current);
@@ -195,10 +232,30 @@ class ViewportVirtualizer extends Foundation<
     ): void => {
         entries.forEach((entry: IntersectionObserverEntry) => {
             if (entry.target === this.rootElement.current) {
-                this.setState({
-                    isInview: entry.intersectionRatio > 0 ? true : false,
-                });
+                const inView: boolean = entry.intersectionRatio > 0;
+                if (this.isInView !== inView) {
+                    this.isInView = inView;
+                    this.requestFrame();
+                }
             }
+        });
+    };
+
+    /**
+     * Request's an animation frame if there are currently no open animation frame requests
+     */
+    private requestFrame = (): void => {
+        if (this.openRequestAnimationFrame === null) {
+            this.openRequestAnimationFrame = window.requestAnimationFrame(
+                this.updateVisibility
+            );
+        }
+    };
+
+    private updateVisibility = (): void => {
+        this.openRequestAnimationFrame = null;
+        this.setState({
+            isInview: this.isInView,
         });
     };
 
@@ -251,7 +308,7 @@ class ViewportVirtualizer extends Foundation<
         return null;
     };
 }
-ViewportVirtualizer.contextType = ViewportContext;
-export default ViewportVirtualizer;
-export * from "./viewport-virtualizer.props";
-export { ViewportVirtualizerClassNameContract, ViewportContext, ViewportContextType };
+LazyLoader.contextType = ViewportContext;
+export default LazyLoader;
+export * from "./lazy-loader.props";
+export { LazyLoaderClassNameContract, ViewportContext, ViewportContextType };

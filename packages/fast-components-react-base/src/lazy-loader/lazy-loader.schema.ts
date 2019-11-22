@@ -3,7 +3,7 @@ export default {
     title: "Viewport virtualizer",
     description: "A viewport virtualizer component's schema definition.",
     type: "object",
-    id: "@microsoft/fast-components-react-base/viewport-virtualizer",
+    id: "@microsoft/fast-components-react-base/lazy-loader",
     properties: {
         disabled: {
             title: "Disabled",

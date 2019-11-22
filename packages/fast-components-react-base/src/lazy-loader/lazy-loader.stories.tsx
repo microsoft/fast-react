@@ -1,9 +1,10 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import ViewportVirtualizer, { ViewportVirtualizerProps } from "./";
+import LazyLoader, { LazyLoaderProps } from "./";
 import { ViewportContext } from "../viewport-positioner";
 import Foundation from "@microsoft/fast-components-foundation-react";
 import { background } from "@storybook/theming";
+import { LazyLoaderMode } from "./lazy-loader.props";
 
 class TestViewport extends React.Component<{}, {}> {
     private rootElement: React.RefObject<HTMLDivElement> = React.createRef<
@@ -39,7 +40,7 @@ class TestViewport extends React.Component<{}, {}> {
     }
 }
 
-storiesOf("Viewport Virtualizer", module).add("Default", () => (
+storiesOf("Lazy Loader", module).add("Default", () => (
     <TestViewport>
         <div
             style={{
@@ -53,7 +54,7 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                 padding: "100px",
             }}
         >
-            <ViewportVirtualizer
+            <LazyLoader
                 style={{
                     gridRow: "1",
                     gridColumn: "1",
@@ -67,8 +68,8 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
                 style={{
                     gridRow: "1",
                     gridColumn: "2",
@@ -82,8 +83,8 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
                 style={{
                     gridRow: "1",
                     gridColumn: "3",
@@ -97,8 +98,8 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
                 style={{
                     gridRow: "1",
                     gridColumn: "4",
@@ -112,8 +113,8 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
                 style={{
                     gridRow: "2",
                     gridColumn: "1",
@@ -127,8 +128,8 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
                 style={{
                     gridRow: "2",
                     gridColumn: "2",
@@ -142,8 +143,8 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
                 style={{
                     gridRow: "2",
                     gridColumn: "3",
@@ -157,8 +158,8 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
                 style={{
                     gridRow: "2",
                     gridColumn: "4",
@@ -172,8 +173,9 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
+                lazyLoaderMode={LazyLoaderMode.unloadWhenOutOfView}
                 style={{
                     gridRow: "3",
                     gridColumn: "1",
@@ -187,8 +189,9 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
+                lazyLoaderMode={LazyLoaderMode.unloadWhenOutOfView}
                 style={{
                     gridRow: "3",
                     gridColumn: "2",
@@ -202,8 +205,9 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
+                lazyLoaderMode={LazyLoaderMode.unloadWhenOutOfView}
                 style={{
                     gridRow: "3",
                     gridColumn: "3",
@@ -217,8 +221,9 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
+                lazyLoaderMode={LazyLoaderMode.unloadWhenOutOfView}
                 style={{
                     gridRow: "3",
                     gridColumn: "4",
@@ -232,8 +237,9 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
+                lazyLoaderMode={LazyLoaderMode.onlyCSS}
                 style={{
                     gridRow: "4",
                     gridColumn: "1",
@@ -247,8 +253,9 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
+                lazyLoaderMode={LazyLoaderMode.onlyCSS}
                 style={{
                     gridRow: "4",
                     gridColumn: "2",
@@ -262,8 +269,9 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
+                lazyLoaderMode={LazyLoaderMode.onlyCSS}
                 style={{
                     gridRow: "4",
                     gridColumn: "3",
@@ -277,8 +285,9 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
-            <ViewportVirtualizer
+            </LazyLoader>
+            <LazyLoader
+                lazyLoaderMode={LazyLoaderMode.onlyCSS}
                 style={{
                     gridRow: "4",
                     gridColumn: "4",
@@ -292,7 +301,7 @@ storiesOf("Viewport Virtualizer", module).add("Default", () => (
                         width: "100%",
                     }}
                 />
-            </ViewportVirtualizer>
+            </LazyLoader>
         </div>
     </TestViewport>
 ));
