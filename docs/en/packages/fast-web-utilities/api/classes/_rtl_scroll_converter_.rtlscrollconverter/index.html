@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="[@microsoft/fast-web-utilities](/docs/en/packages/fast-web-utilities/api/) &gt; [&quot;rtl-scroll-converter&quot;](/docs/en/packages/fast-web-utilities/api/modules/_rtl_scroll_converter_) &gt; [RtlScrollConverter](/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.fast.design/"/><meta property="og:description" content="[@microsoft/fast-web-utilities](/docs/en/packages/fast-web-utilities/api/) &gt; [&quot;rtl-scroll-converter&quot;](/docs/en/packages/fast-web-utilities/api/modules/_rtl_scroll_converter_) &gt; [RtlScrollConverter](/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter)"/><meta property="og:image" content="https://www.fast.design/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.fast.design/img/logo.png"/><link rel="shortcut icon" href="/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.svg" alt="Documentation"/><h2 class="headerTitleWithLogo">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/contributing/install" target="_self">Guide</a></li><li class=""><a href="https://github.com/microsoft/fast-dna" target="_self">GitHub</a></li><li class=""><a href="https://explore.fast.design" target="_self">Components</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter</h1></header><article><div><span><p><a href="/docs/en/packages/fast-web-utilities/api/">@microsoft/fast-web-utilities</a> &gt; <a href="/docs/en/packages/fast-web-utilities/api/modules/_rtl_scroll_converter_">&quot;rtl-scroll-converter&quot;</a> &gt; <a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter">RtlScrollConverter</a></p>
+<h1><a class="anchor" aria-hidden="true" id="class-rtlscrollconverter"></a><a href="#class-rtlscrollconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Class: RtlScrollConverter</h1>
+<p>Standardize left scroll conversion when direction is rtl inspired by <a href="https://github.com/alitaheri/normalize-scroll-left">https://github.com/alitaheri/normalize-scroll-left</a></p>
+<h2><a class="anchor" aria-hidden="true" id="hierarchy"></a><a href="#hierarchy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hierarchy</h2>
+<p><strong>RtlScrollConverter</strong></p>
+<h2><a class="anchor" aria-hidden="true" id="index"></a><a href="#index" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Index</h2>
+<h3><a class="anchor" aria-hidden="true" id="properties"></a><a href="#properties" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Properties</h3>
+<ul>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#getrtlscrollleftconverter">getRtlScrollLeftConverter</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#setrtlscrollleftconverter">setRtlScrollLeftConverter</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="methods"></a><a href="#methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<ul>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#applydirectscrollconverters">applyDirectScrollConverters</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#applyinvertedscrollconverters">applyInvertedScrollConverters</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#applyreversescrollconverters">applyReverseScrollConverters</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#checkforscrolltype">checkForScrollType</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#directgetrtlscrollconverter">directGetRtlScrollConverter</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#directsetrtlscrollconverter">directSetRtlScrollConverter</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#getscrollleft">getScrollLeft</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#gettestelement">getTestElement</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#initialgetrtlscrollconverter">initialGetRtlScrollConverter</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#initialsetrtlscrollconverter">initialSetRtlScrollConverter</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#initializertlscrollconverters">initializeRtlScrollConverters</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#invertedgetrtlscrollconverter">invertedGetRtlScrollConverter</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#invertedsetrtlscrollconverter">invertedSetRtlScrollConverter</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#isdirect">isDirect</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#isreverse">isReverse</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#reversegetrtlscrollconverter">reverseGetRtlScrollConverter</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#reversesetrtlscrollconverter">reverseSetRtlScrollConverter</a></li>
+<li><a href="/docs/en/packages/fast-web-utilities/api/classes/_rtl_scroll_converter_.rtlscrollconverter#setscrollleft">setScrollLeft</a></li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="properties-1"></a><a href="#properties-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Properties</h2>
+<p><a id="getrtlscrollleftconverter"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-getrtlscrollleftconverter"></a><a href="#staticprivate-getrtlscrollleftconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> getRtlScrollLeftConverter</h3>
+<p><strong>● getRtlScrollLeftConverter</strong>: <em><code>function</code></em> =
+RtlScrollConverter.initialGetRtlScrollConverter</p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L40">rtl-scroll-converter.ts:40</a></em></p>
+<p>This variable holds the appropriate converter function to get the scrollLeft value The functions initially assigned triggers a browser check when called which sets the correct converter based on browser and then invokes it</p>
+<h4><a class="anchor" aria-hidden="true" id="type-declaration"></a><a href="#type-declaration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type declaration</h4>
+<p>▸(scrolledElement: <em><code>Element</code></em>): <code>number</code></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>number</code></p>
+<hr>
+<p><a id="setrtlscrollleftconverter"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-setrtlscrollleftconverter"></a><a href="#staticprivate-setrtlscrollleftconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> setRtlScrollLeftConverter</h3>
+<p><strong>● setRtlScrollLeftConverter</strong>: <em><code>function</code></em> =  RtlScrollConverter.initialSetRtlScrollConverter</p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L48">rtl-scroll-converter.ts:48</a></em></p>
+<p>This variable holds the appropriate converter function to set the scrollLeft value The functions initially assigned triggers a browser check when called which sets the correct function based on browser and then invokes it</p>
+<h4><a class="anchor" aria-hidden="true" id="type-declaration-1"></a><a href="#type-declaration-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Type declaration</h4>
+<p>▸(scrolledElement: <em><code>Element</code></em>, scrollValue: <em><code>number</code></em>): <code>void</code></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+<tr><td>scrollValue</td><td><code>number</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="methods-1"></a><a href="#methods-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h2>
+<p><a id="applydirectscrollconverters"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-applydirectscrollconverters"></a><a href="#staticprivate-applydirectscrollconverters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> applyDirectScrollConverters</h3>
+<p>▸ <strong>applyDirectScrollConverters</strong>(): <code>void</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L191">rtl-scroll-converter.ts:191</a></em></p>
+<p>apply direct scroll conververters</p>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+<p><a id="applyinvertedscrollconverters"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-applyinvertedscrollconverters"></a><a href="#staticprivate-applyinvertedscrollconverters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> applyInvertedScrollConverters</h3>
+<p>▸ <strong>applyInvertedScrollConverters</strong>(): <code>void</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L201">rtl-scroll-converter.ts:201</a></em></p>
+<p>apply inverted scroll conververters</p>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+<p><a id="applyreversescrollconverters"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-applyreversescrollconverters"></a><a href="#staticprivate-applyreversescrollconverters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> applyReverseScrollConverters</h3>
+<p>▸ <strong>applyReverseScrollConverters</strong>(): <code>void</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L211">rtl-scroll-converter.ts:211</a></em></p>
+<p>apply reverse scroll conververters</p>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+<p><a id="checkforscrolltype"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-checkforscrolltype"></a><a href="#staticprivate-checkforscrolltype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> checkForScrollType</h3>
+<p>▸ <strong>checkForScrollType</strong>(testElement: <em><code>HTMLDivElement</code></em>): <code>void</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L161">rtl-scroll-converter.ts:161</a></em></p>
+<p>checks the provided test element to determine scroll type and apply appropriate converters</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>testElement</td><td><code>HTMLDivElement</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+<p><a id="directgetrtlscrollconverter"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-directgetrtlscrollconverter"></a><a href="#staticprivate-directgetrtlscrollconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> directGetRtlScrollConverter</h3>
+<p>▸ <strong>directGetRtlScrollConverter</strong>(scrolledElement: <em><code>Element</code></em>): <code>number</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L67">rtl-scroll-converter.ts:67</a></em></p>
+<p>The &quot;direct&quot; rtl get scroll converter does not need to tamper with the scrollLeft values as the browser is already doing the right thing. Content start = 0 and scrolling left goes negative.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>number</code></p>
+<hr>
+<p><a id="directsetrtlscrollconverter"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-directsetrtlscrollconverter"></a><a href="#staticprivate-directsetrtlscrollconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> directSetRtlScrollConverter</h3>
+<p>▸ <strong>directSetRtlScrollConverter</strong>(scrolledElement: <em><code>Element</code></em>, newScrollValue: <em><code>number</code></em>): <code>void</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L108">rtl-scroll-converter.ts:108</a></em></p>
+<p>The &quot;direct&quot; rtl set scroll converter does not need to tamper with the scrollLeft values as the browser is already doing the right thing. Content start = 0 and scrolling left goes negative.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+<tr><td>newScrollValue</td><td><code>number</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+<p><a id="getscrollleft"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="static-getscrollleft"></a><a href="#static-getscrollleft" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;</code> getScrollLeft</h3>
+<p>▸ <strong>getScrollLeft</strong>(scrolledElement: <em><code>Element</code></em>, direction: <em><a href="/docs/en/packages/fast-web-utilities/api/enums/_localization_.direction">Direction</a></em>): <code>number</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L13">rtl-scroll-converter.ts:13</a></em></p>
+<p>Gets the scrollLeft value of the provided element</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+<tr><td>direction</td><td><a href="/docs/en/packages/fast-web-utilities/api/enums/_localization_.direction">Direction</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>number</code></p>
+<hr>
+<p><a id="gettestelement"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-gettestelement"></a><a href="#staticprivate-gettestelement" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> getTestElement</h3>
+<p>▸ <strong>getTestElement</strong>(): <code>HTMLDivElement</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L221">rtl-scroll-converter.ts:221</a></em></p>
+<p>generate a test element for rtl testing</p>
+<p><strong>Returns:</strong> <code>HTMLDivElement</code></p>
+<hr>
+<p><a id="initialgetrtlscrollconverter"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-initialgetrtlscrollconverter"></a><a href="#staticprivate-initialgetrtlscrollconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> initialGetRtlScrollConverter</h3>
+<p>▸ <strong>initialGetRtlScrollConverter</strong>(scrolledElement: <em><code>Element</code></em>): <code>number</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L57">rtl-scroll-converter.ts:57</a></em></p>
+<p>The initial rtl scroll converter getter function, it calls the browser test to set the correct converter functions and then invokes the getter</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>number</code></p>
+<hr>
+<p><a id="initialsetrtlscrollconverter"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-initialsetrtlscrollconverter"></a><a href="#staticprivate-initialsetrtlscrollconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> initialSetRtlScrollConverter</h3>
+<p>▸ <strong>initialSetRtlScrollConverter</strong>(scrolledElement: <em><code>Element</code></em>, newScrollValue: <em><code>number</code></em>): <code>void</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L95">rtl-scroll-converter.ts:95</a></em></p>
+<p>The initial rtl scroll converter setter function, it calls the browser test to set the correct converter functions and then invokes the setter</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+<tr><td>newScrollValue</td><td><code>number</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+<p><a id="initializertlscrollconverters"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-initializertlscrollconverters"></a><a href="#staticprivate-initializertlscrollconverters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> initializeRtlScrollConverters</h3>
+<p>▸ <strong>initializeRtlScrollConverters</strong>(): <code>void</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L144">rtl-scroll-converter.ts:144</a></em></p>
+<p>detects the appropriate rtl scroll converter functions and assigns them should only run once</p>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+<p><a id="invertedgetrtlscrollconverter"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-invertedgetrtlscrollconverter"></a><a href="#staticprivate-invertedgetrtlscrollconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> invertedGetRtlScrollConverter</h3>
+<p>▸ <strong>invertedGetRtlScrollConverter</strong>(scrolledElement: <em><code>Element</code></em>): <code>number</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L76">rtl-scroll-converter.ts:76</a></em></p>
+<p>The &quot;inverted&quot; get scroll converter is used when the browser reports scroll left as a positive maximum scroll value at content start and then goes to zero as content is scrolled left</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>number</code></p>
+<hr>
+<p><a id="invertedsetrtlscrollconverter"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-invertedsetrtlscrollconverter"></a><a href="#staticprivate-invertedsetrtlscrollconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> invertedSetRtlScrollConverter</h3>
+<p>▸ <strong>invertedSetRtlScrollConverter</strong>(scrolledElement: <em><code>Element</code></em>, newScrollValue: <em><code>number</code></em>): <code>void</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L120">rtl-scroll-converter.ts:120</a></em></p>
+<p>The &quot;inverted&quot; set scroll converter is used when the browser reports scroll left as a positive maximum scroll value at content start and then goes to zero as content is scrolled left</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+<tr><td>newScrollValue</td><td><code>number</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+<p><a id="isdirect"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-isdirect"></a><a href="#staticprivate-isdirect" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> isDirect</h3>
+<p>▸ <strong>isDirect</strong>(testElement: <em><code>HTMLDivElement</code></em>): <code>boolean</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L183">rtl-scroll-converter.ts:183</a></em></p>
+<p>checks test element for rtl &quot;direct&quot; mode</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>testElement</td><td><code>HTMLDivElement</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>boolean</code></p>
+<hr>
+<p><a id="isreverse"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-isreverse"></a><a href="#staticprivate-isreverse" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> isReverse</h3>
+<p>▸ <strong>isReverse</strong>(testElement: <em><code>HTMLDivElement</code></em>): <code>boolean</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L176">rtl-scroll-converter.ts:176</a></em></p>
+<p>checks test element initial state for rtl &quot;reverse&quot; mode</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>testElement</td><td><code>HTMLDivElement</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>boolean</code></p>
+<hr>
+<p><a id="reversegetrtlscrollconverter"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-reversegetrtlscrollconverter"></a><a href="#staticprivate-reversegetrtlscrollconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> reverseGetRtlScrollConverter</h3>
+<p>▸ <strong>reverseGetRtlScrollConverter</strong>(scrolledElement: <em><code>Element</code></em>): <code>number</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L84">rtl-scroll-converter.ts:84</a></em></p>
+<p>The &quot;reverse&quot; get scroll converter is used when the browser reports scroll left as 0 at content start and then goes positive as content is scrolled left</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>number</code></p>
+<hr>
+<p><a id="reversesetrtlscrollconverter"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="staticprivate-reversesetrtlscrollconverter"></a><a href="#staticprivate-reversesetrtlscrollconverter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;``&lt;Private&gt;</code> reverseSetRtlScrollConverter</h3>
+<p>▸ <strong>reverseSetRtlScrollConverter</strong>(scrolledElement: <em><code>Element</code></em>, newScrollValue: <em><code>number</code></em>): <code>void</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L131">rtl-scroll-converter.ts:131</a></em></p>
+<p>The &quot;reverse&quot; set scroll converter is used when the browser reports scroll left as 0 at content start and then goes positive as content is scrolled left</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+<tr><td>newScrollValue</td><td><code>number</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+<p><a id="setscrollleft"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="static-setscrollleft"></a><a href="#static-setscrollleft" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>&lt;Static&gt;</code> setScrollLeft</h3>
+<p>▸ <strong>setScrollLeft</strong>(scrolledElement: <em><code>Element</code></em>, scrollValue: <em><code>number</code></em>, direction: <em><a href="/docs/en/packages/fast-web-utilities/api/enums/_localization_.direction">Direction</a></em>): <code>void</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-web-utilities/src/rtl-scroll-converter.ts#L23">rtl-scroll-converter.ts:23</a></em></p>
+<p>Sets the scrollLeft value of the provided element</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>scrolledElement</td><td><code>Element</code></td></tr>
+<tr><td>scrollValue</td><td><code>number</code></td></tr>
+<tr><td>direction</td><td><a href="/docs/en/packages/fast-web-utilities/api/enums/_localization_.direction">Direction</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>void</code></p>
+<hr>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#hierarchy">Hierarchy</a></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#properties">Properties</a></li><li><a href="#methods">Methods</a></li></ul></li><li><a href="#properties-1">Properties</a><ul class="toc-headings"><li><a href="#staticprivate-getrtlscrollleftconverter"><code>&lt;Static&gt;``&lt;Private&gt;</code> getRtlScrollLeftConverter</a></li><li><a href="#staticprivate-setrtlscrollleftconverter"><code>&lt;Static&gt;``&lt;Private&gt;</code> setRtlScrollLeftConverter</a></li></ul></li><li><a href="#methods-1">Methods</a><ul class="toc-headings"><li><a href="#staticprivate-applydirectscrollconverters"><code>&lt;Static&gt;``&lt;Private&gt;</code> applyDirectScrollConverters</a></li><li><a href="#staticprivate-applyinvertedscrollconverters"><code>&lt;Static&gt;``&lt;Private&gt;</code> applyInvertedScrollConverters</a></li><li><a href="#staticprivate-applyreversescrollconverters"><code>&lt;Static&gt;``&lt;Private&gt;</code> applyReverseScrollConverters</a></li><li><a href="#staticprivate-checkforscrolltype"><code>&lt;Static&gt;``&lt;Private&gt;</code> checkForScrollType</a></li><li><a href="#staticprivate-directgetrtlscrollconverter"><code>&lt;Static&gt;``&lt;Private&gt;</code> directGetRtlScrollConverter</a></li><li><a href="#staticprivate-directsetrtlscrollconverter"><code>&lt;Static&gt;``&lt;Private&gt;</code> directSetRtlScrollConverter</a></li><li><a href="#static-getscrollleft"><code>&lt;Static&gt;</code> getScrollLeft</a></li><li><a href="#staticprivate-gettestelement"><code>&lt;Static&gt;``&lt;Private&gt;</code> getTestElement</a></li><li><a href="#staticprivate-initialgetrtlscrollconverter"><code>&lt;Static&gt;``&lt;Private&gt;</code> initialGetRtlScrollConverter</a></li><li><a href="#staticprivate-initialsetrtlscrollconverter"><code>&lt;Static&gt;``&lt;Private&gt;</code> initialSetRtlScrollConverter</a></li><li><a href="#staticprivate-initializertlscrollconverters"><code>&lt;Static&gt;``&lt;Private&gt;</code> initializeRtlScrollConverters</a></li><li><a href="#staticprivate-invertedgetrtlscrollconverter"><code>&lt;Static&gt;``&lt;Private&gt;</code> invertedGetRtlScrollConverter</a></li><li><a href="#staticprivate-invertedsetrtlscrollconverter"><code>&lt;Static&gt;``&lt;Private&gt;</code> invertedSetRtlScrollConverter</a></li><li><a href="#staticprivate-isdirect"><code>&lt;Static&gt;``&lt;Private&gt;</code> isDirect</a></li><li><a href="#staticprivate-isreverse"><code>&lt;Static&gt;``&lt;Private&gt;</code> isReverse</a></li><li><a href="#staticprivate-reversegetrtlscrollconverter"><code>&lt;Static&gt;``&lt;Private&gt;</code> reverseGetRtlScrollConverter</a></li><li><a href="#staticprivate-reversesetrtlscrollconverter"><code>&lt;Static&gt;``&lt;Private&gt;</code> reverseSetRtlScrollConverter</a></li><li><a href="#static-setscrollleft"><code>&lt;Static&gt;</code> setScrollLeft</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Guides</h5><a href="https://www.fast.design/docs/en/contributing/install">Install</a><a href="https://www.fast.design/docs/en/packages/fast-animation/">Packages</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/fast-dna" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/FcSNfg4" target="_blank" rel="noreferrer noopener">Discord</a><a href="https://twitter.com/FAST_DNA" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://medium.com/fast-dna" target="_blank" rel="noreferrer noopener">Blog</a><a href="https://github.com/Microsoft/fast-dna" target="_blank">GitHub</a><a class="github-button" href="https://github.com/microsoft/fast-dna" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star microsoft/fast-dna on GitHub">Star</a></div></section><section class="copyright">© Microsoft 2019</section></footer></div></body></html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>en/packages/fast-jss-utilities/api/index · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="FAST JSS utilities"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="en/packages/fast-jss-utilities/api/index · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.fast.design/"/><meta property="og:description" content="FAST JSS utilities"/><meta property="og:image" content="https://www.fast.design/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.fast.design/img/logo.png"/><link rel="shortcut icon" href="/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.svg" alt="Documentation"/><h2 class="headerTitleWithLogo">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/contributing/install" target="_self">Guide</a></li><li class=""><a href="https://github.com/microsoft/fast-dna" target="_self">GitHub</a></li><li class=""><a href="https://explore.fast.design" target="_self">Components</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">en/packages/fast-jss-utilities/api/index</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="fast-jss-utilities"></a><a href="#fast-jss-utilities" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FAST JSS utilities</h1>
+<p>This package is a collection of utilities intended to be used with JSS (JavaScript Style Sheets) projects.</p>
+<h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<p><code>npm i --save @microsoft/fast-jss-utilities</code></p>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<h3><a class="anchor" aria-hidden="true" id="direction"></a><a href="#direction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Direction</h3>
+<p>The <code>Direction</code> is an enum which can be either ltr or rtl.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { Direction } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-utilities"</span>;
+
+<span class="hljs-keyword">const</span> direction = Direction.ltr;
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="localizespacing"></a><a href="#localizespacing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>localizeSpacing</h3>
+<p>The <code>localizeSpacing</code> function should be used in conjuction with <code>Direction</code> to switch the spacing on a padding or margin.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { Direction, localizeSpacing } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-utilities"</span>;
+
+<span class="hljs-keyword">const</span> styles = {
+    button: {
+        padding: localizeSpacing(Direction.ltr)(<span class="hljs-string">"8px 8px 12px 12px"</span>)
+    }
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="applyfocusvisible"></a><a href="#applyfocusvisible" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyFocusVisible</h3>
+<p><code>applyFocusVisible</code> accepts style(s) and an optional selector string. <code>applyFocusVisible</code> automatically removes user-agent focus outlines by setting <code>outline: &quot;none&quot;</code>.</p>
+<p>This function implements the utility for all focus states, if you want to enable focus-visible support you should implement the <a href="https://www.npmjs.com/package/focus-visible">focus-visible polyfill</a>. Styles that are given will be returned with a focus selector that is based on whether focus-visible is supported natively by the browser, if focus-visible is not supported we apply selectors that mimic polyfill's behavior. If a selector has been passed, this will be added to the focus selector string for the styles. If you are padding a selector be sure to include a space before the selector so it appends properly.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { applyFocusVisible } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-utilities"</span>;
+
+<span class="hljs-keyword">const</span> styles = {
+    <span class="hljs-attr">myComponent</span>: {
+        <span class="hljs-attr">background</span>: <span class="hljs-string">"blue"</span>,
+        ...applyFocusVisible({
+            <span class="hljs-attr">background</span>: <span class="hljs-string">"red"</span>,
+        }),
+    },
+    <span class="hljs-attr">myOtherComponent</span>: {
+        ...applyFocusVisible(<span class="hljs-string">"&amp; $optionalSelectorClass"</span>, {
+            <span class="hljs-attr">background</span>: <span class="hljs-string">"red"</span>
+        })
+    }
+}
+</code></pre>
+<pre><code class="hljs css language-css">    <span class="hljs-selector-tag">myComponent</span> {
+        <span class="hljs-attribute">background</span>: blue;
+    }
+
+    <span class="hljs-selector-tag">myComponent</span><span class="hljs-selector-pseudo">:focus-visible</span> {
+        <span class="hljs-attribute">background</span>: red;
+    }
+
+    <span class="hljs-selector-tag">myOtherComponent</span><span class="hljs-selector-pseudo">:focus-visible</span> <span class="hljs-selector-class">.optionalSelectorClass</span> {
+        <span class="hljs-attribute">background</span>: red;
+    }
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="applylocalizedproperty"></a><a href="#applylocalizedproperty" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyLocalizedProperty</h3>
+<p>The <code>applyLocalizedProperty</code> function will swap the strings for the property based on the <code>Direction</code>.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { Direction, applyLocalizedProperty } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-utilities"</span>;
+
+<span class="hljs-keyword">const</span> styles = {
+    button: {
+        [applyLocalizedProperty(<span class="hljs-string">"left"</span>, <span class="hljs-string">"right"</span>, Direction.ltr)]: <span class="hljs-string">"0"</span>
+    }
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="topx"></a><a href="#topx" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>toPx</h3>
+<p>The <code>toPx</code> function transforms a number to a string appended with <code>px</code>.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { toPx } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-utilities"</span>;
+
+<span class="hljs-keyword">const</span> styles = {
+    button: {
+        padding: toPx(<span class="hljs-number">5</span>)
+    }
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="applymaxlines"></a><a href="#applymaxlines" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyMaxLines</h3>
+<p>The <code>applyMaxLines</code> function is used whenever there is a limit on the number of lines shown. It takes two parameters, the number of lines and the line-height in px.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { applyMaxLines } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-utilities"</span>;
+
+<span class="hljs-keyword">const</span> styles = {
+    button: {
+        ...applyMaxLines(<span class="hljs-number">2</span>, <span class="hljs-number">24</span>)
+    }
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="applyscreenreader"></a><a href="#applyscreenreader" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyScreenReader</h3>
+<p>The <code>applyScreenReader</code> function should be used whenever there is an item that is hidden from a sighted user but visible to screen readers.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { applyScreenReader } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-utilities"</span>;
+
+<span class="hljs-keyword">const</span> styles = {
+    label: {
+        ...applyScreenReader()
+    }
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="ellipsis"></a><a href="#ellipsis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ellipsis</h3>
+<p>The <code>ellipsis</code> function will create the standard CSS needed to give an element with text an ellipsis.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { ellipsis } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-utilities"</span>;
+
+<span class="hljs-keyword">const</span> styles = {
+    label: {
+        ...ellipsis()
+    }
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="applyacrylic"></a><a href="#applyacrylic" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyAcrylic</h3>
+<p>The <code>applyAcrylic</code> function can be used to create a partially transparent texture for the background of a specific element.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { applyAcrylic } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-utilities"</span>;
+
+<span class="hljs-keyword">const</span> acrylicConfig: IAcrylicConfig = {
+    backgroundColor: <span class="hljs-string">"rgba(0, 0, 0, 0.6)"</span>,
+    fallbackBackgroundColor: <span class="hljs-string">"#000000"</span>,
+    blurRadius: <span class="hljs-string">"20px"</span>,
+    saturation: <span class="hljs-string">"112%"</span>,
+}
+
+<span class="hljs-keyword">const</span> styles = {
+    backgroundElement: {
+        ...applyAcrylic&lt;IDesignSystem&gt;(acrylicConfig)
+    }
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="withdefaults"></a><a href="#withdefaults" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>withDefaults</h3>
+<p>The <code>withDefaults</code> function can be used to ensure that all properties of a given object are assigned values.</p>
+<pre><code class="hljs css language-ts"><span class="hljs-keyword">import</span> { withDefaults } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-utilities"</span>;
+
+<span class="hljs-keyword">const</span> globalVariableDefaults: GlobalConfig = {
+    backgroundColor: <span class="hljs-string">"#000"</span>,
+    foregroundColor: <span class="hljs-string">"#FFF"</span>,
+    accentColor: <span class="hljs-string">"#FB356D"</span>
+};
+
+<span class="hljs-keyword">const</span> withGlobalDefaults: <span class="hljs-function">(<span class="hljs-params">config: Partial&lt;GlobalDefaults&gt;</span>) =&gt;</span> GlobalDefaults = (
+    config: Partial&lt;GlobalDefaults&gt;
+): <span class="hljs-function"><span class="hljs-params">GlobalDefaults</span> =&gt;</span> withDefaults(globalVariableDefaults)(config);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="format"></a><a href="#format" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>format</h3>
+<p>The <code>format</code> function is used to format strings with the result of functions. It returns a single function which accepts the design-system the stylesheet is compiled with. The first argument is the string to be formatted - all other arguments should be functions that accept your design-system and return a string. The first formatter function passed replaces the literal string <code>&quot;{0}&quot;</code>, while the second replaces <code>&quot;{1}&quot;</code>, etc. There is no limit to the number of formatters that can be used with the function:</p>
+<pre><code class="hljs css language-ts">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getMyColor</span>(<span class="hljs-params">designSystem</span>) </span>{
+    <span class="hljs-keyword">return</span> designSystem.myColor
+}
+
+{
+    border: format(<span class="hljs-string">"1px solid {0}"</span>, getMyColor)
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="tostring"></a><a href="#tostring" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>toString</h3>
+<p>The <code>toString</code> function is used to convert the return value of a function that accepts the design system to a string.</p>
+<pre><code class="hljs css language-ts">{
+    opacity: toString(<span class="hljs-function">(<span class="hljs-params">designSystem</span>) =&gt;</span> designSystem.disabledOpacity)
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="add--subtract--multiply--divide"></a><a href="#add--subtract--multiply--divide" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>add / subtract / multiply / divide</h3>
+<p>The <code>add</code>, <code>subtract</code>, <code>multiply</code>, and <code>divide</code> functions are used to operate on numbers or functions that accept design-systems and return numbers. They accept any number of arguments and perform their operations from left to right, starting with the first argument. eg, subtract(10, 2) =&gt; 10 - 2 =&gt; 8</p>
+<pre><code class="hljs css language-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fontSize</span>(<span class="hljs-params">designSystem</span>): <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">return</span> designSystem.fontSize;
+} 
+
+{
+   <span class="hljs-comment">// ...other styles</span>
+   fontSize: multiply(fontSize, <span class="hljs-number">2</span>)
+}
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="important"></a><a href="#important" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>important</h3>
+<p>The <code>important</code> function appends the string <code>&quot; !important&quot;</code> to a string when provided a string argument, or to the result of a function that resolves a string when provided a function argument.</p>
+<pre><code class="hljs css language-ts">{
+    color: important(<span class="hljs-string">"#fff"</span>), <span class="hljs-comment">// "#fff !important",</span>
+    background: important(<span class="hljs-function">(<span class="hljs-params">designSystem</span>) =&gt;</span> <span class="hljs-string">"#aaa"</span>)(designSystem), <span class="hljs-comment">// #aaa !important</span>
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="index"></a><a href="#index" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Index</h2>
+<h3><a class="anchor" aria-hidden="true" id="external-modules"></a><a href="#external-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>External modules</h3>
+<ul>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_acrylic_">&quot;acrylic&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_apply_focus_visible_">&quot;apply-focus-visible&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_focus_">&quot;focus&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_format_">&quot;format&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_index_">&quot;index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_localization_">&quot;localization&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_math_">&quot;math&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_max_lines_">&quot;max-lines&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_screen_reader_">&quot;screen-reader&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_truncation_">&quot;truncation&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_units_">&quot;units&quot;</a></li>
+<li><a href="/docs/en/packages/fast-jss-utilities/api/modules/_with_defaults_">&quot;with-defaults&quot;</a></li>
+</ul>
+<hr>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#usage">Usage</a><ul class="toc-headings"><li><a href="#direction">Direction</a></li><li><a href="#localizespacing">localizeSpacing</a></li><li><a href="#applyfocusvisible">applyFocusVisible</a></li><li><a href="#applylocalizedproperty">applyLocalizedProperty</a></li><li><a href="#topx">toPx</a></li><li><a href="#applymaxlines">applyMaxLines</a></li><li><a href="#applyscreenreader">applyScreenReader</a></li><li><a href="#ellipsis">ellipsis</a></li><li><a href="#applyacrylic">applyAcrylic</a></li><li><a href="#withdefaults">withDefaults</a></li><li><a href="#format">format</a></li><li><a href="#tostring">toString</a></li><li><a href="#add--subtract--multiply--divide">add / subtract / multiply / divide</a></li><li><a href="#important">important</a></li></ul></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#external-modules">External modules</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Guides</h5><a href="https://www.fast.design/docs/en/contributing/install">Install</a><a href="https://www.fast.design/docs/en/packages/fast-animation/">Packages</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/fast-dna" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/FcSNfg4" target="_blank" rel="noreferrer noopener">Discord</a><a href="https://twitter.com/FAST_DNA" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://medium.com/fast-dna" target="_blank" rel="noreferrer noopener">Blog</a><a href="https://github.com/Microsoft/fast-dna" target="_blank">GitHub</a><a class="github-button" href="https://github.com/microsoft/fast-dna" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star microsoft/fast-dna on GitHub">Star</a></div></section><section class="copyright">© Microsoft 2019</section></footer></div></body></html>

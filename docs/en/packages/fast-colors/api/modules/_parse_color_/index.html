@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>en/packages/fast-colors/api/modules/_parse_color_ · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="[@microsoft/fast-colors](/docs/en/packages/fast-colors/api/) &gt; [&quot;parse-color&quot;](/docs/en/packages/fast-colors/api/modules/_parse_color_)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="en/packages/fast-colors/api/modules/_parse_color_ · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.fast.design/"/><meta property="og:description" content="[@microsoft/fast-colors](/docs/en/packages/fast-colors/api/) &gt; [&quot;parse-color&quot;](/docs/en/packages/fast-colors/api/modules/_parse_color_)"/><meta property="og:image" content="https://www.fast.design/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.fast.design/img/logo.png"/><link rel="shortcut icon" href="/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.svg" alt="Documentation"/><h2 class="headerTitleWithLogo">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/contributing/install" target="_self">Guide</a></li><li class=""><a href="https://github.com/microsoft/fast-dna" target="_self">GitHub</a></li><li class=""><a href="https://explore.fast.design" target="_self">Components</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">en/packages/fast-colors/api/modules/_parse_color_</h1></header><article><div><span><p><a href="/docs/en/packages/fast-colors/api/">@microsoft/fast-colors</a> &gt; <a href="/docs/en/packages/fast-colors/api/modules/_parse_color_">&quot;parse-color&quot;</a></p>
+<h1><a class="anchor" aria-hidden="true" id="external-module-parse-color"></a><a href="#external-module-parse-color" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>External module: &quot;parse-color&quot;</h1>
+<h2><a class="anchor" aria-hidden="true" id="index"></a><a href="#index" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Index</h2>
+<h3><a class="anchor" aria-hidden="true" id="functions"></a><a href="#functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Functions</h3>
+<ul>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#iscolornamed">isColorNamed</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#iscolorstringhexargb">isColorStringHexARGB</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#iscolorstringhexrgb">isColorStringHexRGB</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#iscolorstringhexrgba">isColorStringHexRGBA</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#iscolorstringwebrgb">isColorStringWebRGB</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#iscolorstringwebrgba">isColorStringWebRGBA</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#parsecolor">parseColor</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#parsecolorhexargb">parseColorHexARGB</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#parsecolorhexrgb">parseColorHexRGB</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#parsecolorhexrgba">parseColorHexRGBA</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#parsecolornamed">parseColorNamed</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#parsecolorwebrgb">parseColorWebRGB</a></li>
+<li><a href="/docs/en/packages/fast-colors/api/modules/_parse_color_#parsecolorwebrgba">parseColorWebRGBA</a></li>
+</ul>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="functions-1"></a><a href="#functions-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Functions</h2>
+<p><a id="iscolornamed"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="iscolornamed"></a><a href="#iscolornamed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isColorNamed</h3>
+<p>▸ <strong>isColorNamed</strong>(raw: <em><code>string</code> | <a href="/docs/en/packages/fast-colors/api/modules/_named_colors_#namedcolors">NamedColors</a></em>): <code>boolean</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L51">parse-color.ts:51</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code> \</td><td><a href="/docs/en/packages/fast-colors/api/modules/_named_colors_#namedcolors">NamedColors</a></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>boolean</code></p>
+<hr>
+<p><a id="iscolorstringhexargb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="iscolorstringhexargb"></a><a href="#iscolorstringhexargb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isColorStringHexARGB</h3>
+<p>▸ <strong>isColorStringHexARGB</strong>(raw: <em><code>string</code></em>): <code>boolean</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L33">parse-color.ts:33</a></em></p>
+<p>Test if a color matches #AARRGGBB or #ARGB</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>boolean</code></p>
+<hr>
+<p><a id="iscolorstringhexrgb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="iscolorstringhexrgb"></a><a href="#iscolorstringhexrgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isColorStringHexRGB</h3>
+<p>▸ <strong>isColorStringHexRGB</strong>(raw: <em><code>string</code></em>): <code>boolean</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L19">parse-color.ts:19</a></em></p>
+<p>Test if a color matches #RRGGBB or #RGB</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>boolean</code></p>
+<hr>
+<p><a id="iscolorstringhexrgba"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="iscolorstringhexrgba"></a><a href="#iscolorstringhexrgba" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isColorStringHexRGBA</h3>
+<p>▸ <strong>isColorStringHexRGBA</strong>(raw: <em><code>string</code></em>): <code>boolean</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L26">parse-color.ts:26</a></em></p>
+<p>Test if a color matches #RRGGBBAA or #RGBA</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>boolean</code></p>
+<hr>
+<p><a id="iscolorstringwebrgb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="iscolorstringwebrgb"></a><a href="#iscolorstringwebrgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isColorStringWebRGB</h3>
+<p>▸ <strong>isColorStringWebRGB</strong>(raw: <em><code>string</code></em>): <code>boolean</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L40">parse-color.ts:40</a></em></p>
+<p>Test if a color matches rgb(rr, gg, bb)</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>boolean</code></p>
+<hr>
+<p><a id="iscolorstringwebrgba"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="iscolorstringwebrgba"></a><a href="#iscolorstringwebrgba" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>isColorStringWebRGBA</h3>
+<p>▸ <strong>isColorStringWebRGBA</strong>(raw: <em><code>string</code></em>): <code>boolean</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L47">parse-color.ts:47</a></em></p>
+<p>Test if a color matches rgba(rr, gg, bb, aa)</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <code>boolean</code></p>
+<hr>
+<p><a id="parsecolor"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="parsecolor"></a><a href="#parsecolor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseColor</h3>
+<p>▸ <strong>parseColor</strong>(raw: <em><code>string</code></em>): <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L219">parse-color.ts:219</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<hr>
+<p><a id="parsecolorhexargb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="parsecolorhexargb"></a><a href="#parsecolorhexargb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseColorHexARGB</h3>
+<p>▸ <strong>parseColorHexARGB</strong>(raw: <em><code>string</code></em>): <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L89">parse-color.ts:89</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<hr>
+<p><a id="parsecolorhexrgb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="parsecolorhexrgb"></a><a href="#parsecolorhexrgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseColorHexRGB</h3>
+<p>▸ <strong>parseColorHexRGB</strong>(raw: <em><code>string</code></em>): <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L56">parse-color.ts:56</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<hr>
+<p><a id="parsecolorhexrgba"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="parsecolorhexrgba"></a><a href="#parsecolorhexrgba" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseColorHexRGBA</h3>
+<p>▸ <strong>parseColorHexRGBA</strong>(raw: <em><code>string</code></em>): <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L123">parse-color.ts:123</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<hr>
+<p><a id="parsecolornamed"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="parsecolornamed"></a><a href="#parsecolornamed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseColorNamed</h3>
+<p>▸ <strong>parseColorNamed</strong>(raw: <em><code>keyof object</code></em>): <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L196">parse-color.ts:196</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>keyof object</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<hr>
+<p><a id="parsecolorwebrgb"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="parsecolorwebrgb"></a><a href="#parsecolorwebrgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseColorWebRGB</h3>
+<p>▸ <strong>parseColorWebRGB</strong>(raw: <em><code>string</code></em>): <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L157">parse-color.ts:157</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<hr>
+<p><a id="parsecolorwebrgba"></a></p>
+<h3><a class="anchor" aria-hidden="true" id="parsecolorwebrgba"></a><a href="#parsecolorwebrgba" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parseColorWebRGBA</h3>
+<p>▸ <strong>parseColorWebRGBA</strong>(raw: <em><code>string</code></em>): <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<p><em>Defined in <a href="https://github.com/microsoft/fast-dna/blob/9d546fea6/packages/fast-colors/src/parse-color.ts#L175">parse-color.ts:175</a></em></p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>raw</td><td><code>string</code></td></tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> <a href="/docs/en/packages/fast-colors/api/classes/_color_rgba_64_.colorrgba64">ColorRGBA64</a> | <code>null</code></p>
+<hr>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#functions">Functions</a></li></ul></li><li><a href="#functions-1">Functions</a><ul class="toc-headings"><li><a href="#iscolornamed">isColorNamed</a></li><li><a href="#iscolorstringhexargb">isColorStringHexARGB</a></li><li><a href="#iscolorstringhexrgb">isColorStringHexRGB</a></li><li><a href="#iscolorstringhexrgba">isColorStringHexRGBA</a></li><li><a href="#iscolorstringwebrgb">isColorStringWebRGB</a></li><li><a href="#iscolorstringwebrgba">isColorStringWebRGBA</a></li><li><a href="#parsecolor">parseColor</a></li><li><a href="#parsecolorhexargb">parseColorHexARGB</a></li><li><a href="#parsecolorhexrgb">parseColorHexRGB</a></li><li><a href="#parsecolorhexrgba">parseColorHexRGBA</a></li><li><a href="#parsecolornamed">parseColorNamed</a></li><li><a href="#parsecolorwebrgb">parseColorWebRGB</a></li><li><a href="#parsecolorwebrgba">parseColorWebRGBA</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Guides</h5><a href="https://www.fast.design/docs/en/contributing/install">Install</a><a href="https://www.fast.design/docs/en/packages/fast-animation/">Packages</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/fast-dna" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/FcSNfg4" target="_blank" rel="noreferrer noopener">Discord</a><a href="https://twitter.com/FAST_DNA" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://medium.com/fast-dna" target="_blank" rel="noreferrer noopener">Blog</a><a href="https://github.com/Microsoft/fast-dna" target="_blank">GitHub</a><a class="github-button" href="https://github.com/microsoft/fast-dna" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star microsoft/fast-dna on GitHub">Star</a></div></section><section class="copyright">© Microsoft 2019</section></footer></div></body></html>

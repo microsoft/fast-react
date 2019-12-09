@@ -1,0 +1,589 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>en/packages/fast-components-styles-msft/api/index · Documentation</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="FAST Components styles MSFT"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="en/packages/fast-components-styles-msft/api/index · Documentation"/><meta property="og:type" content="website"/><meta property="og:url" content="https://www.fast.design/"/><meta property="og:description" content="FAST Components styles MSFT"/><meta property="og:image" content="https://www.fast.design/img/logo.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://www.fast.design/img/logo.png"/><link rel="shortcut icon" href="/img/favicon/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo.svg" alt="Documentation"/><h2 class="headerTitleWithLogo">Documentation</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/contributing/install" target="_self">Guide</a></li><li class=""><a href="https://github.com/microsoft/fast-dna" target="_self">GitHub</a></li><li class=""><a href="https://explore.fast.design" target="_self">Components</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">en/packages/fast-components-styles-msft/api/index</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="fast-components-styles-msft"></a><a href="#fast-components-styles-msft" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FAST Components styles MSFT</h1>
+<p>A collection of JSS (JavaScript Style Sheets) objects and style utilities that power MSFT components in the FAST ecosystem. The component styles are intended to be compiled with <a href="https://github.com/cssinjs/jss">JSS</a> and used with base components such as <code>@microsoft/fast-components-base-react</code>, for the styled components see the <code>@microsoft/fast-components-msft-react</code> package. The package can also be applied to a custom component.</p>
+<h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<p><code>npm i --save @microsoft/fast-components-styles-msft</code></p>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<p>An example of using the <code>manageJss</code> from <code>@microsoft/fast-jss-manager-react</code> higher order component to export a component with a JSS style using the package.</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> { ButtonStyles } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+<span class="hljs-keyword">import</span> manageJss <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-jss-manager-react"</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Button</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{this.props.managedClasses.button}</span>&gt;</span>
+                {this.props.children}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+        );
+    }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> manageJss(ButtonStyles)(Button);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="color"></a><a href="#color" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Color</h2>
+<p>Color palettes are the core of the how color is applied in MSFT stylesheets. There are two core color palettes that are exposed by the design system that are used to derive color; the <em>neutral</em> palette and the <em>accent</em> palette. The provided color utilities always derive the colors they return from one of these two palettes. They generally also derive the color from the input <em>design system</em>, allowing them to work across a wide variety of background colors.</p>
+<p>Note that to reduce code bloat, these color utilities only attempt to parse color strings that are hexadecimal (<code>#RGB</code> &amp; <code>#RRGGBB</code>) and rgb (<code>rgb(r, g, b)</code>). Use only these formats for <code>DesignSystem.neutralPalette</code>, <code>DesignSystem.accentPalette</code>, and <code>DesignSystem.backgroundColor</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="utilities"></a><a href="#utilities" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Utilities</h3>
+<h4><a class="anchor" aria-hidden="true" id="naming"></a><a href="#naming" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Naming</h4>
+<p>Color utilities map to a strict naming convention: <code>[palette-type][usage][style?][state?][size?]</code></p>
+<h5><a class="anchor" aria-hidden="true" id="palette-type"></a><a href="#palette-type" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>palette-type</h5>
+<p>Refers to the palette that the resulting color will derive from:</p>
+<ul>
+<li>accent</li>
+<li>neutral</li>
+</ul>
+<h5><a class="anchor" aria-hidden="true" id="usage-1"></a><a href="#usage-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>usage</h5>
+<p>Refers to how the color should generally be used:</p>
+<ul>
+<li>foreground - generally text</li>
+<li>fill - generally backgrounds</li>
+<li>outline - borders or outlines</li>
+</ul>
+<h5><a class="anchor" aria-hidden="true" id="style-optional"></a><a href="#style-optional" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>style [optional]</h5>
+<p>Variants on style:</p>
+<ul>
+<li>stealth - blends into the background on rest state</li>
+</ul>
+<h5><a class="anchor" aria-hidden="true" id="state-optional"></a><a href="#state-optional" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>state [optional]</h5>
+<p>The state that the color should be applied to:</p>
+<ul>
+<li>rest</li>
+<li>hover</li>
+<li>active</li>
+</ul>
+<h5><a class="anchor" aria-hidden="true" id="size-optional"></a><a href="#size-optional" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>size [optional]</h5>
+<p>Refers to the <em>size</em> of text that the color is designed to work with. <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">color-contrast</a> requirements vary depending on both font-size and weight. By default, all utilities target normal text and a contrast ratio of 4.5:1. If a utility name has the &quot;large&quot; keyword at the end, it means it is targeting &quot;large&quot; text and a contrast ratio of 3:1.</p>
+<p>Component stylesheets can mix and match these utilities to achieve the component design. For example, a secondary button may use:</p>
+<ul>
+<li><code>neutralForegroundRest</code> for text color</li>
+<li><code>neutralFillRest</code> / <code>neutralFillHover</code> / <code>neutralFillActive</code> for background colors</li>
+</ul>
+<p>A ghost button may use:</p>
+<ul>
+<li><code>neutralForegroundRest</code> for text color</li>
+<li><code>neutralFillStealthRest</code> / <code>neutralFillStealthHover</code> / <code>neutralFillActive</code> for background colors</li>
+<li><code>neutralOutlineRest</code> / <code>neutralOutlineHover</code> / <code>neutralOutlineActive</code> for border colors</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="usage-2"></a><a href="#usage-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h4>
+<p>Utilities can work in a one of two ways, depending on the arguments supplied:</p>
+<h5><a class="anchor" aria-hidden="true" id="designsystem"></a><a href="#designsystem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DesignSystem</h5>
+<p>When a color utility is invoked with a <code>DesignSystem</code>, that <code>DesignSystem</code> is used to derive a color and the function returns a color. In general, that color will be derived from the <code>DesignSystem.backgroundColor</code> property, allowing the stylesheet to change depending on it's context. For example:</p>
+<pre><code class="hljs css language-JavaScript"><span class="hljs-keyword">const</span> StyleSheet = {
+    <span class="hljs-attr">button</span>: {
+        <span class="hljs-attr">color</span>: neutralForegroundRest,
+        <span class="hljs-attr">background</span>: neutralFillRest,
+        <span class="hljs-string">"&amp;:hover"</span>: {
+            <span class="hljs-attr">background</span>: neutralFillHover,
+        },
+        <span class="hljs-string">"&amp;:active"</span>: {
+            <span class="hljs-attr">background</span>: neutralFillActive,
+        }
+    }
+}
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="callback-function"></a><a href="#callback-function" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Callback function</h5>
+<p>Color utilities can also be invoked with a callback as their sole argument. When invoked with a callback, a function will be returned from the utility that accepts a <code>DesignSystem</code>. When the returned function is called, the supplied callback will be invoked and the result will override the <code>DesignSystem.backgroundColor</code> used to derive the color. This allows you to derive colors in relation to other colors:</p>
+<pre><code class="hljs css language-JavaScript"><span class="hljs-keyword">const</span> StyleSheet = {
+    <span class="hljs-attr">button</span>: {
+        <span class="hljs-attr">color</span>: neutralForegroundRest(neutralFillRest),
+        <span class="hljs-attr">background</span>: neutralFillRest,
+        <span class="hljs-string">"&amp;:hover"</span>: {
+            <span class="hljs-attr">color</span>: neutralForegroundRest(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">"#FF0"</span>),
+            <span class="hljs-attr">background</span>: <span class="hljs-string">"#FF0"</span>,
+        },
+        <span class="hljs-string">"&amp;:active"</span>: {
+            <span class="hljs-attr">background</span>: neutralFillActive,
+        }
+    }
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="utilities-1"></a><a href="#utilities-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Utilities</h2>
+<p>These utility functions help you write clean and manageable style sheets.</p>
+<ul>
+<li><a href="#acrylic">Acrylic</a>
+<ul>
+<li><a href="#applyacrylicmaterial">applyAcrylicMaterial</a></li>
+</ul></li>
+<li><a href="#border">Border</a>
+<ul>
+<li><a href="#applycornerradius">applyCornerRadius</a></li>
+<li><a href="#applyelevatedcornerradius">applyElevatedCornerRadius</a></li>
+<li><a href="#applyfocusplaceholderborder">applyFocusPlaceholderBorder</a></li>
+</ul></li>
+<li><a href="#cursor">Cursor</a>
+<ul>
+<li><a href="#applycursordefault">applyCursorDefault</a></li>
+<li><a href="#applycursordisabled">applyCursorDisabled</a></li>
+<li><a href="#applycursorpointer">applyCursorPointer</a></li>
+</ul></li>
+<li><a href="#density">Density</a>
+<ul>
+<li><a href="#densitycategory">DensityCategory</a></li>
+<li><a href="#height">height</a></li>
+<li><a href="#heightnumber">heightNumber</a></li>
+<li><a href="#densitycategoryswitch">densityCategorySwitch</a></li>
+<li><a href="#horizontalspacing">horizontalSpacing</a></li>
+<li><a href="#horizontalspacingnumber">horizontalSpacingNumber</a></li>
+<li><a href="#glyphsize">glyphSize</a></li>
+</ul></li>
+<li><a href="#disabled">Disabled</a>
+<ul>
+<li><a href="#applydisabledstate">applyDisabledState</a></li>
+</ul></li>
+<li><a href="#elevation">Elevation</a>
+<ul>
+<li><a href="#elevationmultiplier">ElevationMultiplier</a></li>
+<li><a href="#applyelevation">applyElevation</a></li>
+</ul></li>
+<li><a href="#fonts">Fonts</a>
+<ul>
+<li><a href="#applyfontweightlight">applyFontWeightLight</a></li>
+<li><a href="#applyfontweightsemilight">applyFontWeightSemiLight</a></li>
+<li><a href="#applyfontweightnormal">applyFontWeightNormal</a></li>
+<li><a href="#applyfontweightsemibold">applyFontWeightSemiBold</a></li>
+<li><a href="#applyfontweightbold">applyFontWeightBold</a></li>
+</ul></li>
+<li><a href="#typography">Typography</a>
+<ul>
+<li><a href="#applyscaledtyperamp">applyScaledTypeRamp</a></li>
+<li><a href="#applytyperamp">applyTypeRamp</a></li>
+<li><a href="#applyscaledfontsize">applyScaledFontSize</a></li>
+<li><a href="#applyscaledlineheight">applyScaledLineHeight</a></li>
+<li><a href="#applyfontsize">applyFontSize</a></li>
+<li><a href="#applylineheight">applyLineHeight</a></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="acrylic"></a><a href="#acrylic" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Acrylic</h3>
+<p>Acrylic is a visual treatment that creates a translucent texture which can be added to element surfaces to add depth and help establish a visual hierarchy.</p>
+<h4><a class="anchor" aria-hidden="true" id="applyacrylicmaterial"></a><a href="#applyacrylicmaterial" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyAcrylicMaterial</h4>
+<p>Apply a Microsoft implementation of acrylic to a styled element.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>backgroundColor</code>: This should be an RGBa color value to achieve the acrylic effect</li>
+<li><code>opacity</code>: The opacity of the background</li>
+<li><code>fallbackOpacity?</code>: Applied in the event that backdrop-filter is not supported in the current browser, defaults to 0.9</li>
+<li><code>topHighlight?</code>: The option to highlight the top border of the surface acrylic is applied to, defaults to false</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyAcrylicMaterial } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyAcrylicMaterial(<span class="hljs-string">"#000"</span>, <span class="hljs-number">0.6</span>, <span class="hljs-number">0.9</span>, <span class="hljs-literal">true</span>),
+    },
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="border"></a><a href="#border" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Border</h3>
+<h4><a class="anchor" aria-hidden="true" id="applycornerradius"></a><a href="#applycornerradius" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyCornerRadius</h4>
+<p>Applies the design system value for <code>cornerRadius</code>.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyCornerRadius } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyCornerRadius(),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applyelevatedcornerradius"></a><a href="#applyelevatedcornerradius" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyElevatedCornerRadius</h4>
+<p>Applies the design system value for <code>elevatedCornerRadius</code> for UI elements which are elevated or outside the normal document flow.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyElevatedCornerRadius } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyElevatedCornerRadius(),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applyfocusplaceholderborder"></a><a href="#applyfocusplaceholderborder" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyFocusPlaceholderBorder</h4>
+<p>Applies a border width, style, and color to reserve the space for a visual focus indicator.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyFocusPlaceholderBorder } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyFocusPlaceholderBorder(),
+    },
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="cursor"></a><a href="#cursor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cursor</h3>
+<h4><a class="anchor" aria-hidden="true" id="applycursordefault"></a><a href="#applycursordefault" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyCursorDefault</h4>
+<p>Applies styles for a default cursor.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyCursorDefault } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyCursorDefault(),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applycursordisabled"></a><a href="#applycursordisabled" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyCursorDisabled</h4>
+<p>Applies styles for a disabled cursor.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyCursorDisabled } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component__disabled: {
+        ...applyCursorDisabled(),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applycursorpointer"></a><a href="#applycursorpointer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyCursorPointer</h4>
+<p>Applies styles for a &quot;pointer&quot; cursor.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyCursorPointer } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyCursorPointer(),
+    },
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="density"></a><a href="#density" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Density</h3>
+<h4><a class="anchor" aria-hidden="true" id="densitycategory"></a><a href="#densitycategory" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DensityCategory</h4>
+<p>An enum representing the three density categories:</p>
+<ul>
+<li><code>compact</code></li>
+<li><code>normal</code></li>
+<li><code>spacious</code></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="height"></a><a href="#height" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>height</h4>
+<p>Returns the component height formatted in the provided unit or px by default.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>lines</code>: The logical number of lines the component takes, 1 by default</li>
+<li><code>unit</code>: The optional unit of measurement; px by default</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { height } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        height: height(),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="heightnumber"></a><a href="#heightnumber" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>heightNumber</h4>
+<p>Returns the component height as a number.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>lines</code>: The logical number of lines the component takes, 1 by default</li>
+</ul>
+<pre><code class="hljs css language-TypeScript">import { heightNumber } from "@microsoft/fast-components-styles-msft";
+
+const inputSize: DesignSystemResolver&lt;string&gt; = `${heightNumber() / 2}`
+);
+
+const styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        width: inputSize,
+        height: inputSize
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="densitycategoryswitch"></a><a href="#densitycategoryswitch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>densityCategorySwitch</h4>
+<p>Returns a value based on the higher-level category for the density setting. Use this function to adjust things like type size and sizing that is based on a category rather than individual density.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>compactValue</code>: The adjustment when the category is &quot;compact&quot;</li>
+<li><code>normalValue</code>: The adjustment when the category is &quot;normal&quot;</li>
+<li><code>spaciousValue</code>: The adjustment when the category is &quot;spacious&quot;</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { densityCategorySwitch } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        marginRight: <span class="hljs-string">`<span class="hljs-subst">${densityCategorySwitch(<span class="hljs-number">4</span>, <span class="hljs-number">8</span>, <span class="hljs-number">12</span>)}</span>px`</span>
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="horizontalspacing"></a><a href="#horizontalspacing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>horizontalSpacing</h4>
+<p>Returns the standard horizontal spacing typically used for text and icons formatted in the provided unit or px by default.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>adjustment</code>: Any border that should be removed from the overall content spacing; 0 by default</li>
+<li><code>unit</code>: The optional unit of measurement; px by default</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { horizontalSpacing } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        paddingLeft: horizontalSpacing(<span class="hljs-number">2</span>),
+        paddingRight: horizontalSpacing(<span class="hljs-number">2</span>),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="horizontalspacingnumber"></a><a href="#horizontalspacingnumber" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>horizontalSpacingNumber</h4>
+<p>Returns the standard horizontal spacing for text and icons as a number.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>adjustment</code>: Any border that should be removed from the overall content spacing; 0 by default</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { horizontalSpacingNumber } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> glyphWidth: <span class="hljs-built_in">number</span> = <span class="hljs-number">16</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        marginRight: <span class="hljs-string">`<span class="hljs-subst">${horizontalSpacingNumber(<span class="hljs-number">-2</span>) + glyphWidth}</span>px`</span>
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="glyphsize"></a><a href="#glyphsize" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>glyphSize</h4>
+<p>Returns the width and height for a glyph formatted in pixels.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>designSystem</code> | <code>unit</code>: Accepts either a design system configuration or a string</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { glyphSize } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        width: glyphSize,
+        height: glyphSize,
+    },
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="disabled"></a><a href="#disabled" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Disabled</h3>
+<h4><a class="anchor" aria-hidden="true" id="applydisabledstate"></a><a href="#applydisabledstate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyDisabledState</h4>
+<p>Used to apply disabled styles to an element.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyDisabledState } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component__disabled: {
+        ...applyDisabledState(),
+    },
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="elevation"></a><a href="#elevation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Elevation</h3>
+<p>Apply drop-shadow to components and layers to signify elevation.</p>
+<h4><a class="anchor" aria-hidden="true" id="elevationmultiplier"></a><a href="#elevationmultiplier" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ElevationMultiplier</h4>
+<p>An enum with common elevation depths.</p>
+<h4><a class="anchor" aria-hidden="true" id="applyelevation"></a><a href="#applyelevation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyElevation</h4>
+<p>Used with <code>ElevationMultiplier</code> to apply elevation to a styled element.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyElevation, ElevationMultiplier } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyElevation(ElevationMultiplier.e11),
+    },
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="fonts"></a><a href="#fonts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fonts</h3>
+<h4><a class="anchor" aria-hidden="true" id="applyfontweightlight"></a><a href="#applyfontweightlight" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyFontWeightLight</h4>
+<p>Applies the <code>light</code> font weight value from the design system.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyFontWeightLight } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyFontWeightLight(),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applyfontweightsemilight"></a><a href="#applyfontweightsemilight" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyFontWeightSemiLight</h4>
+<p>Applies the <code>semilight</code> font weight value from the design system.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyFontWeightSemiLight } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyFontWeightSemiLight(),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applyfontweightnormal"></a><a href="#applyfontweightnormal" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyFontWeightNormal</h4>
+<p>Applies the <code>normal</code> font weight value from the design system.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyFontWeightNormal } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyFontWeightNormal(),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applyfontweightsemibold"></a><a href="#applyfontweightsemibold" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyFontWeightSemiBold</h4>
+<p>Applies the <code>semibold</code> font weight value from the design system.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyFontWeightSemiBold } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyFontWeightSemiBold(),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applyfontweightbold"></a><a href="#applyfontweightbold" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyFontWeightBold</h4>
+<p>Applies the <code>bold</code> font weight value from the design system.</p>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyFontWeightBold } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyFontWeightBold(),
+    },
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="typography"></a><a href="#typography" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Typography</h3>
+<h4><a class="anchor" aria-hidden="true" id="applyscaledtyperamp"></a><a href="#applyscaledtyperamp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyScaledTypeRamp</h4>
+<p>Applies font-size and line-height CSS properties from a given TypeRamp ID, scaled with design system density.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>key</code>: keyof TypeRamp</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyScaledTypeRamp } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyScaledTypeRamp(<span class="hljs-string">"t8"</span>),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applytyperamp"></a><a href="#applytyperamp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyTypeRamp</h4>
+<p>Applies font-size and line-height CSS properties from a given TypeRamp ID.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>typeConfig</code>: keyof TypeRamp</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyTypeRamp } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyTypeRamp(<span class="hljs-string">"t8"</span>),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applyscaledfontsize"></a><a href="#applyscaledfontsize" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyScaledFontSize</h4>
+<p>Retrieves the formatted font-size from a TypeRamp ID, scaled with the design-system density.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>key</code>: keyof TypeRamp</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyScaledFontSize } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        fontSize: applyScaledFontSize(<span class="hljs-string">"t4"</span>),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applyscaledlineheight"></a><a href="#applyscaledlineheight" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyScaledLineHeight</h4>
+<p>Retrieves the formatted line-height from a TypeRamp ID, scaled with the design-system density.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>key</code>: keyof TypeRamp</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyScaledLineHeight } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        lineHeight: applyScaledLineHeight(<span class="hljs-string">"t4"</span>),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applyfontsize"></a><a href="#applyfontsize" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyFontSize</h4>
+<p>Retrieves the font-size formatted in pixels from a given TypeRamp ID.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>key</code>: keyof TypeRamp</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyFontSize } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyFontSize(<span class="hljs-string">"t8"</span>),
+    },
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="applylineheight"></a><a href="#applylineheight" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>applyLineHeight</h4>
+<p>Retrieves the line-height formatted in pixels from a given TypeRamp ID.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>key</code>: keyof TypeRamp</li>
+</ul>
+<pre><code class="hljs css language-TypeScript"><span class="hljs-keyword">import</span> { applyLineHeight } <span class="hljs-keyword">from</span> <span class="hljs-string">"@microsoft/fast-components-styles-msft"</span>;
+
+<span class="hljs-keyword">const</span> styles: ComponentStyles&lt;ClassNameContract, DesignSystem&gt; = {
+    styled_component: {
+        ...applyLineHeight(<span class="hljs-string">"t8"</span>),
+    },
+};
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="index"></a><a href="#index" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Index</h2>
+<h3><a class="anchor" aria-hidden="true" id="external-modules"></a><a href="#external-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>External modules</h3>
+<ul>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_accent_button_index_">&quot;accent-button/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_action_toggle_index_">&quot;action-toggle/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_action_trigger_index_">&quot;action-trigger/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_auto_suggest_option_index_">&quot;auto-suggest-option/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_auto_suggest_index_">&quot;auto-suggest/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_badge_index_">&quot;badge/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_breadcrumb_index_">&quot;breadcrumb/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_button_index_">&quot;button/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_call_to_action_index_">&quot;call-to-action/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_caption_index_">&quot;caption/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_card_index_">&quot;card/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_carousel_index_">&quot;carousel/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_checkbox_index_">&quot;checkbox/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_context_menu_item_index_">&quot;context-menu-item/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_context_menu_index_">&quot;context-menu/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_default_palette_">&quot;default-palette&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_design_system_design_system_schema_">&quot;design-system/design-system.schema&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_design_system_index_">&quot;design-system/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_dialog_index_">&quot;dialog/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_divider_index_">&quot;divider/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_flipper_index_">&quot;flipper/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_flyout_index_">&quot;flyout/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_heading_index_">&quot;heading/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_hypertext_index_">&quot;hypertext/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_image_index_">&quot;image/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_index_">&quot;index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_label_index_">&quot;label/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_lightweight_button_index_">&quot;lightweight-button/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_metatext_index_">&quot;metatext/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_neutral_button_index_">&quot;neutral-button/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_number_field_index_">&quot;number-field/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_outline_button_index_">&quot;outline-button/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_paragraph_index_">&quot;paragraph/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_patterns_button_">&quot;patterns/button&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_patterns_input_field_">&quot;patterns/input-field&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_pivot_index_">&quot;pivot/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_progress_index_">&quot;progress/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_radio_index_">&quot;radio/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_select_option_index_">&quot;select-option/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_select_index_">&quot;select/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_slider_label_index_">&quot;slider-label/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_slider_index_">&quot;slider/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_stealth_button_index_">&quot;stealth-button/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_subheading_index_">&quot;subheading/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_text_action_index_">&quot;text-action/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_text_area_index_">&quot;text-area/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_text_field_index_">&quot;text-field/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_toggle_index_">&quot;toggle/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_typography_index_">&quot;typography/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_acrylic_">&quot;utilities/acrylic&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_border_">&quot;utilities/border&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_accent_fill_">&quot;utilities/color/accent-fill&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_accent_foreground_">&quot;utilities/color/accent-foreground&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_accent_foreground_cut_">&quot;utilities/color/accent-foreground-cut&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_accessible_recipe_">&quot;utilities/color/accessible-recipe&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_color_constants_">&quot;utilities/color/color-constants&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_common_">&quot;utilities/color/common&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_create_color_palette_">&quot;utilities/color/create-color-palette&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_index_">&quot;utilities/color/index&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_divider_">&quot;utilities/color/neutral-divider&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_fill_">&quot;utilities/color/neutral-fill&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_fill_card_">&quot;utilities/color/neutral-fill-card&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_fill_input_">&quot;utilities/color/neutral-fill-input&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_fill_stealth_">&quot;utilities/color/neutral-fill-stealth&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_fill_toggle_">&quot;utilities/color/neutral-fill-toggle&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_focus_">&quot;utilities/color/neutral-focus&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_foreground_">&quot;utilities/color/neutral-foreground&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_foreground_hint_">&quot;utilities/color/neutral-foreground-hint&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_foreground_toggle_">&quot;utilities/color/neutral-foreground-toggle&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_layer_">&quot;utilities/color/neutral-layer&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_neutral_outline_">&quot;utilities/color/neutral-outline&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_color_palette_">&quot;utilities/color/palette&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_cursor_">&quot;utilities/cursor&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_density_">&quot;utilities/density&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_design_system_">&quot;utilities/design-system&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_disabled_">&quot;utilities/disabled&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_elevation_">&quot;utilities/elevation&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_fonts_">&quot;utilities/fonts&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_high_contrast_">&quot;utilities/high-contrast&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_important_">&quot;utilities/important&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_keyof_to_type_">&quot;utilities/keyof-to-type&quot;</a></li>
+<li><a href="/docs/en/packages/fast-components-styles-msft/api/modules/_utilities_typography_">&quot;utilities/typography&quot;</a></li>
+</ul>
+<hr>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a></li><li><a href="#usage">Usage</a></li><li><a href="#color">Color</a><ul class="toc-headings"><li><a href="#utilities">Utilities</a></li></ul></li><li><a href="#utilities-1">Utilities</a><ul class="toc-headings"><li><a href="#acrylic">Acrylic</a></li><li><a href="#border">Border</a></li><li><a href="#cursor">Cursor</a></li><li><a href="#density">Density</a></li><li><a href="#disabled">Disabled</a></li><li><a href="#elevation">Elevation</a></li><li><a href="#fonts">Fonts</a></li><li><a href="#typography">Typography</a></li></ul></li><li><a href="#index">Index</a><ul class="toc-headings"><li><a href="#external-modules">External modules</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div><h5>Guides</h5><a href="https://www.fast.design/docs/en/contributing/install">Install</a><a href="https://www.fast.design/docs/en/packages/fast-animation/">Packages</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/fast-dna" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/FcSNfg4" target="_blank" rel="noreferrer noopener">Discord</a><a href="https://twitter.com/FAST_DNA" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://medium.com/fast-dna" target="_blank" rel="noreferrer noopener">Blog</a><a href="https://github.com/Microsoft/fast-dna" target="_blank">GitHub</a><a class="github-button" href="https://github.com/microsoft/fast-dna" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star microsoft/fast-dna on GitHub">Star</a></div></section><section class="copyright">© Microsoft 2019</section></footer></div></body></html>
