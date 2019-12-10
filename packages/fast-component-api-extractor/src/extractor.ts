@@ -1,4 +1,5 @@
 import { ComponentData, ComponentProperty } from "./component-data";
+import { ReferenceTracker } from "./reference-tracker";
 
 /**
  * Extracts documentation data for a UI component from TypeDoc JSON data.
@@ -25,10 +26,18 @@ export default function extractor(name: string, data: any): ComponentData {
     }
 
     const namedInterface: any = data.children.find((value: any) => value.name === name);
+    const referenceTracker: ReferenceTracker = new ReferenceTracker();
 
     return {
         name: namedInterface.name,
-        properties: namedInterface.children.map(resolveProperty),
+        properties: namedInterface.children
+            .filter(isPropertyType)
+            .map(
+                (value: any): ComponentProperty | null => {
+                    return resolveProperty(value, referenceTracker);
+                }
+            )
+            .filter((value: ComponentProperty | null) => !!value),
     };
 }
 
@@ -54,24 +63,48 @@ interface IntrinsicType {
     name: IntrinsicTypes;
 }
 
-function resolveProperty(property: any): ComponentProperty | null {
+/**
+ * Resolution functions - resolves various types
+ */
+function resolveProperty(
+    property: any,
+    referenceTracker: ReferenceTracker
+): ComponentProperty | null {
     switch (property.type.type) {
         case Types.intrinsic:
             return {
                 name: property.name,
-                type: property.type.name,
+                type: resolveType(property.type, referenceTracker),
                 required: !property.flags.isOptional,
             };
         case Types.tuple: {
             return {
                 name: property.name,
-                type: property.type.type,
+                type: resolveType(property.type, referenceTracker),
                 required: !property.flags.isOptional,
-                // TODO: needs elements of tuple
             };
         }
     }
 
     console.log("returning null", property);
     return null;
+}
+
+function resolveType(value: any, referenceTracker: ReferenceTracker): any {
+    switch (value.type) {
+        case Types.intrinsic:
+            return value.name;
+        case Types.tuple:
+            const elements: any[] = value.elements || [];
+            return `[${elements
+                .map((element: any): any => resolveType(element, referenceTracker))
+                .join(", ")}]`;
+    }
+}
+
+/**
+ * Assertions
+ */
+function isPropertyType<T extends { kindString: string }>(value: T): boolean {
+    return value.kindString === "Property";
 }

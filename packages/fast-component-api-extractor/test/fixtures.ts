@@ -7,7 +7,7 @@ interface IntrinsicsFixture {
     string: string;
     unknown: unknown;
     tuple: [];
-    tupleWithArgs: [any, TestFixture];
+    tupleWithIntrinsicElements: [any, number, string];
 }
 
 interface ArrayFixture {

@@ -139,7 +139,18 @@ describe("extractor", () => {
             expect(tupleProperty).not.toBeUndefined();
             expect(tupleProperty.name).toBe("tuple");
             expect(tupleProperty.required).toBe(true);
-            expect(tupleProperty.type).toBe("tuple");
+            expect(tupleProperty.type).toBe("[]");
+        });
+        test("should process a root level 'tupleWithIntrinsicElements' property", () => {
+            const tupleProperty: ComponentProperty = intrinsics.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "tupleWithIntrinsicElements"
+            );
+
+            expect(tupleProperty).not.toBeUndefined();
+            expect(tupleProperty.name).toBe("tupleWithIntrinsicElements");
+            expect(tupleProperty.required).toBe(true);
+            expect(tupleProperty.type).toBe("[any, number, string]");
         });
     });
 });
