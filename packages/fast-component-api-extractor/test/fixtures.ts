@@ -1,4 +1,4 @@
-interface IntrinsicsFixture {
+interface IntrinsicFixture {
     any: any;
     optionalAny?: any;
     boolean: boolean;
@@ -6,8 +6,12 @@ interface IntrinsicsFixture {
     object: object;
     string: string;
     unknown: unknown;
+}
+
+interface TupleFixture {
     tuple: [];
     tupleWithIntrinsicElements: [any, number, string];
+    tupleWithReferenceElements: [Date, ArrayFixture];
 }
 
 interface ArrayFixture {
@@ -22,7 +26,7 @@ interface ReferenceFixture {
     math: Math;
     global: Window;
     json: JSON;
-    customInterfaceReference: IntrinsicsFixture;
+    customInterfaceReference: IntrinsicFixture;
 }
 
 interface TestFixture {

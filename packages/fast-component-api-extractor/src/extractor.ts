@@ -86,11 +86,10 @@ function resolveProperty(
         }
     }
 
-    console.log("returning null", property);
     return null;
 }
 
-function resolveType(value: any, referenceTracker: ReferenceTracker): any {
+function resolveType(value: any, referenceTracker: ReferenceTracker): string {
     switch (value.type) {
         case Types.intrinsic:
             return value.name;

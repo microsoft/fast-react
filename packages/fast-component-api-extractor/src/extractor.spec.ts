@@ -69,10 +69,10 @@ describe("extractor", () => {
     });
 
     describe("intrinsics", () => {
-        const intrinsics: ComponentData = extractor("IntrinsicsFixture", fixtures);
+        const fixture: ComponentData = extractor("IntrinsicFixture", fixtures);
 
         test("should process a root level 'any' property", () => {
-            const anyProperty: ComponentProperty = intrinsics.properties.find(
+            const anyProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean => property.name === "any"
             );
 
@@ -82,7 +82,7 @@ describe("extractor", () => {
             expect(anyProperty.type).toBe("any");
         });
         test("should process a root level 'boolean' property", () => {
-            const booleanProperty: ComponentProperty = intrinsics.properties.find(
+            const booleanProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean => property.name === "boolean"
             );
 
@@ -92,7 +92,7 @@ describe("extractor", () => {
             expect(booleanProperty.type).toBe("boolean");
         });
         test("should process a root level 'number' property", () => {
-            const numberProperty: ComponentProperty = intrinsics.properties.find(
+            const numberProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean => property.name === "number"
             );
 
@@ -102,7 +102,7 @@ describe("extractor", () => {
             expect(numberProperty.type).toBe("number");
         });
         test("should process a root level 'object' property", () => {
-            const objectProperty: ComponentProperty = intrinsics.properties.find(
+            const objectProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean => property.name === "object"
             );
 
@@ -112,7 +112,7 @@ describe("extractor", () => {
             expect(objectProperty.type).toBe("object");
         });
         test("should process a root level 'string' property", () => {
-            const stringProperty: ComponentProperty = intrinsics.properties.find(
+            const stringProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean => property.name === "string"
             );
 
@@ -122,7 +122,7 @@ describe("extractor", () => {
             expect(stringProperty.type).toBe("string");
         });
         test("should process a root level 'unknown' property", () => {
-            const unknownProperty: ComponentProperty = intrinsics.properties.find(
+            const unknownProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean => property.name === "unknown"
             );
 
@@ -131,8 +131,13 @@ describe("extractor", () => {
             expect(unknownProperty.required).toBe(true);
             expect(unknownProperty.type).toBe("unknown");
         });
+    });
+
+    describe("tuples", () => {
+        const fixture: ComponentData = extractor("TupleFixture", fixtures);
+
         test("should process a root level 'tuple' property", () => {
-            const tupleProperty: ComponentProperty = intrinsics.properties.find(
+            const tupleProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean => property.name === "tuple"
             );
 
@@ -142,7 +147,7 @@ describe("extractor", () => {
             expect(tupleProperty.type).toBe("[]");
         });
         test("should process a root level 'tupleWithIntrinsicElements' property", () => {
-            const tupleProperty: ComponentProperty = intrinsics.properties.find(
+            const tupleProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean =>
                     property.name === "tupleWithIntrinsicElements"
             );
@@ -151,6 +156,17 @@ describe("extractor", () => {
             expect(tupleProperty.name).toBe("tupleWithIntrinsicElements");
             expect(tupleProperty.required).toBe(true);
             expect(tupleProperty.type).toBe("[any, number, string]");
+        });
+        test("should process a root level 'tupleWithReferenceElements' property", () => {
+            const tupleProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "tupleWithReferenceElements"
+            );
+
+            expect(tupleProperty).not.toBeUndefined();
+            expect(tupleProperty.name).toBe("tupleWithReferenceElements");
+            expect(tupleProperty.required).toBe(true);
+            expect(tupleProperty.type).toBe("[Date, ArrayFixture]");
         });
     });
 });
