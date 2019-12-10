@@ -1,11 +1,13 @@
 interface IntrinsicsFixture {
     any: any;
+    optionalAny?: any;
     boolean: boolean;
     number: number;
     object: object;
     string: string;
     unknown: unknown;
     tuple: [];
+    tupleWithArgs: [any, TestFixture];
 }
 
 interface ArrayFixture {
@@ -20,6 +22,7 @@ interface ReferenceFixture {
     math: Math;
     global: Window;
     json: JSON;
+    customInterfaceReference: IntrinsicsFixture;
 }
 
 interface TestFixture {

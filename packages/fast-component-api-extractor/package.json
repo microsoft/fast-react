@@ -27,8 +27,8 @@
     "test": "yarn tslint && yarn unit-tests",
     "tslint": "tslint -c ./tslint.json '**/*.ts'",
     "tslint:fix": "tslint -c ./tslint.json --fix '**/*.ts'",
-    "unit-tests": "jest --runInBand",
-    "unit-tests:watch": "jest --watch",
+    "unit-tests": "npm run build:fixtures && jest --runInBand",
+    "unit-tests:watch": "npm run build:fixtures && jest --watch",
     "watch": "yarn build -- -w --preserveWatchOutput"
   },
   "jest": {

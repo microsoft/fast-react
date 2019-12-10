@@ -3,6 +3,11 @@
  */
 export interface ComponentData {
     /**
+     * The name of the type being documented
+     */
+    name: string;
+
+    /**
      * All of the properties of the API
      */
     properties: ComponentProperty[];
@@ -23,6 +28,11 @@ export interface ComponentProperty {
      * The type of the property
      */
     type: string;
+
+    /**
+     * If the property is required
+     */
+    required: boolean;
 
     /**
      * If the type is a reference to another type with properties (JS object),
