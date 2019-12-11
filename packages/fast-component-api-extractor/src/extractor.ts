@@ -1,5 +1,4 @@
-import { ComponentData, ComponentProperty } from "./component-data";
-import { ReferenceTracker } from "./reference-tracker";
+import { ComponentData, ComponentProperty, TypeInterface } from "./component-data";
 
 export class Extractor {
     /**
@@ -7,7 +6,7 @@ export class Extractor {
      */
     private data: any;
 
-    private references: any[];
+    private references: TypeInterface[];
 
     constructor(data: any) {
         // Exit if data is invalid
@@ -34,20 +33,22 @@ export class Extractor {
             throw new Error(`No type data found for name ${name}`);
         }
 
+        if (namedInterface.kindString !== KindStrings.interface) {
+            throw new Error(
+                `The component API extractor currently only supports interface types - ensure the type being selected is an interface`
+            );
+        }
+
         // Clear all references
         this.references = [];
 
-        return {
+        const foo: ComponentData = {
             name: namedInterface.name,
-            properties: namedInterface.children
-                .filter(isPropertyType)
-                .map(
-                    (value: any): ComponentProperty | null => {
-                        return this.resolveProperty(value);
-                    }
-                )
-                .filter((value: ComponentProperty | null) => !!value),
+            properties: this.resolveInterface(namedInterface),
+            references: this.references.concat(),
         };
+
+        return foo;
     }
 
     private resolveProperty(property: any): ComponentProperty | null {
@@ -70,6 +71,9 @@ export class Extractor {
         return null;
     }
 
+    /**
+     * Resolves an object representing a `type`
+     */
     private resolveType(value: any): string {
         switch (value.type) {
             case Types.intrinsic:
@@ -80,10 +84,56 @@ export class Extractor {
                     .map((element: any): any => this.resolveType(element))
                     .join(", ")}]`;
             case Types.reference:
+                if (typeof value.id === "number") {
+                    this.resolveReference(value.id);
+                }
+
                 return value.name;
         }
 
         return "";
+    }
+
+    private resolveInterface(value: any): ComponentProperty[] {
+        return value.children
+            .filter(isPropertyType)
+            .map(
+                (property: any): ComponentProperty | null => {
+                    return this.resolveProperty(property);
+                }
+            )
+            .filter((property: ComponentProperty | null) => !!property);
+    }
+
+    private resolveReference(id: number): void {
+        // Don't resolve references multiple times
+        if (this.references.some((ref: any): boolean => ref.id === id)) {
+            return;
+        }
+
+        const reference: any = this.getReferenceById(id);
+
+        switch (reference.kindString) {
+            case KindStrings.interface:
+                this.references = this.references.concat({
+                    id,
+                    name: reference.name,
+                    properties: this.resolveInterface(reference),
+                });
+                break;
+        }
+    }
+
+    private getReferenceById(id: number): any {
+        const reference: any | undefined = this.data.children.find(
+            (type: any) => type.id === id
+        );
+
+        if (reference === undefined) {
+            throw new Error(`Type reference with id ${id} was not found`);
+        }
+
+        return reference;
     }
 }
 
@@ -112,6 +162,13 @@ enum Types {
     reference = "reference",
 }
 
+enum KindStrings {
+    property = "Property",
+    interface = "Interface",
+    typeLiteral = "Type literal",
+    callSignature = "Call signature",
+}
+
 /**
  * The JSON structure for intrinsic types
  */
@@ -124,5 +181,5 @@ interface IntrinsicType {
  * Assertions
  */
 function isPropertyType<T extends { kindString: string }>(value: T): boolean {
-    return value.kindString === "Property";
+    return value.kindString === KindStrings.property;
 }

@@ -15,7 +15,7 @@ export interface ComponentData {
     /**
      * Type references
      */
-    references?: { [key: number]: ComponentProperty[] };
+    references?: TypeInterface[];
 }
 
 export interface ComponentProperty {
@@ -39,4 +39,10 @@ export interface ComponentProperty {
      * a reference to that type ID will exist here.
      */
     typeReference?: number[];
+}
+
+export interface TypeInterface {
+    id: number;
+    name: string;
+    properties: ComponentProperty[];
 }
