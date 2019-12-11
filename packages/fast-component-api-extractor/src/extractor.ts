@@ -53,6 +53,7 @@ enum IntrinsicTypes {
 enum Types {
     intrinsic = "intrinsic",
     tuple = "tuple",
+    reference = "reference",
 }
 
 /**
@@ -98,6 +99,8 @@ function resolveType(value: any, referenceTracker: ReferenceTracker): string {
             return `[${elements
                 .map((element: any): any => resolveType(element, referenceTracker))
                 .join(", ")}]`;
+        case Types.reference:
+            return value.name;
     }
 }
 
