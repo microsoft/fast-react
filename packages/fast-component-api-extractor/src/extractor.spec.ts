@@ -187,11 +187,11 @@ describe("extractor", () => {
         test("should process a root level 'array' property of intrinsics (reference syntax)", () => {
             const arrayProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean =>
-                    property.name === "intrinsicsArrayReference"
+                    property.name === "intrinsicArrayReference"
             );
 
             expect(arrayProperty).not.toBeUndefined();
-            expect(arrayProperty.name).toBe("intrinsicsArrayReference");
+            expect(arrayProperty.name).toBe("intrinsicArrayReference");
             expect(arrayProperty.required).toBe(true);
             expect(arrayProperty.type).toBe("Array<any>");
         });
@@ -217,16 +217,53 @@ describe("extractor", () => {
             expect(arrayProperty.required).toBe(true);
             expect(arrayProperty.type).toBe("Array<string | number>");
         });
-        xtest("should process a root level 'array' property of an intrinsic type union (alternate syntax)", () => {
+        test("should process a root level 'array' property of an intrinsic type union (reference syntax)", () => {
             const arrayProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean =>
-                    property.name === "intrinsicsUnionArrayTwo"
+                    property.name === "intrinsicsUnionArrayReference"
             );
 
             expect(arrayProperty).not.toBeUndefined();
-            expect(arrayProperty.name).toBe("intrinsicsUnionArrayTwo");
+            expect(arrayProperty.name).toBe("intrinsicsUnionArrayReference");
             expect(arrayProperty.required).toBe(true);
             expect(arrayProperty.type).toBe("Array<string | number>");
+        });
+        test("should process a root level 'array' property of an reference type union", () => {
+            const arrayProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "referenceIntersectionArray"
+            );
+
+            expect(arrayProperty).not.toBeUndefined();
+            expect(arrayProperty.name).toBe("referenceIntersectionArray");
+            expect(arrayProperty.required).toBe(true);
+            expect(arrayProperty.type).toBe("Array<IntersectionA & IntersectionB>");
+        });
+        test("should process a root level 'array' property of an reference type union (reference syntax)", () => {
+            const arrayProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "referenceIntersectionArrayReference"
+            );
+
+            expect(arrayProperty).not.toBeUndefined();
+            expect(arrayProperty.name).toBe("referenceIntersectionArrayReference");
+            expect(arrayProperty.required).toBe(true);
+            expect(arrayProperty.type).toBe("Array<IntersectionA & IntersectionB>");
+        });
+    });
+
+    describe("functions", () => {
+        const fixture: ComponentData = extractor("FunctionFixture", fixtures);
+
+        test("should process a root level 'function' property with no args and a void return", () => {
+            const tupleProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean => property.name === "noArgs"
+            );
+
+            expect(tupleProperty).not.toBeUndefined();
+            expect(tupleProperty.name).toBe("function");
+            expect(tupleProperty.required).toBe(true);
+            expect(tupleProperty.type).toBe("() => void");
         });
     });
 });

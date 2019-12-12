@@ -14,14 +14,25 @@ interface TupleFixture {
     tupleWithReferenceElements: [Date, ArrayFixture];
 }
 
+interface IntersectionA {
+    prop: any;
+}
+
+interface IntersectionB {
+    prop: any;
+}
+
 interface ArrayFixture {
     intrinsicArray: any[];
     // tslint:disable-next-line
-    intrinsicsArrayTwo: Array<any>;
+    intrinsicArrayReference: Array<any>;
     globalReferenceArray: Date[];
     // tslint:disable-next-line
     intrinsicsUnionArray: (string | number)[];
-    intrinsicsUnionArrayTwo: Array<string | number>;
+    intrinsicsUnionArrayReference: Array<string | number>;
+    // tslint:disable-next-line
+    referenceIntersectionArray: (IntersectionA & IntersectionB)[];
+    referenceIntersectionArrayReference: Array<IntersectionA & IntersectionB>;
 }
 
 interface ReferenceFixture {
@@ -34,6 +45,6 @@ interface ReferenceFixture {
     customInterfaceReference: IntrinsicFixture;
 }
 
-interface TestFixture {
-    function: () => void;
+interface FunctionFixture {
+    noArgs: () => void;
 }

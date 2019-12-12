@@ -56,13 +56,12 @@ export class Extractor {
             case Types.intrinsic:
             case Types.tuple:
             case Types.array:
+            case Types.reference:
                 return {
                     name: property.name,
                     type: this.resolveType(property.type),
                     required: !property.flags.isOptional,
                 };
-            case Types.reference:
-                break;
         }
 
         return null;
@@ -74,24 +73,17 @@ export class Extractor {
     private resolveType(value: any): string {
         switch (value.type) {
             case Types.intrinsic:
-                return value.name;
+                return this.formatIntrinsicType(value);
             case Types.tuple:
-                const elements: any[] = value.elements || [];
-                return `[${elements
-                    .map((element: any): any => this.resolveType(element))
-                    .join(", ")}]`;
+                return this.formatTupleType(value);
             case Types.reference:
-                if (typeof value.id === "number") {
-                    this.resolveReference(value.id);
-                }
-
-                return value.name;
+                return this.formatReferenceType(value);
             case Types.array:
-                return `Array<${this.resolveType(value.elementType)}>`;
+                return this.formatArrayType(value);
             case Types.union:
-                return value.types
-                    .map((unionValue: any) => this.resolveType(unionValue))
-                    .join(" | ");
+                return this.formatUnionType(value);
+            case Types.intersection:
+                return this.formatIntersectionType(value);
         }
 
         return "";
@@ -143,6 +135,56 @@ export class Extractor {
 
         return reference;
     }
+
+    /**
+     * Formatters for converting a type to a documentation string
+     */
+    private formatIntrinsicType(type: IntrinsicType): string {
+        return type.name;
+    }
+
+    private formatTupleType(type: TupleType): string {
+        return !Array.isArray(type.elements)
+            ? "[]"
+            : `[${type.elements
+                  .map((element: any): any => this.resolveType(element))
+                  .join(", ")}]`;
+    }
+
+    private formatArrayType(type: ArrayType): string {
+        return `Array<${this.resolveType(type.elementType)}>`;
+    }
+
+    private formatUnionType(type: UnionType): string {
+        return type.types
+            .map((unionValue: any) => this.resolveType(unionValue))
+            .join(" | ");
+    }
+
+    private formatIntersectionType(type: IntersectionType): string {
+        return type.types
+            .map((intersectionType: any) => this.resolveType(intersectionType))
+            .join(" & ");
+    }
+
+    private formatReferenceType(type: ReferenceType | ArrayReferenceType): string {
+        if (typeof type.id === "number") {
+            this.resolveReference(type.id);
+        }
+
+        if (type.name === ReferenceNames.array) {
+            return this.formatArrayReferenceType(type as ArrayReferenceType);
+        } else {
+            return type.name;
+        }
+    }
+
+    private formatArrayReferenceType(type: ArrayReferenceType): string {
+        return this.formatArrayType({
+            type: Types.array,
+            elementType: type.typeArguments[0], // Arrays only have a single type argument, so we can safely grab the first one
+        });
+    }
 }
 
 /**
@@ -170,6 +212,7 @@ enum Types {
     reference = "reference",
     array = "array",
     union = "union",
+    intersection = "intersection",
 }
 
 enum KindStrings {
@@ -179,12 +222,47 @@ enum KindStrings {
     callSignature = "Call signature",
 }
 
+enum ReferenceNames {
+    array = "Array",
+}
+
 /**
  * The JSON structure for intrinsic types
  */
 interface IntrinsicType {
-    type: "intrinsic";
+    type: Types.intrinsic;
     name: IntrinsicTypes;
+}
+
+interface TupleType {
+    type: Types.tuple;
+    elements: Array<IntrinsicType | any>;
+}
+
+interface ArrayType {
+    type: Types.array;
+    elementType: any;
+}
+
+interface UnionType {
+    type: Types.union;
+    types: any[];
+}
+
+interface IntersectionType {
+    type: Types.intersection;
+    types: any[];
+}
+
+interface ReferenceType {
+    type: Types.reference;
+    name: string;
+    id?: number;
+}
+
+interface ArrayReferenceType extends ReferenceType {
+    name: ReferenceNames.array;
+    typeArguments: any[];
 }
 
 /**
