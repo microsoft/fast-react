@@ -3,6 +3,7 @@ import {
     colorPlugInId,
     heightPluginId,
     widthPluginId,
+    spacingPlugInId
 } from "./editor.constants";
 
 export default {
@@ -19,6 +20,16 @@ export default {
         },
         background: {
             title: "Background",
+            type: "string",
+            formControlId: backgroundPlugInId,
+        },
+        spacing: {
+            title: "Spacing",
+            type: "string",
+            formControlId: spacingPlugInId,
+        },
+        width: {
+            title: "Width",
             type: "string",
             formControlId: backgroundPlugInId,
         },

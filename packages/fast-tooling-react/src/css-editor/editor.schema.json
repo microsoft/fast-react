@@ -24,6 +24,11 @@
                     "type": "string",
                     "formControlId": "height"
                 },
+                "spacing": {
+                    "title": "Spacing",
+                    "type": "string",
+                    "formControlId": "spacing"
+                },
                 "width": {
                     "title": "Width",
                     "type": "string",

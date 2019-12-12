@@ -10,12 +10,14 @@ import { CSSBackground } from "./background";
 import { CSSColor } from "./color";
 import { CSSWidth } from "./width";
 import { CSSHeight } from "./height";
+import { CSSSpacing } from "./spacing";
 import { ControlConfig, Form, StandardControlPlugin } from "../form/";
 import {
     backgroundPlugInId,
     colorPlugInId,
     heightPluginId,
     widthPluginId,
+    spacingPlugInId,
 } from "./editor.constants";
 
 export default class CSSEditor extends Foundation<
@@ -66,6 +68,12 @@ export default class CSSEditor extends Foundation<
                 id: widthPluginId,
                 control: (config: ControlConfig): React.ReactNode => {
                     return <CSSWidth value={this.props.data} {...config} />;
+                },
+            }),
+            new StandardControlPlugin({
+                id: spacingPlugInId,
+                control: (config: ControlConfig): React.ReactNode => {
+                    return <CSSSpacing value={this.props.data} {...config} />;
                 },
             }),
         ];
