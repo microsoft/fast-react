@@ -256,14 +256,163 @@ describe("extractor", () => {
         const fixture: ComponentData = extractor("FunctionFixture", fixtures);
 
         test("should process a root level 'function' property with no args and a void return", () => {
-            const tupleProperty: ComponentProperty = fixture.properties.find(
+            const functionProperty: ComponentProperty = fixture.properties.find(
                 (property: ComponentProperty): boolean => property.name === "noArgs"
             );
 
-            expect(tupleProperty).not.toBeUndefined();
-            expect(tupleProperty.name).toBe("function");
-            expect(tupleProperty.required).toBe(true);
-            expect(tupleProperty.type).toBe("() => void");
+            expect(functionProperty).not.toBeUndefined();
+            expect(functionProperty.name).toBe("noArgs");
+            expect(functionProperty.required).toBe(true);
+            expect(functionProperty.type).toBe("() => void");
+        });
+        test("should process a root level 'function' property with intrinsic return value", () => {
+            const functionProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "intrinsicReturn"
+            );
+
+            expect(functionProperty).not.toBeUndefined();
+            expect(functionProperty.name).toBe("intrinsicReturn");
+            expect(functionProperty.required).toBe(true);
+            expect(functionProperty.type).toBe("() => boolean");
+        });
+        test("should process a root level 'function' property with intrinsic arg", () => {
+            const functionProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean => property.name === "intrinsicArg"
+            );
+
+            expect(functionProperty).not.toBeUndefined();
+            expect(functionProperty.name).toBe("intrinsicArg");
+            expect(functionProperty.required).toBe(true);
+            expect(functionProperty.type).toBe("(value: string) => boolean");
+        });
+        test("should process a root level 'function' property with multiple intrinsic args", () => {
+            const functionProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "intrinsicArgs"
+            );
+
+            expect(functionProperty).not.toBeUndefined();
+            expect(functionProperty.name).toBe("intrinsicArgs");
+            expect(functionProperty.required).toBe(true);
+            expect(functionProperty.type).toBe(
+                "(value: string, anotherValue: boolean) => boolean"
+            );
+        });
+        test("should process a root level 'function' property with optional intrinsic args", () => {
+            const functionProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "optionalIntrinsicArg"
+            );
+
+            expect(functionProperty).not.toBeUndefined();
+            expect(functionProperty.name).toBe("optionalIntrinsicArg");
+            expect(functionProperty.required).toBe(true);
+            expect(functionProperty.type).toBe("(value?: string) => boolean");
+        });
+    });
+    describe("references", () => {
+        const fixture: ComponentData = extractor("ReferenceFixture", fixtures);
+
+        test("should process a root level 'date' property that is a Date", () => {
+            const referenceProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean => property.name === "date"
+            );
+
+            expect(referenceProperty).not.toBeUndefined();
+            expect(referenceProperty.name).toBe("date");
+            expect(referenceProperty.required).toBe(true);
+            expect(referenceProperty.type).toBe("Date");
+        });
+        test("should process a root level 'error' property that is a Error", () => {
+            const referenceProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean => property.name === "error"
+            );
+
+            expect(referenceProperty).not.toBeUndefined();
+            expect(referenceProperty.name).toBe("error");
+            expect(referenceProperty.required).toBe(true);
+            expect(referenceProperty.type).toBe("Error");
+        });
+        test("should process a root level 'regexp' property that is a RegExp", () => {
+            const referenceProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean => property.name === "regexp"
+            );
+
+            expect(referenceProperty).not.toBeUndefined();
+            expect(referenceProperty.name).toBe("regexp");
+            expect(referenceProperty.required).toBe(true);
+            expect(referenceProperty.type).toBe("RegExp");
+        });
+        test("should process a root level 'math' property that is a Math", () => {
+            const referenceProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean => property.name === "math"
+            );
+
+            expect(referenceProperty).not.toBeUndefined();
+            expect(referenceProperty.name).toBe("math");
+            expect(referenceProperty.required).toBe(true);
+            expect(referenceProperty.type).toBe("Math");
+        });
+        test("should process a root level 'window' property that is a Window", () => {
+            const referenceProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean => property.name === "window"
+            );
+
+            expect(referenceProperty).not.toBeUndefined();
+            expect(referenceProperty.name).toBe("window");
+            expect(referenceProperty.required).toBe(true);
+            expect(referenceProperty.type).toBe("Window");
+        });
+        test("should process a root level 'json' property that is a JSON", () => {
+            const referenceProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean => property.name === "json"
+            );
+
+            expect(referenceProperty).not.toBeUndefined();
+            expect(referenceProperty.name).toBe("json");
+            expect(referenceProperty.required).toBe(true);
+            expect(referenceProperty.type).toBe("JSON");
+        });
+        test("should process a root level 'customInterfaceReference' property that is a custom interface", () => {
+            const referenceProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "customInterfaceReference"
+            );
+
+            expect(referenceProperty).not.toBeUndefined();
+            expect(referenceProperty.name).toBe("customInterfaceReference");
+            expect(referenceProperty.required).toBe(true);
+            expect(referenceProperty.type).toBe("IntrinsicFixture");
+            expect(Array.isArray(fixture.references)).toBeTruthy();
+            expect(
+                fixture.references.some((value: any) => value.name === "IntrinsicFixture")
+            ).toBeTruthy();
+        });
+        test("should process a root level 'enum' property that is an enum", () => {
+            const referenceProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean => property.name === "enum"
+            );
+
+            expect(referenceProperty).not.toBeUndefined();
+            expect(referenceProperty.name).toBe("enum");
+            expect(referenceProperty.required).toBe(true);
+            expect(referenceProperty.type).toBe("IntrinsicFixture");
+        });
+    });
+
+    describe("enums", () => {
+        const fixture: ComponentData = extractor("ReferenceFixture", fixtures);
+
+        test("should process a root level 'enum' property that is an enum", () => {
+            const enumProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean => property.name === "enum"
+            );
+
+            expect(enumProperty).not.toBeUndefined();
+            expect(enumProperty.name).toBe("enum");
+            expect(enumProperty.required).toBe(true);
+            expect(enumProperty.type).toBe("IntrinsicFixture");
         });
     });
 });

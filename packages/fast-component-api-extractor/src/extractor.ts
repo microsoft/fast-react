@@ -51,26 +51,18 @@ export class Extractor {
         return foo;
     }
 
-    private resolveProperty(property: any): ComponentProperty | null {
-        switch (property.type.type) {
-            case Types.intrinsic:
-            case Types.tuple:
-            case Types.array:
-            case Types.reference:
-                return {
-                    name: property.name,
-                    type: this.resolveType(property.type),
-                    required: !property.flags.isOptional,
-                };
-        }
-
-        return null;
+    private resolveProperty(property: any): ComponentProperty {
+        return {
+            name: property.name,
+            type: this.resolveType(property.type),
+            required: !property.flags.isOptional,
+        };
     }
 
     /**
      * Resolves an object representing a `type`
      */
-    private resolveType(value: any): string {
+    private resolveType = (value: any): string => {
         switch (value.type) {
             case Types.intrinsic:
                 return this.formatIntrinsicType(value);
@@ -84,10 +76,24 @@ export class Extractor {
                 return this.formatUnionType(value);
             case Types.intersection:
                 return this.formatIntersectionType(value);
+            case Types.reflection:
+                return this.formatReflection(value);
         }
 
-        return "";
-    }
+        switch (value.kindString) {
+            case KindStrings.typeLiteral:
+                return this.formatTypeLiteral(value);
+            case KindStrings.callSignature:
+                return this.formatCallSignature(value);
+            case KindStrings.parameter:
+                return this.formatParamater(value);
+        }
+
+        throw new Error(
+            "The following value could not be resolved:\n" +
+                JSON.stringify(value, null, 2)
+        );
+    };
 
     private resolveInterface(value: any): ComponentProperty[] {
         return value.children
@@ -185,6 +191,30 @@ export class Extractor {
             elementType: type.typeArguments[0], // Arrays only have a single type argument, so we can safely grab the first one
         });
     }
+
+    private formatReflection(type: ReflectionType): string {
+        return this.resolveType(type.declaration);
+    }
+
+    private formatTypeLiteral(type: TypeLiteral): string {
+        return type.signatures.map(this.resolveType).join(" ");
+    }
+
+    private formatCallSignature(type: CallSignature): string {
+        if (!Array.isArray(type.parameters)) {
+            type.parameters = [];
+        }
+
+        return `(${type.parameters
+            .map(this.resolveType)
+            .join(", ")}) => ${this.resolveType(type.type)}`;
+    }
+
+    private formatParamater(type: Parameter): string {
+        return `${type.name}${type.flags.isOptional ? "?" : ""}: ${this.resolveType(
+            type.type
+        )}`;
+    }
 }
 
 /**
@@ -213,6 +243,7 @@ enum Types {
     array = "array",
     union = "union",
     intersection = "intersection",
+    reflection = "reflection",
 }
 
 enum KindStrings {
@@ -220,6 +251,7 @@ enum KindStrings {
     interface = "Interface",
     typeLiteral = "Type literal",
     callSignature = "Call signature",
+    parameter = "Parameter",
 }
 
 enum ReferenceNames {
@@ -263,6 +295,36 @@ interface ReferenceType {
 interface ArrayReferenceType extends ReferenceType {
     name: ReferenceNames.array;
     typeArguments: any[];
+}
+
+interface ReflectionType {
+    type: Types.reflection;
+    declaration: any;
+}
+
+interface TypeLiteral {
+    id: number;
+    kindString: KindStrings.typeLiteral;
+    signatures: any[];
+}
+
+interface CallSignature {
+    id: number;
+    kindString: KindStrings.callSignature;
+    parameters?: any[];
+
+    /**
+     * The return value
+     */
+    type: any;
+}
+
+interface Parameter {
+    id: number;
+    kindString: KindStrings.parameter;
+    type: any;
+    flags: any;
+    name: string;
 }
 
 /**
