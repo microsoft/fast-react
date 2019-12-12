@@ -16,7 +16,12 @@ interface TupleFixture {
 
 interface ArrayFixture {
     intrinsicArray: any[];
-    referenceArray: Date[];
+    // tslint:disable-next-line
+    intrinsicsArrayTwo: Array<any>;
+    globalReferenceArray: Date[];
+    // tslint:disable-next-line
+    intrinsicsUnionArray: (string | number)[];
+    intrinsicsUnionArrayTwo: Array<string | number>;
 }
 
 interface ReferenceFixture {

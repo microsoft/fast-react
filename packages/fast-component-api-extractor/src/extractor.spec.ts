@@ -169,4 +169,64 @@ describe("extractor", () => {
             expect(tupleProperty.type).toBe("[Date, ArrayFixture]");
         });
     });
+
+    describe("arrays", () => {
+        const fixture: ComponentData = extractor("ArrayFixture", fixtures);
+
+        test("should process a root level 'array' property of intrinsics", () => {
+            const arrayProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "intrinsicArray"
+            );
+
+            expect(arrayProperty).not.toBeUndefined();
+            expect(arrayProperty.name).toBe("intrinsicArray");
+            expect(arrayProperty.required).toBe(true);
+            expect(arrayProperty.type).toBe("Array<any>");
+        });
+        test("should process a root level 'array' property of intrinsics (reference syntax)", () => {
+            const arrayProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "intrinsicsArrayReference"
+            );
+
+            expect(arrayProperty).not.toBeUndefined();
+            expect(arrayProperty.name).toBe("intrinsicsArrayReference");
+            expect(arrayProperty.required).toBe(true);
+            expect(arrayProperty.type).toBe("Array<any>");
+        });
+        test("should process a root level 'array' property of global references", () => {
+            const arrayProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "globalReferenceArray"
+            );
+
+            expect(arrayProperty).not.toBeUndefined();
+            expect(arrayProperty.name).toBe("globalReferenceArray");
+            expect(arrayProperty.required).toBe(true);
+            expect(arrayProperty.type).toBe("Array<Date>");
+        });
+        test("should process a root level 'array' property of an intrinsic type union", () => {
+            const arrayProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "intrinsicsUnionArray"
+            );
+
+            expect(arrayProperty).not.toBeUndefined();
+            expect(arrayProperty.name).toBe("intrinsicsUnionArray");
+            expect(arrayProperty.required).toBe(true);
+            expect(arrayProperty.type).toBe("Array<string | number>");
+        });
+        xtest("should process a root level 'array' property of an intrinsic type union (alternate syntax)", () => {
+            const arrayProperty: ComponentProperty = fixture.properties.find(
+                (property: ComponentProperty): boolean =>
+                    property.name === "intrinsicsUnionArrayTwo"
+            );
+
+            expect(arrayProperty).not.toBeUndefined();
+            expect(arrayProperty.name).toBe("intrinsicsUnionArrayTwo");
+            expect(arrayProperty.required).toBe(true);
+            expect(arrayProperty.type).toBe("Array<string | number>");
+        });
+    });
 });

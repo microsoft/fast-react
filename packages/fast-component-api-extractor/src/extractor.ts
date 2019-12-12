@@ -54,18 +54,15 @@ export class Extractor {
     private resolveProperty(property: any): ComponentProperty | null {
         switch (property.type.type) {
             case Types.intrinsic:
+            case Types.tuple:
+            case Types.array:
                 return {
                     name: property.name,
                     type: this.resolveType(property.type),
                     required: !property.flags.isOptional,
                 };
-            case Types.tuple: {
-                return {
-                    name: property.name,
-                    type: this.resolveType(property.type),
-                    required: !property.flags.isOptional,
-                };
-            }
+            case Types.reference:
+                break;
         }
 
         return null;
@@ -89,6 +86,12 @@ export class Extractor {
                 }
 
                 return value.name;
+            case Types.array:
+                return `Array<${this.resolveType(value.elementType)}>`;
+            case Types.union:
+                return value.types
+                    .map((unionValue: any) => this.resolveType(unionValue))
+                    .join(" | ");
         }
 
         return "";
@@ -105,8 +108,13 @@ export class Extractor {
             .filter((property: ComponentProperty | null) => !!property);
     }
 
+    /**
+     * Finds a type reference by id and adds the resolved type to the
+     * references property
+     */
     private resolveReference(id: number): void {
         // Don't resolve references multiple times
+        // TODO not all references have IDs - Array's of unions do not
         if (this.references.some((ref: any): boolean => ref.id === id)) {
             return;
         }
@@ -160,6 +168,8 @@ enum Types {
     intrinsic = "intrinsic",
     tuple = "tuple",
     reference = "reference",
+    array = "array",
+    union = "union",
 }
 
 enum KindStrings {
