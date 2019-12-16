@@ -4,6 +4,7 @@ import {
     boxShadowPlugInId,
     colorPlugInId,
     heightPluginId,
+    spacingPluginId,
     widthPluginId,
 } from "./editor.constants";
 
@@ -43,6 +44,11 @@ export default {
             title: "Border radius",
             type: "string",
             formControlId: borderRadiusPlugInId,
+        },
+        spacing: {
+            title: "Spacing",
+            type: "object",
+            formControlId: spacingPluginId,
         },
     },
 };

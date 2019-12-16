@@ -3,7 +3,7 @@ import Adapter from "enzyme-adapter-react-16";
 import { configure, mount, shallow } from "enzyme";
 import Spacing from "./spacing";
 import { CSSSpacingClassNameContract } from "./spacing.style";
-import { CSSSpacing, SpacingType } from "./";
+import { CSSSpacing, CSSSpacingProps, SpacingType } from "./";
 
 /**
  * Configure Enzyme
@@ -29,25 +29,39 @@ describe("CSSSpacing", () => {
     const right: number = 2;
     const bottom: number = 3;
 
+    const spacingProps: CSSSpacingProps = {
+        dataLocation: "",
+        onChange: jest.fn(),
+        value: "",
+        disabled: false,
+        reportValidity: jest.fn(),
+        updateValidity: jest.fn(),
+        elementRef: null,
+    };
+
     test("should not throw", () => {
         expect(() => {
-            shallow(<CSSSpacing />);
+            shallow(<CSSSpacing {...spacingProps} />);
         }).not.toThrow();
     });
     test("should display the `spacingType` as margin intitially", () => {
-        const rendered: any = mount(<CSSSpacing />);
+        const rendered: any = mount(<CSSSpacing {...spacingProps} />);
 
         expect(rendered.find("span").text()).toEqual("MARGIN");
     });
     test("should display the `spacingType` as padding when padding is clicked", () => {
-        const rendered: any = mount(<Spacing managedClasses={managedClasses} />);
+        const rendered: any = mount(
+            <Spacing managedClasses={managedClasses} {...spacingProps} />
+        );
 
         rendered.find(`.${managedClasses.cssSpacing_type__padding}`).simulate("click");
 
         expect(rendered.find("span").text()).toEqual("PADDING");
     });
     test("should display the `spacingType` as margin when margin is clicked", () => {
-        const rendered: any = mount(<Spacing managedClasses={managedClasses} />);
+        const rendered: any = mount(
+            <Spacing managedClasses={managedClasses} {...spacingProps} />
+        );
 
         rendered.find(`.${managedClasses.cssSpacing_type__padding}`).simulate("click");
         rendered.find(`.${managedClasses.cssSpacing_type__margin}`).simulate("click");
@@ -55,7 +69,9 @@ describe("CSSSpacing", () => {
         expect(rendered.find("span").text()).toEqual("MARGIN");
     });
     test("should add an active class to margin `spacingType` region initially", () => {
-        const rendered: any = mount(<Spacing managedClasses={managedClasses} />);
+        const rendered: any = mount(
+            <Spacing managedClasses={managedClasses} {...spacingProps} />
+        );
         const classes: string[] = rendered
             .find(`.${managedClasses.cssSpacing_type__margin}`)
             .prop("className")
@@ -69,7 +85,9 @@ describe("CSSSpacing", () => {
         ).not.toBe(undefined);
     });
     test("should add an active class to the padding `spacingType` region when padding is clicked", () => {
-        const rendered: any = mount(<Spacing managedClasses={managedClasses} />);
+        const rendered: any = mount(
+            <Spacing managedClasses={managedClasses} {...spacingProps} />
+        );
 
         rendered.find(`.${managedClasses.cssSpacing_type__padding}`).simulate("click");
 
@@ -86,7 +104,9 @@ describe("CSSSpacing", () => {
         ).not.toBe(undefined);
     });
     test("should add a class to the hovered margin `spacingType` region when the region is hovered", () => {
-        const rendered: any = shallow(<Spacing managedClasses={managedClasses} />);
+        const rendered: any = shallow(
+            <Spacing managedClasses={managedClasses} {...spacingProps} />
+        );
         rendered
             .find(`.${managedClasses.cssSpacing_type__margin}`)
             .simulate("mouseover", { currentTarget: true, target: true });
@@ -104,7 +124,9 @@ describe("CSSSpacing", () => {
         ).not.toBe(undefined);
     });
     test("should add a class to the hovered padding `spacingType` region when the region is hovered", () => {
-        const rendered: any = shallow(<Spacing managedClasses={managedClasses} />);
+        const rendered: any = shallow(
+            <Spacing {...spacingProps} managedClasses={managedClasses} />
+        );
         rendered
             .find(`.${managedClasses.cssSpacing_type__padding}`)
             .simulate("mouseover", { currentTarget: true, target: true });
@@ -122,7 +144,9 @@ describe("CSSSpacing", () => {
         ).not.toBe(undefined);
     });
     test("should remove the hover active class when mouseout of the `spacingType` regions", () => {
-        const rendered: any = shallow(<Spacing managedClasses={managedClasses} />);
+        const rendered: any = shallow(
+            <Spacing {...spacingProps} managedClasses={managedClasses} />
+        );
         rendered
             .find(`.${managedClasses.cssSpacing_type__padding}`)
             .simulate("mouseout", { currentTarget: true, target: true });
@@ -140,7 +164,9 @@ describe("CSSSpacing", () => {
         ).toBe(undefined);
     });
     test("should remove the hover active class when mouseover of the inner span", () => {
-        const rendered: any = shallow(<Spacing managedClasses={managedClasses} />);
+        const rendered: any = shallow(
+            <Spacing {...spacingProps} managedClasses={managedClasses} />
+        );
         rendered
             .find(`.${managedClasses.cssSpacing_type__padding}`)
             .simulate("mouseover", { currentTarget: true, target: true });
@@ -184,7 +210,9 @@ describe("CSSSpacing", () => {
             .simulate("change", { target: { value } });
 
         expect(onChangeCallback).toHaveBeenCalled();
-        expect(onChangeCallback.mock.calls[0][0]).toEqual({ marginTop: value });
+        expect(onChangeCallback.mock.calls[0][0]).toEqual({
+            value: { marginTop: value },
+        });
     });
     test("should fire the `onChange` callback when the bottom margin input values are changed", () => {
         const value: string = "bottom-value-example";
@@ -199,7 +227,9 @@ describe("CSSSpacing", () => {
             .simulate("change", { target: { value } });
 
         expect(onChangeCallback).toHaveBeenCalled();
-        expect(onChangeCallback.mock.calls[0][0]).toEqual({ marginBottom: value });
+        expect(onChangeCallback.mock.calls[0][0]).toEqual({
+            value: { marginBottom: value },
+        });
     });
     test("should fire the `onChange` callback when the left margin input values are changed", () => {
         const value: string = "left-value-example";
@@ -214,7 +244,9 @@ describe("CSSSpacing", () => {
             .simulate("change", { target: { value } });
 
         expect(onChangeCallback).toHaveBeenCalled();
-        expect(onChangeCallback.mock.calls[0][0]).toEqual({ marginLeft: value });
+        expect(onChangeCallback.mock.calls[0][0]).toEqual({
+            value: { marginLeft: value },
+        });
     });
     test("should fire the `onChange` callback when the right margin input values are changed", () => {
         const value: string = "right-value-example";
@@ -229,7 +261,9 @@ describe("CSSSpacing", () => {
             .simulate("change", { target: { value } });
 
         expect(onChangeCallback).toHaveBeenCalled();
-        expect(onChangeCallback.mock.calls[0][0]).toEqual({ marginRight: value });
+        expect(onChangeCallback.mock.calls[0][0]).toEqual({
+            value: { marginRight: value },
+        });
     });
     test("should fire the `onChange` callback when multiple margin input values are changed", () => {
         const rightValue: string = "right-value-example";
@@ -237,7 +271,8 @@ describe("CSSSpacing", () => {
         const onChangeCallback: any = jest.fn();
         const rendered: any = mount(
             <Spacing
-                data={{ marginRight: rightValue }}
+                {...spacingProps}
+                value={{ marginRight: rightValue }}
                 onChange={onChangeCallback}
                 managedClasses={managedClasses}
             />
@@ -250,8 +285,7 @@ describe("CSSSpacing", () => {
 
         expect(onChangeCallback).toHaveBeenCalled();
         expect(onChangeCallback.mock.calls[0][0]).toEqual({
-            marginRight: rightValue,
-            marginLeft: leftValue,
+            value: { marginRight: rightValue, marginLeft: leftValue },
         });
     });
     test("should fire the `onChange` callback when the top padding input values are changed", () => {
@@ -269,7 +303,9 @@ describe("CSSSpacing", () => {
             .simulate("change", { target: { value } });
 
         expect(onChangeCallback).toHaveBeenCalled();
-        expect(onChangeCallback.mock.calls[0][0]).toEqual({ paddingTop: value });
+        expect(onChangeCallback.mock.calls[0][0]).toEqual({
+            value: { paddingTop: value },
+        });
     });
     test("should fire the `onChange` callback when the bottom padding input values are changed", () => {
         const value: string = "bottom-value-example";
@@ -287,7 +323,7 @@ describe("CSSSpacing", () => {
 
         expect(onChangeCallback).toHaveBeenCalled();
         expect(onChangeCallback.mock.calls[0][0]).toEqual({
-            paddingBottom: value,
+            value: { paddingBottom: value },
         });
     });
     test("should fire the `onChange` callback when the left padding input values are changed", () => {
@@ -305,7 +341,9 @@ describe("CSSSpacing", () => {
             .simulate("change", { target: { value } });
 
         expect(onChangeCallback).toHaveBeenCalled();
-        expect(onChangeCallback.mock.calls[0][0]).toEqual({ paddingLeft: value });
+        expect(onChangeCallback.mock.calls[0][0]).toEqual({
+            value: { paddingLeft: value },
+        });
     });
     test("should fire the `onChange` callback when the right padding input values are changed", () => {
         const value: string = "right-value-example";
@@ -322,7 +360,9 @@ describe("CSSSpacing", () => {
             .simulate("change", { target: { value } });
 
         expect(onChangeCallback).toHaveBeenCalled();
-        expect(onChangeCallback.mock.calls[0][0]).toEqual({ paddingRight: value });
+        expect(onChangeCallback.mock.calls[0][0]).toEqual({
+            value: { paddingRight: value },
+        });
     });
     test("should fire the `onChange` callback when multiple padding input values are changed", () => {
         const rightValue: string = "right-value-example";
@@ -330,7 +370,8 @@ describe("CSSSpacing", () => {
         const onChangeCallback: any = jest.fn();
         const rendered: any = mount(
             <Spacing
-                data={{
+                {...spacingProps}
+                value={{
                     paddingRight: rightValue,
                 }}
                 onChange={onChangeCallback}
@@ -347,8 +388,7 @@ describe("CSSSpacing", () => {
 
         expect(onChangeCallback).toHaveBeenCalled();
         expect(onChangeCallback.mock.calls[0][0]).toEqual({
-            paddingRight: rightValue,
-            paddingLeft: leftValue,
+            value: { paddingRight: rightValue, paddingLeft: leftValue },
         });
     });
     test("should fire the `onChange` callback when multiple margin input values and padding values are changed", () => {
@@ -358,7 +398,8 @@ describe("CSSSpacing", () => {
         const onChangeCallback: any = jest.fn();
         const rendered: any = mount(
             <Spacing
-                data={{
+                {...spacingProps}
+                value={{
                     paddingRight: rightValue,
                     marginTop: topValue,
                 }}
@@ -376,9 +417,11 @@ describe("CSSSpacing", () => {
 
         expect(onChangeCallback).toHaveBeenCalled();
         expect(onChangeCallback.mock.calls[0][0]).toEqual({
-            paddingRight: rightValue,
-            paddingLeft: leftValue,
-            marginTop: topValue,
+            value: {
+                paddingRight: rightValue,
+                paddingLeft: leftValue,
+                marginTop: topValue,
+            },
         });
     });
 });

@@ -1,5 +1,7 @@
 import { ManagedClasses } from "@microsoft/fast-jss-manager-react";
 import { CSSSpacingClassNameContract } from "./spacing.style";
+import { CommonControlConfig } from "../../form/templates";
+import { Omit } from "utility-types";
 
 /**
  * Spacing can be either "margin" or "padding"
@@ -31,7 +33,8 @@ export interface CSSSpacingState {
     hoverType: SpacingType | undefined;
 }
 
-export interface CSSSpacingUnhandledProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface CSSSpacingUnhandledProps
+    extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {}
 
 export interface CSSSpacingValues {
     marginTop?: string;
@@ -45,16 +48,7 @@ export interface CSSSpacingValues {
 }
 
 export interface CSSSpacingHandledProps
-    extends ManagedClasses<CSSSpacingClassNameContract> {
-    /**
-     * The data
-     */
-    data?: CSSSpacingValues;
-
-    /**
-     * The update callback
-     */
-    onChange?: (data: CSSSpacingValues) => void;
-}
+    extends CommonControlConfig,
+        ManagedClasses<CSSSpacingClassNameContract> {}
 
 export type CSSSpacingProps = CSSSpacingHandledProps & CSSSpacingUnhandledProps;

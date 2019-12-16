@@ -3,4 +3,5 @@ export const borderRadiusPlugInId: string = "borderRadius";
 export const colorPlugInId: string = "color";
 export const heightPluginId: string = "height";
 export const widthPluginId: string = "width";
+export const spacingPluginId: string = "spacing";
 export const boxShadowPlugInId: string = "shadow";

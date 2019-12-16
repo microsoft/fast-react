@@ -13,6 +13,8 @@ import {
     SpacingProperty,
     SpacingType,
 } from "./spacing.props";
+import { CSSSpacingClassNameContract } from "./spacing.style";
+import { classNames } from "@microsoft/fast-web-utilities";
 
 export default class CSSSpacing extends Foundation<
     CSSSpacingHandledProps,
@@ -21,10 +23,20 @@ export default class CSSSpacing extends Foundation<
 > {
     public static displayName: string = "CSSSpacing";
 
+    public static defaultProps: Partial<CSSSpacingProps> = {
+        value: "",
+        managedClasses: {},
+    };
+
     protected handledProps: HandledProps<CSSSpacingHandledProps> = {
-        data: void 0,
         onChange: void 0,
         managedClasses: void 0,
+        dataLocation: void 0,
+        value: void 0,
+        disabled: void 0,
+        elementRef: void 0,
+        reportValidity: void 0,
+        updateValidity: void 0,
     };
 
     constructor(props: CSSSpacingProps) {
@@ -113,7 +125,9 @@ export default class CSSSpacing extends Foundation<
                 type="text"
                 className={this.props.managedClasses.cssSpacing_input}
                 onChange={this.handleInputOnChange(spacingKey)}
-                value={get(this.props, `data.${spacingKey}`, "")}
+                onFocus={this.props.reportValidity}
+                onBlur={this.props.updateValidity}
+                value={get(this.props, `value.${spacingKey}`, "")}
             />
         );
     }
@@ -186,7 +200,7 @@ export default class CSSSpacing extends Foundation<
         cssKey: SpacingProperty
     ): (e: React.ChangeEvent<HTMLInputElement>) => void {
         return (e: React.ChangeEvent<HTMLInputElement>): void => {
-            const spacing: CSSSpacingValues = pick(this.props.data, [
+            const spacing: CSSSpacingValues = pick(this.props.value, [
                 SpacingProperty.marginBottom,
                 SpacingProperty.marginTop,
                 SpacingProperty.marginLeft,
@@ -199,7 +213,24 @@ export default class CSSSpacing extends Foundation<
 
             spacing[cssKey] = e.target.value;
 
-            this.props.onChange(spacing);
+            this.props.onChange({ value: spacing });
         };
     }
+
+    /**
+     * updates the validity
+     */
+    public updateValidity = (event: React.FocusEvent): void => {
+        //TODO: not clear on how to implement this
+        (event.target as HTMLInputElement).setCustomValidity("");
+    };
+
+    /**
+     * Reports the current validity of the form item
+     */
+    public reportValidity = (event: React.FocusEvent): void => {
+        //TODO: not clear on how to implement this
+        this.updateValidity(event);
+        (event.target as HTMLInputElement).reportValidity();
+    };
 }

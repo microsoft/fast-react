@@ -4,6 +4,7 @@ import {
     CSSEditorHandledProps,
     CSSEditorProps,
     CSSEditorUnhandledProps,
+    CSSEditorValues,
 } from "./editor.props";
 import cssEditorDataSchema from "./editor-data.schema";
 import { CSSBackground } from "./background";
@@ -11,6 +12,7 @@ import { CSSBorderRadius } from "./border-radius";
 import { CSSColor } from "./color";
 import { CSSWidth } from "./width";
 import { CSSHeight } from "./height";
+import { CSSSpacing } from "./spacing";
 import { ControlConfig, Form, StandardControlPlugin } from "../form/";
 import {
     backgroundPlugInId,
@@ -18,6 +20,7 @@ import {
     boxShadowPlugInId,
     colorPlugInId,
     heightPluginId,
+    spacingPluginId,
     widthPluginId,
 } from "./editor.constants";
 import { CSSBoxShadow } from "./box-shadow";
@@ -85,6 +88,12 @@ export default class CSSEditor extends Foundation<
                     return <CSSBorderRadius {...config} />;
                 },
             }),
+            new StandardControlPlugin({
+                id: spacingPluginId,
+                control: (config: ControlConfig): React.ReactNode => {
+                    return <CSSSpacing value={this.props.data} {...config} />;
+                },
+            }),
         ];
     }
 
@@ -93,7 +102,7 @@ export default class CSSEditor extends Foundation<
             <div className={this.props.managedClasses.cssEditor}>
                 <Form
                     schema={cssEditorDataSchema}
-                    data={this.props.data}
+                    data={this.convertData(this.props.data)}
                     onChange={this.handleUpdateData}
                     controlPlugins={this.controlPlugins}
                 />
@@ -101,11 +110,11 @@ export default class CSSEditor extends Foundation<
         );
     }
 
-    private handleUpdateData = (data: any): void => {
-        this.setState({
-            data,
-        });
+    private convertData = (sourceData: CSSEditorValues): any => {
+        return this.props.data;
+    };
 
+    private handleUpdateData = (data: any): void => {
         if (typeof this.props.onChange === "function") {
             this.props.onChange(data);
         }
