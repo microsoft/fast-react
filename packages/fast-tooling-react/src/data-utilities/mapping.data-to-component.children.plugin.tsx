@@ -1,14 +1,18 @@
 import React from "react";
-import { MapDataToComponentPlugin, MapDataToComponentPluginProps } from "../../";
-import { ChildOptionItem, mapDataToComponent } from "../../";
+import {
+    MapDataToComponentPlugin,
+    MapDataToComponentPluginProps,
+} from "./mapping.data-to-component.plugin";
+import { ChildOptionItem } from "./types";
+import { mapDataToComponent } from "./mapping";
 
-export interface MapChildrenPropToCallbackPassingClassNameProps
+export interface MapDataToComponentReactChildrenPluginProps
     extends MapDataToComponentPluginProps {
     childOptions: ChildOptionItem[];
 }
 
-export default class MapChildrenPropToCallbackPassingClassName extends MapDataToComponentPlugin<
-    MapChildrenPropToCallbackPassingClassNameProps
+export class MapDataToComponentReactChildrenPlugin extends MapDataToComponentPlugin<
+    MapDataToComponentReactChildrenPluginProps
 > {
     public resolver(data: any, dataLocation: string): React.ReactNode {
         if (Array.isArray(data)) {
@@ -31,14 +35,12 @@ export default class MapChildrenPropToCallbackPassingClassName extends MapDataTo
             );
 
             if (childComponent) {
-                return (className: string): React.ReactNode => {
-                    return mapDataToComponent(
-                        childComponent.schema,
-                        { ...data.props, className },
-                        childComponent.component,
-                        this.plugins
-                    );
-                };
+                return mapDataToComponent(
+                    childComponent.schema,
+                    data.props,
+                    childComponent.component,
+                    this.plugins
+                );
             }
         }
 

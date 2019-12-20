@@ -1,7 +1,10 @@
 import { ChildOptionItem } from "./types";
 import { getDataFromSchema } from "./generate";
 import { mapDataToCodePreview, mapDataToComponent } from "./mapping";
-import { Plugin, PluginProps } from "./plugin";
+import {
+    MapDataToComponentPlugin,
+    MapDataToComponentPluginProps,
+} from "./mapping.data-to-component.plugin";
 import reactChildrenSchema from "./react-children.schema";
 
 export {
@@ -9,7 +12,7 @@ export {
     getDataFromSchema,
     mapDataToComponent,
     mapDataToCodePreview,
-    Plugin,
-    PluginProps,
+    MapDataToComponentPlugin,
+    MapDataToComponentPluginProps,
     reactChildrenSchema,
 };

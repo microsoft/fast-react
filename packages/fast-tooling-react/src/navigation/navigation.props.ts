@@ -1,14 +1,11 @@
 import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 import { ChildOptionItem } from "../data-utilities";
 import { NavigationClassNameContract } from "./navigation.style";
-
-export enum NavigationDataType {
-    object = "object",
-    array = "array",
-    children = "children",
-    component = "component",
-    primitiveChild = "primitiveChild",
-}
+import {
+    ReactComponentProps,
+    TreeNavigationConfig,
+} from "../message-system/navigation.utilities";
+import { TreeNavigation } from "../message-system/navigation.props";
 
 export interface NavigationState {
     /**
@@ -17,57 +14,58 @@ export interface NavigationState {
     navigation: TreeNavigation;
 
     /**
-     * The open items tracked by data location
+     * A copy of the prop data
+     * used so that source data can be removed
+     * when drag starts and added when drag ends
      */
-    openItems: string[];
+    data: ReactComponentProps;
+
+    expandedNavigationIds: string[];
 
     /**
-     * The current active item
+     * The root items id
      */
-    activeItem: null | string;
+    rootNavigationItemId: string;
+
+    /**
+     * The data currently being moved
+     */
+    relocatingData: any;
+
+    /**
+     * The active navigation item id
+     */
+    activeNavigationItemId: string;
+
+    /**
+     * The dragging navigation id
+     */
+    draggingNavigationId: null | string;
+
+    /**
+     * The dragging items source data location
+     */
+    draggingSourceDataLocation: null | string;
 
     /**
      * The hovered tree item
      */
-    dragHoverDataLocation: null | string;
+    dragHoverNavigationId: null | string;
 
     /**
      * The hovered location before
      */
-    dragHoverBeforeDataLocation: null | string;
+    dragHoverBeforeNavigationId: null | string;
 
     /**
      * The hovered location after
      */
-    dragHoverAfterDataLocation: null | string;
+    dragHoverAfterNavigationId: null | string;
 
     /**
      * The hovered location center
      */
-    dragHoverCenterDataLocation: null | string;
-}
-
-export interface TreeNavigation {
-    /**
-     * The navigation item text
-     */
-    text: string;
-
-    /**
-     * The data location of this item
-     */
-    dataLocation: string;
-
-    /**
-     * The data type, this will result in a different
-     * icons used
-     */
-    type: NavigationDataType;
-
-    /**
-     * The items belonging to the text as a dropdown
-     */
-    items?: TreeNavigation[] | void;
+    dragHoverCenterNavigationId: null | string;
 }
 
 export interface NavigationHandledProps
@@ -78,9 +76,15 @@ export interface NavigationHandledProps
     schema: any;
 
     /**
-     * The data mapped to the schema
+     * The message system
+     * used for sending and recieving data
      */
-    data: any;
+    messageSystem: void | Worker;
+
+    /**
+     * The navigation data
+     */
+    navigation: TreeNavigationConfig;
 
     /**
      * The React child options

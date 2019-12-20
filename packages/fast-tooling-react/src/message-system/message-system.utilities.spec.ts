@@ -6,12 +6,14 @@ import {
     InitializeMessageOutgoing,
     MessageSystemComponentTypeAction,
     MessageSystemDataTypeAction,
+    MessageSystemNavigationTypeAction,
     MessageSystemType,
+    NavigationMessageOutgoing,
     RegisterComponentOutgoing,
     RemoveDataMessageOutgoing,
     UpdateDataMessageOutgoing,
 } from "./message-system.props";
-import { getMessage } from "./message-system";
+import { getMessage } from "./message-system.utilities";
 import { DataType } from "../data-utilities/types";
 
 describe("getMessage", () => {
@@ -33,6 +35,7 @@ describe("getMessage", () => {
             expect(message.data).toEqual(dataBlob);
             expect(message.schema).toEqual(schema);
             expect(message.plugins).toEqual(plugins);
+            expect(typeof message.navigation).toEqual("object");
         });
     });
     describe("component", () => {
@@ -137,6 +140,20 @@ describe("getMessage", () => {
             }) as UpdateDataMessageOutgoing;
 
             expect(message.data).toEqual({ hello: "venus" });
+        });
+    });
+    describe("navigation", () => {
+        test("should return messages sent with navigation updates", () => {
+            const id: string = "foo";
+            const message: NavigationMessageOutgoing = getMessage({
+                type: MessageSystemType.navigation,
+                action: MessageSystemNavigationTypeAction.update,
+                activeId: id,
+            }) as NavigationMessageOutgoing;
+
+            expect(message.type).toEqual(MessageSystemType.navigation);
+            expect(message.action).toEqual(MessageSystemNavigationTypeAction.update);
+            expect(message.activeId).toEqual(id);
         });
     });
 });

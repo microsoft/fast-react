@@ -1,4 +1,7 @@
-import { Plugin, PluginProps } from "./plugin";
+import {
+    MapDataToComponentPlugin,
+    MapDataToComponentPluginProps,
+} from "./mapping.data-to-component.plugin";
 
 export const typeKeyword: string = "type";
 export const pluginIdKeyword: string = "pluginId";
@@ -111,11 +114,6 @@ export interface PluginResolverDataMap {
 
 export interface PluginResolverDataMapConfig {
     /**
-     * Is this data React children
-     */
-    isReactChildren: boolean;
-
-    /**
      * The data to supply to the plugin
      */
     pluginData: any;
@@ -123,15 +121,15 @@ export interface PluginResolverDataMapConfig {
     /**
      * The plugin to use to resolve the data
      */
-    pluginResolver: Plugin<PluginProps>;
-
-    /**
-     * The React children to pass to the plugin
-     */
-    childOptions: ChildOptionItem[];
+    pluginResolver: MapDataToComponentPlugin<MapDataToComponentPluginProps>;
 
     /**
      * The data location derived from the schema location
      */
     dataLocation: string;
+
+    /**
+     * All of the available plugins passed
+     */
+    plugins: Array<MapDataToComponentPlugin<MapDataToComponentPluginProps>>;
 }

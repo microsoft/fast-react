@@ -1,6 +1,4 @@
-import { ChildOptionItem } from "./";
-
-export interface PluginProps {
+export interface MapDataToComponentPluginProps {
     /**
      * The string(s) used to identify the plugin instance,
      *
@@ -11,8 +9,9 @@ export interface PluginProps {
     id: string | string[];
 }
 
-export abstract class Plugin<C extends PluginProps> {
-    private config: C;
+export abstract class MapDataToComponentPlugin<C extends MapDataToComponentPluginProps> {
+    public config: C;
+    public plugins: Array<MapDataToComponentPlugin<MapDataToComponentPluginProps>>;
 
     constructor(config: C) {
         this.config = config;
@@ -31,11 +30,16 @@ export abstract class Plugin<C extends PluginProps> {
     }
 
     /**
+     * Adds all plugins for reference
+     */
+    public updatePlugins(
+        plugins: Array<MapDataToComponentPlugin<MapDataToComponentPluginProps>>
+    ): void {
+        this.plugins = plugins;
+    }
+
+    /**
      * Resolves the data given
      */
-    public abstract resolver(
-        data: any,
-        childOption?: ChildOptionItem,
-        dataLocation?: string
-    ): any;
+    public abstract resolver(data: any, dataLocation?: string): any;
 }

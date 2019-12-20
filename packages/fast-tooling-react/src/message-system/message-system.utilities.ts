@@ -9,8 +9,11 @@ import {
     MessageSystemComponentTypeAction,
     MessageSystemDataTypeAction,
     MessageSystemIncoming,
+    MessageSystemNavigationTypeAction,
     MessageSystemOutgoing,
     MessageSystemType,
+    NavigationMessageIncoming,
+    NavigationMessageOutgoing,
 } from "./message-system.props";
 import { set } from "lodash-es";
 import { getDataWithDuplicate } from "../data-utilities/duplicate";
@@ -18,7 +21,9 @@ import {
     getDataUpdatedWithoutSourceData,
     getDataUpdatedWithSourceData,
 } from "../data-utilities/relocate";
-import Plugin, { PluginProps } from "./plugin";
+import MessageSystemPlugin, { MessageSystemPluginProps } from "./plugin";
+import { TreeNavigation } from "./navigation.props";
+import { getNavigation, TreeNavigationConfig } from "./navigation.utilities";
 
 /**
  * This is the Message System, through which:
@@ -41,8 +46,10 @@ const subscriptions: ComponentsRegisteredBySubscription = {
 };
 const registeredComponents: { [key: string]: ComponentRegistry } = {};
 let dataBlob: any = {};
+let navigation: TreeNavigationConfig;
+let navigationActiveId: string;
 let schema: any = {};
-let plugins: Array<Plugin<PluginProps>> = [];
+let plugins: Array<MessageSystemPlugin<MessageSystemPluginProps>> = [];
 
 export function getMessage(data: MessageSystemIncoming): MessageSystemOutgoing {
     switch (data.type) {
@@ -50,14 +57,19 @@ export function getMessage(data: MessageSystemIncoming): MessageSystemOutgoing {
             return getComponentMessage(data);
         case MessageSystemType.data:
             return getDataMessage(data);
+        case MessageSystemType.navigation:
+            return getNavigationMessage(data);
         case MessageSystemType.initialize:
             dataBlob = data.data;
             schema = data.schema;
             plugins = data.plugins || [];
+            navigation = getNavigation(dataBlob, schema);
+            navigationActiveId = navigation[1];
 
             return {
                 type: MessageSystemType.initialize,
                 data: dataBlob,
+                navigation,
                 schema,
                 plugins,
             };
@@ -141,6 +153,28 @@ function getDataMessage(data: DataMessageIncoming): DataMessageOutgoing {
                 type: MessageSystemType.data,
                 action: MessageSystemDataTypeAction.update,
                 data: dataBlob,
+            };
+    }
+}
+
+function getNavigationMessage(
+    data: NavigationMessageIncoming
+): NavigationMessageOutgoing {
+    switch (data.action) {
+        case MessageSystemNavigationTypeAction.update:
+            navigationActiveId = data.activeId;
+
+            return {
+                type: MessageSystemType.navigation,
+                action: MessageSystemNavigationTypeAction.update,
+                activeId: data.activeId,
+            };
+        case MessageSystemNavigationTypeAction.get:
+            return {
+                type: MessageSystemType.navigation,
+                action: MessageSystemNavigationTypeAction.get,
+                activeId: navigationActiveId,
+                navigation,
             };
     }
 }

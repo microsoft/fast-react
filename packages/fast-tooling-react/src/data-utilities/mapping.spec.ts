@@ -1,26 +1,42 @@
 import "jest";
-import { get } from "lodash-es";
 import React from "react";
 import { ChildOptionItem, mapDataToComponent } from "./";
-import {
-    CodePreviewChildOption,
-    CodePreviewConfig,
-    mapDataToCodePreview,
-} from "./mapping";
+import { mapDataToCodePreview } from "./mapping";
 
 import ChildrenWithRenderProp from "./__tests__/components/children-plugin";
 import Children from "./__tests__/components/children";
 import TextField from "./__tests__/components/text-field";
 import badgeSchema from "../__tests__/schemas/badge.schema.json";
-import childrenSchema from "../__tests__/schemas/children.schema.json";
 import childrenWithPluginPropsSchema from "../__tests__/schemas/children-plugin.schema.json";
-import textFieldSchema from "../__tests__/schemas/text-field.schema.json";
-import MapChildrenPropToCallbackPassingClassName from "./__tests__/plugins/map-children-prop-to-callback-passing-class-name";
-import MapBooleanPropToString from "./__tests__/plugins/map-boolean-prop-to-string";
-import MapArrayPropToObject from "./__tests__/plugins/map-array-prop-to-object";
-import { Plugin, PluginProps } from "./plugin";
+import {
+    MapDataToComponentPlugin,
+    MapDataToComponentPluginProps,
+} from "./mapping.data-to-component.plugin";
+import { pluginIdKeyword } from "./types";
+import { MapDataToComponentReactChildrenPlugin } from "./mapping.data-to-component.children.plugin";
+import reactChildrenSchema, {
+    defaultReactChildrenPluginId,
+} from "./react-children.schema";
+import childrenSchema from "../__tests__/schemas/children.schema";
+import textFieldSchema from "../__tests__/schemas/text-field.schema";
+import { MapDataToCodePreviewReactChildrenPlugin } from "./mapping.data-to-code-preview.children.plugin";
 
 /* tslint:disable:max-classes-per-file */
+
+class TestMapDataToComponentPlugin extends MapDataToComponentPlugin<
+    MapDataToComponentPluginProps
+> {
+    public resolver(data: any, dataLocation?: string): any {
+        return "foo";
+    }
+}
+
+class TestComponent extends React.Component<{}, {}> {
+    public render(): React.ReactNode {
+        return null;
+    }
+}
+
 describe("mapDataToComponent", () => {
     const childrenPluginResolverId: string =
         childrenWithPluginPropsSchema.reactProperties.render.pluginId;
@@ -34,505 +50,241 @@ describe("mapDataToComponent", () => {
         { component: ChildrenWithRenderProp, schema: childrenWithPluginPropsSchema },
     ];
 
-    test("should map data to a child", () => {
-        const textString: string = "Hello world";
-        const data: any = {
-            children: {
-                id: childrenSchema.id,
-                props: {},
+    test("should map data to a component", () => {
+        const props: any = {
+            foo: "bar",
+        };
+        const componentWithMappedData: any = mapDataToComponent(
+            {
+                type: "object",
+                properties: {
+                    foo: {
+                        type: "string",
+                    },
+                },
             },
-        };
-        const dataWithChildString: any = {
-            children: textString,
-        };
-
-        const mappedData: any = mapDataToComponent(childrenSchema, data, childOptions);
-        const mappedDataWithChildString: any = mapDataToComponent(
-            childrenSchema,
-            dataWithChildString,
-            childOptions
+            props,
+            TestComponent
         );
 
-        expect(typeof get(mappedData, "children.type")).toBe("function");
-        expect(get(mappedData, "children.type.displayName")).toBe("Children");
-        expect(typeof get(mappedDataWithChildString, "children")).toBe("string");
-        expect(get(mappedDataWithChildString, "children")).toBe(textString);
+        expect(typeof componentWithMappedData.type).toBe("function");
+        expect(componentWithMappedData.props).toEqual(props);
     });
-    test("should map data to multiple children", () => {
-        const data: any = {
-            children: [
-                {
-                    id: childrenSchema.id,
-                    props: {},
+    test("should map data to a plugin", () => {
+        const id: string = "bar";
+        const componentWithMappedData: any = mapDataToComponent(
+            {
+                type: "object",
+                properties: {
+                    foo: {
+                        [pluginIdKeyword]: id,
+                        type: "string",
+                    },
                 },
-                "Hello pluto",
-            ],
-        };
+            },
+            {
+                foo: "bar",
+            },
+            TestComponent,
+            [
+                new TestMapDataToComponentPlugin({
+                    id,
+                }),
+            ]
+        );
 
-        const mappedData: any = mapDataToComponent(childrenSchema, data, childOptions);
-
-        expect(typeof get(mappedData, "children[0].type")).toBe("function");
-        expect(get(mappedData, "children[0].type.displayName")).toBe("Children");
-        expect(typeof get(mappedData, "children[1]")).toBe("string");
-        expect(get(mappedData, "children[1]")).toBe("Hello pluto");
+        expect(typeof componentWithMappedData.type).toBe("function");
+        expect(componentWithMappedData.props).toEqual({
+            foo: "foo",
+        });
     });
-    test("should map data to nested children", () => {
-        const data: any = {
-            children: [
+    describe("MapDataToComponentReactChildrenPlugin", () => {
+        test("should map data to a string child", () => {
+            const id: string = "bar";
+            const componentWithMappedData: any = mapDataToComponent(
                 {
-                    id: childrenSchema.id,
-                    props: {
-                        children: {
-                            id: textFieldSchema.id,
-                            props: {},
+                    type: "object",
+                    properties: {
+                        foo: {
+                            [pluginIdKeyword]: id,
+                            type: "string",
                         },
                     },
                 },
                 {
-                    id: textFieldSchema.id,
-                    props: {},
+                    foo: "bar",
                 },
-            ],
-        };
+                TestComponent,
+                [
+                    new MapDataToComponentReactChildrenPlugin({
+                        id,
+                        childOptions,
+                    }),
+                ]
+            );
 
-        const mappedData: any = mapDataToComponent(childrenSchema, data, childOptions);
-
-        expect(typeof get(mappedData, "children[0].type")).toBe("function");
-        expect(get(mappedData, "children[0].type.displayName")).toBe("Children");
-        expect(typeof get(mappedData, "children[0].props.children.type")).toBe(
-            "function"
-        );
-        expect(get(mappedData, "children[0].props.children.type.displayName")).toBe(
-            "Text field"
-        );
-        expect(typeof get(mappedData, "children[1].type")).toBe("function");
-        expect(get(mappedData, "children[1].type.displayName")).toBe("Text field");
-    });
-
-    test("should map simple data to a plugin", () => {
-        const data: any = {
-            boolean: true,
-            array: ["foo", "bar", "bat"],
-        };
-        const mappedData: any = mapDataToComponent(
-            childrenWithPluginPropsSchema,
-            data,
-            childOptions,
-            [
-                new MapBooleanPropToString({
-                    id: [booleanPluginResolverId],
-                }),
-                new MapArrayPropToObject({
-                    id: arrayPluginResolverId,
-                }),
-            ]
-        );
-
-        expect(typeof mappedData.boolean).toBe("string");
-        expect(typeof mappedData.array).toBe("object");
-        expect(mappedData.array.foo).toEqual(0);
-        expect(mappedData.array.bar).toEqual(1);
-        expect(mappedData.array.bat).toEqual(2);
-    });
-    test("should map children to a plugin", () => {
-        const data: any = {
-            render: {
-                id: textFieldSchema.id,
-                props: {},
-            },
-        };
-        const testClass: string = "Hello world";
-        const mappedData: any = mapDataToComponent(
-            childrenWithPluginPropsSchema,
-            data,
-            childOptions,
-            [
-                new MapChildrenPropToCallbackPassingClassName({
-                    id: childrenPluginResolverId,
-                }),
-            ]
-        );
-
-        expect(mappedData.render).toHaveLength(1);
-        expect(typeof mappedData.render).toBe("function");
-        expect(mappedData.render(testClass).type.displayName).toEqual("Text field");
-        expect(mappedData.render(testClass).props.className).toBe(testClass);
-    });
-    test("should invoke plugin resolver with string and number data", () => {
-        ["child text", 10].forEach(
-            (childData: unknown): void => {
-                const data: any = {
-                    render: childData,
-                };
-                const resolver: jest.Mock = jest.fn();
-                class MyPlugin extends Plugin<PluginProps> {
-                    public resolver(
-                        d: any,
-                        childItem?: ChildOptionItem,
-                        dataLocation?: string
-                    ): any {
-                        resolver(d, childItem, dataLocation);
-                    }
-                }
-                const mappedData: any = mapDataToComponent(
-                    childrenWithPluginPropsSchema,
-                    data,
-                    childOptions,
-                    [
-                        new MyPlugin({
-                            id: childrenPluginResolverId,
-                        }),
-                    ]
-                );
-
-                expect(resolver).toHaveBeenCalledTimes(1);
-                expect(resolver.mock.calls[0][0]).toBe(childData);
-            }
-        );
-    });
-    test("should map arrays of children to plugins", () => {
-        const data: any = {
-            render: [
+            expect(typeof componentWithMappedData.type).toBe("function");
+            expect(componentWithMappedData.props).toEqual({
+                foo: "bar",
+            });
+        });
+        test("should map data to a component", () => {
+            const componentWithMappedData: any = mapDataToComponent(
                 {
-                    id: textFieldSchema.id,
-                    props: {},
+                    type: "object",
+                    properties: {
+                        foo: {
+                            ...reactChildrenSchema,
+                        },
+                    },
                 },
                 {
-                    id: childrenSchema.id,
-                    props: {},
+                    foo: {
+                        id: textFieldSchema.id,
+                        props: {},
+                    },
                 },
-            ],
-        };
-        const testClass1: string = "Foo";
-        const testClass2: string = "Bar";
-        const mappedData: any = mapDataToComponent(
-            childrenWithPluginPropsSchema,
-            data,
-            childOptions,
-            [
-                new MapChildrenPropToCallbackPassingClassName({
-                    id: childrenPluginResolverId,
-                }),
-            ]
-        );
+                TestComponent,
+                [
+                    new MapDataToComponentReactChildrenPlugin({
+                        id: defaultReactChildrenPluginId,
+                        childOptions,
+                    }),
+                ]
+            );
 
-        expect(mappedData.render).toHaveLength(2);
-        expect(typeof mappedData.render[0]).toBe("function");
-        expect(mappedData.render[0](testClass1).type.displayName).toEqual("Text field");
-        expect(mappedData.render[0](testClass1).props.className).toBe(testClass1);
-        expect(typeof mappedData.render[1]).toBe("function");
-        expect(mappedData.render[1](testClass2).type.displayName).toEqual("Children");
-        expect(mappedData.render[1](testClass2).props.className).toBe(testClass2);
-    });
-    test("should map children in arrays to plugins", () => {
-        const data: any = {
-            render: [
+            expect(typeof componentWithMappedData.type).toBe("function");
+            expect(typeof componentWithMappedData.props.foo.type).toEqual("function");
+            expect(componentWithMappedData.props.foo.type.displayName).toEqual(
+                "Text field"
+            );
+        });
+        test("should map data to multiple strings", () => {
+            const componentWithMappedData: any = mapDataToComponent(
                 {
-                    children: [
+                    type: "object",
+                    properties: {
+                        foo: {
+                            ...reactChildrenSchema,
+                        },
+                    },
+                },
+                {
+                    foo: ["hello", "world"],
+                },
+                TestComponent,
+                [
+                    new MapDataToComponentReactChildrenPlugin({
+                        id: defaultReactChildrenPluginId,
+                        childOptions,
+                    }),
+                ]
+            );
+
+            expect(typeof componentWithMappedData.type).toBe("function");
+            expect(componentWithMappedData.props).toEqual({
+                foo: ["hello", "world"],
+            });
+        });
+        test("should map data to mixed children types", () => {
+            const componentWithMappedData: any = mapDataToComponent(
+                {
+                    type: "object",
+                    properties: {
+                        foo: {
+                            ...reactChildrenSchema,
+                        },
+                    },
+                },
+                {
+                    foo: [
+                        "hello",
                         {
                             id: textFieldSchema.id,
-                            props: {},
-                        },
-                        {
-                            id: childrenSchema.id,
                             props: {},
                         },
                     ],
                 },
-            ],
-        };
-        const arrayPropertyPluginId: string = "myPluginId";
-        const schema: any = {
-            type: "object",
-            properties: {
-                render: {
-                    type: "array",
-                    items: {
-                        type: "object",
-                        reactProperties: {
+                TestComponent,
+                [
+                    new MapDataToComponentReactChildrenPlugin({
+                        id: defaultReactChildrenPluginId,
+                        childOptions,
+                    }),
+                ]
+            );
+
+            expect(typeof componentWithMappedData.type).toBe("function");
+            expect(componentWithMappedData.props.foo[0]).toEqual("hello");
+            expect(typeof componentWithMappedData.props.foo[1].type).toEqual("function");
+            expect(componentWithMappedData.props.foo[1].type.displayName).toEqual(
+                "Text field"
+            );
+        });
+        test("should map data to nested children", () => {
+            const componentWithMappedData: any = mapDataToComponent(
+                {
+                    type: "object",
+                    properties: {
+                        foo: {
+                            ...reactChildrenSchema,
+                        },
+                    },
+                },
+                {
+                    foo: {
+                        id: childrenSchema.id,
+                        props: {
                             children: {
-                                type: "children",
-                                pluginId: arrayPropertyPluginId,
+                                id: textFieldSchema.id,
+                                props: {},
                             },
                         },
                     },
                 },
-            },
-        };
+                TestComponent,
+                [
+                    new MapDataToComponentReactChildrenPlugin({
+                        id: defaultReactChildrenPluginId,
+                        childOptions,
+                    }),
+                ]
+            );
 
-        const testClass1: string = "Foo";
-        const testClass2: string = "Bar";
-
-        const mappedData: any = mapDataToComponent(schema, data, childOptions, [
-            new MapChildrenPropToCallbackPassingClassName({
-                id: arrayPropertyPluginId,
-            }),
-        ]);
-        expect(mappedData.render[0].children).toHaveLength(2);
-        expect(typeof mappedData.render[0].children[0]).toBe("function");
-        expect(mappedData.render[0].children[0](testClass1).type.displayName).toEqual(
-            "Text field"
-        );
-        expect(mappedData.render[0].children[0](testClass1).props.className).toBe(
-            testClass1
-        );
-        expect(typeof mappedData.render[0].children[1]).toBe("function");
-        expect(mappedData.render[0].children[1](testClass2).type.displayName).toEqual(
-            "Children"
-        );
-        expect(mappedData.render[0].children[1](testClass2).props.className).toBe(
-            testClass2
-        );
-    });
-    test("should map children to a plugin nested inside a child", () => {
-        const data: any = {
-            children: {
-                id: childrenWithPluginPropsSchema.id,
-                props: {
-                    render: {
-                        id: textFieldSchema.id,
-                        props: {},
-                    },
-                },
-            },
-        };
-
-        const testClass: string = "Foo";
-        const mappedData: any = mapDataToComponent(childrenSchema, data, childOptions, [
-            new MapChildrenPropToCallbackPassingClassName({
-                id: childrenPluginResolverId,
-            }),
-        ]);
-
-        expect(typeof get(mappedData, "children.type")).toBe("function");
-        expect(get(mappedData, "children.type.displayName")).toBe(
-            "ChildrenWithRenderProp"
-        );
-        expect(get(mappedData, "children.props.render")(testClass).props.className).toBe(
-            testClass
-        );
-    });
-    test("should map a child nested inside a children plugin", () => {
-        const data: any = {
-            render: {
-                id: childrenSchema.id,
-                props: {
-                    children: {
-                        id: textFieldSchema.id,
-                        props: {},
-                    },
-                },
-            },
-        };
-
-        const testClass: string = "Foo";
-        const mappedData: any = mapDataToComponent(
-            childrenWithPluginPropsSchema,
-            data,
-            childOptions,
-            [
-                new MapChildrenPropToCallbackPassingClassName({
-                    id: childrenPluginResolverId,
-                }),
-            ]
-        );
-
-        const executedRenderProp: any = get(mappedData, "render")(testClass);
-
-        expect(executedRenderProp.props.className).toBe(testClass);
-
-        expect(typeof get(executedRenderProp, "props.children.type")).toBe("function");
-        expect(get(executedRenderProp, "props.children.type.displayName")).toBe(
-            "Text field"
-        );
-    });
-    test("should resolve plugins with the data location of the item", () => {
-        const resolver: jest.Mock = jest.fn();
-        class MyPlugin extends Plugin<PluginProps> {
-            public resolver(
-                d: any,
-                childItem?: ChildOptionItem,
-                dataLocation?: string
-            ): any {
-                resolver(d, childItem, dataLocation);
-            }
-        }
-        const data: any = {
-            render: {
-                id: textFieldSchema.id,
-                props: {},
-            },
-        };
-        const mappedData: any = mapDataToComponent(
-            childrenWithPluginPropsSchema,
-            data,
-            childOptions,
-            [new MyPlugin({ id: childrenPluginResolverId })]
-        );
-
-        expect(resolver).toHaveBeenCalled();
-        expect(resolver.mock.calls[0][2]).toBe("render");
-    });
-    test("should resolve plugins with the data location of the item within arrays", () => {
-        const resolver: jest.Mock = jest.fn();
-        class MyPlugin extends Plugin<PluginProps> {
-            public resolver(
-                d: any,
-                childItem?: ChildOptionItem,
-                dataLocation?: string
-            ): any {
-                resolver(data, childItem, dataLocation);
-                return React.createElement(childItem.component, data);
-            }
-        }
-
-        const data: any = {
-            render: {
-                id: childrenWithPluginPropsSchema.id,
-                props: {
-                    render: {
-                        id: textFieldSchema.id,
-                        props: {},
-                    },
-                },
-            },
-        };
-
-        const mappedData: any = mapDataToComponent(
-            childrenWithPluginPropsSchema,
-            data,
-            childOptions,
-            [new MyPlugin({ id: childrenPluginResolverId })]
-        );
-
-        expect(resolver).toHaveBeenCalledTimes(2);
-        expect(resolver.mock.calls[0][2]).toBe("render.props.render");
-        expect(resolver.mock.calls[1][2]).toBe("render");
-    });
-    test("should resolve plugins in an array with the data location", () => {
-        const resolver: jest.Mock = jest.fn();
-        class MyPlugin extends Plugin<PluginProps> {
-            public resolver(
-                d: any,
-                childItem?: ChildOptionItem,
-                dataLocation?: string
-            ): any {
-                resolver(data, childItem, dataLocation);
-                return React.createElement(childItem.component, data);
-            }
-        }
-
-        const data: any = {
-            render: [
-                {
-                    children: [
-                        {
-                            id: textFieldSchema.id,
-                            props: {},
-                        },
-                        {
-                            id: childrenSchema.id,
-                            props: {},
-                        },
-                    ],
-                },
-            ],
-        };
-        const arrayPropertyPluginId: string = "myPluginId";
-        const schema: any = {
-            type: "object",
-            properties: {
-                render: {
-                    type: "array",
-                    items: {
-                        type: "object",
-                        reactProperties: {
-                            children: {
-                                type: "children",
-                                pluginId: arrayPropertyPluginId,
-                            },
-                        },
-                    },
-                },
-            },
-        };
-
-        const testClass1: string = "Foo";
-        const testClass2: string = "Bar";
-
-        const mappedData: any = mapDataToComponent(schema, data, childOptions, [
-            new MyPlugin({
-                id: arrayPropertyPluginId,
-            }),
-        ]);
-        expect(resolver).toHaveBeenCalledTimes(2);
-        expect(resolver.mock.calls[0][2]).toBe("render[0].children[0]");
-        expect(resolver.mock.calls[1][2]).toBe("render[0].children[1]");
-    });
-    test("should not map data to a plugin if a plugin is not available but a pluginId has been specified", () => {
-        const data: any = {
-            render: [
-                {
-                    id: textFieldSchema.id,
-                    props: {},
-                },
-            ],
-            boolean: true,
-            array: ["foo", "bar", "bat"],
-        };
-        const mappedData: any = mapDataToComponent(
-            childrenWithPluginPropsSchema,
-            data,
-            childOptions,
-            [
-                new MapBooleanPropToString({
-                    id: booleanPluginResolverId,
-                }),
-            ]
-        );
-
-        expect(typeof mappedData.boolean).toBe("string");
-        expect(Array.isArray(mappedData.array)).toBe(true);
-        expect(mappedData.render[0].props).toEqual({});
+            expect(typeof componentWithMappedData.type).toBe("function");
+            expect(typeof componentWithMappedData.props.foo.type).toEqual("function");
+            expect(componentWithMappedData.props.foo.type.displayName).toEqual(
+                "Children"
+            );
+            expect(typeof componentWithMappedData.props.foo.props.children.type).toEqual(
+                "function"
+            );
+            expect(
+                componentWithMappedData.props.foo.props.children.type.displayName
+            ).toEqual("Text field");
+        });
     });
 });
 
 describe("mapDataToCodePreview", () => {
-    const textFieldJSXName: string = "TextField";
     const childrenJSXName: string = "Children";
     const badgeJSXName: string = "Badge";
     const tabIndent: string = "    ";
-    const childOptions: CodePreviewChildOption[] = [
-        {
-            name: textFieldJSXName,
-            schema: textFieldSchema,
-        },
-        {
-            name: childrenJSXName,
-            schema: childrenSchema,
-        },
-        {
-            name: badgeJSXName,
-            schema: badgeSchema,
-        },
-    ];
 
     test("should return a string", () => {
         const mappedData: string = mapDataToCodePreview({
-            data: {
-                id: badgeSchema.id,
-            },
-            childOptions,
+            data: {},
+            schema: badgeSchema,
+            componentName: badgeJSXName,
         });
 
         expect(typeof mappedData).toBe("string");
     });
     test("should return a string containing a self closing JSX element", () => {
         const mappedData: string = mapDataToCodePreview({
-            data: {
-                id: badgeSchema.id,
-            },
-            childOptions,
+            data: {},
+            schema: badgeSchema,
+            componentName: badgeJSXName,
         });
 
         expect(mappedData).toEqual(`<${badgeJSXName} />`);
@@ -540,14 +292,12 @@ describe("mapDataToCodePreview", () => {
     test("should return a string containing a self closing JSX element with props", () => {
         const mappedData: string = mapDataToCodePreview({
             data: {
-                id: badgeSchema.id,
-                props: {
-                    string: "Foo",
-                    boolean: true,
-                    number: 42,
-                },
+                string: "Foo",
+                boolean: true,
+                number: 42,
             },
-            childOptions,
+            schema: badgeSchema,
+            componentName: badgeJSXName,
         });
 
         expect(mappedData).toEqual(
@@ -557,213 +307,185 @@ describe("mapDataToCodePreview", () => {
     test("should return a string containing a JSX element with a string children", () => {
         const mappedData: string = mapDataToCodePreview({
             data: {
-                id: badgeSchema.id,
-                props: {
-                    children: "foo",
-                },
+                children: "foo",
             },
-            childOptions,
+            schema: childrenSchema,
+            componentName: childrenJSXName,
         });
 
         expect(mappedData).toEqual(
-            `<${badgeJSXName}>\n${tabIndent}foo\n</${badgeJSXName}>`
+            `<${childrenJSXName}>\n${tabIndent}foo\n</${childrenJSXName}>`
         );
     });
     test("should return a string containing a JSX element with multiple string children", () => {
+        const childData: any = ["foo", "bar"];
         const mappedData: string = mapDataToCodePreview({
             data: {
-                id: badgeSchema.id,
-                props: {
-                    children: ["foo", "bar"],
-                },
+                children: childData,
             },
-            childOptions,
+            schema: childrenSchema,
+            componentName: childrenJSXName,
         });
 
         expect(mappedData).toEqual(
-            `<${badgeJSXName}>\n${tabIndent}foobar\n</${badgeJSXName}>`
+            `const children12 = ${JSON.stringify(
+                childData,
+                null,
+                2
+            )};\n\n<${childrenJSXName}\n${tabIndent}children={children12}\n/>`
         );
     });
-    test("should return a string containing a JSX element with multiple component children", () => {
-        const mappedData: string = mapDataToCodePreview({
-            data: {
-                id: badgeSchema.id,
-                props: {
-                    children: [
-                        {
-                            id: badgeSchema.id,
-                            props: {
-                                children: "foo",
-                            },
-                        },
-                        {
-                            id: badgeSchema.id,
-                            props: {
-                                children: "bar",
-                            },
-                        },
-                    ],
+    describe("plugin MapDataToCodePreviewReactChildrenPlugin", () => {
+        test("should return a string containing a string child", () => {
+            const childData: any = "foo";
+            const mappedData: string = mapDataToCodePreview({
+                data: {
+                    children: childData,
                 },
-            },
-            childOptions,
-        });
+                schema: childrenSchema,
+                componentName: childrenJSXName,
+                plugins: [
+                    new MapDataToCodePreviewReactChildrenPlugin({
+                        id: childrenSchema.properties.children[pluginIdKeyword],
+                        childOptions: [],
+                    }),
+                ],
+            });
 
-        expect(mappedData).toEqual(
-            `<${badgeJSXName}>\n${tabIndent}<${badgeJSXName}>\n${tabIndent +
-                tabIndent}foo\n${tabIndent}</${badgeJSXName}>\n${tabIndent}<${badgeJSXName}>\n${tabIndent +
-                tabIndent}bar\n${tabIndent}</${badgeJSXName}>\n</${badgeJSXName}>`
-        );
-    });
-    test("should return a string containing a JSX element with a self closing component child", () => {
-        const mappedData: string = mapDataToCodePreview({
-            data: {
-                id: childrenSchema.id,
-                props: {
-                    children: {
-                        id: badgeSchema.id,
-                        props: {},
-                    },
+            expect(mappedData).toEqual(`<Children>\n${tabIndent}foo\n</Children>`);
+        });
+        test("should return a string containing multiple string children", () => {
+            const childData: any = ["foo", "bar"];
+            const mappedData: string = mapDataToCodePreview({
+                data: {
+                    children: childData,
                 },
-            },
-            childOptions,
-        });
+                schema: childrenSchema,
+                componentName: childrenJSXName,
+                plugins: [
+                    new MapDataToCodePreviewReactChildrenPlugin({
+                        id: childrenSchema.properties.children[pluginIdKeyword],
+                        childOptions: [],
+                    }),
+                ],
+            });
 
-        expect(mappedData).toEqual(
-            `<${childrenJSXName}>\n${tabIndent}<${badgeJSXName} />\n</${childrenJSXName}>`
-        );
-    });
-    test("should return a string containing a JSX element with component children", () => {
-        const mappedData: string = mapDataToCodePreview({
-            data: {
-                id: childrenSchema.id,
-                props: {
-                    children: {
-                        id: badgeSchema.id,
-                        props: {
-                            children: "foo",
-                        },
-                    },
-                },
-            },
-            childOptions,
+            expect(mappedData).toEqual(
+                `<Children>\n${tabIndent}foo\n${tabIndent}bar\n</Children>`
+            );
         });
-
-        expect(mappedData).toEqual(
-            `<${childrenJSXName}>\n${tabIndent}<${badgeJSXName}>\n${tabIndent +
-                tabIndent}foo\n${tabIndent}</${badgeJSXName}>\n</${childrenJSXName}>`
-        );
-    });
-    test("should return a string containing a JSX element with component children containing attributes", () => {
-        const mappedData: string = mapDataToCodePreview({
-            data: {
+        test("should return a string containing a component child", () => {
+            const childData: any = {
                 id: badgeSchema.id,
                 props: {
                     string: "foo",
-                    children: {
-                        id: badgeSchema.id,
-                        props: {
-                            string: "bar",
-                            children: "bat",
-                        },
-                    },
                 },
-            },
-            childOptions,
-        });
-
-        expect(mappedData).toEqual(
-            `<${badgeJSXName}\n${tabIndent}string={"foo"}\n>\n${tabIndent}<${badgeJSXName}\n${tabIndent +
-                tabIndent}string={"bar"}\n${tabIndent}>\n${tabIndent +
-                tabIndent}bat\n${tabIndent}</${badgeJSXName}>\n</${badgeJSXName}>`
-        );
-    });
-    test("should return a string containing a JSX element with variables assigned to attributes", () => {
-        const mappedData: string = mapDataToCodePreview({
-            data: {
-                id: badgeSchema.id,
-                props: {
-                    object: {
-                        number: 42,
-                    },
+            };
+            const mappedData: string = mapDataToCodePreview({
+                data: {
+                    children: childData,
                 },
-            },
-            childOptions,
-        });
-        const regex: RegExp = new RegExp(
-            `const\\s(\\w+)\\s\\=\\s{\\n\\s\\s"number":\\s42\\n};\\n\\n<${badgeJSXName}\\n${tabIndent}object\\={(\\w+)}\\n\\/>`
-        );
-        expect(mappedData.match(regex)).not.toEqual(null);
-
-        const id1: string = typeof mappedData.match(regex)[1];
-        const id2: string = typeof mappedData.match(regex)[2];
-
-        expect(id1).toEqual(id2);
-    });
-    test("should return a string containing nested JSX elements with variables assigned to attributes", () => {
-        const mappedData: string = mapDataToCodePreview({
-            data: {
-                id: badgeSchema.id,
-                props: {
-                    object: {
-                        number: 42,
-                    },
-                    children: {
-                        id: badgeSchema.id,
-                        props: {
-                            object: {
-                                number: 24,
+                schema: childrenSchema,
+                componentName: childrenJSXName,
+                plugins: [
+                    new MapDataToCodePreviewReactChildrenPlugin({
+                        id: childrenSchema.properties.children[pluginIdKeyword],
+                        childOptions: [
+                            {
+                                component: null,
+                                name: "Badge",
+                                schema: badgeSchema,
                             },
-                        },
+                        ],
+                    }),
+                ],
+            });
+
+            expect(mappedData).toEqual(
+                `<Children>\n${tabIndent}<Badge\n${tabIndent}${tabIndent}string={"foo"}\n${tabIndent}/>\n</Children>`
+            );
+        });
+        test("should return a string containing multiple component children", () => {
+            const childData: any = [
+                {
+                    id: textFieldSchema.id,
+                    props: {},
+                },
+                {
+                    id: badgeSchema.id,
+                    props: {
+                        string: "foo",
                     },
                 },
-            },
-            childOptions,
+            ];
+            const mappedData: string = mapDataToCodePreview({
+                data: {
+                    children: childData,
+                },
+                schema: childrenSchema,
+                componentName: childrenJSXName,
+                plugins: [
+                    new MapDataToCodePreviewReactChildrenPlugin({
+                        id: childrenSchema.properties.children[pluginIdKeyword],
+                        childOptions: [
+                            {
+                                component: null,
+                                name: "Badge",
+                                schema: badgeSchema,
+                            },
+                            {
+                                component: null,
+                                name: "TextField",
+                                schema: textFieldSchema,
+                            },
+                        ],
+                    }),
+                ],
+            });
+
+            expect(mappedData).toEqual(
+                `<Children>\n${tabIndent}<TextField />\n${tabIndent}<Badge\n${tabIndent}${tabIndent}string={"foo"}\n${tabIndent}/>\n</Children>`
+            );
         });
-
-        const regex: RegExp = new RegExp(
-            `const\\s(\\w+)\\s\\=\\s{\\n\\s\\s"number":\\s42\\n};\\n\\nconst\\s(\\w+)\\s\\=\\s{\\n\\s\\s"number":\\s24\\n};\\n\\n<${badgeJSXName}\\n${tabIndent}object={(\\w+)}\\n>\\n${tabIndent}<${badgeJSXName}\\n${tabIndent +
-                tabIndent}object\\={(\\w+)}\\n${tabIndent}\\/>\\n<\\/${badgeJSXName}>`
-        );
-        expect(mappedData.match(regex)).not.toBe(null);
-
-        const id1: string = typeof mappedData.match(regex)[1];
-        const id2: string = typeof mappedData.match(regex)[2];
-        const id3: string = typeof mappedData.match(regex)[3];
-        const id4: string = typeof mappedData.match(regex)[4];
-
-        expect(id1).toEqual(id3);
-        expect(id2).toEqual(id4);
-    });
-    test("should return a string containing JSX elements with variables assigned to attributes", () => {
-        const mappedData: string = mapDataToCodePreview({
-            data: {
-                id: childrenSchema.id,
-                props: {
-                    restrictedWithChildren: {
-                        id: childrenSchema.id,
-                        props: {
-                            restrictedWithChildren: "foo",
-                        },
+        test("should return a string containing a component child and a string child", () => {
+            const childData: any = [
+                "foo",
+                {
+                    id: badgeSchema.id,
+                    props: {
+                        string: "foo",
                     },
                 },
-            },
-            childOptions,
+            ];
+            const mappedData: string = mapDataToCodePreview({
+                data: {
+                    children: childData,
+                },
+                schema: childrenSchema,
+                componentName: childrenJSXName,
+                plugins: [
+                    new MapDataToCodePreviewReactChildrenPlugin({
+                        id: childrenSchema.properties.children[pluginIdKeyword],
+                        childOptions: [
+                            {
+                                component: null,
+                                name: "Badge",
+                                schema: badgeSchema,
+                            },
+                            {
+                                component: null,
+                                name: "TextField",
+                                schema: textFieldSchema,
+                            },
+                        ],
+                    }),
+                ],
+            });
+
+            expect(mappedData).toEqual(
+                `<Children>\n${tabIndent}foo\n${tabIndent}<Badge\n${tabIndent}${tabIndent}string={"foo"}\n${tabIndent}/>\n</Children>`
+            );
         });
-
-        const regex: RegExp = new RegExp(
-            `const\\s(\\w+)\\s\\=\\s\\(\\n${tabIndent}foo\\n\\);\\n\\nconst\\s(\\w+)\\s\\=\\s\\(\\n${tabIndent}<${childrenJSXName}\\n${tabIndent +
-                tabIndent}restrictedWithChildren\\={(\\w+)}\\n${tabIndent}\\/>\\n\\);\\n\\n<${childrenJSXName}\\n${tabIndent}restrictedWithChildren={(\\w+)}\\n\\/>`
-        );
-
-        expect(mappedData.match(regex)).not.toBe(null);
-
-        const id1: string = typeof mappedData.match(regex)[1];
-        const id2: string = typeof mappedData.match(regex)[2];
-        const id3: string = typeof mappedData.match(regex)[3];
-        const id4: string = typeof mappedData.match(regex)[4];
-
-        expect(id1).toEqual(id3);
-        expect(id2).toEqual(id4);
     });
 });
 /* tslint:disable:max-classes-per-file */

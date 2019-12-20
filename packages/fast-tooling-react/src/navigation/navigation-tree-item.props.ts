@@ -1,10 +1,5 @@
-import { NavigationDataType } from "./navigation.props";
-
-export enum VerticalDragDirection {
-    up,
-    down,
-    center,
-}
+import { NavigationDataType } from "../message-system/navigation.props";
+import { TargetPosition } from "../data-utilities/relocate";
 
 export interface NavigationTreeItemProps
     extends NavigationTreeItemDragSourceCollectedProps,
@@ -30,9 +25,9 @@ export interface NavigationTreeItemProps
     expandTriggerClassName: string;
 
     /**
-     * A string representing the data location in lodash notation
+     * A string representing the ID corresponding to a navigation dictionary
      */
-    dataLocation: string;
+    navigationId: string;
 
     /**
      * The expanded state
@@ -53,11 +48,6 @@ export interface NavigationTreeItemProps
      * The keyDown handler
      */
     handleKeyDown: React.KeyboardEventHandler<HTMLElement>;
-
-    /**
-     * The handler for closing dragging items
-     */
-    handleCloseDraggingItem: (dataLocation: string, type: NavigationDataType) => void;
 
     /**
      * The text used for the tree item
@@ -85,27 +75,23 @@ export interface NavigationTreeItemProps
     dragHoverAfter: boolean;
 
     /**
-     * The onChange callback for updating the data
+     * The hover callback for dragging
      */
-    onChange: (
-        sourceDataLocation: string,
-        targetDataLocation: string,
-        type?: NavigationDataType,
-        direction?: VerticalDragDirection
+    onDragHover: (
+        targetNavigationId: string,
+        sourceNavigationId: string,
+        direction: TargetPosition
     ) => void;
 
     /**
-     * The hover callback for dragging
+     * The handler for beginning to drag item
      */
-    onDragHover: (dataLocation: string, direction?: VerticalDragDirection) => void;
+    onDragStart: (navigationId: string, type: NavigationDataType) => void;
 
     /**
-     * The class for hovering when dragging
+     * The callback for drag end
      */
-    getContentDragHoverClassName: (
-        type: NavigationDataType,
-        direction?: VerticalDragDirection
-    ) => string;
+    onDragEnd: () => void;
 }
 
 export interface NavigationTreeItemDragSourceCollectedProps {
@@ -120,5 +106,5 @@ export interface NavigationTreeItemDropTargetCollectedProps {
 }
 
 export interface NavigationTreeItemDragObject {
-    dataLocation: string;
+    navigationId: string;
 }

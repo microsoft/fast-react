@@ -10,6 +10,7 @@ import childrenSchema from "../__tests__/schemas/children.schema.json";
 import invalidDataSchema from "../__tests__/schemas/invalid-data.schema.json";
 
 import { ControlConfig, ControlType, StandardControlPlugin } from "./templates";
+import { NavigationDataType } from "../message-system/navigation.props";
 
 /*
  * Configure Enzyme
@@ -17,9 +18,23 @@ import { ControlConfig, ControlType, StandardControlPlugin } from "./templates";
 configure({ adapter: new Adapter() });
 
 const formProps: FormProps = {
+    messageSystem: void 0,
     childOptions: [],
     schema: {},
     data: "",
+    navigation: [
+        {
+            "0": {
+                self: "0",
+                relativeDataLocation: "",
+                schemaLocation: "",
+                text: "",
+                type: NavigationDataType.object,
+                items: [],
+            },
+        },
+        "0",
+    ],
     onChange: jest.fn(),
 };
 
@@ -294,8 +309,10 @@ describe("Form", () => {
         };
         const rendered: any = mount(
             <BareForm
+                messageSystem={void 0}
                 schema={schema}
                 data={{}}
+                navigation={formProps.navigation}
                 onChange={jest.fn()}
                 controlPlugins={[
                     new StandardControlPlugin({
@@ -322,6 +339,7 @@ describe("Form", () => {
         const id1: string = "foo";
         const rendered: any = mount(
             <BareForm
+                messageSystem={void 0}
                 schema={{
                     type: "object",
                     properties: {
@@ -337,6 +355,7 @@ describe("Form", () => {
                     },
                 }}
                 data={{}}
+                navigation={formProps.navigation}
                 onChange={jest.fn()}
                 controlPlugins={[
                     new StandardControlPlugin({
@@ -354,6 +373,7 @@ describe("Form", () => {
     test("should show controls in categories if categories are passed", () => {
         const rendered: any = mount(
             <BareForm
+                messageSystem={void 0}
                 schema={{
                     type: "object",
                     properties: {
@@ -382,6 +402,7 @@ describe("Form", () => {
                     },
                 }}
                 data={{}}
+                navigation={formProps.navigation}
                 onChange={jest.fn()}
             />
         );
@@ -396,6 +417,7 @@ describe("Form", () => {
     test("should update controls if oneOf select has a value change", () => {
         const rendered: any = mount(
             <BareForm
+                messageSystem={void 0}
                 schema={{
                     oneOf: [
                         {
@@ -429,6 +451,7 @@ describe("Form", () => {
                     ],
                 }}
                 data={undefined}
+                navigation={formProps.navigation}
                 onChange={callback}
             />
         );

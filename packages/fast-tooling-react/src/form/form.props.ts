@@ -1,6 +1,7 @@
 import Navigation, { NavigationItem } from "./utilities/navigation";
 import { ErrorObject } from "ajv";
 import { StandardControlPlugin } from "./templates";
+import { TreeNavigationConfig } from "../message-system/navigation.utilities";
 
 /**
  * Form class name contract
@@ -50,9 +51,20 @@ export interface FormProps {
     schema: any;
 
     /**
+     * The message system
+     * used for sending and recieving data
+     */
+    messageSystem: void | Worker;
+
+    /**
      * The data to map to the form
      */
     data: any;
+
+    /**
+     * The navigation
+     */
+    navigation: TreeNavigationConfig;
 
     /**
      * The onChange event for updating the data

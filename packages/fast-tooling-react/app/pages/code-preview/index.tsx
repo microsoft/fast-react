@@ -1,25 +1,26 @@
 import React from "react";
 import { DesignSystemProvider } from "@microsoft/fast-jss-manager-react";
 import * as testConfigs from "../form/";
-import {
-    CodePreviewChildOption,
-    MapCodePreviewConfig,
-    mapDataToCodePreview,
-} from "../../../src/data-utilities/mapping";
+import { mapDataToCodePreview } from "../../../src/data-utilities/mapping";
+import { MapCodePreviewConfig } from "../../../src/data-utilities/mapping.props";
 import exampleData, { childOptions } from "./examples.data";
+import { ChildOptionItem } from "../../../dist";
+import childrenSchema from "../../../src/__tests__/schemas/children.schema";
 
 export interface CodePreviewTestPageState {
     config: MapCodePreviewConfig;
 }
 
-const codePreviewChildOptions: CodePreviewChildOption[] = [
+const codePreviewChildOptions: ChildOptionItem[] = [
     {
         name: "TextField",
         schema: testConfigs.textField.schema,
+        component: null,
     },
     {
         name: "Children",
         schema: testConfigs.children.schema,
+        component: null,
     },
 ];
 
@@ -35,8 +36,9 @@ class CodePreviewTestPage extends React.Component<{}, CodePreviewTestPageState> 
 
         this.state = {
             config: {
-                childOptions,
+                schema: childrenSchema,
                 data: exampleData[0].config.data,
+                componentName: "Children",
             },
         };
     }
@@ -69,8 +71,9 @@ class CodePreviewTestPage extends React.Component<{}, CodePreviewTestPageState> 
     private handleComponentUpdate = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         this.setState({
             config: {
-                childOptions,
+                schema: exampleData[e.target.selectedIndex].config.schema,
                 data: exampleData[e.target.selectedIndex].config.data,
+                componentName: exampleData[e.target.selectedIndex].config.componentName,
             },
         });
     };

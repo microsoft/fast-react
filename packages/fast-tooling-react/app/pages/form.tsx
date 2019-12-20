@@ -14,12 +14,14 @@ import {
 import { DesignSystemProvider } from "@microsoft/fast-jss-manager-react";
 import React from "react";
 import { getDataFromSchema } from "../../src/data-utilities";
+import { MessageSystemType } from "../../src/message-system/message-system.props";
 
 export type componentDataOnChange = (e: React.ChangeEvent<HTMLFormElement>) => void;
 
 export interface FormTestPageState {
     schema: any;
     data: any;
+    navigation: any;
     config?: FormComponentMappingToPropertyNamesProps;
     orderByPropertyNames?: FormOrderByPropertyNamesProps;
     attributeAssignment?: FormAttributeSettingsMappingToPropertyNames;
@@ -83,6 +85,8 @@ const dataSets: DataSet[] = [
     },
 ];
 
+let fastMessageSystemWebWorker: Worker | void;
+
 class FormTestPage extends React.Component<{}, FormTestPageState> {
     /**
      * These are the children that can be added
@@ -116,9 +120,20 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
 
         const exampleData: any = getDataFromSchema(testConfigs.textField.schema);
 
+        if ((window as any).Worker) {
+            fastMessageSystemWebWorker = new Worker("message-system.js");
+            fastMessageSystemWebWorker.onmessage = this.handleMessageSystem;
+            fastMessageSystemWebWorker.postMessage({
+                type: MessageSystemType.initialize,
+                data: exampleData,
+                schema: testConfigs.textField.schema,
+            });
+        }
+
         this.state = {
             schema: testConfigs.textField.schema,
             data: exampleData,
+            navigation: void 0,
             onChange: this.onChange,
             showExtendedControls: false,
             dataLocation: "",
@@ -207,6 +222,15 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
         );
     }
 
+    private handleMessageSystem = (e: MessageEvent): void => {
+        if (e.data.type === MessageSystemType.initialize) {
+            this.setState({
+                navigation: e.data.navigation,
+                data: e.data.data,
+            });
+        }
+    };
+
     private renderDataSetComponentOptions(): React.ReactNode {
         if (this.state.schema.id === testConfigs.allControlTypes.schema.id) {
             return (
@@ -260,8 +284,10 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
 
     private coerceFormProps(): FormProps {
         const formProps: FormProps = {
+            messageSystem: fastMessageSystemWebWorker,
             schema: this.state.schema,
             data: this.state.data,
+            navigation: this.state.navigation,
             onChange: this.state.onChange,
             childOptions: this.childOptions,
             controlPlugins: this.controlPlugins,

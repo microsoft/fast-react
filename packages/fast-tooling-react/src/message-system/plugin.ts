@@ -1,12 +1,22 @@
-export interface PluginProps {
+export enum MessageSystemPluginType {
+    data = "data",
+    navigation = "navigation",
+}
+
+export interface MessageSystemPluginProps {
     /**
      * The string(s) used to identify the plugin instance,
      * Identified in the JSON schema with the `messageSystemPluginId` property
      */
     id: string | string[];
+
+    /**
+     * The type of message system plugin
+     */
+    type: MessageSystemPluginType;
 }
 
-export default abstract class Plugin<C extends PluginProps> {
+export default abstract class MessageSystemPlugin<C extends MessageSystemPluginProps> {
     private config: C;
 
     constructor(config: C) {

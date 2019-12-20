@@ -1,7 +1,9 @@
 /// <reference lib="webworker" />
 
-import { getMessage } from "./message-system";
+import { getMessage } from "./message-system.utilities";
 
 onmessage = function(e: MessageEvent): void {
-    postMessage(getMessage(e.data));
+    if (e.data && e.data.type !== undefined) {
+        postMessage(getMessage(e.data));
+    }
 };
