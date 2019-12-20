@@ -1,5 +1,5 @@
 import { BreadcrumbItemEventHandler } from "../form.props";
-import { NavigationItem } from "./navigation";
+import { TreeNavigation } from "../../message-system/navigation.props";
 
 export interface BreadcrumbItem {
     href: string;
@@ -17,20 +17,21 @@ export type HandleBreadcrumbClick = (
  * Gets breadcrumbs from navigation items
  */
 export function getBreadcrumbs(
-    navigation: NavigationItem[],
+    navigation: TreeNavigation,
     handleClick: HandleBreadcrumbClick
 ): BreadcrumbItem[] {
-    return navigation.map(
-        (navigationItem: NavigationItem): BreadcrumbItem => {
-            return {
-                href: navigationItem.dataLocation,
-                text: navigationItem.title,
-                onClick: handleClick(
-                    navigationItem.schemaLocation,
-                    navigationItem.dataLocation,
-                    navigationItem.schema
-                ),
-            };
-        }
-    );
+    // return navigation.map(
+    //     (navigationItem: NavigationItem): BreadcrumbItem => {
+    //         return {
+    //             href: navigationItem.dataLocation,
+    //             text: navigationItem.title,
+    //             onClick: handleClick(
+    //                 navigationItem.schemaLocation,
+    //                 navigationItem.dataLocation,
+    //                 navigationItem.schema
+    //             ),
+    //         };
+    //     }
+    // );
+    return [];
 }

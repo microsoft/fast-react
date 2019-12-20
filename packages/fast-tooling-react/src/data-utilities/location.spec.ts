@@ -1,29 +1,31 @@
 import "jest";
 import {
-    getDataLocationsOfChildren,
     getDataLocationsOfPlugins,
     mapSchemaLocationFromDataLocation,
     normalizeDataLocation,
     normalizeDataLocationToDotNotation,
 } from "./location";
-import { ChildOptionItem } from ".";
-import { PluginLocation } from "./types";
+import { pluginIdKeyword, PluginLocation } from "./types";
 
-import ChildrenWithRenderProp from "./__tests__/components/children-plugin";
-import Children from "./__tests__/components/children";
-import General from "./__tests__/components/general-example";
-import TextField from "./__tests__/components/text-field";
+import {
+    alignHorizontalSchema,
+    anyOfSchema,
+    arraysSchema,
+    childrenSchema,
+    componentPluginSchema,
+    oneOfDeeplyNestedSchema,
+    oneOfSchema,
+} from "../__tests__/schemas";
+import { childrenSchema as reactChildrenSchema } from "@microsoft/fast-tooling";
 
-import alignHorizontalSchema from "../__tests__/schemas/align-horizontal.schema.json";
-import arraysSchema from "../__tests__/schemas/arrays.schema.json";
-import generalSchema from "../__tests__/schemas/general-example.schema.json";
-import anyOfSchema from "../__tests__/schemas/any-of.schema.json";
-import oneOfSchema from "../__tests__/schemas/one-of.schema.json";
-import oneOfDeeplyNestedSchema from "../__tests__/schemas/one-of-deeply-nested.schema.json";
-import childrenSchema from "../__tests__/schemas/children.schema.json";
-import childrenWithPluginPropsSchema from "../__tests__/schemas/children-plugin.schema.json";
-import componentPluginSchema from "../__tests__/schemas/component-plugin.schema.json";
-import textFieldSchema from "../__tests__/schemas/text-field.schema.json";
+const plainSchemaWithChildren: any = {
+    type: "object",
+    properties: {
+        children: {
+            ...reactChildrenSchema,
+        },
+    },
+};
 
 /**
  * Map schema location from data location
@@ -210,35 +212,35 @@ describe("mapSchemaLocationFromDataLocation", () => {
     test("should return a schema location from a child location when the child is a component", () => {
         const schemaLocation: string = mapSchemaLocationFromDataLocation(
             "children",
-            childrenSchema,
+            plainSchemaWithChildren,
             { children: { id: childrenSchema.id, props: {} } }
         );
 
-        expect(schemaLocation).toBe("reactProperties.children");
+        expect(schemaLocation).toBe("properties.children");
     });
     test("should return a schema location from a child location when the child is a string", () => {
         const schemaLocationString: string = mapSchemaLocationFromDataLocation(
             "children",
-            childrenSchema,
+            plainSchemaWithChildren,
             { children: "Hello world" }
         );
 
-        expect(schemaLocationString).toBe("reactProperties.children");
+        expect(schemaLocationString).toBe("properties.children");
     });
     test("should return a schema location from multiple children locations", () => {
         const schemaLocationComponent: string = mapSchemaLocationFromDataLocation(
             "children[0]",
-            childrenSchema,
+            plainSchemaWithChildren,
             { children: [{ id: childrenSchema.id, props: {} }, "Hello world"] }
         );
         const schemaLocationString: string = mapSchemaLocationFromDataLocation(
             "children[1]",
-            childrenSchema,
+            plainSchemaWithChildren,
             { children: [{ id: childrenSchema.id, props: {} }, "Hello world"] }
         );
 
-        expect(schemaLocationComponent).toBe("reactProperties.children");
-        expect(schemaLocationString).toBe("reactProperties.children");
+        expect(schemaLocationComponent).toBe("properties.children.oneOf[4].items");
+        expect(schemaLocationString).toBe("properties.children.oneOf[4].items");
     });
     test("should return a schema location from children in a nested array item", () => {
         const schema: any = {
@@ -246,14 +248,7 @@ describe("mapSchemaLocationFromDataLocation", () => {
             properties: {
                 render: {
                     type: "array",
-                    items: {
-                        type: "object",
-                        reactProperties: {
-                            children: {
-                                type: "children",
-                            },
-                        },
-                    },
+                    items: plainSchemaWithChildren,
                 },
             },
         };
@@ -277,7 +272,9 @@ describe("mapSchemaLocationFromDataLocation", () => {
                 ],
             }
         );
-        expect(schemaLocation).toBe("properties.render.items.reactProperties.children");
+        expect(schemaLocation).toBe(
+            "properties.render.items.properties.children.oneOf[4].items"
+        );
     });
     test("should return a schema location early if a malformed segment has been discovered", () => {
         const schemaLocation: string = mapSchemaLocationFromDataLocation(
@@ -397,354 +394,19 @@ describe("mapSchemaLocationFromDataLocation", () => {
 });
 
 describe("getDataLocationsOfPlugins", () => {
-    const childOptions: ChildOptionItem[] = [
-        {
-            component: Children,
-            schema: childrenSchema,
-        },
-        {
-            component: ChildrenWithRenderProp,
-            schema: childrenWithPluginPropsSchema,
-        },
-        {
-            component: TextField,
-            schema: textFieldSchema,
-        },
-    ];
     test("should return the data location at the root", () => {
         const data: string = "";
 
         const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
             componentPluginSchema,
-            data,
-            childOptions
+            data
         );
 
         expect(dataLocationsOfPlugins.length).toBe(1);
         expect(dataLocationsOfPlugins[0].dataLocation).toBe("");
     });
 
-    test("should return the data location of a single react child", () => {
-        const data: any = {
-            render: {
-                id: childrenSchema.id,
-                props: {},
-            },
-        };
-
-        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
-            childrenWithPluginPropsSchema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfPlugins.length).toBe(1);
-        expect(dataLocationsOfPlugins[0].dataLocation).toBe("render");
-    });
-    test("should return the data location when children is a primitive type", () => {
-        function factory(type: unknown): any {
-            return {
-                children: {
-                    id: childrenSchema.id,
-                    props: {
-                        children: {
-                            id: childrenSchema.id,
-                            props: {
-                                children: {
-                                    id: childrenWithPluginPropsSchema.id,
-                                    props: {
-                                        render: type,
-                                    },
-                                },
-                            },
-                        },
-                    },
-                },
-            };
-        }
-
-        ["", 1]
-            .map((value: unknown) =>
-                getDataLocationsOfPlugins(childrenSchema, factory(value), childOptions)
-            )
-            .forEach(
-                (pluginLocation: PluginLocation[]): void => {
-                    expect(pluginLocation.length).toBe(1);
-                    expect(pluginLocation[0].dataLocation).toBe(
-                        "children.props.children.props.children.props.render"
-                    );
-                }
-            );
-    });
-    test("should return the data location of a nested react child", () => {
-        const data: any = {
-            children: {
-                id: childrenSchema.id,
-                props: {
-                    children: {
-                        id: childrenSchema.id,
-                        props: {
-                            children: {
-                                id: childrenWithPluginPropsSchema.id,
-                                props: {
-                                    render: {
-                                        id: childrenSchema.id,
-                                        props: {},
-                                    },
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-        };
-
-        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
-            childrenSchema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfPlugins.length).toBe(1);
-        expect(dataLocationsOfPlugins[0].dataLocation).toBe(
-            "children.props.children.props.children.props.render"
-        );
-    });
-    test("should return the data locations of multiple children", () => {
-        const data: any = {
-            children: {
-                id: childrenWithPluginPropsSchema.id,
-                props: {
-                    render: {
-                        id: childrenSchema.id,
-                        props: {},
-                    },
-                },
-            },
-            restrictedWithChildren: {
-                id: childrenWithPluginPropsSchema.id,
-                props: {
-                    render: {
-                        id: childrenSchema.id,
-                        props: {},
-                    },
-                },
-            },
-        };
-
-        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
-            childrenSchema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfPlugins.length).toBe(2);
-        expect(dataLocationsOfPlugins[0].dataLocation).toBe("children.props.render");
-        expect(dataLocationsOfPlugins[1].dataLocation).toBe(
-            "restrictedWithChildren.props.render"
-        );
-    });
-    test("should return data locations of nested react child with multiple children", () => {
-        const data: any = {
-            children: {
-                id: childrenSchema.id,
-                props: {
-                    children: {
-                        id: childrenSchema.id,
-                        props: {
-                            children: {
-                                id: childrenWithPluginPropsSchema.id,
-                                props: {
-                                    render: {
-                                        id: childrenSchema.id,
-                                        props: {},
-                                    },
-                                },
-                            },
-                            restrictedWithChildren: {
-                                id: childrenWithPluginPropsSchema.id,
-                                props: {
-                                    render: {
-                                        id: childrenSchema.id,
-                                        props: {},
-                                    },
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-        };
-
-        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
-            childrenSchema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfPlugins.length).toBe(2);
-        expect(dataLocationsOfPlugins[0].dataLocation).toBe(
-            "children.props.children.props.children.props.render"
-        );
-        expect(dataLocationsOfPlugins[1].dataLocation).toBe(
-            "children.props.children.props.restrictedWithChildren.props.render"
-        );
-    });
-    test("should return data locations of an array of nested react children with multiple children", () => {
-        const data: any = {
-            children: {
-                id: childrenWithPluginPropsSchema.id,
-                props: {
-                    render: [
-                        {
-                            id: childrenSchema.id,
-                            props: {
-                                children: "foo",
-                            },
-                        },
-                        {
-                            id: childrenSchema.id,
-                            props: {
-                                children: "bar",
-                            },
-                        },
-                    ],
-                },
-            },
-            restrictedWithChildren: {
-                id: childrenWithPluginPropsSchema.id,
-                props: {
-                    render: {
-                        id: childrenSchema.id,
-                        props: {
-                            children: "bat",
-                        },
-                    },
-                },
-            },
-        };
-
-        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
-            childrenSchema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfPlugins).toHaveLength(3);
-        expect(dataLocationsOfPlugins[0].dataLocation).toBe("children.props.render[0]");
-        expect(dataLocationsOfPlugins[1].dataLocation).toBe("children.props.render[1]");
-        expect(dataLocationsOfPlugins[2].dataLocation).toBe(
-            "restrictedWithChildren.props.render"
-        );
-    });
-    test("should return data locations of an array of items", () => {
-        const data: any = {
-            children: {
-                id: childrenWithPluginPropsSchema.id,
-                props: {
-                    array: ["foo", "bar"],
-                },
-            },
-        };
-
-        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
-            childrenSchema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfPlugins).toHaveLength(1);
-        expect(dataLocationsOfPlugins[0].dataLocation).toBe("children.props.array");
-    });
-    test("should return data locations of children in an array of items", () => {
-        const data: any = {
-            arrayObject: [
-                {
-                    content: {
-                        id: childrenSchema.id,
-                        props: {
-                            children: "foo",
-                        },
-                    },
-                },
-                {
-                    content: {
-                        id: childrenSchema.id,
-                        props: {
-                            children: "bar",
-                        },
-                    },
-                },
-            ],
-        };
-
-        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
-            childrenWithPluginPropsSchema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfPlugins).toHaveLength(2);
-        expect(dataLocationsOfPlugins[0].dataLocation).toBe("arrayObject[0].content");
-        expect(dataLocationsOfPlugins[1].dataLocation).toBe("arrayObject[1].content");
-    });
-    test("should return data locations of nested children in an array of items", () => {
-        const data: any = {
-            children: {
-                id: childrenWithPluginPropsSchema.id,
-                props: {
-                    arrayObject: [
-                        {
-                            content: {
-                                id: childrenSchema.id,
-                                props: {
-                                    children: "foo",
-                                },
-                            },
-                        },
-                        {
-                            content: {
-                                id: childrenSchema.id,
-                                props: {
-                                    children: "bat",
-                                },
-                            },
-                        },
-                    ],
-                },
-            },
-        };
-
-        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
-            childrenSchema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfPlugins).toHaveLength(2);
-        expect(dataLocationsOfPlugins[0].dataLocation).toBe(
-            "children.props.arrayObject[0].content"
-        );
-        expect(dataLocationsOfPlugins[1].dataLocation).toBe(
-            "children.props.arrayObject[1].content"
-        );
-    });
-});
-
-describe("getDataLocationsOfChildren", () => {
-    const childOptions: ChildOptionItem[] = [
-        {
-            component: Children,
-            schema: childrenSchema,
-        },
-        {
-            component: TextField,
-            schema: textFieldSchema,
-        },
-        { component: General, schema: generalSchema },
-    ];
-
-    test("should return the data location of a single react child", () => {
+    test("should return the data location of a single plugin", () => {
         const data: any = {
             children: {
                 id: childrenSchema.id,
@@ -752,225 +414,76 @@ describe("getDataLocationsOfChildren", () => {
             },
         };
 
-        const dataLocationsOfReactChildren: string[] = getDataLocationsOfChildren(
-            childrenSchema,
-            data,
-            childOptions
+        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
+            plainSchemaWithChildren,
+            data
         );
 
-        expect(dataLocationsOfReactChildren.length).toBe(1);
-        expect(dataLocationsOfReactChildren[0]).toBe("children");
+        expect(dataLocationsOfPlugins.length).toBe(1);
+        expect(dataLocationsOfPlugins[0].dataLocation).toBe("children");
     });
-    test("should return the data location of a nested react child", () => {
+    test("should return the data location of multiple plugins", () => {
         const data: any = {
-            children: {
+            foo: {
                 id: childrenSchema.id,
-                props: {
-                    children: {
-                        id: generalSchema.id,
-                        props: {
-                            children: {
-                                id: textFieldSchema.id,
-                                props: {},
-                            },
-                        },
-                    },
-                },
+                props: {},
+            },
+            bar: {
+                id: childrenSchema.id,
+                props: {},
             },
         };
 
-        const dataLocationsOfReactChildren: string[] = getDataLocationsOfChildren(
-            childrenSchema,
-            data,
-            childOptions
+        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
+            {
+                type: "object",
+                properties: {
+                    foo: {
+                        [pluginIdKeyword]: "foo",
+                    },
+                    bar: {
+                        [pluginIdKeyword]: "bar",
+                    },
+                },
+            },
+            data
         );
 
-        expect(dataLocationsOfReactChildren.length).toBe(3);
-        expect(dataLocationsOfReactChildren[0]).toBe("children");
-        expect(dataLocationsOfReactChildren[1]).toBe("children.props.children");
-        expect(dataLocationsOfReactChildren[2]).toBe(
-            "children.props.children.props.children"
-        );
+        expect(dataLocationsOfPlugins.length).toBe(2);
+        expect(dataLocationsOfPlugins[0].dataLocation).toBe("foo");
+        expect(dataLocationsOfPlugins[1].dataLocation).toBe("bar");
     });
-    test("should return the data locations of multiple children", () => {
-        const schema: any = {
-            id: "foo",
-            type: "object",
-            reactProperties: {
-                children: {
-                    type: "children",
-                },
-            },
-        };
+    test("should return the data location of nested plugins", () => {
         const data: any = {
-            children: [
-                {
-                    id: childrenSchema.id,
-                    props: {
-                        children: {
-                            id: childrenSchema.id,
-                            props: {
-                                children: {
-                                    id: childrenSchema.id,
-                                    props: {},
-                                },
-                            },
-                        },
-                    },
-                },
-                {
+            foo: {
+                bar: {
                     id: childrenSchema.id,
                     props: {},
                 },
-            ],
+            },
         };
 
-        const dataLocationsOfReactChildren: string[] = getDataLocationsOfChildren(
-            schema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfReactChildren.length).toBe(4);
-        expect(dataLocationsOfReactChildren[0]).toBe("children[0]");
-        expect(dataLocationsOfReactChildren[1]).toBe("children[1]");
-        expect(dataLocationsOfReactChildren[2]).toBe("children[0].props.children");
-        expect(dataLocationsOfReactChildren[3]).toBe(
-            "children[0].props.children.props.children"
-        );
-    });
-    test("should return the data locations of children nested in arrays", () => {
-        const schema: any = {
-            id: "foo",
-            type: "object",
-            properties: {
-                items: {
-                    type: "array",
-                    items: {
+        const dataLocationsOfPlugins: PluginLocation[] = getDataLocationsOfPlugins(
+            {
+                type: "object",
+                properties: {
+                    foo: {
+                        [pluginIdKeyword]: "foo",
                         type: "object",
-                        reactProperties: {
-                            children: {
-                                type: "children",
+                        properties: {
+                            bar: {
+                                [pluginIdKeyword]: "bar",
                             },
                         },
                     },
                 },
             },
-        };
-        const data: any = {
-            items: [
-                {
-                    children: {
-                        id: childrenSchema.id,
-                        props: {},
-                    },
-                },
-                {
-                    children: [
-                        {
-                            id: childrenSchema.id,
-                            props: {},
-                        },
-                        {
-                            id: childrenSchema.id,
-                            props: {},
-                        },
-                    ],
-                },
-            ],
-        };
-        const dataLocationsOfReactChildren: string[] = getDataLocationsOfChildren(
-            schema,
-            data,
-            childOptions
+            data
         );
 
-        expect(dataLocationsOfReactChildren.length).toBe(3);
-        expect(dataLocationsOfReactChildren[0]).toBe("items[0].children");
-        expect(dataLocationsOfReactChildren[1]).toBe("items[1].children[0]");
-        expect(dataLocationsOfReactChildren[2]).toBe("items[1].children[1]");
-    });
-    test("should return data locations of nested react child with multiple children", () => {
-        const data: any = {
-            children: {
-                id: childrenSchema.id,
-                props: {
-                    children: {
-                        id: childrenSchema.id,
-                        props: {
-                            children: [
-                                {
-                                    id: childrenSchema.id,
-                                    props: {},
-                                },
-                                {
-                                    id: childrenSchema.id,
-                                    props: {},
-                                },
-                            ],
-                        },
-                    },
-                },
-            },
-        };
-
-        const dataLocationsOfReactChildren: string[] = getDataLocationsOfChildren(
-            childrenSchema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfReactChildren.length).toBe(4);
-        expect(dataLocationsOfReactChildren[0]).toBe("children");
-        expect(dataLocationsOfReactChildren[1]).toBe("children.props.children");
-        expect(dataLocationsOfReactChildren[2]).toBe(
-            "children.props.children.props.children[0]"
-        );
-        expect(dataLocationsOfReactChildren[3]).toBe(
-            "children.props.children.props.children[1]"
-        );
-    });
-    test("should return data locations of an array of nested react children with multiple children", () => {
-        const data: any = {
-            children: [
-                {
-                    id: childrenSchema.id,
-                    props: {
-                        children: {
-                            id: childrenSchema.id,
-                            props: {
-                                children: [
-                                    {
-                                        id: childrenSchema.id,
-                                        props: {},
-                                    },
-                                    {
-                                        id: childrenSchema.id,
-                                        props: {},
-                                    },
-                                ],
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-
-        const dataLocationsOfReactChildren: string[] = getDataLocationsOfChildren(
-            childrenSchema,
-            data,
-            childOptions
-        );
-
-        expect(dataLocationsOfReactChildren.length).toBe(4);
-        expect(dataLocationsOfReactChildren[0]).toBe("children[0]");
-        expect(dataLocationsOfReactChildren[1]).toBe("children[0].props.children");
-        expect(dataLocationsOfReactChildren[2]).toBe(
-            "children[0].props.children.props.children[0]"
-        );
-        expect(dataLocationsOfReactChildren[3]).toBe(
-            "children[0].props.children.props.children[1]"
-        );
+        expect(dataLocationsOfPlugins.length).toBe(2);
+        expect(dataLocationsOfPlugins[0].dataLocation).toBe("foo");
+        expect(dataLocationsOfPlugins[1].dataLocation).toBe("foo.bar");
     });
 });
 

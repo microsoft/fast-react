@@ -19,7 +19,6 @@ import { oneOfAnyOfType } from "../../data-utilities/schema";
 import { ErrorObject } from "ajv";
 import { FormControlSwitchProps } from "../form-control-switch.props";
 import { getDataFromSchema } from "../../data-utilities";
-import { reactChildrenStringSchema } from "../controls/control.children.text";
 import stringify from "fast-json-stable-stringify";
 import { validateData } from "../../utilities/ajv-validation";
 
@@ -431,7 +430,6 @@ export const propsKeyword: string = "props";
 
 export enum PropertyKeyword {
     properties = "properties",
-    reactProperties = "reactProperties",
 }
 
 export interface NavigationItemConfig {
@@ -477,19 +475,6 @@ export function getLocationsFromSegments(segments: string[]): string[] {
     return segments.map((location: string, index: number) => {
         return segments.slice(0, index + 1).join(".");
     });
-}
-
-/**
- * Get React's default children
- */
-export function getReactDefaultChildren(): FormChildOptionItem[] {
-    return [
-        {
-            name: "Text",
-            component: null,
-            schema: reactChildrenStringSchema,
-        },
-    ];
 }
 
 /**

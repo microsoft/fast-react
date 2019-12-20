@@ -2,7 +2,6 @@ import React from "react";
 import { get } from "lodash-es";
 import { FormControlSwitchProps } from "./form-control-switch.props";
 import { ControlTemplateUtilitiesProps, StandardControlPlugin } from "./templates";
-import { FormChildOptionItem } from "./form.props";
 import { generateExampleData, isConst, isSelect } from "./utilities";
 import { ItemConstraints } from "./controls/control.array.props";
 import { SingleLineControlPlugin } from "./templates/plugin.control.single-line";
@@ -81,10 +80,6 @@ class FormControlSwitch extends React.Component<FormControlSwitchProps, {}> {
                 return this.renderArray(
                     control !== undefined ? control : this.props.controls.array
                 );
-            case "children":
-                return this.renderChildren(
-                    control !== undefined ? control : this.props.controls.children
-                );
             case "null":
                 return this.renderButton(
                     control !== undefined ? control : this.props.controls.button
@@ -94,20 +89,6 @@ class FormControlSwitch extends React.Component<FormControlSwitchProps, {}> {
                     control !== undefined ? control : this.props.controls.sectionLink
                 );
         }
-    }
-
-    private renderChildren(control: StandardControlPlugin): React.ReactNode {
-        control.updateProps(
-            Object.assign(
-                {
-                    childOptions: this.getChildOptions(),
-                    defaultChildOptions: this.props.schema.defaults || null,
-                },
-                this.getCommonControlProps()
-            )
-        );
-
-        return control.render();
     }
 
     /**
@@ -223,21 +204,6 @@ class FormControlSwitch extends React.Component<FormControlSwitchProps, {}> {
     private handleAddExampleData = (additionalSchemaPathSyntax: string): any => {
         return generateExampleData(this.props.schema, additionalSchemaPathSyntax);
     };
-
-    /**
-     * Gets the child options available to the control
-     */
-    private getChildOptions(): FormChildOptionItem[] {
-        if (Array.isArray(this.props.schema.ids)) {
-            return this.props.childOptions.filter(
-                (childOption: FormChildOptionItem): boolean => {
-                    return this.props.schema.ids.includes(childOption.schema.id);
-                }
-            );
-        }
-
-        return this.props.childOptions;
-    }
 
     /**
      * Gets the common form control props

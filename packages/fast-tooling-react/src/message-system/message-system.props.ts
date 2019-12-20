@@ -1,5 +1,9 @@
 import { DataType } from "../data-utilities/types";
-import Plugin, { PluginProps } from "./plugin";
+import { TreeNavigationConfig } from "./navigation.utilities";
+import DataMessageSystemPlugin, { DataMessageSystemPluginProps } from "./plugin.data";
+import NavigationMessageSystemPlugin, {
+    NavigationMessageSystemPluginProps,
+} from "./plugin.navigation";
 
 export type ComponentsRegisteredBySubscription = {
     [key in MessageSystemAction]: WeakMap<ComponentRegistry, string>
@@ -22,6 +26,11 @@ export enum MessageSystemDataTypeAction {
     duplicate = "duplicate",
 }
 
+export enum MessageSystemNavigationTypeAction {
+    update = "update",
+    get = "get",
+}
+
 export type MessageSystemAction =
     | MessageSystemComponentTypeAction
     | MessageSystemDataTypeAction;
@@ -29,8 +38,14 @@ export type MessageSystemAction =
 export enum MessageSystemType {
     component = "component",
     data = "data",
+    navigation = "navigation",
     initialize = "initialize",
 }
+
+export type Plugins = Array<
+    | NavigationMessageSystemPlugin<NavigationMessageSystemPluginProps>
+    | DataMessageSystemPlugin<DataMessageSystemPluginProps>
+>;
 
 /**
  * Initializing with data
@@ -39,7 +54,7 @@ export interface InitializeMessageIncoming {
     type: MessageSystemType.initialize;
     data: any;
     schema: any;
-    plugins: Array<Plugin<PluginProps>>;
+    plugins: Plugins[];
 }
 
 /**
@@ -48,8 +63,9 @@ export interface InitializeMessageIncoming {
 export interface InitializeMessageOutgoing {
     type: MessageSystemType.initialize;
     data: any;
+    navigation: TreeNavigationConfig;
     schema: any;
-    plugins: Array<Plugin<PluginProps>>;
+    plugins: Plugins[];
 }
 
 /**
@@ -203,12 +219,63 @@ export type DataMessageOutgoing =
     | UpdateDataMessageOutgoing;
 
 /**
+ * The message to update navigation
+ */
+export interface UpdateNavigationMessageIncoming {
+    type: MessageSystemType.navigation;
+    action: MessageSystemNavigationTypeAction.update;
+    activeId: string;
+}
+
+/**
+ * The message that the navigation has been updated
+ */
+export interface UpdateNavigationMessageOutgoing {
+    type: MessageSystemType.navigation;
+    action: MessageSystemNavigationTypeAction.update;
+    activeId: string;
+}
+
+/**
+ * The message to get navigation
+ */
+export interface GetNavigationMessageIncoming {
+    type: MessageSystemType.navigation;
+    action: MessageSystemNavigationTypeAction.get;
+}
+
+/**
+ * The message that the navigation has been given
+ */
+export interface GetNavigationMessageOutgoing {
+    type: MessageSystemType.navigation;
+    action: MessageSystemNavigationTypeAction.get;
+    activeId: string;
+    navigation: TreeNavigationConfig;
+}
+
+/**
+ * Incoming navigation messages to the message system
+ */
+export type NavigationMessageIncoming =
+    | UpdateNavigationMessageIncoming
+    | GetNavigationMessageIncoming;
+
+/**
+ * Outgoing navigation messages to the message system
+ */
+export type NavigationMessageOutgoing =
+    | UpdateNavigationMessageOutgoing
+    | GetNavigationMessageOutgoing;
+
+/**
  * Incoming messages to the message system
  */
 export type MessageSystemIncoming =
     | InitializeMessageIncoming
     | ComponentMessageIncoming
-    | DataMessageIncoming;
+    | DataMessageIncoming
+    | NavigationMessageIncoming;
 
 /**
  * Outgoing messages from the message system
@@ -216,4 +283,5 @@ export type MessageSystemIncoming =
 export type MessageSystemOutgoing =
     | InitializeMessageOutgoing
     | ComponentMessageOutgoing
-    | DataMessageOutgoing;
+    | DataMessageOutgoing
+    | NavigationMessageOutgoing;

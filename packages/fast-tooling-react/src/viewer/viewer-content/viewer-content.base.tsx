@@ -72,16 +72,11 @@ export class ViewerContent extends Foundation<
                 }
             );
 
-            return (
-                <mappedComponent.component
-                    key={`${mappedComponent.schema.id}${index}`}
-                    {...mapDataToComponent(
-                        mappedComponent.schema,
-                        propsItem.props,
-                        this.props.components,
-                        this.props.plugins
-                    )}
-                />
+            return mapDataToComponent(
+                mappedComponent.schema,
+                propsItem.props,
+                mappedComponent.component,
+                this.props.plugins
             );
         });
     }

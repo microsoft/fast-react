@@ -65,11 +65,6 @@ export interface Controls {
     checkbox: SingleLineControlPlugin;
 
     /**
-     * The children control
-     */
-    children: StandardControlPlugin;
-
-    /**
      * The display control
      */
     display: StandardControlPlugin;
@@ -126,11 +121,6 @@ export interface FormSectionProps {
      * The data to map to the form section
      */
     data: any;
-
-    /**
-     * The optional components to be added as children
-     */
-    childOptions: any[];
 
     /**
      * The schema to create the section form items

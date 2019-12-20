@@ -23,9 +23,6 @@ export interface NavigationClassNameContract {
     navigation_item__dragging?: string;
     navigation_itemContent?: string;
     navigation_itemContent__active?: string;
-    navigation_itemContent__dragHover?: string;
-    navigation_itemContent__dragHoverBefore?: string;
-    navigation_itemContent__dragHoverAfter?: string;
     navigation_itemList?: string;
 }
 
@@ -98,9 +95,6 @@ const styles: ComponentStyles<NavigationClassNameContract, {}> = {
         "& > $navigation_itemContent": {
             fontStyle: "normal",
         },
-        "& > $navigation_itemContent$navigation_itemContent__dragHover": {
-            background: "none",
-        },
     },
     navigation_item__component: {
         "& > $navigation_itemContent": {
@@ -111,6 +105,7 @@ const styles: ComponentStyles<NavigationClassNameContract, {}> = {
         cursor: "grab",
     },
     navigation_item__dragging: {
+        background: accent,
         "&$navigation_item__draggable": {
             cursor: "grabbing",
         },
@@ -138,15 +133,6 @@ const styles: ComponentStyles<NavigationClassNameContract, {}> = {
             top: "2px",
             left: "2px",
         },
-    },
-    navigation_itemContent__dragHover: {
-        background: accent,
-    },
-    navigation_itemContent__dragHoverBefore: {
-        boxShadow: `inset 0 1px ${accent}`,
-    },
-    navigation_itemContent__dragHoverAfter: {
-        boxShadow: `inset 0 -1px ${accent}`,
     },
     navigation_itemList: {
         display: "none",

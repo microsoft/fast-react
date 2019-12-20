@@ -28,7 +28,6 @@ const formSectionProps: FormSectionProps = {
     dataLocation: "",
     schemaLocation: "",
     controls,
-    childOptions: [],
     schema: {},
     disabled: false,
     data: "",

@@ -1,5 +1,9 @@
 import React from "react";
-import { ChildOptionItem, Plugin, PluginProps } from "../../data-utilities";
+import {
+    ChildOptionItem,
+    MapDataToComponentPlugin,
+    MapDataToComponentPluginProps,
+} from "../../data-utilities";
 import { ManagedClasses } from "@microsoft/fast-components-class-name-contracts-base";
 
 export interface ViewerContentManagedClasses extends ManagedClasses<{}> {}
@@ -14,7 +18,7 @@ export interface ViewerContentHandledProps extends ViewerContentManagedClasses {
     /**
      * The plugins available for manipulating the data mapping function
      */
-    plugins?: Array<Plugin<PluginProps>>;
+    plugins?: Array<MapDataToComponentPlugin<MapDataToComponentPluginProps>>;
 }
 
 export type ViewerContentProps = ViewerContentUnhandledProps & ViewerContentHandledProps;

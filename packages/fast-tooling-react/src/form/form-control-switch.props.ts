@@ -38,11 +38,6 @@ export interface FormControlSwitchProps extends ControlTemplateUtilitiesProps {
     schemaLocation: string;
 
     /**
-     * The possible child options
-     */
-    childOptions: FormChildOptionItem[];
-
-    /**
      * The additional attributes mapped to a property name
      */
     attributeSettingsMappingToPropertyNames?: FormAttributeSettingsMappingToPropertyNames;

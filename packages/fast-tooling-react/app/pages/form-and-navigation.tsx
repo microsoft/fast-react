@@ -11,12 +11,14 @@ import {
     FormProps,
 } from "../../src/form/form.props";
 import * as testConfigs from "./form/";
+import { MessageSystemType } from "../../src/message-system/message-system.props";
 
 export type componentDataOnChange = (e: React.ChangeEvent<HTMLFormElement>) => void;
 
 export interface FormTestPageState {
     schema: any;
     data: any;
+    navigation: any;
     config?: FormComponentMappingToPropertyNamesProps;
     orderByPropertyNames?: FormOrderByPropertyNamesProps;
     attributeAssignment?: FormAttributeSettingsMappingToPropertyNames;
@@ -44,6 +46,8 @@ const designSystemDefaults: any = {
     brandColor: "#0078D4",
 };
 
+let fastMessageSystemWebWorker: Worker | void;
+
 class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
     /**
      * These are the children that can be added
@@ -57,9 +61,20 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
 
         const exampleData: any = getDataFromSchema(testConfigs.textField.schema);
 
+        if ((window as any).Worker) {
+            fastMessageSystemWebWorker = new Worker("message-system.js");
+            fastMessageSystemWebWorker.onmessage = this.handleMessageSystem;
+            fastMessageSystemWebWorker.postMessage({
+                type: MessageSystemType.initialize,
+                data: exampleData,
+                schema: testConfigs.textField.schema,
+            });
+        }
+
         this.state = {
             schema: testConfigs.textField.schema,
             data: exampleData,
+            navigation: void 0,
             onChange: this.onChange,
             showExtendedControls: false,
             dataLocation: "",
@@ -131,6 +146,7 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
                             </label>
                             <br />
                         </div>
+                        <h2>Data</h2>
                         <pre
                             style={{
                                 padding: "12px",
@@ -139,6 +155,16 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
                             }}
                         >
                             {JSON.stringify(this.state.data, null, 2)}
+                        </pre>
+                        <h2>Navigation</h2>
+                        <pre
+                            style={{
+                                padding: "12px",
+                                background: "rgb(244, 245, 246)",
+                                borderRadius: "4px",
+                            }}
+                        >
+                            {JSON.stringify(this.state.navigation, null, 2)}
                         </pre>
                         <pre>{this.state.dataLocation}</pre>
                     </div>
@@ -158,10 +184,20 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
         );
     }
 
+    private handleMessageSystem = (e: MessageEvent): void => {
+        if (e.data.type === MessageSystemType.initialize) {
+            this.setState({
+                navigation: e.data.navigation,
+                data: e.data.data,
+            });
+        }
+    };
+
     private renderNavigation(): React.ReactNode {
         return (
             <Navigation
-                data={this.state.data}
+                messageSystem={fastMessageSystemWebWorker}
+                navigation={this.state.navigation}
                 schema={this.state.schema}
                 childOptions={this.getChildOptions()}
                 onLocationUpdate={this.handleLocationOnChange}
@@ -205,8 +241,10 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
 
     private coerceFormProps(): FormProps {
         const formProps: FormProps = {
+            messageSystem: fastMessageSystemWebWorker,
             schema: this.state.schema,
             data: this.state.data,
+            navigation: this.state.navigation,
             onChange: this.state.onChange,
             childOptions: this.childOptions,
         };
@@ -312,13 +350,22 @@ class FormAndNavigationTestPage extends React.Component<{}, FormTestPageState> {
     };
 
     private handleComponentUpdate = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+        const data: any =
+            testConfigs[e.target.value].data ||
+            getDataFromSchema(testConfigs[e.target.value].schema);
         this.setState({
             schema: testConfigs[e.target.value].schema,
             config: testConfigs[e.target.value].config,
-            data:
-                testConfigs[e.target.value].data ||
-                getDataFromSchema(testConfigs[e.target.value].schema),
+            data,
         });
+
+        if ((window as any).Worker) {
+            (fastMessageSystemWebWorker as Worker).postMessage({
+                type: MessageSystemType.initialize,
+                data,
+                schema: testConfigs[e.target.value].schema,
+            });
+        }
     };
 
     private getComponentOptions(): JSX.Element[] {

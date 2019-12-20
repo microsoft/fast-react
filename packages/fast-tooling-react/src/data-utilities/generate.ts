@@ -1,4 +1,3 @@
-import { get } from "lodash-es";
 import { CombiningKeyword, DataType, PropertyKeyword } from "./types";
 import { ChildOptionItem } from ".";
 import { getChildOptionBySchemaId } from "./location";
@@ -19,26 +18,9 @@ function getDataFromSchema(schema: any, childOptions?: ChildOptionItem[]): any {
 
         if (hasRequired(schema)) {
             for (const requiredItem of schema.required) {
-                const propertyType: PropertyKeyword = get(
-                    schema,
-                    `${PropertyKeyword.properties}.${requiredItem}`
-                )
-                    ? PropertyKeyword.properties
-                    : PropertyKeyword.reactProperties;
-
-                switch (propertyType) {
-                    case PropertyKeyword.properties:
-                        exampleData[requiredItem] = getDataFromSchema(
-                            schema[propertyType][requiredItem]
-                        );
-                        break;
-                    case PropertyKeyword.reactProperties:
-                        exampleData[requiredItem] = getReactChildrenFromSchema(
-                            schema[propertyType][requiredItem],
-                            childOptions
-                        );
-                        break;
-                }
+                exampleData[requiredItem] = getDataFromSchema(
+                    schema[PropertyKeyword.properties][requiredItem]
+                );
             }
         }
 

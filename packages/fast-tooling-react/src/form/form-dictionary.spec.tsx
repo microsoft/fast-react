@@ -39,7 +39,6 @@ const dictionaryProps: FormDictionaryProps = {
         type: "string",
     },
     enumeratedProperties: [],
-    childOptions: [],
     validationErrors: undefined,
 };
 

@@ -1,6 +1,6 @@
-import Navigation, { NavigationItem } from "./utilities/navigation";
 import { ErrorObject } from "ajv";
 import { StandardControlPlugin } from "./templates";
+import { TreeNavigationConfig } from "../message-system/navigation.utilities";
 
 /**
  * Form class name contract
@@ -50,6 +50,12 @@ export interface FormProps {
     schema: any;
 
     /**
+     * The message system
+     * used for sending and recieving data
+     */
+    messageSystem: void | Worker;
+
+    /**
      * The data to map to the form
      */
     data: any;
@@ -61,16 +67,15 @@ export interface FormProps {
      */
     _UNSAFE_validationData?: any;
 
+    /*
+     * The navigation
+     */
+    navigation: TreeNavigationConfig;
+
     /**
      * The onChange event for updating the data
      */
     onChange: PropsOnChange;
-
-    /**
-     * The optional components to be added as children
-     * @deprecated
-     */
-    childOptions?: FormChildOptionItem[];
 
     /**
      * The custom passed location of a subsection to initially activate
@@ -109,19 +114,9 @@ export interface FormState {
     activeDataLocation: string;
 
     /**
-     * The Navigation class instance
-     */
-    navigationInstance: Navigation;
-
-    /**
      * The schema, used to check if the schema has been updated
      */
     schema: any;
-
-    /**
-     * The navigation items used for the breadcrumb links
-     */
-    navigation?: NavigationItem[];
 
     /**
      * The location, which can be the root or a sub location,

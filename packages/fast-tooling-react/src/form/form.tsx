@@ -2,7 +2,6 @@ import {
     ArrayControl,
     ButtonControl,
     CheckboxControl,
-    ChildrenControl,
     DisplayControl,
     NumberFieldControl,
     SectionLinkControl,
@@ -11,7 +10,6 @@ import {
 } from "./controls";
 import {
     ArrayControlConfig,
-    ChildrenControlConfig,
     CommonControlConfig,
     ControlConfig,
     ControlContext,
@@ -33,7 +31,6 @@ import {
     FormProps,
     FormState,
 } from "./form.props";
-import Navigation, { NavigationItem } from "./utilities/navigation";
 import { cloneDeep, get, set, unset } from "lodash-es";
 import {
     getActiveComponentAndSection,
@@ -73,19 +70,11 @@ class Form extends React.Component<
         state: FormState
     ): Partial<FormState> {
         if (stringify(state.schema) !== stringify(props.schema)) {
-            const navigationInstance: Navigation = new Navigation({
-                dataLocation: "",
-                schema: props.schema,
-                data: props.data,
-                childOptions: props.childOptions ? props.childOptions : [],
-            });
             const updatedState: Partial<FormState> = {
                 titleProps:
                     props.schema && props.schema.title ? props.schema.title : "Untitled",
                 activeDataLocation: "",
-                navigationInstance,
                 schema: props.schema,
-                navigation: navigationInstance.get(),
             };
 
             return updatedState;
@@ -109,7 +98,6 @@ class Form extends React.Component<
     private numberFieldControl: StandardControlPlugin;
     private textareaControl: StandardControlPlugin;
     private arrayControl: StandardControlPlugin;
-    private childrenControl: StandardControlPlugin;
     private buttonControl: StandardControlPlugin;
 
     /**
@@ -129,12 +117,6 @@ class Form extends React.Component<
 
         this.untitled = "Untitled";
         this.rootSchema = this.props.schema;
-        const navigationInstance: Navigation = new Navigation({
-            dataLocation: typeof dataLocation === "string" ? dataLocation : "",
-            data: this.props.data,
-            schema: this.props.schema,
-            childOptions: this.props.childOptions ? this.props.childOptions : [],
-        });
 
         this.updateControls();
 
@@ -148,8 +130,6 @@ class Form extends React.Component<
                     ? props.location.dataLocation
                     : "",
             schema: this.props.schema,
-            navigationInstance,
-            navigation: navigationInstance.get(),
             validationErrors: getValidationErrors(
                 this.rootSchema,
                 this.getDataForValidation(props)
@@ -224,14 +204,6 @@ class Form extends React.Component<
                         return <ArrayControl {...config} />;
                     },
                 });
-            case ControlType.children:
-                return new StandardControlPlugin({
-                    context: ControlContext.fill,
-                    type: ControlType.children,
-                    control: (config: ChildrenControlConfig): React.ReactNode => {
-                        return <ChildrenControl {...config} />;
-                    },
-                });
             case ControlType.numberField:
                 return new StandardControlPlugin({
                     type: ControlType.numberField,
@@ -287,10 +259,6 @@ class Form extends React.Component<
         this.arrayControl = this.findControlPlugin(
             hasCustomControlPlugins,
             ControlType.array
-        );
-        this.childrenControl = this.findControlPlugin(
-            hasCustomControlPlugins,
-            ControlType.children
         );
         this.numberFieldControl = this.findControlPlugin(
             hasCustomControlPlugins,
@@ -389,13 +357,6 @@ class Form extends React.Component<
             ),
         };
 
-        this.state.navigationInstance.updateData(
-            props.data,
-            (navigation: NavigationItem[]) => {
-                updatedState.navigation = navigation;
-            }
-        );
-
         return Object.assign({}, state, updatedState);
     }
 
@@ -430,15 +391,6 @@ class Form extends React.Component<
             location,
         };
 
-        if (typeof dataLocation !== "undefined") {
-            this.state.navigationInstance.updateDataLocation(
-                dataLocation,
-                (updatedNavigation: NavigationItem[]) => {
-                    locationState.navigation = updatedNavigation;
-                }
-            );
-        }
-
         return Object.assign({}, state, locationState);
     }
 
@@ -447,7 +399,7 @@ class Form extends React.Component<
      */
     private renderBreadcrumbs(): JSX.Element {
         const breadcrumbs: BreadcrumbItem[] = getBreadcrumbs(
-            this.state.navigation,
+            this.props.navigation[0],
             this.handleBreadcrumbClick
         );
 
@@ -492,8 +444,9 @@ class Form extends React.Component<
      * Render the section to be shown
      */
     private renderSection(): React.ReactNode {
-        const lastNavigationItem: NavigationItem = this.state.navigation[
-            this.state.navigation.length - 1
+        // TODO: fix this
+        const lastNavigationItem: any = this.props.navigation[
+            this.state.activeDataLocation
         ];
 
         return (
@@ -507,7 +460,6 @@ class Form extends React.Component<
                     button: this.buttonControl,
                     array: this.arrayControl,
                     checkbox: this.checkboxControl,
-                    children: this.childrenControl,
                     display: this.displayControl,
                     textarea: this.textareaControl,
                     select: this.selectControl,
@@ -523,7 +475,6 @@ class Form extends React.Component<
                 disabled={(lastNavigationItem.schema as any).disabled}
                 dataLocation={this.state.activeDataLocation}
                 untitled={this.untitled}
-                childOptions={this.props.childOptions}
                 validationErrors={this.state.validationErrors}
                 displayValidationBrowserDefault={
                     this.props.displayValidationBrowserDefault
@@ -598,13 +549,6 @@ class Form extends React.Component<
                 config.schemaLocation,
                 config.dataLocation,
                 config.schema
-            );
-
-            this.state.navigationInstance.updateDataLocation(
-                config.dataLocation,
-                (updatedNavigation: NavigationItem[]) => {
-                    state.navigation = updatedNavigation;
-                }
             );
 
             this.setState(state as FormState);

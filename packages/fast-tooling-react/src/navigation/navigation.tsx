@@ -1,4 +1,22 @@
+import {
+    getDragEndUpdatedData,
+    getFullDataLocation,
+    ReactComponentProps,
+} from "../message-system/navigation.utilities";
+import { getDragHoverState } from "./navigation.utilities";
 import React from "react";
+import Foundation, {
+    FoundationProps,
+    HandledProps,
+} from "@microsoft/fast-components-foundation-react";
+import { get, isEmpty } from "lodash-es";
+import { canUseDOM } from "exenv-es6";
+import {
+    NavigationHandledProps,
+    NavigationProps,
+    NavigationState,
+} from "./navigation.props";
+import { NavigationDataType } from "../message-system/navigation.props";
 import {
     keyCodeArrowDown,
     keyCodeArrowLeft,
@@ -9,28 +27,12 @@ import {
     keyCodeHome,
     keyCodeSpace,
 } from "@microsoft/fast-web-utilities";
-import Foundation, {
-    FoundationProps,
-    HandledProps,
-} from "@microsoft/fast-components-foundation-react";
-import { cloneDeep, get, set, unset } from "lodash-es";
-import { canUseDOM } from "exenv-es6";
-import {
-    NavigationDataType,
-    NavigationHandledProps,
-    NavigationProps,
-    NavigationState,
-    TreeNavigation,
-} from "./navigation.props";
-import { getNavigationFromData, getUpdatedData } from "./navigation.utilities";
-import { getDataWithDuplicate } from "../data-utilities/duplicate";
-import { isInArray } from "../data-utilities/array";
 import { DraggableNavigationTreeItem, NavigationTreeItem } from "./navigation-tree-item";
+import { NavigationTreeItemProps } from "./navigation-tree-item.props";
 import {
-    NavigationTreeItemProps,
-    VerticalDragDirection,
-} from "./navigation-tree-item.props";
-import { normalizeDataLocationToDotNotation } from "../data-utilities/location";
+    getDataUpdatedWithoutSourceData,
+    TargetPosition,
+} from "../data-utilities/relocate";
 
 export default class Navigation extends Foundation<
     NavigationHandledProps,
@@ -39,40 +41,10 @@ export default class Navigation extends Foundation<
 > {
     public static displayName: string = "Navigation";
 
-    public static getDerivedStateFromProps(
-        props: NavigationProps,
-        state: NavigationState
-    ): Partial<NavigationState> {
-        const updatedState: Partial<NavigationState> = {};
-        const updatedNavigation: TreeNavigation = getNavigationFromData(
-            props.data,
-            props.schema,
-            props.childOptions
-        );
-
-        if (props.dataLocation !== state.activeItem && props.dataLocation !== undefined) {
-            updatedState.activeItem = props.dataLocation;
-
-            // openItems is cast as any due to missing type on string array
-            if (
-                typeof props.dataLocation === "string" &&
-                !(state.openItems as any).includes(props.dataLocation)
-            ) {
-                updatedState.openItems = state.openItems;
-                updatedState.openItems.push(props.dataLocation);
-            }
-        }
-
-        if (updatedNavigation !== state.navigation) {
-            updatedState.navigation = updatedNavigation;
-        }
-
-        return updatedState;
-    }
-
     protected handledProps: HandledProps<NavigationHandledProps> = {
         schema: void 0,
-        data: void 0,
+        messageSystem: void 0,
+        navigation: void 0,
         dragAndDropReordering: void 0,
         childOptions: void 0,
         onChange: void 0,
@@ -86,20 +58,21 @@ export default class Navigation extends Foundation<
     constructor(props: NavigationProps) {
         super(props);
 
+        const hasNavigation: boolean = !!this.props.navigation;
+
         this.state = {
-            navigation: getNavigationFromData(
-                this.props.data,
-                this.props.schema,
-                this.props.childOptions
-            ),
-            openItems:
-                this.props.dataLocation !== undefined ? [this.props.dataLocation] : [],
-            activeItem:
-                this.props.dataLocation !== undefined ? this.props.dataLocation : null,
-            dragHoverDataLocation: null,
-            dragHoverAfterDataLocation: null,
-            dragHoverBeforeDataLocation: null,
-            dragHoverCenterDataLocation: null,
+            navigation: undefined,
+            data: undefined,
+            expandedNavigationIds: [],
+            relocatingData: void 0,
+            activeNavigationItemId: hasNavigation ? this.props.navigation[1] : void 0,
+            draggingNavigationId: null,
+            draggingSourceDataLocation: null,
+            dragHoverNavigationId: null,
+            dragHoverAfterNavigationId: null,
+            dragHoverBeforeNavigationId: null,
+            dragHoverCenterNavigationId: null,
+            rootNavigationItemId: hasNavigation ? this.props.navigation[1] : void 0,
         };
 
         this.rootElement = React.createRef();
@@ -113,178 +86,242 @@ export default class Navigation extends Foundation<
                 role={"tree"}
                 className={this.props.managedClasses.navigation}
             >
-                {this.renderTreeItem(this.state.navigation, 1, 1, 0)}
+                {this.renderTreeItem(this.state.rootNavigationItemId, 1)}
             </div>
         );
+    }
+
+    public componentDidUpdate(prevProps: NavigationProps): void {
+        const updatedState: Partial<NavigationState> = {};
+
+        if (prevProps.navigation !== this.props.navigation) {
+            updatedState.rootNavigationItemId = this.props.navigation[1];
+        }
+
+        if (!isEmpty(updatedState)) {
+            this.setState(updatedState as NavigationState);
+        }
     }
 
     /**
      * Renders the tree item containing element
      */
     private renderTreeItemContainer(
-        navigation: TreeNavigation[],
+        navigationIds: string[],
         level: number
     ): React.ReactNode {
         return (
             <div className={this.props.managedClasses.navigation_itemList} role={"group"}>
-                {this.renderTreeItems(navigation, level + 1)}
+                {this.renderTreeItems(navigationIds, level + 1)}
             </div>
         );
     }
 
-    /**
-     * Renders a tree item
-     */
-    private renderTreeItem(
-        navigation: TreeNavigation,
-        level: number,
-        navigationLength: number,
-        index: number
-    ): React.ReactNode {
-        const dataLocation: string = navigation.dataLocation;
-        const dataType: NavigationDataType = navigation.type;
-        const isRootDataLocation: boolean = dataLocation === "";
-        const props: NavigationTreeItemProps = {
-            className: this.getItemClassName(dataType),
-            contentClassName: this.getItemContentClassName(dataLocation),
-            expandTriggerClassName: this.getItemExpandTriggerClassName(),
-            getContentDragHoverClassName: this.getItemContentDragHoverClassName,
-            dataLocation,
-            dragHover:
-                !isRootDataLocation && dataLocation === this.state.dragHoverDataLocation,
-            dragHoverBefore:
-                !isRootDataLocation &&
-                dataLocation === this.state.dragHoverBeforeDataLocation,
-            dragHoverAfter:
-                !isRootDataLocation &&
-                dataLocation === this.state.dragHoverAfterDataLocation,
-            expanded: this.isExpanded(dataLocation),
-            handleClick: this.handleTreeItemClick(dataLocation, dataType),
-            handleKeyDown: this.handleTreeItemKeyDown(dataLocation, dataType),
-            handleSelectionClick: this.handleTreeItemSelectionClick(dataLocation),
-            handleCloseDraggingItem: this.handleCloseDraggingTreeItem,
-            text: navigation.text,
-            type: dataType,
-            onChange: this.handleChange,
-            onDragHover: this.handleDragHover,
-        };
-        const children: React.ReactNode =
-            Array.isArray(navigation.items) && navigationLength > 0
-                ? this.renderTreeItemContainer(navigation.items, level)
-                : void 0;
+    private renderTreeItem(navigationId: string, level: number): React.ReactNode {
+        if (typeof navigationId === "string") {
+            const schemaLocationSegments: string[] = this.props.navigation[0][
+                navigationId
+            ].schemaLocation.split(".");
+            const lastSchemaPropertyName: string =
+                schemaLocationSegments[schemaLocationSegments.length - 1];
+            const isDefaultChildrenContainer: boolean =
+                lastSchemaPropertyName === "children" &&
+                this.props.navigation[0][navigationId].relativeDataLocation === null;
 
-        // Directly nest React children which use the "children" property
-        if (dataLocation === "children" || dataLocation.endsWith("props.children")) {
-            if (Array.isArray(navigation.items) && navigationLength > 0) {
-                return this.renderTreeItems(navigation.items, level + 1);
+            if (isDefaultChildrenContainer) {
+                return this.renderTreeItems(
+                    this.state.navigation[navigationId].items,
+                    level
+                );
             }
-        }
 
-        if (this.props.dragAndDropReordering) {
+            const isRootDataLocation: boolean =
+                navigationId === this.state.rootNavigationItemId;
+            const dataType: NavigationDataType = this.props.navigation[0][navigationId]
+                .type;
+            const props: NavigationTreeItemProps = {
+                className: this.getItemClassName(dataType, navigationId),
+                contentClassName: this.getItemContentClassName(navigationId),
+                expandTriggerClassName: this.getItemExpandTriggerClassName(),
+                navigationId,
+                dragHover:
+                    !isRootDataLocation &&
+                    navigationId === this.state.dragHoverNavigationId,
+                dragHoverBefore:
+                    !isRootDataLocation &&
+                    navigationId === this.state.dragHoverBeforeNavigationId,
+                dragHoverAfter:
+                    !isRootDataLocation &&
+                    navigationId === this.state.dragHoverAfterNavigationId,
+                expanded: this.isExpanded(navigationId),
+                handleClick: this.handleTreeItemClick(navigationId, dataType),
+                handleKeyDown: this.handleTreeItemKeyDown(navigationId, dataType),
+                handleSelectionClick: this.handleTreeItemSelectionClick(navigationId),
+                text: this.props.navigation[0][navigationId].text,
+                type: this.props.navigation[0][navigationId].type,
+                onDragHover: this.handleDragHover,
+                onDragStart: this.handleDragStart,
+                onDragEnd: this.handleDragEnd,
+            };
+            // if either there are no associate child items
+            // or there is only an empty default children
+            // do not supply children to the draggable item
+            const children: React.ReactNode =
+                this.props.navigation[0][navigationId].items.length > 1 ||
+                (this.props.navigation[0][navigationId].items.length === 1 &&
+                    (this.props.navigation[0][
+                        this.props.navigation[0][navigationId].items[0]
+                    ].items.length !== 0 ||
+                        this.props.navigation[0][
+                            this.props.navigation[0][navigationId].items[0]
+                        ].type !== NavigationDataType.children))
+                    ? this.renderTreeItemContainer(
+                          this.props.navigation[0][navigationId].items,
+                          level
+                      )
+                    : void 0;
+
+            if (
+                this.props.dragAndDropReordering &&
+                (navigationId !== this.state.rootNavigationItemId ||
+                    this.props.navigation[0][navigationId].type ===
+                        NavigationDataType.component ||
+                    this.props.navigation[0][navigationId].type ===
+                        NavigationDataType.children ||
+                    this.props.navigation[0][navigationId].type ===
+                        NavigationDataType.primitiveChild)
+            ) {
+                return (
+                    <DraggableNavigationTreeItem key={navigationId} {...props}>
+                        {children}
+                    </DraggableNavigationTreeItem>
+                );
+            }
+
             return (
-                <DraggableNavigationTreeItem {...props} key={index}>
+                <NavigationTreeItem key={navigationId} {...props}>
                     {children}
-                </DraggableNavigationTreeItem>
+                </NavigationTreeItem>
             );
         }
+    }
 
-        return (
-            <NavigationTreeItem {...props} key={index}>
-                {children}
-            </NavigationTreeItem>
+    private renderTreeItems(navigationIds: string[], level: number): React.ReactNode {
+        return this.getWeightedNavigationIds(navigationIds).map(
+            (navigationId: string) => {
+                return this.renderTreeItem(navigationId, level);
+            }
         );
     }
 
     /**
-     * Handles a data update from dragging
+     * Weight navigation ids so that children always display at the bottom
      */
-    private handleChange = (
-        sourceDataLocation: string,
-        targetDataLocation: string,
-        type: NavigationDataType,
-        direction?: VerticalDragDirection
-    ): void => {
-        if (typeof this.props.onChange === "function") {
-            this.props.onChange(
-                getUpdatedData({
-                    targetDataLocation,
-                    sourceDataLocation,
-                    direction,
-                    type,
-                    data: this.props.data,
-                })
-            );
+    private getWeightedNavigationIds(navigationIds: string[]): string[] {
+        const weightedNavigationIds: string[] = [...navigationIds];
+        const childrenNavigationId: string | undefined = weightedNavigationIds.find(
+            (navigationId: string) => {
+                const schemaLocationSegments: string[] = this.props.navigation[0][
+                    navigationId
+                ].schemaLocation.split(".");
+                const lastSchemaPropertyName: string =
+                    schemaLocationSegments[schemaLocationSegments.length - 1];
+
+                return (
+                    lastSchemaPropertyName === "children" &&
+                    this.state.navigation[navigationId].relativeDataLocation === null
+                );
+            }
+        );
+        const childrenNavigationIdIndex: number = weightedNavigationIds.indexOf(
+            childrenNavigationId
+        );
+
+        if (childrenNavigationIdIndex !== -1) {
+            weightedNavigationIds.splice(childrenNavigationIdIndex, 1);
+            weightedNavigationIds.push(childrenNavigationId);
         }
+
+        return weightedNavigationIds;
+    }
+
+    private handleDragEnd = (): void => {
+        if (typeof this.props.onChange === "function") {
+            const updatedData: ReactComponentProps = getDragEndUpdatedData(
+                this.state.navigation,
+                this.state.draggingNavigationId,
+                this.state.data,
+                this.state.relocatingData
+            );
+
+            this.props.onChange(updatedData);
+        }
+
+        this.setState({
+            draggingNavigationId: null,
+            draggingSourceDataLocation: null,
+        });
     };
 
     /**
      * Handles the hovering of an element when dragging
      */
     private handleDragHover = (
-        dragHoverDataLocation: string,
-        direction?: VerticalDragDirection
+        targetDragHoverNavigationId: string,
+        sourceDragHoverNavigationId: string,
+        direction: TargetPosition
     ): void => {
-        const state: Partial<NavigationState> = {
-            dragHoverDataLocation,
-            dragHoverBeforeDataLocation:
-                direction === VerticalDragDirection.up ? dragHoverDataLocation : null,
-            dragHoverAfterDataLocation:
-                direction === VerticalDragDirection.down ? dragHoverDataLocation : null,
-            dragHoverCenterDataLocation:
-                direction === VerticalDragDirection.center ? dragHoverDataLocation : null,
-        };
+        const state: Partial<NavigationState> = getDragHoverState(
+            this.state.navigation,
+            targetDragHoverNavigationId,
+            sourceDragHoverNavigationId,
+            direction
+        );
+
+        // open the item being hovered
+        if (direction === TargetPosition.insert) {
+            const expandNavigationItemHovered: NodeJS.Timer = setTimeout((): void => {
+                // check to see if this navigation id is still being hovered
+                if (
+                    this.state.dragHoverNavigationId === targetDragHoverNavigationId &&
+                    this.state.expandedNavigationIds.indexOf(
+                        targetDragHoverNavigationId
+                    ) === -1
+                ) {
+                    this.setState({
+                        expandedNavigationIds: [targetDragHoverNavigationId].concat(
+                            this.state.expandedNavigationIds
+                        ),
+                    });
+                } else {
+                    clearTimeout(expandNavigationItemHovered);
+                }
+            }, 500);
+        }
 
         if (
-            this.state.dragHoverDataLocation !== state.dragHoverDataLocation ||
-            this.state.dragHoverAfterDataLocation !== state.dragHoverAfterDataLocation ||
-            this.state.dragHoverBeforeDataLocation !==
-                state.dragHoverBeforeDataLocation ||
-            this.state.dragHoverCenterDataLocation !== state.dragHoverCenterDataLocation
+            this.state.dragHoverNavigationId !== state.dragHoverNavigationId ||
+            this.state.dragHoverAfterNavigationId !== state.dragHoverAfterNavigationId ||
+            this.state.dragHoverBeforeNavigationId !==
+                state.dragHoverBeforeNavigationId ||
+            this.state.dragHoverCenterNavigationId !== state.dragHoverCenterNavigationId
         ) {
             this.setState(state as NavigationState);
         }
     };
 
-    /**
-     * Renders tree items
-     */
-    private renderTreeItems(
-        navigation: TreeNavigation[],
-        level: number
-    ): React.ReactNode {
-        // Sort items so that childrenItems are weighted towards the top
-        const sortedNavigation: TreeNavigation[] = navigation.sort(
-            (a: TreeNavigation, b: TreeNavigation) => {
-                return a.type === NavigationDataType.children &&
-                    b.type === NavigationDataType.children
-                    ? 0
-                    : a.type === NavigationDataType.children
-                        ? 1
-                        : b.type !== NavigationDataType.children
-                            ? 0
-                            : -1;
-            }
-        );
-
-        return sortedNavigation.map((navigationItem: TreeNavigation, index: number) => {
-            const navigationLength: number = navigation.length;
-
-            return this.renderTreeItem(navigationItem, level, navigationLength, index);
-        });
-    }
-
-    private findCurrentTreeItemIndex(nodes: HTMLElement[], dataLocation: string): number {
+    private findCurrentTreeItemIndex(nodes: HTMLElement[], navigationId: string): number {
         return nodes.findIndex((node: HTMLElement) => {
-            return node.dataset.location === dataLocation;
+            return node.dataset.navigationid === navigationId;
         });
     }
 
-    private focusNextTreeItem(dataLocation: string): void {
+    private focusNextTreeItem(navigationId: string): void {
         if (canUseDOM()) {
             const nodes: HTMLElement[] = this.getTreeItemNodes();
             const currentIndex: number = this.findCurrentTreeItemIndex(
                 nodes,
-                dataLocation
+                navigationId
             );
             const nextIndex: number =
                 currentIndex !== -1 && currentIndex !== nodes.length - 1
@@ -294,12 +331,12 @@ export default class Navigation extends Foundation<
         }
     }
 
-    private focusPreviousTreeItem(dataLocation: string): void {
+    private focusPreviousTreeItem(navigationId: string): void {
         if (canUseDOM()) {
             const nodes: HTMLElement[] = this.getTreeItemNodes();
             const currentIndex: number = this.findCurrentTreeItemIndex(
                 nodes,
-                dataLocation
+                navigationId
             );
             const previousIndex: number =
                 currentIndex !== -1 && currentIndex !== 0 ? currentIndex - 1 : 0;
@@ -323,12 +360,15 @@ export default class Navigation extends Foundation<
         }
     }
 
-    private focusAndOpenTreeItems(dataLocation: string, type: NavigationDataType): void {
+    private focusAndExpandTreeItems(
+        navigationId: string,
+        type: NavigationDataType
+    ): void {
         if (canUseDOM()) {
             const nodes: HTMLElement[] = this.getTreeItemNodes();
             const currentIndex: number = this.findCurrentTreeItemIndex(
                 nodes,
-                dataLocation
+                navigationId
             );
             const ariaExpanded: string = get(
                 nodes[currentIndex],
@@ -338,17 +378,20 @@ export default class Navigation extends Foundation<
             if (ariaExpanded === "true" && nodes[currentIndex + 1]) {
                 nodes[currentIndex + 1].focus();
             } else if (ariaExpanded === "false") {
-                this.toggleItems(dataLocation, type);
+                this.toggleItems(navigationId, type);
             }
         }
     }
 
-    private focusAndCloseTreeItems(dataLocation: string, type: NavigationDataType): void {
+    private focusAndCollapseTreeItems(
+        navigationId: string,
+        type: NavigationDataType
+    ): void {
         if (canUseDOM()) {
             const nodes: HTMLElement[] = this.getTreeItemNodes();
             const currentIndex: number = this.findCurrentTreeItemIndex(
                 nodes,
-                dataLocation
+                navigationId
             );
             const ariaExpanded: string = get(
                 nodes[currentIndex],
@@ -367,7 +410,7 @@ export default class Navigation extends Foundation<
             ) {
                 nodes[currentIndex - 1].focus();
             } else if (ariaExpanded === "true") {
-                this.toggleItems(dataLocation, type);
+                this.toggleItems(navigationId, type);
             } else if (ariaExpanded === undefined && nodes[currentIndex - 1]) {
                 nodes[currentIndex - 1].focus();
             }
@@ -375,9 +418,10 @@ export default class Navigation extends Foundation<
     }
 
     private getItemClassName(
-        dataType: NavigationDataType
-    ): (dragging: boolean) => string {
-        return (dragging: boolean): string => {
+        dataType: NavigationDataType,
+        navigationId: string
+    ): () => string {
+        return (): string => {
             let classes: string = this.props.managedClasses.navigation_item;
 
             if (
@@ -397,7 +441,7 @@ export default class Navigation extends Foundation<
                         ""
                     )}`;
 
-                    if (dragging) {
+                    if (this.state.draggingNavigationId === navigationId) {
                         classes = `${classes} ${get(
                             this.props,
                             "managedClasses.navigation_item__dragging",
@@ -415,10 +459,10 @@ export default class Navigation extends Foundation<
         return get(this.props, "managedClasses.navigation_itemExpandTrigger", "");
     }
 
-    private getItemContentClassName(dataLocation: string): string {
+    private getItemContentClassName(navigationId: string): string {
         let classes: string = this.props.managedClasses.navigation_itemContent;
 
-        if (dataLocation === this.state.activeItem) {
+        if (navigationId === this.state.activeNavigationItemId) {
             classes = `${classes} ${get(
                 this.props,
                 "managedClasses.navigation_itemContent__active",
@@ -428,53 +472,6 @@ export default class Navigation extends Foundation<
 
         return classes;
     }
-
-    private getItemContentDragHoverClassName = (
-        type: NavigationDataType,
-        verticalDragDirection?: VerticalDragDirection
-    ): string => {
-        let classNames: string = "";
-
-        if (
-            verticalDragDirection === VerticalDragDirection.center &&
-            (type === NavigationDataType.children ||
-                type === NavigationDataType.component ||
-                type === NavigationDataType.primitiveChild)
-        ) {
-            classNames += `${get(
-                this.props,
-                "managedClasses.navigation_itemContent__dragHover",
-                ""
-            )}`;
-        } else if (
-            typeof verticalDragDirection !== "undefined" &&
-            verticalDragDirection !== VerticalDragDirection.center
-        ) {
-            classNames += ` ${
-                verticalDragDirection === VerticalDragDirection.up
-                    ? this.getItemContentDragHoverBeforeClassName()
-                    : this.getItemContentDragHoverAfterClassName()
-            }`;
-        }
-
-        return classNames;
-    };
-
-    private getItemContentDragHoverBeforeClassName = (): string => {
-        return `${get(
-            this.props,
-            "managedClasses.navigation_itemContent__dragHoverBefore",
-            ""
-        )}`;
-    };
-
-    private getItemContentDragHoverAfterClassName = (): string => {
-        return `${get(
-            this.props,
-            "managedClasses.navigation_itemContent__dragHoverAfter",
-            ""
-        )}`;
-    };
 
     private getTreeItemNodes(): HTMLElement[] {
         const nodes: HTMLElement[] = Array.from(
@@ -489,7 +486,7 @@ export default class Navigation extends Foundation<
      * Handles key up on a tree item
      */
     private handleTreeItemKeyDown = (
-        dataLocation: string,
+        navigationId: string,
         type: NavigationDataType
     ): ((e: React.KeyboardEvent<HTMLDivElement | HTMLAnchorElement>) => void) => {
         return (e: React.KeyboardEvent<HTMLDivElement | HTMLAnchorElement>): void => {
@@ -500,20 +497,20 @@ export default class Navigation extends Foundation<
                     case keyCodeEnter:
                     case keyCodeSpace:
                         if (e.target === e.currentTarget) {
-                            this.toggleItems(dataLocation, type);
+                            this.toggleItems(navigationId, type);
                         }
                         break;
                     case keyCodeArrowDown:
-                        this.focusNextTreeItem(dataLocation);
+                        this.focusNextTreeItem(navigationId);
                         break;
                     case keyCodeArrowUp:
-                        this.focusPreviousTreeItem(dataLocation);
+                        this.focusPreviousTreeItem(navigationId);
                         break;
                     case keyCodeArrowRight:
-                        this.focusAndOpenTreeItems(dataLocation, type);
+                        this.focusAndExpandTreeItems(navigationId, type);
                         break;
                     case keyCodeArrowLeft:
-                        this.focusAndCloseTreeItems(dataLocation, type);
+                        this.focusAndCollapseTreeItems(navigationId, type);
                         break;
                     case keyCodeHome:
                         this.focusFirstTreeItem();
@@ -525,7 +522,7 @@ export default class Navigation extends Foundation<
                     default:
                         if (e.key.toLowerCase() === "d" && e.ctrlKey) {
                             e.preventDefault();
-                            this.duplicateCurrentItem(dataLocation, type);
+                            // this.duplicateCurrentItem(navigationId, type);
                         }
                         break;
                 }
@@ -537,67 +534,80 @@ export default class Navigation extends Foundation<
      * Handles clicking on a tree item
      */
     private handleTreeItemClick = (
-        dataLocation: string,
+        navigationId: string,
         type: NavigationDataType
     ): ((e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>) => void) => {
         return (e: React.MouseEvent<HTMLAnchorElement>): void => {
             e.preventDefault();
 
             if (e.target === e.currentTarget) {
-                this.toggleItems(dataLocation, type);
+                this.toggleItems(navigationId, type);
             }
         };
     };
 
     private handleTreeItemSelectionClick = (
-        dataLocation: string
+        navigationId: string
     ): ((e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>) => void) => {
         return (e: React.MouseEvent<HTMLAnchorElement>): void => {
             e.preventDefault();
 
             if (e.target === e.currentTarget) {
-                this.selectItem(dataLocation);
+                this.selectItem(navigationId);
             }
         };
     };
 
-    private handleCloseDraggingTreeItem = (
-        dataLocation: string,
-        type: NavigationDataType
-    ): void => {
-        const updatedState: Partial<NavigationState> = {};
+    private handleDragStart = (navigationId: string, type: NavigationDataType): void => {
+        const sourceDataLocation: string = getFullDataLocation(
+            this.state.navigation,
+            navigationId
+        ).replace(/\.props$/, "");
 
-        updatedState.openItems = this.state.openItems.filter((openItem: string) => {
-            return openItem.slice(0, dataLocation.length) !== dataLocation;
+        this.setState({
+            expandedNavigationIds: this.state.expandedNavigationIds.filter(
+                (expandedNavigationItem: string) => {
+                    return expandedNavigationItem !== navigationId;
+                }
+            ),
+            draggingNavigationId: navigationId,
+            data: getDataUpdatedWithoutSourceData({
+                data: this.state.data,
+                sourceDataLocation,
+            }) as ReactComponentProps,
+            draggingSourceDataLocation: sourceDataLocation,
+            relocatingData: get(this.props.navigation, sourceDataLocation),
         });
-
-        this.setState(updatedState as NavigationState);
 
         if (
             typeof this.props.onLocationUpdate === "function" &&
             type !== NavigationDataType.children
         ) {
-            this.props.onLocationUpdate(dataLocation);
+            this.props.onLocationUpdate(
+                getFullDataLocation(this.state.navigation, navigationId)
+            );
         }
     };
 
     /**
-     * Toggles the items by adding/removing them from the openItems array
+     * Toggles the items by adding/removing them from the expandedItems array
      */
-    private toggleItems(dataLocation: string, type: NavigationDataType): void {
-        const isExpanded: boolean = this.isExpanded(dataLocation);
+    private toggleItems(navigationId: string, type: NavigationDataType): void {
+        const isExpanded: boolean =
+            this.state.expandedNavigationIds.find((expandedNavigationItem: string) => {
+                return expandedNavigationItem === navigationId;
+            }) !== undefined;
         const updatedState: Partial<NavigationState> = {};
-
-        if (!isExpanded) {
-            updatedState.openItems = this.state.openItems.concat(dataLocation);
-        } else {
-            updatedState.openItems = this.state.openItems.filter((openItem: string) => {
-                return openItem.slice(0, dataLocation.length) !== dataLocation;
-            });
-        }
+        updatedState.expandedNavigationIds = !isExpanded
+            ? [navigationId, ...this.state.expandedNavigationIds]
+            : this.state.expandedNavigationIds.filter(
+                  (expandedNavigationItem: string) => {
+                      return expandedNavigationItem !== navigationId;
+                  }
+              );
 
         if (this.props.dataLocation === undefined) {
-            updatedState.activeItem = dataLocation;
+            updatedState.activeNavigationItemId = navigationId;
         }
 
         this.setState(updatedState as NavigationState);
@@ -606,77 +616,81 @@ export default class Navigation extends Foundation<
             typeof this.props.onLocationUpdate === "function" &&
             type !== NavigationDataType.children
         ) {
-            this.props.onLocationUpdate(dataLocation);
+            this.props.onLocationUpdate(
+                getFullDataLocation(this.state.navigation, navigationId)
+            );
         }
     }
 
-    private selectItem(dataLocation: string): void {
+    private selectItem(navigationId: string): void {
         this.setState({
-            activeItem: dataLocation,
+            activeNavigationItemId: navigationId,
         });
 
         if (typeof this.props.onLocationUpdate === "function") {
-            this.props.onLocationUpdate(dataLocation);
+            this.props.onLocationUpdate(
+                getFullDataLocation(this.state.navigation, navigationId)
+            );
         }
     }
 
     /**
      * Determines if the tree item should be expanded
      */
-    private isExpanded(dataLocation: string): boolean {
-        if (
-            this.state.openItems.find(
-                (openItem: string) =>
-                    openItem.slice(0, dataLocation.length) === dataLocation
-            ) !== undefined
-        ) {
-            return true;
-        }
-
-        return false;
+    private isExpanded(navigationId: string): boolean {
+        return (
+            this.state.expandedNavigationIds.find((expandedNavigationItem: string) => {
+                return expandedNavigationItem === navigationId;
+            }) !== undefined
+        );
     }
 
     /**
      * Duplicates the item
+     * TODO: remove this as part of https://github.com/microsoft/fast-dna/issues/2174
      */
-    private duplicateCurrentItem = (
-        dataLocation: string,
-        type: NavigationDataType
-    ): void => {
-        if (
-            type !== NavigationDataType.component &&
-            type !== NavigationDataType.primitiveChild
-        ) {
-            return;
-        }
+    // private duplicateCurrentItem = (
+    //     navigationId: string,
+    //     type: NavigationDataType
+    // ): void => {
+    //     if (
+    //         type !== NavigationDataType.component &&
+    //         type !== NavigationDataType.primitiveChild
+    //     ) {
+    //         return;
+    //     }
 
-        if (typeof this.props.onChange === "function") {
-            const isPrimitive: boolean = type === NavigationDataType.primitiveChild;
-            const dataLocationAsDotNotation: string = normalizeDataLocationToDotNotation(
-                dataLocation
-            );
-            const dataLocationSegments: string[] = dataLocationAsDotNotation.split(".");
-            dataLocationSegments.pop();
-            // The root data location ensures that if the data location includes ".props" as part
-            // of its path, this is ignored so that a full component object is copied
-            const rootDataLocation: string = isInArray(
-                this.props.data,
-                dataLocationAsDotNotation.endsWith("props")
-                    ? dataLocationSegments.join(".")
-                    : dataLocationAsDotNotation
-            )
-                ? dataLocationSegments.join(".")
-                : isPrimitive
-                    ? `${dataLocationAsDotNotation}[0]`
-                    : `${dataLocationSegments.join(".")}[0]`;
+    //     const updatedData: ReactComponentProps = cloneDeep(this.props.data);
 
-            this.props.onChange(
-                getDataWithDuplicate(
-                    isPrimitive ? dataLocation : rootDataLocation,
-                    this.props.data
-                ),
-                rootDataLocation
-            );
-        }
-    };
+    //     if (typeof this.props.onChange === "function") {
+    //         const dataLocation: string = getDataLocationNormalized(
+    //             getFullDataLocation(this.state.navigation, navigationId)
+    //         );
+    //         const copiedData: string | ReactComponent = get(
+    //             this.props.data,
+    //             dataLocation
+    //         );
+    //         const arrayIndex: RegExpMatchArray | null = dataLocation.match(
+    //             endsWithSquareBracketsRegex
+    //         );
+
+    //         if (arrayIndex !== null) {
+    //             const parentDataLocation: string = dataLocation.replace(
+    //                 endsWithSquareBracketsRegex,
+    //                 ""
+    //             );
+    //             const parentData: Array<string | ReactComponent> = get(
+    //                 this.props.data,
+    //                 parentDataLocation
+    //             );
+    //             parentData.splice(parseInt(arrayIndex[1], 10), 0, copiedData);
+    //             set(updatedData, parentDataLocation, parentData);
+    //         } else {
+    //             const newData: Array<string | ReactComponent> = [copiedData, copiedData];
+    //             set(updatedData, dataLocation, newData);
+    //         }
+
+    //         this.props.onChange(updatedData);
+    //     }
+    // };
 }

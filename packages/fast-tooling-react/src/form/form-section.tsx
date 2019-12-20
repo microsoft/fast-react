@@ -168,7 +168,6 @@ class FormSection extends React.Component<
                 data={getData(propertyName, this.props.data)}
                 dataLocation={dataLocation}
                 schemaLocation={schemaLocation}
-                childOptions={this.props.childOptions}
                 propertyName={propertyName}
                 schema={schema}
                 onChange={this.props.onChange}
@@ -255,12 +254,10 @@ class FormSection extends React.Component<
         );
         // All uncategorized properties
         const uncategorized: string[] = Object.keys(
-            get(this.state.schema, PropertyKeyword.reactProperties, {})
-        )
-            .concat(Object.keys(get(this.state.schema, PropertyKeyword.properties, {})))
-            .filter((category: string) => {
-                return categorized.indexOf(category) < 0;
-            });
+            get(this.state.schema, PropertyKeyword.properties, {})
+        ).filter((category: string) => {
+            return categorized.indexOf(category) < 0;
+        });
         // All categorized and uncategorized properties
         return [
             {
@@ -282,11 +279,7 @@ class FormSection extends React.Component<
         const propertyKeys: string[] = [];
 
         if (schema.properties) {
-            propertyKeys.push("properties");
-        }
-
-        if (schema.reactProperties) {
-            propertyKeys.push("reactProperties");
+            propertyKeys.push(PropertyKeyword.properties);
         }
 
         propertyKeys.forEach(
@@ -434,7 +427,6 @@ class FormSection extends React.Component<
                     schema={schema}
                     required={schema.required}
                     label={schema.title || this.props.untitled}
-                    childOptions={this.props.childOptions}
                     onChange={this.props.onChange}
                     onUpdateSection={this.props.onUpdateSection}
                     validationErrors={this.props.validationErrors}
@@ -500,9 +492,7 @@ class FormSection extends React.Component<
      * Get all enumerated properties for the object
      */
     private getEnumeratedProperties(schema: any): string[] {
-        return Object.keys(schema.properties || {}).concat(
-            Object.keys(schema.reactProperties || {})
-        );
+        return Object.keys(schema.properties || {});
     }
 
     private getSchemaLocation(): string {

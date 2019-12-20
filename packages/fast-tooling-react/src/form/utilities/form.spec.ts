@@ -4,12 +4,13 @@ import {
     getInitialOneOfAnyOfState,
     getSchemaByDataLocation,
 } from "./form";
-
-import mergedOneOfSchema from "../../__tests__/schemas/merged-one-of.schema.json";
-import childrenSchema from "../../__tests__/schemas/children.schema.json";
-import textFieldSchema from "../../__tests__/schemas/textarea.schema.json";
 import ajv, { ValidationError } from "ajv";
 import { getValidationErrors } from "../../utilities/ajv-validation";
+import {
+    childrenSchema,
+    mergedOneOfSchema,
+    textFieldSchema,
+} from "../../__tests__/schemas";
 import { InitialOneOfAnyOfState } from "../form-section.props";
 import { oneOfAnyOfType } from "../../data-utilities/schema";
 
