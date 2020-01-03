@@ -7,18 +7,21 @@ import {
 } from "./editor.props";
 import cssEditorDataSchema from "./editor-data.schema";
 import { CSSBackground } from "./background";
+import { CSSBorderRadius } from "./border-radius";
 import { CSSColor } from "./color";
 import { CSSWidth } from "./width";
 import { CSSHeight } from "./height";
 import { ControlConfig, Form, StandardControlPlugin } from "../form/";
 import {
     backgroundPlugInId,
+    borderRadiusPlugInId,
     boxShadowPlugInId,
     colorPlugInId,
     heightPluginId,
     widthPluginId,
 } from "./editor.constants";
 import { CSSBoxShadow } from "./box-shadow";
+import { CSSBorder } from "./border";
 
 export default class CSSEditor extends Foundation<
     CSSEditorHandledProps,
@@ -74,6 +77,12 @@ export default class CSSEditor extends Foundation<
                 id: boxShadowPlugInId,
                 control: (config: ControlConfig): React.ReactNode => {
                     return <CSSBoxShadow {...config} />;
+                },
+            }),
+            new StandardControlPlugin({
+                id: borderRadiusPlugInId,
+                control: (config: ControlConfig): React.ReactNode => {
+                    return <CSSBorderRadius {...config} />;
                 },
             }),
         ];

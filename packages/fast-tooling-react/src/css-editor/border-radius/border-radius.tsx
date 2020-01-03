@@ -1,9 +1,6 @@
 import React from "react";
-import { get, pick } from "lodash-es";
-import Foundation, {
-    FoundationProps,
-    HandledProps,
-} from "@microsoft/fast-components-foundation-react";
+import { pick } from "lodash-es";
+import Foundation, { HandledProps } from "@microsoft/fast-components-foundation-react";
 import {
     BorderRadiusValue,
     CSSBorderRadiusHandledProps,
@@ -13,6 +10,8 @@ import {
     CSSBorderRadiusValues,
 } from "./border-radius.props";
 import { parseCSSString } from "../../utilities/parse-css-string";
+import { CSSBorderRadiusClassNameContract } from "./border-radius.style";
+import { classNames } from "@microsoft/fast-web-utilities";
 
 export default class CSSBorderRadius extends Foundation<
     CSSBorderRadiusHandledProps,
@@ -21,10 +20,20 @@ export default class CSSBorderRadius extends Foundation<
 > {
     public static displayName: string = "CSSBorderRadius";
 
+    public static defaultProps: Partial<CSSBorderRadiusProps> = {
+        value: "",
+        managedClasses: {},
+    };
+
     protected handledProps: HandledProps<CSSBorderRadiusHandledProps> = {
-        data: void 0,
         onChange: void 0,
         managedClasses: void 0,
+        dataLocation: void 0,
+        value: void 0,
+        disabled: void 0,
+        elementRef: void 0,
+        reportValidity: void 0,
+        updateValidity: void 0,
     };
 
     constructor(props: CSSBorderRadiusProps) {
@@ -33,40 +42,43 @@ export default class CSSBorderRadius extends Foundation<
         this.state = {
             individualValues: false,
             hasFocus: void 0,
-            data: this.props.data,
+            data: this.props.value,
         };
     }
 
     public render(): React.ReactNode {
         return (
-            <div className={get(this.props, "managedClasses.cssBorderRadius")}>
-                <label
-                    className={get(this.props, "managedClasses.cssBorderRadius_label")}
+            <div className={this.generateClassNames()}>
+                {this.renderInputs()}
+                <button
+                    className={this.generateToggleClassNames()}
+                    onClick={this.toggleInputs}
                 >
-                    BorderRadius
-                </label>
-                <div
-                    className={get(this.props, "managedClasses.cssBorderRadius_control")}
-                >
-                    {this.renderInputs()}
-                    <button
-                        className={this.generateToggleClassNames()}
-                        onClick={this.toggleInputs}
-                    >
-                        {this.renderBorderRadiusGlyph()}
-                    </button>
-                </div>
+                    {this.renderBorderRadiusGlyph()}
+                </button>
             </div>
         );
     }
 
+    protected generateClassNames(): string {
+        const {
+            cssBorderRadius,
+            cssBorderRadius__disabled,
+        }: Partial<CSSBorderRadiusClassNameContract> = this.props.managedClasses;
+
+        return super.generateClassNames(
+            classNames(cssBorderRadius, [cssBorderRadius__disabled, this.props.disabled])
+        );
+    }
+
     private renderBorderRadiusGlyph(): React.ReactNode {
+        const {
+            cssBorderRadius_toggleButtonGlyph,
+        }: Partial<CSSBorderRadiusClassNameContract> = this.props.managedClasses;
+
         return (
             <svg
-                className={get(
-                    this.props,
-                    "managedClasses.cssBorderRadius_toggleButtonGlyph"
-                )}
+                className={cssBorderRadius_toggleButtonGlyph}
                 width="14"
                 height="14"
                 viewBox="0 0 14 14"
@@ -105,10 +117,12 @@ export default class CSSBorderRadius extends Foundation<
     }
 
     private renderInputs(): React.ReactFragment {
+        const {
+            cssBorderRadius_input,
+        }: Partial<CSSBorderRadiusClassNameContract> = this.props.managedClasses;
+
         if (this.state.individualValues === true) {
-            const parsedString: string[] = parseCSSString(
-                get(this.props.data, "borderRadius", "")
-            );
+            const parsedString: string[] = parseCSSString(this.props.value);
             return (
                 <React.Fragment>
                     {this.renderIndividualInputs(
@@ -133,10 +147,14 @@ export default class CSSBorderRadius extends Foundation<
 
         return (
             <input
-                className={get(this.props, "managedClasses.cssBorderRadius_input")}
+                className={cssBorderRadius_input}
                 type={"text"}
-                value={get(this.props.data, "borderRadius", "")}
+                value={this.props.value}
                 onChange={this.handleBorderRadiusOnChange(BorderRadiusValue.borderRadius)}
+                disabled={this.props.disabled}
+                onFocus={this.props.reportValidity}
+                onBlur={this.props.updateValidity}
+                ref={this.props.elementRef as React.Ref<HTMLInputElement>}
             />
         );
     }
@@ -146,18 +164,21 @@ export default class CSSBorderRadius extends Foundation<
         value: string
     ): React.ReactNode {
         const normalizedValue: string = value === "0" ? "" : value;
+
+        const {
+            cssBorderRadius_individualInput,
+        }: Partial<CSSBorderRadiusClassNameContract> = this.props.managedClasses;
+
         return (
             <input
-                className={get(
-                    this.props,
-                    "managedClasses.cssBorderRadius_individualInput"
-                )}
+                className={cssBorderRadius_individualInput}
                 onFocus={this.handleInputOnFocus(position)}
                 onBlur={this.handleInputBlur}
                 placeholder={"0"}
                 type={"text"}
                 value={normalizedValue}
                 onChange={this.handleBorderRadiusOnChange(position)}
+                disabled={this.props.disabled}
             />
         );
     }
@@ -166,15 +187,13 @@ export default class CSSBorderRadius extends Foundation<
         cssKey: BorderRadiusValue
     ): (e: React.ChangeEvent<HTMLInputElement>) => void {
         return (e: React.ChangeEvent<HTMLInputElement>): void => {
-            const borderRadius: CSSBorderRadiusValues = pick(this.props.data, [
+            const borderRadius: CSSBorderRadiusValues = pick(this.props.value, [
                 "borderRadius",
             ]);
 
             const validatedValue: string = e.target.value === "" ? "0" : e.target.value;
 
-            const parsedString: string[] = parseCSSString(
-                get(this.props.data, "borderRadius", "")
-            );
+            const parsedString: string[] = parseCSSString(this.props.value);
             switch (cssKey) {
                 case BorderRadiusValue.borderRadius:
                     borderRadius.borderRadius = e.target.value;
@@ -200,7 +219,7 @@ export default class CSSBorderRadius extends Foundation<
                     } ${parsedString[3]}`;
                     break;
             }
-            this.props.onChange(borderRadius);
+            this.props.onChange({ value: borderRadius.borderRadius });
         };
     }
 
@@ -211,27 +230,27 @@ export default class CSSBorderRadius extends Foundation<
     };
 
     private generateToggleClassNames(): string {
-        let className: string = get(
-            this.props,
-            "managedClasses.cssBorderRadius_toggleButton"
-        );
+        const {
+            cssBorderRadius_toggleButton,
+            cssBorderRadius_toggleButton__selected,
+        }: Partial<CSSBorderRadiusClassNameContract> = this.props.managedClasses;
+
+        let className: string = cssBorderRadius_toggleButton;
 
         if (this.state.individualValues) {
-            className = `${className} ${get(
-                this.props,
-                "managedClasses.cssBorderRadius_toggleButton__selected"
-            )}`;
+            className = `${className} ${cssBorderRadius_toggleButton__selected}`;
         }
 
         return className;
     }
 
     private generatePathClassNames(cssKey: BorderRadiusValue): string {
+        const {
+            cssBorderRadius_toggleButtonGlyphPath__highlight,
+        }: Partial<CSSBorderRadiusClassNameContract> = this.props.managedClasses;
+
         if (this.state.hasFocus === cssKey) {
-            return get(
-                this.props,
-                "managedClasses.cssBorderRadius_toggleButtonGlyphPath__highlight"
-            );
+            return cssBorderRadius_toggleButtonGlyphPath__highlight;
         }
     }
 

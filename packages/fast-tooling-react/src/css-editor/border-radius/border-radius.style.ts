@@ -1,29 +1,20 @@
 import { ComponentStyles } from "@microsoft/fast-jss-manager-react";
-import {
-    applyControlRegion,
-    applyControlWrapper,
-    applyInputBackplateStyle,
-    applyInputStyle,
-    applyLabelStyle,
-} from "../../style";
+import { applyControlRegion, applyControlWrapper, applyInputStyle } from "../../style";
 
 export interface CSSBorderRadiusClassNameContract {
     cssBorderRadius?: string;
-    cssBorderRadius_control?: string;
     cssBorderRadius_input?: string;
     cssBorderRadius_individualInput?: string;
-    cssBorderRadius_label?: string;
     cssBorderRadius_toggleButton?: string;
     cssBorderRadius_toggleButton__selected?: string;
     cssBorderRadius_toggleButtonGlyph?: string;
     cssBorderRadius_toggleButtonGlyphPath__highlight?: string;
+    cssBorderRadius__disabled?: string;
 }
 
 const styles: ComponentStyles<CSSBorderRadiusClassNameContract, {}> = {
     cssBorderRadius: {
         ...applyControlWrapper(),
-    },
-    cssBorderRadius_control: {
         ...applyControlRegion(),
     },
     cssBorderRadius_input: {
@@ -35,9 +26,6 @@ const styles: ComponentStyles<CSSBorderRadiusClassNameContract, {}> = {
         ...applyInputStyle(),
         marginRight: "4px",
         width: "inherit",
-    },
-    cssBorderRadius_label: {
-        ...applyLabelStyle(),
     },
     cssBorderRadius_toggleButton: {
         ...applyInputStyle(),
@@ -61,6 +49,7 @@ const styles: ComponentStyles<CSSBorderRadiusClassNameContract, {}> = {
         transform: "scale(1.5)",
         transition: "all 0.1s ease-in-out",
     },
+    cssBorderRadius__disabled: {},
 };
 
 export default styles;
