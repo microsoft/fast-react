@@ -282,6 +282,7 @@ class FormTestPage extends React.Component<{}, FormTestPageState> {
             onSchemaChange: this.handleSchemaChange,
             childOptions: this.childOptions,
             controlPlugins: this.controlPlugins,
+            allowInvalidSelection: true,
         };
 
         if (typeof this.state.defaultBrowserErrors === "boolean") {

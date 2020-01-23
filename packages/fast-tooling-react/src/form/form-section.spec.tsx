@@ -42,6 +42,7 @@ const formSectionProps: FormSectionProps = {
     onUpdateSection: jest.fn(),
     validationErrors: null,
     default: {},
+    allowInvalidSelection: false,
     controlComponents: {
         [ControlType.array]: ArrayControl,
         [ControlType.button]: ButtonControl,
@@ -255,5 +256,90 @@ describe("FormSection", () => {
         );
 
         expect(rendered.find("FormSectionValidation")).toHaveLength(0);
+    });
+    test("should not render a oneOfAnyOf select if the schema does not contain a oneOfAnyOf", () => {
+        const schema: any = {
+            type: "object",
+        };
+        const rendered: any = mount(
+            <FormSection
+                {...formSectionProps}
+                managedClasses={managedClasses}
+                schema={schema}
+            />
+        );
+
+        expect(rendered.find("FormOneOfAnyOf")).toHaveLength(0);
+    });
+    test("should render a oneOfAnyOf select if the schema contains a oneOfAnyOf", () => {
+        const schema: any = {
+            oneOf: [],
+        };
+        const rendered: any = mount(
+            <FormSection
+                {...formSectionProps}
+                managedClasses={managedClasses}
+                schema={schema}
+            />
+        );
+
+        expect(rendered.find("FormOneOfAnyOf")).toHaveLength(1);
+    });
+    test("should trigger the addition of generated data when a oneOf is selected from a dropdown if the allowInvalidSelection is false", () => {
+        const onChangeHandler: any = jest.fn();
+        const oneOfItem: any = {
+            type: "boolean",
+        };
+        const schema: any = {
+            oneOf: [oneOfItem],
+        };
+        const rendered: any = mount(
+            <FormSection
+                {...formSectionProps}
+                onChange={onChangeHandler}
+                managedClasses={managedClasses}
+                schema={schema}
+            />
+        );
+
+        expect(onChangeHandler).not.toHaveBeenCalled();
+
+        rendered
+            .find("FormOneOfAnyOf")
+            .find("select")
+            .simulate("change", { target: { value: 0 } });
+
+        expect(onChangeHandler).toHaveBeenCalled();
+        expect(onChangeHandler.mock.calls[0][0]).toEqual({
+            dataLocation: "",
+            value: true,
+        });
+    });
+    test("should not trigger the addition of generated data when a oneOf is selected from a dropdown if the allowInvalidSelection is true", () => {
+        const onChangeHandler: any = jest.fn();
+        const oneOfItem: any = {
+            type: "boolean",
+        };
+        const schema: any = {
+            oneOf: [oneOfItem],
+        };
+        const rendered: any = mount(
+            <FormSection
+                {...formSectionProps}
+                onChange={onChangeHandler}
+                managedClasses={managedClasses}
+                allowInvalidSelection={true}
+                schema={schema}
+            />
+        );
+
+        expect(onChangeHandler).not.toHaveBeenCalled();
+
+        rendered
+            .find("FormOneOfAnyOf")
+            .find("select")
+            .simulate("change", { target: { value: 0 } });
+
+        expect(onChangeHandler).not.toHaveBeenCalled();
     });
 });

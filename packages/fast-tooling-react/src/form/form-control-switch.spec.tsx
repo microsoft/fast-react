@@ -125,6 +125,7 @@ const formControlSwitchProps: FormControlSwitchProps = {
     onChange: null,
     invalidMessage: "",
     validationErrors: [],
+    allowInvalidSelection: false,
     controlComponents: {
         [ControlType.array]: ArrayControl,
         [ControlType.button]: ButtonControl,

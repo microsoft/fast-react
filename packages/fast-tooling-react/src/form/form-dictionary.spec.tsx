@@ -53,6 +53,7 @@ const dictionaryProps: FormDictionaryProps = {
     enumeratedProperties: [],
     childOptions: [],
     validationErrors: undefined,
+    allowInvalidSelection: false,
     controlComponents: {
         [ControlType.array]: ArrayControl,
         [ControlType.button]: ButtonControl,
@@ -352,5 +353,27 @@ describe("FormDictionary", () => {
         );
 
         expect(rendered.html()).toContain("should be number");
+    });
+    test("should add an undefined value if the allowInvalidSelection is true", () => {
+        const onChangeCallback: any = jest.fn();
+        const rendered: any = mount(
+            <FormDictionary
+                {...dictionaryProps}
+                managedClasses={managedClasses}
+                onChange={onChangeCallback}
+                allowInvalidSelection={true}
+                data={{
+                    a: "foo",
+                    b: "bar",
+                }}
+            />
+        );
+
+        rendered
+            .find(`.${managedClasses.formDictionary_controlAddTrigger}`)
+            .at(0)
+            .simulate("click");
+
+        expect(onChangeCallback.mock.calls[0][0].value).toEqual(undefined);
     });
 });

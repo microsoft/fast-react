@@ -33,6 +33,7 @@ import FormOneOfAnyOf from "./form-one-of-any-of";
 import FormDictionary from "./form-dictionary";
 import { classNames } from "@microsoft/fast-web-utilities";
 import { ErrorObject } from "ajv";
+import { getValidationErrors } from "../utilities/ajv-validation";
 
 /**
  * Schema form component definition
@@ -50,17 +51,6 @@ class FormSection extends React.Component<
         managedClasses: {},
     };
 
-    public static getDerivedStateFromProps(
-        props: FormSectionProps,
-        state: FormSectionState
-    ): Partial<FormSectionState> {
-        if (props.schema !== state.schema) {
-            return getInitialOneOfAnyOfState(props.schema, props.data);
-        }
-
-        return null;
-    }
-
     constructor(props: FormSectionProps & ManagedClasses<FormSectionClassNameContract>) {
         super(props);
 
@@ -70,7 +60,7 @@ class FormSection extends React.Component<
     public render(): React.ReactNode {
         const invalidMessage: string = getErrorFromDataLocation(
             this.props.dataLocation,
-            this.props.validationErrors
+            this.getValidationErrors()
         );
         const isDisabled: boolean = this.isDisabled();
 
@@ -107,22 +97,40 @@ class FormSection extends React.Component<
      */
     private handleAnyOfOneOfClick = (activeIndex: number): void => {
         const updatedSchema: any = Object.assign(
-            omit(this.props.schema, [this.state.oneOfAnyOf.type]),
-            this.props.schema[this.state.oneOfAnyOf.type][activeIndex]
+            omit(this.props.schema, [this.state.oneOfAnyOfType]),
+            this.props.schema[this.state.oneOfAnyOfType][activeIndex]
         );
-        const updatedData: any = generateExampleData(updatedSchema, "");
 
-        this.props.onChange({
-            dataLocation: this.props.dataLocation,
-            value: updatedData,
-        });
+        if (!this.props.allowInvalidSelection) {
+            this.props.onChange({
+                dataLocation: this.props.dataLocation,
+                value: generateExampleData(updatedSchema, ""),
+            });
+        }
 
         this.setState({
             schema: updatedSchema,
-            oneOfAnyOf: {
-                type: this.state.oneOfAnyOf.type,
-                activeIndex,
-            },
+            oneOfAnyOfActiveIndex: activeIndex,
+            oneOfAnyOfValidationErrors: this.props.allowInvalidSelection
+                ? getValidationErrors(updatedSchema, void 0).map((value: ErrorObject) => {
+                      console.log(
+                          "validation error before",
+                          JSON.stringify(value, null, 2)
+                      );
+                      console.log("validation error after", {
+                          ...value,
+                          dataPath: `.${this.props.dataLocation}${
+                              value.dataPath === "" ? "" : "."
+                          }${value.dataPath}`,
+                      });
+                      return {
+                          ...value,
+                          dataPath: `${this.props.dataLocation}${
+                              value.dataPath === "" ? "" : "."
+                          }${value.dataPath}`,
+                      };
+                  })
+                : [],
         });
     };
 
@@ -175,7 +183,8 @@ class FormSection extends React.Component<
                 onChange={this.props.onChange}
                 onUpdateSection={this.props.onUpdateSection}
                 invalidMessage={invalidMessage}
-                validationErrors={this.props.validationErrors}
+                validationErrors={this.getValidationErrors()}
+                allowInvalidSelection={this.props.allowInvalidSelection}
                 displayValidationBrowserDefault={
                     this.props.displayValidationBrowserDefault
                 }
@@ -326,7 +335,7 @@ class FormSection extends React.Component<
                                     this.props.untitled,
                                 invalidMessage: getErrorFromDataLocation(
                                     dataLocation,
-                                    this.props.validationErrors
+                                    this.getValidationErrors()
                                 ),
                             };
 
@@ -381,10 +390,7 @@ class FormSection extends React.Component<
      * Renders a select if the root level has a oneOf or anyOf
      */
     private renderAnyOfOneOfSelect(): React.ReactNode {
-        if (
-            typeof this.state.oneOfAnyOf !== "undefined" &&
-            this.props.schema[this.state.oneOfAnyOf.type]
-        ) {
+        if (this.state.oneOfAnyOf && this.props.schema[this.state.oneOfAnyOfType]) {
             const unselectedOption: React.ReactNode = (
                 <option value={-1}>{"Select an option"}</option>
             );
@@ -396,7 +402,7 @@ class FormSection extends React.Component<
             return (
                 <FormOneOfAnyOf
                     label={get(this.props, "schema.title", "Configuration")}
-                    activeIndex={this.state.oneOfAnyOf.activeIndex}
+                    activeIndex={this.state.oneOfAnyOfActiveIndex}
                     onUpdate={this.handleAnyOfOneOfClick}
                 >
                     {unselectedOption}
@@ -439,7 +445,8 @@ class FormSection extends React.Component<
                     childOptions={this.props.childOptions}
                     onChange={this.props.onChange}
                     onUpdateSection={this.props.onUpdateSection}
-                    validationErrors={this.props.validationErrors}
+                    allowInvalidSelection={this.props.allowInvalidSelection}
+                    validationErrors={this.getValidationErrors()}
                     displayValidationBrowserDefault={
                         this.props.displayValidationBrowserDefault
                     }
@@ -489,13 +496,20 @@ class FormSection extends React.Component<
      */
     private getValidationErrorsForSectionValidation(): ErrorObject[] {
         if (
-            Array.isArray(this.props.validationErrors) &&
-            this.props.validationErrors.length > 1
+            (Array.isArray(this.props.validationErrors) &&
+                this.props.validationErrors.length > 1) ||
+            this.state.oneOfAnyOfValidationErrors.length > 1
         ) {
-            return this.props.validationErrors;
+            return this.getValidationErrors();
         }
 
         return [];
+    }
+
+    private getValidationErrors(): ErrorObject[] {
+        return this.state.oneOfAnyOfValidationErrors.concat(
+            this.props.validationErrors || []
+        );
     }
 
     /**
@@ -511,8 +525,8 @@ class FormSection extends React.Component<
         if (this.state.oneOfAnyOf) {
             const separator: string = this.props.schemaLocation === "" ? "" : ".";
             return `${this.props.schemaLocation}${separator}${
-                this.state.oneOfAnyOf.type
-            }[${this.state.oneOfAnyOf.activeIndex}]`;
+                this.state.oneOfAnyOfType
+            }[${this.state.oneOfAnyOfActiveIndex}]`;
         } else {
             return this.props.schemaLocation;
         }

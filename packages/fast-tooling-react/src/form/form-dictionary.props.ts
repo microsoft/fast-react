@@ -59,6 +59,13 @@ export interface FormDictionaryProps
      * The validation errors
      */
     validationErrors: ajv.ErrorObject[] | void;
+
+    /**
+     * Opt out of generating data that would be valid in the form
+     * which means some selections through the UI (such as selecting a oneOf)
+     * may create invalid data and validation errors.
+     */
+    allowInvalidSelection: boolean;
 }
 
 export interface FormDictionaryState {

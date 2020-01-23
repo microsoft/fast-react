@@ -71,32 +71,28 @@ export function getInitialOneOfAnyOfState(
     schema: any,
     data: any
 ): InitialOneOfAnyOfState {
-    let oneOfAnyOf: oneOfAnyOfType;
-    let oneOfAnyOfState: OneOfAnyOf;
+    const hasOneOfAnyOf: boolean = !!(schema.oneOf || schema.anyOf);
+    let type: oneOfAnyOfType;
     let activeIndex: number;
     let updatedSchema: any = schema;
 
-    if (schema.oneOf || schema.anyOf) {
-        oneOfAnyOf = schema.oneOf ? oneOfAnyOfType.oneOf : oneOfAnyOfType.anyOf;
-        activeIndex = getOneOfAnyOfActiveIndex(oneOfAnyOf, schema, data);
+    if (hasOneOfAnyOf) {
+        type = schema.oneOf ? oneOfAnyOfType.oneOf : oneOfAnyOfType.anyOf;
+        activeIndex = getOneOfAnyOfActiveIndex(type, schema, data);
         updatedSchema =
             typeof activeIndex === "undefined"
                 ? {
                       type: "undefined",
                   }
-                : Object.assign(
-                      omit(schema, [oneOfAnyOf]),
-                      schema[oneOfAnyOf][activeIndex]
-                  );
-        oneOfAnyOfState = {
-            type: oneOfAnyOf,
-            activeIndex,
-        };
+                : Object.assign(omit(schema, [type]), schema[type][activeIndex]);
     }
 
     return {
         schema: updatedSchema,
-        oneOfAnyOf: oneOfAnyOfState,
+        oneOfAnyOf: hasOneOfAnyOf,
+        oneOfAnyOfActiveIndex: activeIndex,
+        oneOfAnyOfType: type,
+        oneOfAnyOfValidationErrors: [],
     };
 }
 
@@ -140,7 +136,7 @@ export function getIsNotRequired(item: any, not?: string[]): boolean {
  * Gets the options for a oneOf/anyOf select
  */
 export function getOneOfAnyOfSelectOptions(schema: any, state: any): React.ReactNode {
-    return schema[state.oneOfAnyOf.type].map(
+    return schema[state.oneOfAnyOfType].map(
         (oneOfAnyOfOption: any, index: number): React.ReactNode => {
             return (
                 <option key={index} value={index}>
@@ -195,28 +191,6 @@ export function getOneOfAnyOfActiveIndex(type: string, schema: any, data: any): 
     }
 
     return activeIndex;
-}
-
-/**
- * Resolves generated example data with any matching data in the cache
- */
-export function resolveExampleDataWithCachedData(schema: any, cachedData: any): any {
-    const exampleData: any = generateExampleData(schema, "");
-    const curatedCachedData: any = cloneDeep(cachedData);
-
-    // removes any cached items which do not match and item in
-    // the example data and are not included in the schema properties
-    Object.keys(curatedCachedData).forEach((item: string) => {
-        if (
-            typeof exampleData[item] === "undefined" &&
-            (schema.properties && !schema.properties[item])
-        ) {
-            unset(curatedCachedData, item);
-        }
-    });
-
-    // look through the data cache, find any matching properties and merge them together
-    return mergeWith(exampleData, curatedCachedData, cachedDataResolver.bind(schema));
 }
 
 /**

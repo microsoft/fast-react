@@ -29,7 +29,22 @@ export interface InitialOneOfAnyOfState {
     /**
      * Whether there is a oneOf/anyOf at the root level
      */
-    oneOfAnyOf?: OneOfAnyOf;
+    oneOfAnyOf?: boolean;
+
+    /**
+     * The type (oneOf/anyOf)
+     */
+    oneOfAnyOfType?: oneOfAnyOfType;
+
+    /**
+     * The active index
+     */
+    oneOfAnyOfActiveIndex?: number;
+
+    /**
+     * The validation errors specific to the selected oneOf/anyOf
+     */
+    oneOfAnyOfValidationErrors: ErrorObject[];
 }
 
 export interface OneOfAnyOf {
@@ -170,6 +185,13 @@ export interface FormSectionProps {
      * The validation errors
      */
     validationErrors: ErrorObject[] | void;
+
+    /**
+     * Opt out of generating data that would be valid in the form
+     * which means some selections through the UI (such as selecting a oneOf)
+     * may create invalid data and validation errors.
+     */
+    allowInvalidSelection: boolean;
 
     /**
      * Display the validation inline

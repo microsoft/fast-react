@@ -207,7 +207,9 @@ class FormDictionary extends React.Component<
                 dataLocation: `${
                     this.props.dataLocation === "" ? "" : `${this.props.dataLocation}.`
                 }${key}`,
-                value: generateExampleData(this.props.additionalProperties, ""),
+                value: !this.props.allowInvalidSelection
+                    ? generateExampleData(this.props.additionalProperties, "")
+                    : void 0,
             });
         }
     };

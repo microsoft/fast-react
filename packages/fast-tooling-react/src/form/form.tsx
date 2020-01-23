@@ -68,6 +68,7 @@ class Form extends React.Component<
 
     public static defaultProps: Partial<FormProps> = {
         displayValidationBrowserDefault: true,
+        allowInvalidSelection: false,
     };
 
     public static getDerivedStateFromProps(
@@ -584,6 +585,7 @@ class Form extends React.Component<
                 untitled={this.untitled}
                 childOptions={this.props.childOptions}
                 validationErrors={this.state.validationErrors}
+                allowInvalidSelection={this.props.allowInvalidSelection}
                 displayValidationBrowserDefault={
                     this.props.displayValidationBrowserDefault
                 }

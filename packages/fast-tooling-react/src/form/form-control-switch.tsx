@@ -226,7 +226,9 @@ class FormControlSwitch extends React.Component<FormControlSwitchProps, {}> {
     }
 
     private handleAddExampleData = (additionalSchemaPathSyntax: string): any => {
-        return generateExampleData(this.props.schema, additionalSchemaPathSyntax);
+        if (!this.props.allowInvalidSelection) {
+            return generateExampleData(this.props.schema, additionalSchemaPathSyntax);
+        }
     };
 
     /**

@@ -99,14 +99,12 @@ describe("getInitialOneOfAnyOfState", () => {
             }
         );
 
-        expect(initialOneOfAnyOfNoData.oneOfAnyOf).toEqual({
-            type: oneOfAnyOfType.oneOf,
-            activeIndex: -1,
-        });
-        expect(initialOneOfAnyOfWithData.oneOfAnyOf).toEqual({
-            type: oneOfAnyOfType.oneOf,
-            activeIndex: 1,
-        });
+        expect(initialOneOfAnyOfNoData.oneOfAnyOf).toEqual(true);
+        expect(initialOneOfAnyOfNoData.oneOfAnyOfType).toEqual(oneOfAnyOfType.oneOf);
+        expect(initialOneOfAnyOfNoData.oneOfAnyOfActiveIndex).toEqual(-1);
+        expect(initialOneOfAnyOfWithData.oneOfAnyOf).toEqual(true);
+        expect(initialOneOfAnyOfWithData.oneOfAnyOfType).toEqual(oneOfAnyOfType.oneOf);
+        expect(initialOneOfAnyOfWithData.oneOfAnyOfActiveIndex).toEqual(1);
     });
     test("should correctly get the oneOf/anyOf schema and merge it with any definitions outside of the selected oneOf/anyOf item", () => {
         const initialOneOfAnyOfNoData: InitialOneOfAnyOfState = getInitialOneOfAnyOfState(

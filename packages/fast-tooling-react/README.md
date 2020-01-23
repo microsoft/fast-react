@@ -937,6 +937,10 @@ handleChange = (data) => {
 }
 ```
 
+### Automatic behavior
+
+By default the form will make attempts to provide valid data during the selection of options in the generated UI. One such case is when selecting from a `oneOf` dropdown. To override this and allow the form to be supplied with invalid data, set the `allowInvalidSelection` to `true`.
+
 ### Drag and drop
 
 Drag and drop is provided to the `Form` using the `react-dnd` package as well as the `HTML5Backend`. If you are using `react-dnd` somewhere else and need to implement the backend once, use the secondary export `BareForm`.
