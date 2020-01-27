@@ -87,7 +87,7 @@ async function onMessage(
 }
 
 /**
- * Re-evaluates all of the assigned recipies inside a given node.
+ * Re-evaluates all of the assigned recipes inside a given node.
  */
 async function updateTree(node: BaseNode): Promise<void> {
     if (!canHaveChildren(node)) {

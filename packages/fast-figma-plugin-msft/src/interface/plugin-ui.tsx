@@ -49,7 +49,7 @@ const recipeLabelStyleOverrides: ComponentStyleSheet<
 
 /**
  * At this point, this is essentially a controlled component.
- * State will be controlled by the main application and serilaized
+ * State will be controlled by the main application and serialized
  * state will be passed to this component to be parsed, set, and rendered
  *
  * There may be some local state we want to track that doesn't concern the primary application,
@@ -117,6 +117,7 @@ export class PluginUI extends React.Component<{}, PluginUIState> {
     private renderEditingUi(): JSX.Element {
         return (
             <div>
+                {this.state.luminance !== -1 ? "LUMINANCE" : null}
                 {this.state.fills.length > 0
                     ? this.renderRecipeSelector({
                           label: "Fill",

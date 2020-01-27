@@ -40,14 +40,20 @@ export interface PluginUIState {
      * The currently active textFill if any, otherwise null
      */
     activeTextFill: string;
+
+    /**
+     * The luminance setting of the node, between 0 and 1, or -1 to disable
+     */
+    luminance: number;
 }
 
 export const defaultState: PluginUIState = {
-    activeNodeType: null,
     activeFill: "",
+    activeNodeType: null,
     activeStroke: "",
     activeTextFill: "",
     fills: [],
+    luminance: -1,
     strokes: [],
     textFills: [],
 };
@@ -70,6 +76,9 @@ export async function getPluginUIState(node: SceneNode | null): Promise<PluginUI
             strokes: supports(node, "strokeFill")
                 ? [""].concat(await getRecipeNames("strokeFill"))
                 : defaultState.strokes,
+            luminance: supports(node, "luminance")
+                ? getPluginData(node, "luminance")
+                : defaultState.luminance,
             textFills: supports(node, "textFill")
                 ? [""].concat(await getRecipeNames("textFill"))
                 : defaultState.textFills,
