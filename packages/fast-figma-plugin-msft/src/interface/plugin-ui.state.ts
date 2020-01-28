@@ -1,6 +1,7 @@
 import { getRecipeNames } from "../color-recipies";
 import { setUIStateDataMessageCreator } from "../messaging/canvas";
 import { getPluginData, supports, supportsPluginData } from "../plugin-data";
+import { getDesignSystem } from "../utilities/design-system";
 
 /**
  * Define the react state object for the Plugin UI
@@ -76,9 +77,10 @@ export async function getPluginUIState(node: SceneNode | null): Promise<PluginUI
             strokes: supports(node, "strokeFill")
                 ? [""].concat(await getRecipeNames("strokeFill"))
                 : defaultState.strokes,
-            luminance: supports(node, "luminance")
-                ? getPluginData(node, "luminance")
-                : defaultState.luminance,
+            luminance:
+                supports(node, "luminance") && getPluginData(node, "luminance") === -1
+                    ? (await getDesignSystem(node)).baseLayerLuminance
+                    : defaultState.luminance,
             textFills: supports(node, "textFill")
                 ? [""].concat(await getRecipeNames("textFill"))
                 : defaultState.textFills,

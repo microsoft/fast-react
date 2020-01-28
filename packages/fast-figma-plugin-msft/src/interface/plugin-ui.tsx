@@ -115,6 +115,7 @@ export class PluginUI extends React.Component<{}, PluginUIState> {
     };
 
     private renderEditingUi(): JSX.Element {
+        console.log(this.state.luminance);
         return (
             <div>
                 {this.state.luminance !== -1 ? "LUMINANCE" : null}

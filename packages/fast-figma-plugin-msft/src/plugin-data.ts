@@ -1,5 +1,3 @@
-import { getPluginUIState, setPluginUIState } from "./interface/plugin-ui.state";
-import { getDesignSystem } from "./utilities/design-system";
 import {
     isComponentNode,
     isFrameNode,
@@ -10,7 +8,6 @@ import {
     isTextNode,
 } from "./utilities/node";
 import { ColorRecipeType } from "./color-recipies";
-import { PluginItem } from "@babel/core";
 
 /**
  * Describes the data stored by the plugin with https://www.figma.com/plugin-docs/api/properties/nodes-setplugindata/
@@ -73,7 +70,7 @@ export function supports(node: BaseNode, type: "strokeFill"): node is StrokeReci
 export function supports(node: BaseNode, type: "textFill"): node is TextFillRecipeNode;
 export function supports(node: BaseNode, type: "luminance"): node is LuminanceNode;
 export function supports(node: BaseNode, type: keyof PluginData): boolean {
-    return type === "backgroundFill" || type === "strokeFill"
+    return type === "backgroundFill" || type === "strokeFill" || type === "luminance"
         ? [
               isComponentNode,
               isFrameNode,
