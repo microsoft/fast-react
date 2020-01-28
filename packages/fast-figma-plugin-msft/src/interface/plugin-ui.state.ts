@@ -77,10 +77,11 @@ export async function getPluginUIState(node: SceneNode | null): Promise<PluginUI
             strokes: supports(node, "strokeFill")
                 ? [""].concat(await getRecipeNames("strokeFill"))
                 : defaultState.strokes,
-            luminance:
-                supports(node, "luminance") && getPluginData(node, "luminance") === -1
+            luminance: !supports(node, "luminance")
+                ? defaultState.luminance
+                : getPluginData(node, "luminance") === -1
                     ? (await getDesignSystem(node)).baseLayerLuminance
-                    : defaultState.luminance,
+                    : getPluginData(node, "luminance"),
             textFills: supports(node, "textFill")
                 ? [""].concat(await getRecipeNames("textFill"))
                 : defaultState.textFills,

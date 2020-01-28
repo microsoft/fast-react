@@ -1,8 +1,10 @@
 import { getPluginUIState, setPluginUIState } from "./interface/plugin-ui.state";
 import {
+    SET_BASE_LAYER_LUMINANCE,
     SET_FILL_RECIPE,
     SET_STROKE_RECIPE,
     SET_TEXT_FILL_RECIPE,
+    SetBaseLayerLuminanceData,
     SetFillRecipeData,
     SetStrokeRecipeData,
     SetTextFillRecipeData,
@@ -36,7 +38,11 @@ function onSelectionChange(): void {
 }
 
 async function onMessage(
-    message: SetFillRecipeData | SetTextFillRecipeData | SetStrokeRecipeData
+    message:
+        | SetFillRecipeData
+        | SetTextFillRecipeData
+        | SetStrokeRecipeData
+        | SetBaseLayerLuminanceData
 ): Promise<void> {
     const node: SceneNode | null = getActiveNode();
 
@@ -83,6 +89,13 @@ async function onMessage(
         if (color !== null) {
             paintNode(node, recipeType, color);
         }
+    } else if (message.type === SET_BASE_LAYER_LUMINANCE && supports(node, "luminance")) {
+        setPluginData(node, "luminance", message.value);
+
+        console.log(message.value);
+        setPluginUIState(getPluginUIState(node));
+
+        await updateTree(node);
     }
 }
 

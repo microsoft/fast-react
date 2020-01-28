@@ -21,6 +21,7 @@ import React from "react";
 import { isSetUIStateMessage } from "../messaging/canvas";
 import { isPluginMessageEvent, PluginMessageData } from "../messaging/common";
 import {
+    SET_BASE_LAYER_LUMINANCE,
     SET_FILL_RECIPE,
     SET_STROKE_RECIPE,
     SET_TEXT_FILL_RECIPE,
@@ -185,10 +186,15 @@ export class PluginUI extends React.Component<{}, PluginUIState> {
                     selected={this.state.luminance === 0}
                     selectedMessage={stringById("themeToggleLabelDark")}
                     unselectedMessage={stringById("themeToggleLabelLight")}
+                    onChange={this.handleThemeToggleChange}
                 />
             </div>
         );
     }
+
+    private handleThemeToggleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        this.handleRecipeValueChange(SET_BASE_LAYER_LUMINANCE, e.target.checked ? 0 : 1);
+    };
 
     private renderRecipeOption(option: string): JSX.Element {
         return (
@@ -201,7 +207,7 @@ export class PluginUI extends React.Component<{}, PluginUIState> {
         );
     }
 
-    private handleRecipeValueChange(type: string, value: string): void {
+    private handleRecipeValueChange(type: string, value: string | number): void {
         parent.postMessage({ pluginMessage: { type, value } }, "*");
     }
 
