@@ -7,6 +7,7 @@ import {
     Paragraph,
     Select,
     SelectOption,
+    Toggle,
 } from "@microsoft/fast-components-react-msft";
 import {
     DesignSystem,
@@ -115,10 +116,9 @@ export class PluginUI extends React.Component<{}, PluginUIState> {
     };
 
     private renderEditingUi(): JSX.Element {
-        console.log(this.state.luminance);
         return (
             <div>
-                {this.state.luminance !== -1 ? "LUMINANCE" : null}
+                {this.state.luminance !== -1 ? this.renderThemeToggle() : null}
                 {this.state.fills.length > 0
                     ? this.renderRecipeSelector({
                           label: "Fill",
@@ -174,6 +174,19 @@ export class PluginUI extends React.Component<{}, PluginUIState> {
                     {options.selectOptions.map(this.renderRecipeOption)}
                 </Select>
             </React.Fragment>
+        );
+    }
+
+    private renderThemeToggle(): JSX.Element {
+        return (
+            <div>
+                <Toggle
+                    inputId="theme"
+                    selected={this.state.luminance === 0}
+                    selectedMessage={stringById("themeToggleLabelDark")}
+                    unselectedMessage={stringById("themeToggleLabelLight")}
+                />
+            </div>
         );
     }
 

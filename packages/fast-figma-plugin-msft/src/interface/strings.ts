@@ -3,6 +3,9 @@ const strings = {
     noValidElementSelected: "Select an element to see style options.",
     // Displayed where the active note type is when no valid node type is selected
     invalidActiveNodeType: "N/A",
+    // Label for theme toggle
+    themeToggleLabelDark: "Dark theme",
+    themeToggleLabelLight: "Light theme",
 };
 
 // Simple implementation of string retrieval that should support localization down the line
