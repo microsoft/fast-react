@@ -9,6 +9,8 @@ import {
 import { PluginNode } from "./node";
 import { RecipeRegistry, RecipeTypes } from "./recipe-registry";
 import { PluginUIActiveNodeData, PluginUIProps } from "./ui";
+import { createColorPalette } from "@microsoft/fast-components-styles-msft";
+import { parseColorHexRGB } from "@microsoft/fast-colors";
 
 /**
  * Controller class designed to handle the business logic of the plugin.
@@ -71,7 +73,10 @@ export abstract class Controller {
                     type: node.type,
                     supports: node.supports(),
                     recipes: node.recipes,
-                    designSystem: node.designSystemOverrides,
+                    designSystem: {
+                        accentBaseColor: node.designSystem.accentBaseColor || "#0078D4",
+                        ...node.designSystemOverrides,
+                    },
                 })
             ),
             recipeOptions: selectedNodes.length
@@ -143,6 +148,17 @@ export abstract class Controller {
                 nodes.forEach(node =>
                     node.setDesignSystemProperty(message.property, message.value)
                 );
+
+                if (message.property === ("accentBaseColor" as any)) {
+                    const palette: string[] = createColorPalette(
+                        parseColorHexRGB(message.value as string)!
+                    );
+
+                    nodes.forEach(node =>
+                        node.setDesignSystemProperty("accentPalette", palette)
+                    );
+                }
+
                 break;
             case MessageAction.delete:
                 nodes.forEach(node => node.deleteDesignSystemProperty(message.property));

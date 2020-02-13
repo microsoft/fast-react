@@ -11,9 +11,13 @@ import React from "react";
 import { MessageAction, MessageTypes, UIMessage } from "../messaging";
 import { RecipeData, RecipeTypes } from "../recipe-registry";
 import Swatch from "./swatch";
-import { DesignSystem, StandardLuminance } from "@microsoft/fast-components-styles-msft";
+import {
+    DesignSystem,
+    DesignSystemDefaults,
+    StandardLuminance,
+} from "@microsoft/fast-components-styles-msft";
 import { refresh, revertChanges } from "./glyphs";
-
+import { ColorRGBA64, parseColorHexRGB } from "@microsoft/fast-colors";
 export interface PluginUIActiveNodeRecipeSupportOptions {
     label: string;
     options: RecipeData[];
@@ -143,7 +147,7 @@ export class PluginUI extends React.Component<PluginUIProps> {
                 {this.props.selectedNodes.some(node =>
                     node.supports.includes("designSystem")
                 )
-                    ? this.renderThemeSwitcher()
+                    ? this.renderDesignSystemConfig()
                     : null}
                 {this.props.recipeOptions
                     .sort((a, b) => {
@@ -313,6 +317,57 @@ export class PluginUI extends React.Component<PluginUIProps> {
                     </Label>
                 </Radio>
             </div>
+        );
+    }
+
+    private renderDesignSystemConfig(): JSX.Element {
+        return (
+            <React.Fragment>
+                {this.renderThemeSwitcher()}
+                {this.renderColorPicker("accentBaseColor")}
+                {/* {this.renderColorPicker("neutralBaseColor")} */}
+            </React.Fragment>
+        );
+    }
+
+    private renderColorPicker(type: "accentBaseColor"): JSX.Element {
+        const values = this.props.selectedNodes
+            .map(node => node.designSystem[type])
+            .filter(value => !!value);
+        const isAccent = type === "accentBaseColor";
+
+        const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+            const { value } = e.target;
+            const parsed = parseColorHexRGB(value);
+
+            if (parsed instanceof ColorRGBA64) {
+                this.props.dispatch({
+                    nodeIds: this.props.selectedNodes.map(node => node.id),
+                    type: MessageTypes.designSystem,
+                    action: MessageAction.assign,
+                    value: value.toUpperCase(),
+                    property: type,
+                });
+            }
+        };
+
+        return (
+            <Label>
+                <input
+                    type="color"
+                    disabled={values.length > 1}
+                    style={{ margin: "4px 4px 0 0" }}
+                    onChange={onChange}
+                    value={
+                        values.length
+                            ? values[0]
+                            : isAccent
+                                ? DesignSystemDefaults[type]
+                                : "#808080"
+                    }
+                />
+                {isAccent ? "Accent base color" : "Neutral base color"}
+            </Label>
         );
     }
 
