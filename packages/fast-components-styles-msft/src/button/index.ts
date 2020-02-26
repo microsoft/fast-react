@@ -163,8 +163,11 @@ const styles: ComponentStyles<ButtonClassNameContract, DesignSystem> = {
         ...highContrastOutline,
         "a&": {
             ...highContrastLinkOutline,
-            "&:hover": {
+            "&:not($button__disabled):hover": {
                 ...highContrastLinkBorder,
+                "& $button_beforeContent, & $button_afterContent": {
+                    ...highContrastLinkForeground,
+                },
             },
             "&$button__disabled": {
                 ...highContrastDisabledBorder,
@@ -245,9 +248,11 @@ const styles: ComponentStyles<ButtonClassNameContract, DesignSystem> = {
     button__lightweight: {
         ...applyTransparentBackplateStyles,
         "a&": {
-            "&:hover": {
+            "&:not($button__disabled):hover": {
                 [highContrastSelector]: {
                     "box-shadow": "none !important",
+                    color: highContrastLinkValue,
+                    fill: highContrastLinkValue,
                 },
                 "& $button_contentRegion::before": {
                     [highContrastSelector]: {
@@ -273,9 +278,11 @@ const styles: ComponentStyles<ButtonClassNameContract, DesignSystem> = {
         "border-width": "0",
         "justify-content": "flex-start",
         "a&": {
-            "&:hover": {
+            "&:not($button__disabled):hover": {
                 [highContrastSelector]: {
                     "box-shadow": "none !important",
+                    color: highContrastLinkValue,
+                    fill: highContrastLinkValue,
                 },
                 "& $button_contentRegion::before": {
                     [highContrastSelector]: {

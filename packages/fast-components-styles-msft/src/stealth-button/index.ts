@@ -44,16 +44,11 @@ const styles: ComponentStyles<StealthButtonClassNameContract, DesignSystem> = {
         ...highContrastStealth,
         "a&": {
             ...highContrastLinkOutline,
-            "&:hover": {
+            "&:not($button__disabled):hover": {
                 ...highContrastLinkBorder,
             },
             "&$button__disabled": {
                 ...highContrastDisabledBorder,
-                "&:hover": {
-                    [highContrastSelector]: {
-                        "box-shadow": "none !important",
-                    },
-                },
             },
         },
     },

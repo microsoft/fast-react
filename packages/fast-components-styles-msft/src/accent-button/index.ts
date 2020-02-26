@@ -66,7 +66,7 @@ const styles: ComponentStyles<AccentButtonClassNameContract, DesignSystem> = {
             "& $button_beforeContent, & $button_afterContent": {
                 ...highContrastLinkForeground,
             },
-            "&:hover": {
+            "&:not($button__disabled):hover": {
                 ...highContrastLinkBorder,
                 "& $button_beforeContent, & $button_afterContent": {
                     ...highContrastLinkForeground,
