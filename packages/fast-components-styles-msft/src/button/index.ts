@@ -99,7 +99,7 @@ const applyTransparentBackplateStyles: CSSRules<DesignSystem> = {
     "&$button__disabled, &$button__disabled $button_contentRegion::before": {
         ...transparentBackground,
     },
-    "&:hover:enabled": {
+    "&:not($button__disabled):hover": {
         color: accentForegroundHover,
         ...transparentBackground,
         ...highContrastHighlightForeground,
@@ -108,7 +108,7 @@ const applyTransparentBackplateStyles: CSSRules<DesignSystem> = {
             ...highContrastHighlightForeground,
         },
     },
-    "&:active:enabled": {
+    "&:not($button__disabled):active": {
         color: accentForegroundActive,
         fill: accentForegroundActive,
         ...transparentBackground,
@@ -140,14 +140,14 @@ const styles: ComponentStyles<ButtonClassNameContract, DesignSystem> = {
         color: neutralForegroundRest,
         fill: neutralForegroundRest,
         background: neutralFillRest,
-        "&:hover:enabled": {
+        "&:not($button__disabled):hover": {
             background: neutralFillHover,
             ...highContrastSelected,
             "& $button_beforeContent, & $button_afterContent": {
                 ...highContrastSelectedForeground,
             },
         },
-        "&:active:enabled": {
+        "&:not($button__disabled):active": {
             background: neutralFillActive,
         },
         ...applyFocusVisible<DesignSystem>({
@@ -180,11 +180,11 @@ const styles: ComponentStyles<ButtonClassNameContract, DesignSystem> = {
         color: accentForegroundCut,
         fill: accentForegroundCut,
         background: accentFillRest,
-        "&:hover:enabled": {
+        "&:not($button__disabled):hover": {
             background: accentFillHover,
             ...highContrastSelectedOutline,
         },
-        "&:active:enabled": {
+        "&:not($button__disabled):active": {
             background: accentFillActive,
         },
         ...applyFocusVisible<DesignSystem>({
@@ -214,7 +214,7 @@ const styles: ComponentStyles<ButtonClassNameContract, DesignSystem> = {
             neutralOutlineRest
         ),
         padding: format("0 {0}", horizontalSpacing(outlineWidth)),
-        "&:hover:enabled": {
+        "&:not($button__disabled):hover": {
             background: "transparent",
             border: format(
                 "{0} solid {1}",
@@ -223,7 +223,7 @@ const styles: ComponentStyles<ButtonClassNameContract, DesignSystem> = {
             ),
             ...highContrastSelected,
         },
-        "&:active:enabled": {
+        "&:not($button__disabled):active": {
             background: "transparent",
             border: format(
                 "{0} solid {1}",
@@ -290,11 +290,11 @@ const styles: ComponentStyles<ButtonClassNameContract, DesignSystem> = {
     },
     button__stealth: {
         background: neutralFillStealthRest,
-        "&:hover:enabled": {
+        "&:not($button__disabled):hover": {
             "background-color": neutralFillStealthHover,
             ...highContrastSelected,
         },
-        "&:active:enabled": {
+        "&:not($button__disabled):active": {
             "background-color": neutralFillStealthActive,
         },
         ...applyFocusVisible<DesignSystem>({

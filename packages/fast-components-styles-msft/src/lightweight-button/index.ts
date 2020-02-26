@@ -62,13 +62,13 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
             "background-color": "transparent",
             ...highContrastDisabledForeground,
         },
-        "&:hover:enabled": {
+        "&:not($button__disabled):hover": {
             color: accentForegroundHover,
             fill: accentForegroundHover,
             "background-color": "transparent",
             ...highContrastHighlightForeground,
         },
-        "&:active:enabled": {
+        "&:not($button__disabled):active": {
             color: accentForegroundActive,
             fill: accentForegroundActive,
             "background-color": "transparent",

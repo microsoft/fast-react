@@ -27,11 +27,11 @@ const styles: ComponentStyles<NeutralButtonClassNameContract, DesignSystem> = {
         color: neutralForegroundRest,
         fill: neutralForegroundRest,
         background: neutralFillRest,
-        "&:hover:enabled": {
+        "&:not($button__disabled):hover": {
             background: neutralFillHover,
             ...highContrastSelected,
         },
-        "&:active:enabled": {
+        "&:not($button__disabled):active": {
             background: neutralFillActive,
         },
         ...applyFocusVisible<DesignSystem>({

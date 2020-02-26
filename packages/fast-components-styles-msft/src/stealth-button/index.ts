@@ -27,11 +27,11 @@ const styles: ComponentStyles<StealthButtonClassNameContract, DesignSystem> = {
         color: neutralForegroundRest,
         fill: neutralForegroundRest,
         background: neutralFillStealthRest,
-        "&:hover:enabled": {
+        "&:not($button__disabled):hover": {
             "background-color": neutralFillStealthHover,
             ...highContrastSelected,
         },
-        "&:active:enabled": {
+        "&:not($button__disabled):active": {
             "background-color": neutralFillStealthActive,
         },
         ...applyFocusVisible<DesignSystem>({
