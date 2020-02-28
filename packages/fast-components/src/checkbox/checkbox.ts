@@ -55,7 +55,19 @@ function constructExternals(element: HTMLInputElement): ElementInternals {
         get form() {
             return element.form;
         },
-    } as any;
+        get labels() {
+            return element.labels as any; // Inconsistent typing, not sure why
+        },
+        get validity(): ValidityState {
+            return element.validity;
+        },
+        get willValidate(): boolean {
+            return element.willValidate;
+        },
+        get validationMessage(): string {
+            return element.validationMessage;
+        },
+    };
 }
 
 function formAssociated<T extends { new (...args: any[]): {} }>(constructor: T) {
