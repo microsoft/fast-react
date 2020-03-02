@@ -11,3 +11,11 @@ export default {
 };
 
 export const Mark = () => MarkTemplate;
+
+document.addEventListener("readystatechange", () => {
+    if (document.readyState === "complete") {
+        document.forms[0].addEventListener("change", e => {
+            console.log(e);
+        });
+    }
+});

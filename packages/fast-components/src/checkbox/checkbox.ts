@@ -1,4 +1,4 @@
-import { attr, FastElement, observable } from "@microsoft/fast-element";
+import { attr, FastElement, observable, Observable } from "@microsoft/fast-element";
 // import { ElementInternals, ValidityStateFlags } from "../types";
 /* tslint:disable */
 
@@ -167,23 +167,14 @@ export class Checkbox extends FastElement {
         return Checkbox.formAssociated ? this.elementInternals.form : this.proxy.form;
     }
 
-    // Not sure exaclty what these do so we might omit for now
-    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement
-    @attr({ attribute: "formaction" })
-    public formAction: string;
-    @attr({ attribute: "formenctype" })
-    public formEncType: string;
-    @attr({ attribute: "formmethod" })
-    public formMethod: string;
-    @attr({ attribute: "formnovalidate" })
-    public formNoValidate: boolean;
-    @attr({ attribute: "formtarget" })
-    public fromTarget: string;
-
     @attr
     public name: string; // Map to proxy element
+
     @attr
     public disabled: boolean; // Map to proxy element
+
+    @attr
+    public readonly: boolean; // Map to proxy element
 
     /**
      * Focus element when connected. (can we encapsulate this in a @autofocus?)
@@ -196,27 +187,68 @@ export class Checkbox extends FastElement {
      */
     @attr
     public required: boolean; // Map to proxy element. Should work automatically with ElementInternals
+
+    /**
+     * The element's value to be included in form submission when checked.
+     * Default to "on" to reach parity with input[type="checkbox"]
+     */
     @attr
-    public value: string; // Map to proxy element. Should maybe invoke setformValue? I think for this it should likely be the checked property but not sure
+    public value: string = "on"; // Map to proxy element.
+
+    /**
+     * Tracks whether the "checked" property has been changed.
+     * This is necessary to provide consistent behavior with
+     * normal input checkboxes
+     */
+    private dirtyChecked: boolean = false;
+
+    /**
+     * Set to true when the component has constructed
+     */
+    constructed: boolean = false;
 
     /**
      * Provides the default checkedness of the input element
      * Passed down to proxy
      */
     @attr({ attribute: "checked" })
-    public checkedAttribute: string | null = null; // Test - does this reflect?
+    public checkedAttribute: string | null;
+    private checkedAttributeChanged(): void {
+        this.defaultChecked = typeof this.checkedAttribute === "string";
+    }
 
     /**
      * Initialized to the value of the checked attribute. Can be changed independently of the "checked" attribute,
      * but changing the "checked" attribute always additionally sets this value.
      */
-    public defaultChecked: boolean;
+    @observable
+    public defaultChecked: boolean = !!this.checkedAttribute;
+    private defaultCheckedChanged(): void {
+        if (!this.dirtyChecked) {
+            // Setting this.checked will cause us to enter a dirty state,
+            // but if we are clean when defaultChecked is changed, we want to stay
+            // in a clean state, so reset this.dirtyChecked
+            this.checked = this.defaultChecked;
+            this.dirtyChecked = false;
+        }
+    }
 
     /**
      * The checked state of the control
      */
     @observable
-    public checked: boolean;
+    public checked: boolean = this.defaultChecked;
+    private checkedChanged(): void {
+        if (!this.dirtyChecked) {
+            this.dirtyChecked = true;
+        }
+
+        this.setFormValue();
+
+        if (this.constructed) {
+            this.dispatchEvent(new CustomEvent("change", { bubbles: true }));
+        }
+    }
 
     /**
      * The indeterminate state of the control
@@ -255,16 +287,27 @@ export class Checkbox extends FastElement {
             this.appendChild(this.proxy);
         }
 
-        // Lets see if there is a better way to abstract this relationship, becuase this should always return
-        // this.checkedAttribute unless it is set explicitly. When set explicitly, it will retain that value
-        // until explicitly change *or* the `checked` attribute is changed
-        this.defaultChecked = !!this.checkedAttribute;
-        this.checked = this.defaultChecked;
+        this.constructed = true;
+    }
+
+    private setFormValue(): void {
+        if (this.elementInternals) {
+            this.checked
+                ? this.elementInternals.setFormValue(this.value)
+                : // While the API doesn't claim to support null, passing null
+                  // removes the field from the submission data which is the
+                  // native behavior of an input[type="checkbox"]
+                  this.elementInternals.setFormValue(null as any);
+        }
     }
 
     connectedCallback() {
+        super.connectedCallback();
+
         if (this.autofocus) {
             this.focus();
         }
+
+        this.setFormValue();
     }
 }
