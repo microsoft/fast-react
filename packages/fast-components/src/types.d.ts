@@ -62,11 +62,18 @@ interface ElementInternals {
     /**
      * Sets both the state and submission value of internals target element to value.
      *
-     * If value is null, the element won't participate in form submission.
+     * While "null" isn't enumerated as a argument type (here)[https://html.spec.whatwg.org/multipage/custom-elements.html#the-elementinternals-interface],
+     * In practice it appears to remove the value from the form data on submission. Adding it as a valid type here
+     * becuase that capability is required for checkbox and radio types
      */
-    setFormValue(value: File | string | FormData, state?: File | string | FormData): void;
+    setFormValue(
+        value: File | string | FormData | null,
+        state?: File | string | FormData
+    ): void;
     /**
-     * Marks internals target element as suffering from the constraints indicated by the flags argument, and sets the element's validation message to message. If anchor is specified, the user agent might use it to indicate problems with the constraints of internals target element when the form owner is validated interactively or reportValidity() is called.
+     * Marks internals target element as suffering from the constraints indicated by the flags argument,
+     * and sets the element's validation message to message. If anchor is specified, the user agent might use
+     * it to indicate problems with the constraints of internals target element when the form owner is validated interactively or reportValidity() is called.
      */
     setValidity(flags: ValidityStateFlags, message?: string, anchor?: HTMLElement): void;
 }
