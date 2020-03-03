@@ -71,57 +71,61 @@ import { attr, FastElement, observable, Observable } from "@microsoft/fast-eleme
 // }
 
 // function formAssociated<T extends { new (...args: any[]): {} }>(constructor: T) {
-//     class FromAssociated extends constructor implements ElementInternals {
+//     abstract class FromAssociated extends constructor implements ElementInternals {
 //         public static get formAssociated(): boolean {
 //             return "ElementInternals" in window;
 //         }
-
+//
+//         protected abstract proxy: HTMLInputElement | HTMLTextAreaElement;
+//
 //         /**
 //          * Returns a reference to the parent form. Returns null if there  is no parent form
 //          */
 //         public get form(): HTMLFormElement | null {
 //             return this.elementInternals.form;
 //         }
-
+//
 //         public get labels(): NodeList {
 //             return this.elementInternals.labels;
 //         }
-
+//
 //         public get validity(): ValidityState {
 //             return this.elementInternals.validity;
 //         }
-
+//
 //         public get willValidate(): boolean {
 //             return this.elementInternals.willValidate;
 //         }
-
+//
 //         public get validationMessage(): string {
 //             return this.elementInternals.validationMessage;
 //         }
-
+//
 //         /**
 //          * implementation of element internals
 //          */
 //         private elementInternals: ElementInternals;
-
-//         private proxy: HTMLInputElement;
+//
+//         // private proxy: HTMLInputElement;
 //         constructor(...args: any[]) {
 //             super(...args);
-
-//             if (typeof (this as any).attachInternals === "function") {
-//                 this.elementInternals = (this as any).attachInternals();
-//             } else {
-//                 this.proxy = document.createElement("input");
-//                 this.proxy.setAttribute("type", "checkbox"); // TODO
-
-//                 if (this instanceof HTMLElement) {
-//                     this.appendChild(this.proxy);
-
-//                     this.elementInternals = constructExternals(this.proxy);
-//                 }
-//             }
+//
+//             console.log("WTF EH")
+//
+//             // if (FromAssociated.formAssociated) {
+//             //     this.elementInternals = (this as any).attachInternals();
+//             // } else {
+//             //     this.proxy = document.createElement("input");
+//             //     this.proxy.setAttribute("type", "checkbox"); // TODO
+//
+//             //     if (this instanceof HTMLElement) {
+//             //         this.appendChild(this.proxy);
+//
+//             //         this.elementInternals = constructExternals(this.proxy);
+//             //     }
+//             // }
 //         }
-
+//
 //         public setValidity(
 //             flags: ValidityStateFlags,
 //             message?: string,
@@ -132,33 +136,33 @@ import { attr, FastElement, observable, Observable } from "@microsoft/fast-eleme
 //         public reportValidity(): boolean {
 //             return this.elementInternals.reportValidity();
 //         }
-
+//
 //         public checkValidity(): boolean {
 //             return this.elementInternals.checkValidity();
 //         }
-
+//
 //         public setFormValue(
 //             value: File | string | FormData,
 //             state: File | string | FormData
 //         ): void {
-//             this.elementInternals.setFormValue(value, state);
+//             // this.elementInternals.setFormValue(value, state);
 //         }
 //     }
-
+//
 //     return FromAssociated;
 // }
 
-// export interface Checkbox extends ElementInternals {}
-
-// @formAssociated
-
-export class Checkbox extends FastElement {
+export abstract class FormAssociated extends FastElement {
+    /**
+     * Form associated
+     */
     public static get formAssociated(): boolean {
         return "ElementInternals" in window;
     }
 
-    private elementInternals: ElementInternals;
-    private proxy: HTMLInputElement;
+    protected abstract proxy: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+
+    protected elementInternals: ElementInternals;
 
     /**
      * Properties related to the parent form
@@ -169,24 +173,107 @@ export class Checkbox extends FastElement {
 
     @attr
     public name: string; // Map to proxy element
+    private nameChanged(): void {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.name = this.name;
+        }
+    }
 
     @attr
     public disabled: boolean; // Map to proxy element
+    private disabledChanged(): void {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.disabled = this.disabled;
+        }
+    }
 
-    @attr
-    public readonly: boolean; // Map to proxy element
+    /**
+     * This isn't available on select elements.
+     */
+    @attr({ attribute: "readonly" })
+    public readOnly: boolean; // Map to proxy element
+    private readOnlyChanged(): void {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.readOnly = this.readOnly;
+        }
+    }
 
     /**
      * Focus element when connected. (can we encapsulate this in a @autofocus?)
+     * map to proxy
      */
     @attr
     public autofocus: boolean;
+    private autofocusChanged(): void {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.autofocus = this.autofocus;
+        }
+    }
 
     /**
      * Require the field prior to form submission
      */
     @attr
-    public required: boolean; // Map to proxy element. Should work automatically with ElementInternals
+    public required: boolean = false; // Map to proxy element
+    private requiredChanged(): void {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.required = this.required;
+        }
+    }
+
+    public get validity(): ValidityState {
+        return Checkbox.formAssociated
+            ? this.elementInternals.validity
+            : this.proxy.validity;
+    }
+
+    public get validationMessage(): string {
+        return Checkbox.formAssociated
+            ? this.elementInternals.validationMessage
+            : this.proxy.validationMessage;
+    }
+
+    public get willValidate(): boolean {
+        return Checkbox.formAssociated
+            ? this.elementInternals.willValidate
+            : this.proxy.willValidate;
+    }
+
+    constructor() {
+        super();
+
+        if (FormAssociated.formAssociated) {
+            this.elementInternals = (this as any).attachInternals();
+        }
+    }
+
+    public connectedCallback() {
+        super.connectedCallback();
+
+        if (!FormAssociated.formAssociated) {
+            this.appendChild(this.proxy);
+        }
+    }
+
+    protected setFormValue(): void {
+        // if (this.elementInternals) {
+        //     this.checked
+        //         ? this.elementInternals.setFormValue(this.value)
+        //         : // While the API doesn't claim to support null, passing null
+        //           // removes the field from the submission data which is the
+        //           // native behavior of an input[type="checkbox"]
+        //           this.elementInternals.setFormValue(null as any);
+        // } else if (this.proxy) {
+        //     this.proxy.value = this.value;
+        // }
+    }
+}
+
+export class Checkbox extends FormAssociated {
+    /**
+     * The proxy element if ElementInternals does not exist
+     */
+    protected proxy: HTMLInputElement = document.createElement("input");
 
     /**
      * The element's value to be included in form submission when checked.
@@ -194,6 +281,16 @@ export class Checkbox extends FastElement {
      */
     @attr
     public value: string = "on"; // Map to proxy element.
+
+    /**
+     * Provides the default checkedness of the input element
+     * Passed down to proxy
+     */
+    @attr({ attribute: "checked" })
+    public checkedAttribute: string | null;
+    private checkedAttributeChanged(): void {
+        this.defaultChecked = typeof this.checkedAttribute === "string";
+    }
 
     /**
      * Tracks whether the "checked" property has been changed.
@@ -205,17 +302,7 @@ export class Checkbox extends FastElement {
     /**
      * Set to true when the component has constructed
      */
-    constructed: boolean = false;
-
-    /**
-     * Provides the default checkedness of the input element
-     * Passed down to proxy
-     */
-    @attr({ attribute: "checked" })
-    public checkedAttribute: string | null;
-    private checkedAttributeChanged(): void {
-        this.defaultChecked = typeof this.checkedAttribute === "string";
-    }
+    private constructed: boolean = false;
 
     /**
      * Initialized to the value of the checked attribute. Can be changed independently of the "checked" attribute,
@@ -245,6 +332,10 @@ export class Checkbox extends FastElement {
 
         this.setFormValue();
 
+        if (this.proxy && this.proxy.isConnected) {
+            this.proxy.checked = this.checked;
+        }
+
         if (this.constructed) {
             this.dispatchEvent(new CustomEvent("change", { bubbles: true }));
         }
@@ -256,49 +347,12 @@ export class Checkbox extends FastElement {
     @observable
     public indeterminate: boolean = false;
 
-    public get validity(): ValidityState {
-        return Checkbox.formAssociated
-            ? this.elementInternals.validity
-            : this.proxy.validity;
-    }
-
-    public get validationMessage(): string {
-        return Checkbox.formAssociated
-            ? this.elementInternals.validationMessage
-            : this.proxy.validationMessage;
-    }
-
-    public get willValidate(): boolean {
-        return Checkbox.formAssociated
-            ? this.elementInternals.willValidate
-            : this.proxy.willValidate;
-    }
-
     constructor() {
         super();
 
-        if (Checkbox.formAssociated) {
-            this.elementInternals = (this as any).attachInternals();
-        } else {
-            this.proxy = document.createElement("input");
-            this.proxy.setAttribute("type", "checkbox");
-            this.proxy.style.display = "none";
-
-            this.appendChild(this.proxy);
-        }
+        this.proxy.setAttribute("type", "checkbox");
 
         this.constructed = true;
-    }
-
-    private setFormValue(): void {
-        if (this.elementInternals) {
-            this.checked
-                ? this.elementInternals.setFormValue(this.value)
-                : // While the API doesn't claim to support null, passing null
-                  // removes the field from the submission data which is the
-                  // native behavior of an input[type="checkbox"]
-                  this.elementInternals.setFormValue(null as any);
-        }
     }
 
     connectedCallback() {
