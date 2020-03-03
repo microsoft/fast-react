@@ -74,19 +74,39 @@ export abstract class FormAssociated extends FastElement {
      * map to proxy
      */
     @attr
-    public autofocus: boolean;
+    public autofocus: boolean; // Map to proxy element
+    private autofocusChanged = (): void => {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.autofocus = this.autofocus;
+        }
+    };
 
     @attr
     public disabled: boolean = false; // Map to proxy element
+    private disabledChanged = (): void => {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.disabled = this.disabled;
+        }
+    };
 
     @attr
     public name: string; // Map to proxy element
+    private nameChanged = (): void => {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.name = this.name;
+        }
+    };
 
     /**
      * Require the field prior to form submission
      */
     @attr
     public required: boolean = false; // Map to proxy element
+    private requiredChanged = (): void => {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.required = this.required;
+        }
+    };
 
     // @reflectTarget
     protected abstract proxy: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
@@ -146,28 +166,6 @@ export abstract class FormAssociated extends FastElement {
                     this.form.submit(); // Match input behavior
                 }
                 break;
-        }
-    }
-    private autofocusChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.autofocus = this.autofocus;
-        }
-    }
-
-    private disabledChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.disabled = this.disabled;
-        }
-    }
-
-    private nameChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.name = this.name;
-        }
-    }
-    private requiredChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.required = this.required;
         }
     }
 }
