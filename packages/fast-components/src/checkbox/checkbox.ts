@@ -1,67 +1,11 @@
 import { attr, FastElement, observable, Observable } from "@microsoft/fast-element";
-import { Keyboard } from "puppeteer";
-// import { ElementInternals, ValidityStateFlags } from "../types";
-
+/* tslint:disable */
 export abstract class FormAssociated extends FastElement {
     /**
      * Form associated
      */
     public static get formAssociated(): boolean {
         return "ElementInternals" in window;
-    }
-
-    // @reflectTarget
-    protected abstract proxy: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
-
-    protected elementInternals: ElementInternals;
-
-    @attr
-    public id: string;
-
-    @attr
-    public value: string | File | FormData = "";
-
-    /**
-     * Focus element when connected. (can we encapsulate this in a @autofocus?)
-     * map to proxy
-     */
-    @attr
-    public autofocus: boolean;
-    private autofocusChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.autofocus = this.autofocus;
-        }
-    }
-
-    @attr
-    public disabled: boolean = false; // Map to proxy element
-    private disabledChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.disabled = this.disabled;
-        }
-
-        this.setAttribute("aria-disabled", this.disabled.toString());
-    }
-
-    @attr
-    public name: string; // Map to proxy element
-    private nameChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.name = this.name;
-        }
-    }
-
-    /**
-     * Require the field prior to form submission
-     */
-    @attr
-    public required: boolean = false; // Map to proxy element
-    private requiredChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.required = this.required;
-        }
-
-        this.setAttribute("aria-required", this.disabled.toString());
     }
 
     public get validity(): ValidityState {
@@ -119,6 +63,36 @@ export abstract class FormAssociated extends FastElement {
         }
     }
 
+    @attr
+    public id: string;
+
+    @attr
+    public value: string | File | FormData = "";
+
+    /**
+     * Focus element when connected. (can we encapsulate this in a @autofocus?)
+     * map to proxy
+     */
+    @attr
+    public autofocus: boolean;
+
+    @attr
+    public disabled: boolean = false; // Map to proxy element
+
+    @attr
+    public name: string; // Map to proxy element
+
+    /**
+     * Require the field prior to form submission
+     */
+    @attr
+    public required: boolean = false; // Map to proxy element
+
+    // @reflectTarget
+    protected abstract proxy: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+
+    protected elementInternals: ElementInternals;
+
     constructor() {
         super();
 
@@ -169,26 +143,43 @@ export abstract class FormAssociated extends FastElement {
         switch (e.keyCode) {
             case 13: // enter
                 if (this.form instanceof HTMLFormElement) {
-                    this.form.submit(); // Match input behavior. This might need to go to common behavior
+                    this.form.submit(); // Match input behavior
                 }
                 break;
+        }
+    }
+    private autofocusChanged(): void {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.autofocus = this.autofocus;
+        }
+    }
+
+    private disabledChanged(): void {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.disabled = this.disabled;
+        }
+    }
+
+    private nameChanged(): void {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.name = this.name;
+        }
+    }
+    private requiredChanged(): void {
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.required = this.required;
         }
     }
 }
 
 export class Checkbox extends FormAssociated {
-    /**
-     * The proxy element if ElementInternals does not exist
-     */
-    protected proxy: HTMLInputElement = document.createElement("input");
-
     @attr({ attribute: "readonly" })
     public readOnly: boolean; // Map to proxy element
-    private readOnlyChanged(): void {
+    private readOnlyChanged = (): void => {
         if (this.proxy instanceof HTMLElement) {
             this.proxy.readOnly = this.readOnly;
         }
-    }
+    };
 
     /**
      * The element's value to be included in form submission when checked.
@@ -196,11 +187,11 @@ export class Checkbox extends FormAssociated {
      */
     @attr
     public value: string = "on"; // Map to proxy element.
-    private valueChanged(): void {
+    private valueChanged = (): void => {
         if (this.proxy instanceof HTMLElement) {
             this.proxy.value = this.value;
         }
-    }
+    };
 
     /**
      * Provides the default checkedness of the input element
@@ -208,9 +199,56 @@ export class Checkbox extends FormAssociated {
      */
     @attr({ attribute: "checked" })
     public checkedAttribute: string | null;
-    private checkedAttributeChanged(): void {
+    private checkedAttributeChanged = (): void => {
         this.defaultChecked = typeof this.checkedAttribute === "string";
-    }
+    };
+
+    /**
+     * Initialized to the value of the checked attribute. Can be changed independently of the "checked" attribute,
+     * but changing the "checked" attribute always additionally sets this value.
+     */
+    @observable
+    public defaultChecked: boolean = !!this.checkedAttribute;
+    private defaultCheckedChanged = (): void => {
+        if (!this.dirtyChecked) {
+            // Setting this.checked will cause us to enter a dirty state,
+            // but if we are clean when defaultChecked is changed, we want to stay
+            // in a clean state, so reset this.dirtyChecked
+            this.checked = this.defaultChecked;
+            this.dirtyChecked = false;
+        }
+    };
+
+    /**
+     * The checked state of the control
+     */
+    @observable
+    public checked: boolean = this.defaultChecked;
+    private checkedChanged = (): void => {
+        if (!this.dirtyChecked) {
+            this.dirtyChecked = true;
+        }
+
+        this.setFormValue();
+
+        if (this.proxy instanceof HTMLElement) {
+            this.proxy.checked = this.checked;
+        }
+
+        if (this.constructed) {
+            this.dispatchEvent(new CustomEvent("change", { bubbles: true }));
+        }
+    };
+
+    /**
+     * The indeterminate state of the control
+     */
+    @observable
+    public indeterminate: boolean = false;
+    /**
+     * The proxy element if ElementInternals does not exist
+     */
+    protected proxy: HTMLInputElement = document.createElement("input");
 
     /**
      * Tracks whether the "checked" property has been changed.
@@ -224,63 +262,14 @@ export class Checkbox extends FormAssociated {
      */
     private constructed: boolean = false;
 
-    /**
-     * Initialized to the value of the checked attribute. Can be changed independently of the "checked" attribute,
-     * but changing the "checked" attribute always additionally sets this value.
-     */
-    @observable
-    public defaultChecked: boolean = !!this.checkedAttribute;
-    private defaultCheckedChanged(): void {
-        if (!this.dirtyChecked) {
-            // Setting this.checked will cause us to enter a dirty state,
-            // but if we are clean when defaultChecked is changed, we want to stay
-            // in a clean state, so reset this.dirtyChecked
-            this.checked = this.defaultChecked;
-            this.dirtyChecked = false;
-        }
-    }
-
-    /**
-     * The checked state of the control
-     */
-    @observable
-    public checked: boolean = this.defaultChecked;
-    private checkedChanged(): void {
-        if (!this.dirtyChecked) {
-            this.dirtyChecked = true;
-        }
-
-        this.setFormValue();
-
-        // Is there a better way to reflect these attributes?
-        this.setAttribute("aria-checked", this.checked.toString());
-        this.setAttribute("tabindex", "0");
-
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.checked = this.checked;
-        }
-
-        if (this.constructed) {
-            this.dispatchEvent(new CustomEvent("change", { bubbles: true }));
-        }
-    }
-
-    /**
-     * The indeterminate state of the control
-     */
-    @observable
-    public indeterminate: boolean = false;
-
     constructor() {
         super();
 
         this.proxy.setAttribute("type", "checkbox");
-
-        this.setAttribute("role", "checkbox");
         this.constructed = true;
     }
 
-    connectedCallback() {
+    public connectedCallback() {
         super.connectedCallback();
 
         if (this.autofocus) {
