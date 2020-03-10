@@ -284,6 +284,7 @@ class Tabs extends Foundation<TabsHandledProps, TabsUnhandledProps, TabsState> {
                 this.getSlot(TabsSlot.tabPanel)
             )[0];
         }
+
         return React.cloneElement(
             this.getChildrenBySlot(
                 tabItem.props.children,

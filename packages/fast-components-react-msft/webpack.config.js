@@ -81,8 +81,8 @@ module.exports = (env, args) => {
             extensions: [".js", ".tsx", ".ts", ".json"],
             alias: {
                 "lodash-es": path.resolve("./node_modules/lodash-es"),
-                react: path.resolve("./node_modules/react"),
-                "react-dom": path.resolve("./node_modules/react-dom"),
+                react: path.resolve("./node_modules/preact/compat"),
+                "react-dom": path.resolve("./node_modules/preact/compat"),
             },
         },
         devServer: {

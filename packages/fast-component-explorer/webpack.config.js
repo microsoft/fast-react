@@ -89,6 +89,8 @@ module.exports = (env, args) => {
             alias: {
                 lodash: path.resolve(rootNodeModules, "lodash-es"),
                 "lodash-es": path.resolve(rootNodeModules, "lodash-es"),
+                react: path.resolve(rootNodeModules, "preact/compat"),
+                "react-dom": path.resolve(rootNodeModules, "preact/compat"),
             },
         },
         devServer: {

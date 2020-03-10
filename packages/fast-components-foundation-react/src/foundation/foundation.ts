@@ -146,6 +146,10 @@ abstract class Foundation<H, U, S> extends React.Component<H & U & FoundationPro
         return React.Children.map(
             nodes,
             (node: React.ReactNode): React.ReactNode | null => {
+                console.log(
+                    this.hasSlot(slot, node),
+                    `has slot in withSlot for ${slot} slot`
+                );
                 return this.hasSlot(slot, node) ? node : null;
             }
         );
@@ -168,7 +172,7 @@ abstract class Foundation<H, U, S> extends React.Component<H & U & FoundationPro
      */
     private hasSlot<T>(slot: T | T[], node: React.ReactNode): boolean {
         const nodeSlot: T = get(node, "props.slot");
-
+        console.log(nodeSlot, "node slot");
         return Array.isArray(slot) ? slot.indexOf(nodeSlot) !== -1 : slot === nodeSlot;
     }
 

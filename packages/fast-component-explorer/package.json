@@ -97,6 +97,7 @@
     "lint-staged": "^8.1.0",
     "lodash-es": "^4.17.11",
     "prettier": "^1.15.3",
+    "preact": "^10.3.4",
     "raf-throttle": "^2.0.3",
     "react": "^16.6.3",
     "react-dnd": "^7.4.5",
