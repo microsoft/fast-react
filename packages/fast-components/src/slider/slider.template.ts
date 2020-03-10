@@ -19,14 +19,17 @@ export const SliderTemplate = html<Slider>`
         <div part="track" class="track"></div>
       </slot>
       <slot name="thumb">
-        <div part="thumb" class="thumb" style=${x => x.position}></div>
+        <!-- remove this to remove error -->
+        <div part="thumb" class="thumb" style="${x => x.position}"></div>
       </slot>
-      ${when(
+      ${
+          /* when(
           x => x.childNodes.length,
           html`
           <slot></slot>
       `
-      )}
+      ) */ ""
+      }
       </div>
     </div>
 `;
