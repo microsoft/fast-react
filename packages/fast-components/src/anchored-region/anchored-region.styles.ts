@@ -2,15 +2,12 @@ import { css } from "@microsoft/fast-element";
 
 export const AnchoredRegionStyles = css`
     :host {
-        contain: layout;
-        overflow: visible;
-        height: 0px;
-        width: 0px;
     }
 
-    .root {
+    .region {
         position: relative;
-        height: fit-content;
-        width: fit-content;
+        height: 100px;
+        width: 100px;
+        background: yellow;
     }
 `;
