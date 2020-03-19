@@ -8,7 +8,7 @@ import { TreeItemStyles as styles } from "./tree-item.styles";
     template,
     styles,
 })
-export class FASTCard extends TreeItem {}
+export class FASTTreeItem extends TreeItem {}
 export * from "./tree-item.template";
 export * from "./tree-item.styles";
 export * from "./tree-item";
