@@ -9,5 +9,5 @@ export const MenuTemplate = html<Menu>`
     <slot
         ${ref("items")}
     ></slot>
-</template
+</template>
 `;

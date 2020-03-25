@@ -2,6 +2,7 @@ import { attr, FastElement } from "@microsoft/fast-element";
 import { MenuItemRole } from "../menu-item";
 import { inRange, invert } from "lodash-es";
 import {
+    isHTMLElement,
     keyCodeArrowDown,
     keyCodeArrowLeft,
     keyCodeArrowRight,
@@ -12,10 +13,9 @@ import {
 } from "@microsoft/fast-web-utilities";
 
 export class Menu extends FastElement {
-    @attr
-    public autofocus: boolean = false;
-
     public items: HTMLSlotElement;
+
+    private menuItems: Element[];
 
     /**
      * The index of the focusable element in the items array
@@ -30,94 +30,75 @@ export class Menu extends FastElement {
     public connectedCallback(): void {
         super.connectedCallback();
 
-        const children: Element[] = this.domChildren();
-        const focusIndex: number = children.findIndex(this.isFocusableElement);
+        // store a reference to our children
+        this.menuItems = this.domChildren();
+        const focusIndex = this.menuItems.findIndex(this.isFocusableElement);
 
+        // if our focus index is not -1 we have items
         if (focusIndex !== -1) {
             this.focusIndex = focusIndex;
-
-            children[focusIndex].setAttribute("tabindex", "0");
         }
 
-        if (this.autofocus) {
-            this.focus();
-        }
+        for (let item: number = 0; item < this.menuItems.length; item++) {
+            if (item === focusIndex) {
+                this.menuItems[item].setAttribute("tabindex", "0");
+            }
 
-        for (const child of children) {
-            child.addEventListener("blur", () => this.handleMenuItemFocus);
+            this.menuItems[item].addEventListener("blur", this.handleMenuItemFocus);
         }
     }
 
-    public handleMenuKeyDown = (e: KeyboardEvent): void => {
+    public handleMenuKeyDown(e: KeyboardEvent): boolean {
+        console.log(e, "event prior to switch");
         switch (e.keyCode) {
             case keyCodeArrowDown:
             case keyCodeArrowRight:
-                e.preventDefault();
-                this.setFocus(this.focusIndex + 1, 1);
+                // if I'm a submenu, open me
+                // if I'm not a submenu, go forward one index
+                console.log("next item");
                 break;
-
             case keyCodeArrowUp:
             case keyCodeArrowLeft:
-                e.preventDefault();
-                this.setFocus(this.focusIndex - 1, -1);
+                // if I'm a submenu, close me
+                // if I'm not a submenu, go back one index
+                console.log("previous item");
                 break;
-
             case keyCodeEnd:
-                e.preventDefault();
-                this.setFocus(this.domChildren().length - 1, -1);
+                // set focus on last item
+                console.log("last item");
                 break;
-
             case keyCodeHome:
-                e.preventDefault();
-                this.setFocus(0, 1);
-                break;
-            default:
-                console.log(e, "default");
+                // set focus on first item
+                console.log("first item");
                 break;
         }
-    };
 
-    public focus(): void {
-        this.setFocus(this.focusIndex === -1 ? 0 : this.focusIndex, 1);
+        return true;
     }
 
-    private isMenuItemElement(element: Element): element is HTMLElement {
-        return (
-            element instanceof HTMLElement &&
-            Menu.focusableElementRoles.hasOwnProperty(element.getAttribute("role") as any)
-        );
-    }
-
-    /**
-     * Determines if a given element should be focusable by the menu
-     */
-    private isFocusableElement = (element: Element): element is HTMLElement => {
-        return this.isMenuItemElement(element) && !this.isDisabledElement(element);
-    };
-
-    private isDisabledElement = (element: Element): element is HTMLElement => {
-        return (
-            this.isMenuItemElement(element) &&
-            element.getAttribute("aria-disabled") === "true"
-        );
-    };
-
-    /**
-     * Return an array of all focusabled elements that are children
-     * of the context menu
-     */
     private domChildren(): Element[] {
         return Array.from(this.children);
     }
 
-    /**
-     * Ensure we always validate our internal state on item focus events, otherwise
-     * the component can get out of sync from click events
-     */
-    private handleMenuItemFocus = (e: FocusEvent): void => {
-        const target: Element = e.currentTarget as Element;
-        const focusIndex: number = this.domChildren().indexOf(target);
-        console.log("handle menu item focus called");
+    private isMenuItemElement = (el: Element): el is HTMLElement => {
+        return (
+            isHTMLElement(el) &&
+            Menu.focusableElementRoles.hasOwnProperty(el.getAttribute("role") as string)
+        );
+    };
+
+    private isDisabledElement = (el: Element): el is HTMLElement => {
+        return this.isMenuItemElement(el) && el.getAttribute("aria-disabled") === "true";
+    };
+
+    private isFocusableElement = (el: Element): el is HTMLElement => {
+        return this.isMenuItemElement(el) && !this.isDisabledElement(el);
+    };
+
+    private handleMenuItemFocus = (e: KeyboardEvent): void => {
+        const target = e.currentTarget as Element;
+        const focusIndex: number = this.menuItems.indexOf(target);
+
         if (this.isDisabledElement(target)) {
             target.blur();
             return;
@@ -128,28 +109,23 @@ export class Menu extends FastElement {
         }
     };
 
-    /**
-     * Sets focus to the nearest focusable element to the supplied focusIndex.
-     * The adjustment controls how the function searches for other focusable elements
-     * if the element at the focusIndex is not focusable. A positive number will search
-     * towards the end of the children array, whereas a negative number will search towards
-     * the beginning of the children array.
-     */
     private setFocus(focusIndex: number, adjustment: number): void {
-        const children: Element[] = this.domChildren();
+        const children: Element[] = this.menuItems;
 
         while (inRange(focusIndex, children.length)) {
             const child: Element = children[focusIndex];
 
             if (this.isFocusableElement(child)) {
-                // set the previously focus element to -1
-                children[this.focusIndex].setAttribute("tabindex", "-1");
-
-                // set our new focused child to 0
+                // update the tabindex of next focusable element
                 child.setAttribute("tabindex", "0");
 
+                // focus the element
                 child.focus();
 
+                // change the previous index to -1
+                children[this.focusIndex].setAttribute("tabindex", "-1");
+
+                // update the focus index
                 this.focusIndex = focusIndex;
 
                 break;
