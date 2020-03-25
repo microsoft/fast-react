@@ -860,5 +860,18 @@ describe("horizontal overflow", (): void => {
         rendered.instance()["updateScrollAnimation"]();
         expect(rendered.instance().isScrollAnimating).toEqual(false);
     });
+
+    test("isOverflow does not throw with an invalid ref", (): void => {
+        const rendered: any = mount(
+            <HorizontalOverflow managedClasses={managedClasses}>
+                {imageSet1}
+            </HorizontalOverflow>
+        );
+
+        rendered.instance().horizontalOverflowItemsRef = React.createRef<
+            HTMLDivElement
+        >();
+        expect(rendered.instance()["isOverflow"]()).toBe(false);
+    });
 });
 /* tslint:enable:no-string-literal */
