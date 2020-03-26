@@ -7,6 +7,7 @@ Here you'll find specifications for custom elements and other library features.
 ## Specs
 - [Badge](./badge.md)
 - [Card](./card/card.md)
+- [Carousel](./carousel/carousel.md)
 - [Checkbox](./checkbox.md)
 - [Dialog](./dialog/dialog.md)
 - [Flipper](./flipper/flipper.md)
