@@ -22,3 +22,4 @@ Here you'll find specifications for custom elements and other library features.
 - [Tooltip](./tooltip.md)
 - [Tree View](./tree-view/tree-view.md)
 - [Typography](./typography.md)
+- [Slider](./slider/slider.md)
