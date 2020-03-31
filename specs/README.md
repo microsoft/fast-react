@@ -16,6 +16,7 @@ Here you'll find specifications for custom elements and other library features.
 - [Progress](./progress.md)
 - [Slider](./slider/slider.md)
 - [Switch](./switch.md)
+- [Tabs](./tabs/tabs.md)
 - [Text Area](./text-area/text-area.md)
 - [Text Field](./text-field/text-field.md)
 - [Tooltip](./tooltip.md)
