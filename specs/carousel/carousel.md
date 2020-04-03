@@ -182,7 +182,7 @@ Parts:
 - play-toggle
 - next-button
 - previous-button
-- tab-list - control to select specific slides
+- tab-list - slide picker control to select specific slides
 
 
 ---
