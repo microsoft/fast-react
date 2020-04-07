@@ -23,7 +23,7 @@
     "eslint": "eslint . --ext .ts",
     "eslint:fix": "eslint . --ext .ts --fix",
     "test": "yarn eslint && yarn unit-tests",
-    "build": "yarn generate-palettes && tsc -p ./tsconfig.build.json",
+    "build": "yarn generate-palettes && tsc -p ./tsconfig.build.json && yarn generate-css",
     "build:watch": "yarn build -- -w",
     "prepare": "yarn clean:dist && yarn build",
     "prettier": "prettier --config ../../../.prettierrc --write \"**/*.ts\"",
@@ -31,7 +31,8 @@
     "unit-tests": "jest --runInBand",
     "unit-tests:watch": "jest --watch",
     "watch": "yarn build -- -w --preserveWatchOutput",
-    "generate-palettes": "rollup --config && node .tmp/generate-palettes.js && yarn clean:tmp"
+    "generate-palettes": "rollup --config && node .tmp/generate-palettes.js && yarn clean:tmp",
+    "generate-css": "rollup --config rollup.config.css.js && node .tmp/generate-css.js && yarn clean:tmp"
   },
   "jest": {
     "collectCoverage": true,
