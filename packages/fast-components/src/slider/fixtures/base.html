@@ -1,48 +1,8 @@
 <fast-design-system-provider use-defaults>
     <div style="display: flex; flex-direction: column; justify-content: space-evenly; width: 500px; height: 100vh">
 
+        <fast-slider min="1" max="100"></fast-slider>
         <fast-slider min="1" max="100" value="50"></fast-slider>
 
-        <!-- Custom labels (rtl) -->
-        <div style="display: flex; flex-direction: column; height:min-content">
-            <label for="rtl-slider" style="margin-left: 8px;">rtl support</label>
-            <div dir="rtl" style="width: 100%;">
-                <fast-slider
-                    id="rtl-slider"
-                    min="0"
-                    max="100"
-                    step="10"
-                    value="80"
-                >
-                    <fast-slider-label
-                        position="10"
-                    >
-                        10
-                    </fast-slider-label>
-                    <fast-slider-label
-                        position="20"
-                    >
-                        20
-                    </fast-slider-label>
-                    <fast-slider-label
-                        position="40"
-                    >
-                        40
-                    </fast-slider-label>
-                    <fast-slider-label
-                        position="60"
-                    >
-                        60
-                    </fast-slider-label>                                                
-                    <fast-slider-label
-                        position="80"
-                    >
-                        80
-                    </fast-slider-label>
-                </fast-slider>
-            </div>
-        </div>
-
-        <!-- vertical -->
     </div>
 </fast-design-system-provider>

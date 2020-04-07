@@ -61,18 +61,14 @@ export class Slider extends FormAssociated<HTMLInputElement>
     @attr
     public value: string; // Map to proxy element.
     private valueChanged(): void {
+        console.log("valueChanged called this.value:", this.value);
         if (Number(this.value) === Number.NaN) {
             this.value = "1";
         }
 
-        if (this.value === "0") {
-            console.log("this.value was changed to 0");
-        }
-
         if (this.proxy instanceof HTMLElement) {
             console.log(
-                "valueChanged, proxy is htmlElement, calling updateFOrm() value:"
-                    .toString,
+                "valueChanged, proxy is htmlElement, calling updateFOrm() value:",
                 this.value
             );
             this.updateForm();
@@ -197,7 +193,9 @@ export class Slider extends FormAssociated<HTMLInputElement>
         if (this.value === "") {
             console.log("this.value === '' inside setupDefaultValue()");
             console.log(`setupDefaultValue max:${this.max} this.min: ${this.min}`);
-            this.value = `${this.convertToConstrainedValue((this.max - this.min) / 2)}`;
+            this.value = `${this.convertToConstrainedValue(
+                Math.round((Number(this.max) - Number(this.min)) / 2)
+            )}`;
             console.log("calling updateForm with value:", this.value);
             this.updateForm();
         }
