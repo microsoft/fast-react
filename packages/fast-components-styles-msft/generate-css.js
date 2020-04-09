@@ -1,7 +1,7 @@
 const jss = require("jss").default;
 const preset = require("jss-preset-default").default;
 // import * as preset from "jss-preset-default";
-import { AccentButtonStyles } from "./src";
+import { AccentButtonStyles, ButtonStyles } from "./src";
 import fs from "fs";
 
 function generateClassName(rule, sheet) {
@@ -10,8 +10,8 @@ function generateClassName(rule, sheet) {
 
 jss.setup(preset());
 const style = jss
-    .createStyleSheet(AccentButtonStyles, { generateClassName })
+    .createStyleSheet(ButtonStyles, { generateClassName })
     .update({})
     .toString();
 
-fs.writeFileSync("./dist/accent-button/style.css", style);
+fs.writeFileSync("./dist/button/style.css", style);
