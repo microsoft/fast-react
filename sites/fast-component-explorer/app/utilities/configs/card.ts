@@ -9,7 +9,7 @@ import { ComponentViewConfig } from "./data.props";
 
 const cardConfig: ComponentViewConfig<CardProps> = {
     schema: cardSchema,
-    component: Card,
+    component: Card as any,
     guidance: Guidance,
     scenarios: [
         {

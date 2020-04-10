@@ -6,7 +6,7 @@ import { Card } from "./";
 
 storiesOf("Card", module)
     .add("With image", () => (
-        <Card>
+        <Card managedClasses={{ card: "bar" }}>
             <Image src="https://placehold.it/300x300/414141" alt="Placeholder image" />
         </Card>
     ))
