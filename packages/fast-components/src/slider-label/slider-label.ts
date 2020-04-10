@@ -1,5 +1,5 @@
-import { attr, FastElement, observable } from "@microsoft/fast-element";
-import { SliderConfiguration, SliderOrientation } from "../slider";
+import { attr, FastElement, observable, Observable } from "@microsoft/fast-element";
+import { SliderConfiguration, SliderOrientation, FASTSlider } from "../slider";
 import {
     Direction,
     convertStylePropertyPixelsToNumber,
@@ -39,6 +39,21 @@ export class SliderLabel extends FastElement {
         this.getSliderConfiguration();
         this.setStyleForOrientation();
         this.positionStyle = this.positionAsStyle();
+
+        const notifier = Observable.getNotifier(this.parentNode as FASTSlider);
+        const handler = {
+            handleChange(source: any, propertyName: string) {
+                // respond to the change here
+                if (propertyName === "direction" || propertyName === "position") {
+                    console.log("source:", source, " property:", propertyName);
+                }
+            },
+        };
+
+        notifier.subscribe(handler, "direction");
+        notifier.subscribe(handler, "value");
+        notifier.subscribe(handler, "max");
+        notifier.subscribe(handler, "position");
     }
 
     private setStyleForOrientation = (): void => {
@@ -50,23 +65,26 @@ export class SliderLabel extends FastElement {
     };
 
     private isSliderConfig(node: any): node is SliderConfiguration {
-        return node.max !== undefined && node.min !== undefined;
+        return (
+            node.getAttribute("max") !== undefined &&
+            node.getAttribute("min") !== undefined
+        );
     }
 
     private getSliderConfiguration = (): void => {
-        if (!this.isSliderConfig(this.parentNode)) {
-            console.log("parent is not a FASTSlider, no min and max");
-            this.config = defaultConfig;
-        } else {
-            const { min, max, direction, orientation } = this
-                .parentNode as SliderConfiguration;
-            this.config = {
-                min,
-                max,
-                direction: direction || Direction.ltr,
-                orientation: orientation || SliderOrientation.horizontal,
-            };
-        }
+        // if (!this.isSliderConfig(this.parentNode)) {
+        //     this.config = defaultConfig;
+        // } else {
+        const parentConfig = this.parentNode as any;
+        this.config = {
+            min: parentConfig.getAttribute("min") || defaultConfig.min,
+            max: parentConfig.getAttribute("max") || defaultConfig.max,
+            direction: parentConfig.getAttribute("direction") || Direction.ltr,
+            orientation:
+                parentConfig.getAttribute("orientation") || SliderOrientation.horizontal,
+        };
+        console.log("this.config:", this.config);
+        // }
     };
 
     private positionAsStyle = (): any => {

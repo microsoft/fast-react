@@ -28,7 +28,7 @@ export class Slider extends FormAssociated<HTMLInputElement>
     public track: HTMLDivElement;
     public thumb: HTMLDivElement;
 
-    @observable
+    @attr
     public direction: Direction = Direction.ltr;
 
     @observable
@@ -139,6 +139,7 @@ export class Slider extends FormAssociated<HTMLInputElement>
         this.direction = this.getDirection();
         if (this.direction === Direction.rtl) {
             this.value = `${this.value}`;
+            this.direction = Direction.rtl;
         }
         this.updateForm();
         this.setupTrackConstraints();
@@ -162,6 +163,7 @@ export class Slider extends FormAssociated<HTMLInputElement>
         const incrementedValString: string =
             incrementedVal < Number(this.max) ? `${incrementedVal}` : `${this.max}`;
         this.value = incrementedValString;
+        this.direction = Direction.rtl;
         this.updateForm();
     };
 
