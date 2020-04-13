@@ -15,18 +15,21 @@ function neutralForegroundHintAlgorithm(
     return accessibleAlgorithm(neutralPalette, targetContrast, 0, 0, 0, 0);
 }
 
-/**
- * Hint text for normal sized text, less than 18pt normal weight
- */
-export const neutralForegroundHint: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-    SwatchFamilyType.rest,
-    colorRecipeFactory(neutralForegroundHintAlgorithm(4.5))
-);
+// /**
+//  * Hint text for normal sized text, less than 18pt normal weight
+//  */
+// export const neutralForegroundHint: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+//     SwatchFamilyType.rest,
+//     colorRecipeFactory(neutralForegroundHintAlgorithm(4.5))
+// );
 
-/**
- * Hint text for large sized text, greater than 18pt or 16pt and bold
- */
-export const neutralForegroundHintLarge: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-    SwatchFamilyType.rest,
-    colorRecipeFactory(neutralForegroundHintAlgorithm(3))
-);
+// /**
+//  * Hint text for large sized text, greater than 18pt or 16pt and bold
+//  */
+// export const neutralForegroundHintLarge: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+//     SwatchFamilyType.rest,
+//     colorRecipeFactory(neutralForegroundHintAlgorithm(3))
+// );
+
+export const neutralForegroundHint = "var(--neutral-foreground-hint)";
+export const neutralForegroundHintLarge = "var(--neutral-foreground-hint-large)";

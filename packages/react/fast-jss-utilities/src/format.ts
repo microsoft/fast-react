@@ -2,22 +2,24 @@ import { isString } from "lodash-es";
 
 export function format<T>(
     value: string,
-    ...args: Array<(designSystem: T) => string>
+    ...args: Array<((designSystem: T) => string) | string>
 ): (designSystem: T) => string {
     return (designSystem: T): string => {
         return args.reduce(
             (
                 reducedValue: string,
-                currentValue: (designSystem: T) => string,
+                currentValue: ((designSystem: T) => string) | string,
                 index: number
             ): string => {
                 return reducedValue.replace(
                     new RegExp(`\\{${index}\\}`, "g"),
-                    currentValue(designSystem)
+                    typeof currentValue === "string"
+                        ? currentValue
+                        : currentValue(designSystem)
                 );
             },
             value
-        );
+        ) as string;
     };
 }
 

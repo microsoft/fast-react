@@ -1,5 +1,6 @@
 const jss = require("jss").default;
 const preset = require("jss-preset-default").default;
+
 // import * as preset from "jss-preset-default";
 import { AccentButtonStyles, ButtonStyles, CardStyles } from "./src";
 import fs from "fs";
@@ -10,8 +11,12 @@ function generateClassName(rule, sheet) {
 
 jss.setup(preset());
 const style = jss
-    .createStyleSheet(CardStyles, { generateClassName })
+    .createStyleSheet(ButtonStyles, { generateClassName })
     .update({})
     .toString();
 
-fs.writeFileSync("./dist/card/style.css", style);
+fs.mkdir("./css/button/", { recursive: true }, err => {
+    if (err) throw err;
+
+    fs.writeFileSync("./css/button/style.css", style);
+});

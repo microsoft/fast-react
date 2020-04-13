@@ -78,7 +78,7 @@ export function inputFieldStyles(
             ...highContrastDisabledBorder,
         },
         "&::placeholder": {
-            color: neutralForegroundHint(neutralFillInputRest),
+            color: neutralForegroundHint,
             [highContrastSelector]: {
                 color: HighContrastColor.disabledText,
             },
@@ -116,7 +116,7 @@ export function filledInputFieldStyles(): CSSRules<{}> {
             "border-color": neutralFocus,
         },
         "&::placeholder": {
-            color: neutralForegroundHint(neutralFillRest),
+            color: neutralForegroundHint,
             [highContrastSelector]: {
                 color: HighContrastColor.disabledText,
             },

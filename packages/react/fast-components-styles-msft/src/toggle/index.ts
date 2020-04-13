@@ -159,7 +159,7 @@ const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
                     toPx(subtract(focusOutlineWidth, outlineWidth)),
                     neutralFocus,
                     toPx(add(focusOutlineWidth, outlineWidth)),
-                    neutralFocusInnerAccent(accentFillRest)
+                    neutralFocusInnerAccent
                 ),
                 "border-color": neutralFocus,
                 ...highContrastDoubleFocus,

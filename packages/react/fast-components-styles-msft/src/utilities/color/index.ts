@@ -2,7 +2,7 @@
  * Text exports
  */
 export {
-    neutralForeground,
+    // neutralForeground,
     neutralForegroundRest,
     neutralForegroundHover,
     neutralForegroundActive,
@@ -21,11 +21,11 @@ export {
 } from "./neutral-foreground-hint";
 
 export {
-    accentForeground,
+    // accentForeground,
     accentForegroundRest,
     accentForegroundHover,
     accentForegroundActive,
-    accentForegroundLarge,
+    // accentForegroundLarge,
     accentForegroundLargeRest,
     accentForegroundLargeHover,
     accentForegroundLargeActive,
@@ -35,7 +35,7 @@ export {
  * Fill exports
  */
 export {
-    neutralFill,
+    // neutralFill,
     neutralFillRest,
     neutralFillHover,
     neutralFillActive,
@@ -43,7 +43,7 @@ export {
 } from "./neutral-fill";
 
 export {
-    neutralFillStealth,
+    // neutralFillStealth,
     neutralFillStealthRest,
     neutralFillStealthHover,
     neutralFillStealthActive,
@@ -58,7 +58,7 @@ export {
 } from "./neutral-fill-toggle";
 
 export {
-    neutralFillInput,
+    // neutralFillInput,
     neutralFillInputRest,
     neutralFillInputHover,
     neutralFillInputActive,
@@ -66,12 +66,12 @@ export {
 } from "./neutral-fill-input";
 
 export {
-    accentFill,
+    // accentFill,
     accentFillRest,
     accentFillHover,
     accentFillActive,
     accentFillSelected,
-    accentFillLarge,
+    // accentFillLarge,
     accentFillLargeRest,
     accentFillLargeHover,
     accentFillLargeActive,
@@ -84,7 +84,7 @@ export { neutralFillCard } from "./neutral-fill-card";
  * Border exports
  */
 export {
-    neutralOutline,
+    // neutralOutline,
     neutralOutlineRest,
     neutralOutlineHover,
     neutralOutlineActive,

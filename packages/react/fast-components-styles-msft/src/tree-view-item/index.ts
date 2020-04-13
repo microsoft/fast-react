@@ -183,7 +183,7 @@ const styles: ComponentStyles<TreeViewItemClassNameContract, DesignSystem> = {
             top: toPx(divide(subtract(heightNumber(), getScaledLineHeight("t7")), 2)),
             width: "3px",
             height: applyScaledLineHeight("t7"),
-            background: accentForegroundRest(neutralFillStealthSelected),
+            background: accentForegroundRest,
             left: directionSwitch(toPx(focusOutlineWidth), "unset"),
             right: directionSwitch("unset", toPx(focusOutlineWidth)),
             ...applyCornerRadius(),

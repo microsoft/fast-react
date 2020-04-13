@@ -39,30 +39,36 @@ function neutralFillAlgorithm(
     };
 }
 
-export const neutralFillRest: SwatchRecipe = colorRecipeFactory(
-    neutralFillAlgorithm(neutralFillRestDelta)
-);
-export const neutralFillHover: SwatchRecipe = colorRecipeFactory(
-    neutralFillAlgorithm(neutralFillHoverDelta)
-);
-export const neutralFillActive: SwatchRecipe = colorRecipeFactory(
-    neutralFillAlgorithm(neutralFillActiveDelta)
-);
-export const neutralFillFocus: SwatchRecipe = colorRecipeFactory(
-    neutralFillAlgorithm(neutralFillFocusDelta)
-);
-export const neutralFillSelected: SwatchRecipe = colorRecipeFactory(
-    neutralFillAlgorithm(neutralFillSelectedDelta)
-);
+// export const neutralFillRest: SwatchRecipe = colorRecipeFactory(
+//     neutralFillAlgorithm(neutralFillRestDelta)
+// );
+// export const neutralFillHover: SwatchRecipe = colorRecipeFactory(
+//     neutralFillAlgorithm(neutralFillHoverDelta)
+// );
+// export const neutralFillActive: SwatchRecipe = colorRecipeFactory(
+//     neutralFillAlgorithm(neutralFillActiveDelta)
+// );
+// export const neutralFillFocus: SwatchRecipe = colorRecipeFactory(
+//     neutralFillAlgorithm(neutralFillFocusDelta)
+// );
+// export const neutralFillSelected: SwatchRecipe = colorRecipeFactory(
+//     neutralFillAlgorithm(neutralFillSelectedDelta)
+// );
 
-export const neutralFill: ColorRecipe<FillSwatchFamily> = colorRecipeFactory(
-    (designSystem: DesignSystem): FillSwatchFamily => {
-        return {
-            rest: neutralFillRest(designSystem),
-            hover: neutralFillHover(designSystem),
-            active: neutralFillActive(designSystem),
-            focus: neutralFillFocus(designSystem),
-            selected: neutralFillSelected(designSystem),
-        };
-    }
-);
+// export const neutralFill: ColorRecipe<FillSwatchFamily> = colorRecipeFactory(
+//     (designSystem: DesignSystem): FillSwatchFamily => {
+//         return {
+//             rest: neutralFillRest(designSystem),
+//             hover: neutralFillHover(designSystem),
+//             active: neutralFillActive(designSystem),
+//             focus: neutralFillFocus(designSystem),
+//             selected: neutralFillSelected(designSystem),
+//         };
+//     }
+// );
+
+export const neutralFillRest = "var(--neutral-fill-rest)";
+export const neutralFillHover = "var(--neutral-fill-hover)";
+export const neutralFillActive = "var(--neutral-fill-active)";
+export const neutralFillFocus = "var(--neutral-fill-focus)";
+export const neutralFillSelected = "var(--neutral-fill-selected)";

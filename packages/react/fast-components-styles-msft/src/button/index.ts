@@ -195,7 +195,7 @@ const styles: ComponentStyles<ButtonClassNameContract, DesignSystem> = {
             "box-shadow": format(
                 "0 0 0 {0} inset {1}",
                 toPx(focusOutlineWidth),
-                neutralFocusInnerAccent(accentFillRest)
+                neutralFocusInnerAccent
             ),
             ...highContrastDoubleFocus,
         }),

@@ -44,10 +44,7 @@ const styles: ComponentStyles<AccentButtonClassNameContract, DesignSystem> = {
         },
         ...applyFocusVisible<DesignSystem>({
             "border-color": neutralFocus,
-            "box-shadow": format(
-                "0 0 0 2px inset {0}",
-                neutralFocusInnerAccent(accentFillRest)
-            ),
+            "box-shadow": format("0 0 0 2px inset {0}", neutralFocusInnerAccent),
             ...highContrastDoubleFocus,
         }),
         "&:disabled": {

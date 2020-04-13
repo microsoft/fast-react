@@ -47,30 +47,36 @@ function neutralFillStealthAlgorithm(
     };
 }
 
-export const neutralFillStealthRest: ColorRecipe<Swatch> = colorRecipeFactory(
-    neutralFillStealthAlgorithm(neutralFillStealthRestDelta)
-);
-export const neutralFillStealthHover: ColorRecipe<Swatch> = colorRecipeFactory(
-    neutralFillStealthAlgorithm(neutralFillStealthHoverDelta)
-);
-export const neutralFillStealthActive: ColorRecipe<Swatch> = colorRecipeFactory(
-    neutralFillStealthAlgorithm(neutralFillStealthActiveDelta)
-);
-export const neutralFillStealthFocus: ColorRecipe<Swatch> = colorRecipeFactory(
-    neutralFillStealthAlgorithm(neutralFillStealthFocusDelta)
-);
-export const neutralFillStealthSelected: ColorRecipe<Swatch> = colorRecipeFactory(
-    neutralFillStealthAlgorithm(neutralFillStealthSelectedDelta)
-);
+// export const neutralFillStealthRest: ColorRecipe<Swatch> = colorRecipeFactory(
+//     neutralFillStealthAlgorithm(neutralFillStealthRestDelta)
+// );
+// export const neutralFillStealthHover: ColorRecipe<Swatch> = colorRecipeFactory(
+//     neutralFillStealthAlgorithm(neutralFillStealthHoverDelta)
+// );
+// export const neutralFillStealthActive: ColorRecipe<Swatch> = colorRecipeFactory(
+//     neutralFillStealthAlgorithm(neutralFillStealthActiveDelta)
+// );
+// export const neutralFillStealthFocus: ColorRecipe<Swatch> = colorRecipeFactory(
+//     neutralFillStealthAlgorithm(neutralFillStealthFocusDelta)
+// );
+// export const neutralFillStealthSelected: ColorRecipe<Swatch> = colorRecipeFactory(
+//     neutralFillStealthAlgorithm(neutralFillStealthSelectedDelta)
+// );
 
-export const neutralFillStealth: ColorRecipe<FillSwatchFamily> = colorRecipeFactory(
-    (designSystem: DesignSystem) => {
-        return {
-            rest: neutralFillStealthRest(designSystem),
-            hover: neutralFillStealthHover(designSystem),
-            active: neutralFillStealthActive(designSystem),
-            focus: neutralFillStealthFocus(designSystem),
-            selected: neutralFillStealthSelected(designSystem),
-        };
-    }
-);
+// export const neutralFillStealth: ColorRecipe<FillSwatchFamily> = colorRecipeFactory(
+//     (designSystem: DesignSystem) => {
+//         return {
+//             rest: neutralFillStealthRest(designSystem),
+//             hover: neutralFillStealthHover(designSystem),
+//             active: neutralFillStealthActive(designSystem),
+//             focus: neutralFillStealthFocus(designSystem),
+//             selected: neutralFillStealthSelected(designSystem),
+//         };
+//     }
+// );
+
+export const neutralFillStealthRest = "var(--neutral-fill-stealth-rest)";
+export const neutralFillStealthHover = "var(--neutral-fill-stealth-hover)";
+export const neutralFillStealthActive = "var(--neutral-fill-stealth-active)";
+export const neutralFillStealthFocus = "var(--neutral-fill-stealth-focus)";
+export const neutralFillStealthSelected = "var(--neutral-fill-stealth-selected)";

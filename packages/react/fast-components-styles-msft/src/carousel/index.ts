@@ -27,32 +27,16 @@ import {
 
 const white: string = "#FFF";
 const black: string = "#101010";
-const themeDarkNeutralForegroundRest: DesignSystemResolver<string> = neutralForegroundRest(
-    (): string => black
-);
-const themeLightNeutralForegroundRest: DesignSystemResolver<string> = neutralForegroundRest(
-    (): string => white
-);
-const themeDarkNeutralFillStealthRest: DesignSystemResolver<string> = neutralFillStealthRest(
-    (): string => black
-);
-const themeLightNeutralFillStealthRest: DesignSystemResolver<string> = neutralFillStealthRest(
-    (): string => white
-);
+const themeDarkNeutralForegroundRest = neutralForegroundRest;
+const themeLightNeutralForegroundRest = neutralForegroundRest;
+const themeDarkNeutralFillStealthRest = neutralFillStealthRest;
+const themeLightNeutralFillStealthRest = neutralFillStealthRest;
 
-const themeDarkNeutralOutlineRest: DesignSystemResolver<string> = neutralOutlineRest(
-    (): string => black
-);
-const themeLightNeutralOutlineRest: DesignSystemResolver<string> = neutralOutlineRest(
-    (): string => white
-);
+const themeDarkNeutralOutlineRest = neutralOutlineRest;
+const themeLightNeutralOutlineRest = neutralOutlineRest;
 
-const themeDarkNeutralFocus: DesignSystemResolver<string> = neutralFocus(
-    (): string => black
-);
-const themeLightNeutralFocus: DesignSystemResolver<string> = neutralFocus(
-    (): string => white
-);
+const themeDarkNeutralFocus = neutralFocus;
+const themeLightNeutralFocus = neutralFocus;
 
 function flipperStyles(): CSSRules<{}> {
     return {
@@ -172,7 +156,7 @@ const styles: ComponentStyles<CarouselClassNameContract, DesignSystem> = {
             },
             "&:hover": {
                 "&::before": {
-                    background: neutralFillStealthHover((): string => black),
+                    background: neutralFillStealthHover,
                     [highContrastSelector]: {
                         background: HighContrastColor.selectedBackground,
                         border: format(
@@ -229,7 +213,7 @@ const styles: ComponentStyles<CarouselClassNameContract, DesignSystem> = {
             },
             "&:hover": {
                 "&::before": {
-                    background: neutralFillStealthHover((): string => white),
+                    background: neutralFillStealthHover,
                     [highContrastSelector]: {
                         background: HighContrastColor.selectedBackground,
                         border: format(

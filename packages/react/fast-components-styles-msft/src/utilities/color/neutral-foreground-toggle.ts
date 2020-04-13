@@ -16,36 +16,39 @@ const neutralForegroundToggleAlgorithm: (
 /**
  * Factory to create a neutral-foreground-toggle function that operates on a target contrast ratio
  */
-function neutralForegroundToggleFactory(targetContrast: number): SwatchRecipe {
-    function neutralForegroundToggleInternal(designSystem: DesignSystem): Swatch;
-    function neutralForegroundToggleInternal(
-        backgroundResolver: SwatchResolver
-    ): SwatchResolver;
-    function neutralForegroundToggleInternal(arg: any): any {
-        return typeof arg === "function"
-            ? (designSystem: DesignSystem): Swatch => {
-                  return neutralForegroundToggleAlgorithm(
-                      arg(designSystem),
-                      targetContrast
-                  );
-              }
-            : neutralForegroundToggleAlgorithm(
-                  neutralFillToggleRest(arg),
-                  targetContrast
-              );
-    }
+// function neutralForegroundToggleFactory(targetContrast: number): SwatchRecipe {
+//     function neutralForegroundToggleInternal(designSystem: DesignSystem): Swatch;
+//     function neutralForegroundToggleInternal(
+//         backgroundResolver: SwatchResolver
+//     ): SwatchResolver;
+//     function neutralForegroundToggleInternal(arg: any): any {
+//         return typeof arg === "function"
+//             ? (designSystem: DesignSystem): Swatch => {
+//                   return neutralForegroundToggleAlgorithm(
+//                       arg(designSystem),
+//                       targetContrast
+//                   );
+//               }
+//             : neutralForegroundToggleAlgorithm(
+//                   neutralFillToggleRest(arg),
+//                   targetContrast
+//               );
+//     }
 
-    return neutralForegroundToggleInternal;
-}
+//     return neutralForegroundToggleInternal;
+// }
 
 /**
  * Toggle text for normal sized text, less than 18pt normal weight
  */
-export const neutralForegroundToggle: SwatchRecipe = neutralForegroundToggleFactory(4.5);
+// export const neutralForegroundToggle: SwatchRecipe = neutralForegroundToggleFactory(4.5);
 
-/**
- * Toggle text for large sized text, greater than 18pt or 16pt and bold
- */
-export const neutralForegroundToggleLarge: SwatchRecipe = neutralForegroundToggleFactory(
-    3
-);
+// /**
+//  * Toggle text for large sized text, greater than 18pt or 16pt and bold
+//  */
+// export const neutralForegroundToggleLarge: SwatchRecipe = neutralForegroundToggleFactory(
+//     3
+// );
+
+export const neutralForegroundToggle = "var(--neutral-foreground-toggle)";
+export const neutralForegroundToggleLarge = "var(--neutral-foreground-toggle-large)";

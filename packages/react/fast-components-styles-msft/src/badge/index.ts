@@ -53,7 +53,7 @@ const styles: ComponentStyles<BadgeClassNameContract, DesignSystem> = {
         ...applyCornerRadius(),
         ...applyFontWeightNormal(),
         "background-color": filledBackground,
-        color: accentForegroundCut((): Swatch => filledBackground),
+        color: accentForegroundCut,
     },
     badge__small: {
         ...applyScaledTypeRamp("t8"),
