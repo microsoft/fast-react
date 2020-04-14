@@ -1,13 +1,13 @@
 import { ButtonBaseClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
 import { ComponentStyles, CSSRules } from "@microsoft/fast-jss-manager";
 import { directionSwitch, format, toPx } from "@microsoft/fast-jss-utilities";
-import { DesignSystem } from "../design-system";
-import { applyCornerRadius, applyFocusPlaceholderBorder } from "../utilities/border";
-import { applyCursorPointer } from "../utilities/cursor";
-import { glyphSize, height, horizontalSpacing } from "../utilities/density";
-import { focusOutlineWidth, outlineWidth } from "../utilities/design-system";
-import { applyDisabledState } from "../utilities/disabled";
-import { applyScaledTypeRamp } from "../utilities/typography";
+import { DesignSystem } from "../../design-system";
+import { applyCornerRadius, applyFocusPlaceholderBorder } from "../../utilities/border";
+import { applyCursorPointer } from "../../utilities/cursor";
+import { glyphSize, height, horizontalSpacing } from "../../utilities/density";
+import { focusOutlineWidth, outlineWidth } from "../../utilities/design-system";
+import { applyDisabledState } from "../../utilities/disabled";
+import { applyScaledTypeRamp } from "../../utilities/typography";
 
 export function buttonStyles(): CSSRules<{}> {
     return {
