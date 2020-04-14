@@ -3,11 +3,11 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { applyFocusVisible } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import {
-    neutralFillStealthActive,
-    neutralFillStealthHover,
-    neutralFillStealthRest,
-    neutralFocus,
-    neutralForegroundRest,
+    neutralFillStealthActiveCustomProperty,
+    neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRestCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { baseButton, buttonStyles } from "../../patterns/button";
 import {
@@ -23,18 +23,18 @@ const styles: ComponentStyles<StealthButtonClassNameContract, DesignSystem> = {
     ...baseButton,
     button: {
         ...buttonStyles(),
-        color: neutralForegroundRest,
-        fill: neutralForegroundRest,
-        background: neutralFillStealthRest,
+        color: neutralForegroundRestCustomProperty,
+        fill: neutralForegroundRestCustomProperty,
+        background: neutralFillStealthRestCustomProperty,
         "&:hover:enabled, a&:not($button__disabled):hover": {
-            "background-color": neutralFillStealthHover,
+            "background-color": neutralFillStealthHoverCustomProperty,
             ...highContrastSelected,
         },
         "&:active:enabled, a&:not($button__disabled):active": {
-            "background-color": neutralFillStealthActive,
+            "background-color": neutralFillStealthActiveCustomProperty,
         },
         ...applyFocusVisible<DesignSystem>({
-            "border-color": neutralFocus,
+            "border-color": neutralFocusCustomProperty,
             ...highContrastOutlineFocus,
         }),
         "&:disabled": {

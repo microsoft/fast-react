@@ -12,11 +12,11 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import {
-    accentForegroundActive,
-    accentForegroundCut,
-    accentForegroundHover,
-    accentForegroundRest,
-    neutralForegroundRest,
+    accentForegroundActiveCustomProperty,
+    accentForegroundCutCustomProperty,
+    accentForegroundHoverCustomProperty,
+    accentForegroundRestCustomProperty,
+    neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { glyphSize } from "../../utilities/density";
 import { designUnit } from "../../utilities/design-system";
@@ -104,7 +104,7 @@ const styles: ComponentStyles<CallToActionClassNameContract, DesignSystem> = {
         },
     },
     callToAction_glyph: {
-        fill: neutralForegroundRest,
+        fill: neutralForegroundRestCustomProperty,
         display: "inline-block",
         position: "relative",
         width: glyphSize,
@@ -117,7 +117,7 @@ const styles: ComponentStyles<CallToActionClassNameContract, DesignSystem> = {
     },
     callToAction__primary: {
         "& $button_contentRegion, $callToAction_glyph": {
-            fill: accentForegroundCut,
+            fill: accentForegroundCutCustomProperty,
             ...highContrastSelectedForeground,
         },
         "&:hover": {
@@ -136,17 +136,17 @@ const styles: ComponentStyles<CallToActionClassNameContract, DesignSystem> = {
     },
     callToAction__lightweight: {
         "& $callToAction_glyph": {
-            fill: accentForegroundRest,
+            fill: accentForegroundRestCustomProperty,
         },
         "&:hover": {
             "& $callToAction_glyph": {
-                fill: accentForegroundHover,
+                fill: accentForegroundHoverCustomProperty,
                 ...highContrastHighlightForeground,
             },
         },
         "&:active": {
             "& $callToAction_glyph": {
-                fill: accentForegroundActive,
+                fill: accentForegroundActiveCustomProperty,
             },
         },
     },
@@ -154,11 +154,11 @@ const styles: ComponentStyles<CallToActionClassNameContract, DesignSystem> = {
         "padding-right": directionSwitch(translateXValue, ""),
         "padding-left": directionSwitch("", translateXValue),
         "& $callToAction_glyph": {
-            fill: accentForegroundRest,
+            fill: accentForegroundRestCustomProperty,
         },
         "&:hover": {
             "& $callToAction_glyph": {
-                fill: accentForegroundHover,
+                fill: accentForegroundHoverCustomProperty,
                 ...highContrastHighlightForeground,
             },
         },

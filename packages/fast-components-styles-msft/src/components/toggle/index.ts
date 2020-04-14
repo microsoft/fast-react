@@ -14,17 +14,17 @@ import { ToggleClassNameContract } from "@microsoft/fast-components-class-name-c
 import { applyScaledTypeRamp } from "../../utilities/typography";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import {
-    accentFillRest,
-    accentForegroundCut,
-    neutralFillInputActive,
-    neutralFillInputHover,
-    neutralFillInputRest,
-    neutralFocus,
-    neutralFocusInnerAccent,
-    neutralForegroundRest,
-    neutralOutlineActive,
-    neutralOutlineHover,
-    neutralOutlineRest,
+    accentFillRestCustomProperty,
+    accentForegroundCutCustomProperty,
+    neutralFillInputActiveCustomProperty,
+    neutralFillInputHoverCustomProperty,
+    neutralFillInputRestCustomProperty,
+    neutralFocusCustomProperty,
+    neutralFocusInnerAccentCustomProperty,
+    neutralForegroundRestCustomProperty,
+    neutralOutlineActiveCustomProperty,
+    neutralOutlineHoverCustomProperty,
+    neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { applyDisabledState } from "../../utilities/disabled";
 import { densityCategorySwitch, heightNumber } from "../../utilities/density";
@@ -62,7 +62,7 @@ const indicatorCheckedOffset: DesignSystemResolver<number> = subtract(
 const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
     toggle: {
         display: "inline-block",
-        color: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
         transition: "all 0.2s ease-in-out",
         [highContrastSelector]: {
             ...highContrastOptOutProperty,
@@ -91,7 +91,7 @@ const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
         "border-radius": toPx(indicatorSize),
         width: toPx(indicatorSize),
         height: toPx(indicatorSize),
-        background: neutralForegroundRest,
+        background: neutralForegroundRestCustomProperty,
     },
     toggle_input: {
         ...applyCursorPointer(),
@@ -100,11 +100,11 @@ const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
         margin: "0",
         width: toPx(width),
         height: toPx(height),
-        background: neutralFillInputRest,
+        background: neutralFillInputRestCustomProperty,
         border: format(
             "{0} solid {1}",
             toPx<DesignSystem>(outlineWidth),
-            neutralOutlineRest
+            neutralOutlineRestCustomProperty
         ),
         "border-radius": toPx(height),
         appearance: "none",
@@ -112,8 +112,8 @@ const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
         "-moz-appearance": "none",
         outline: "none",
         "&:active": {
-            background: neutralFillInputActive,
-            "border-color": neutralOutlineActive,
+            background: neutralFillInputActiveCustomProperty,
+            "border-color": neutralOutlineActiveCustomProperty,
             [highContrastSelector]: {
                 background: HighContrastColor.selectedBackground,
                 "border-color": HighContrastColor.selectedText,
@@ -123,8 +123,8 @@ const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
             },
         },
         "&:hover": {
-            background: neutralFillInputHover,
-            "border-color": neutralOutlineHover,
+            background: neutralFillInputHoverCustomProperty,
+            "border-color": neutralOutlineHoverCustomProperty,
             [highContrastSelector]: {
                 background: HighContrastColor.background,
                 "border-color": HighContrastColor.selectedBackground,
@@ -134,8 +134,11 @@ const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
             },
         },
         ...applyFocusVisible({
-            "box-shadow": format<DesignSystem>("0 0 0 1px {0} inset", neutralFocus),
-            "border-color": neutralFocus,
+            "box-shadow": format<DesignSystem>(
+                "0 0 0 1px {0} inset",
+                neutralFocusCustomProperty
+            ),
+            "border-color": neutralFocusCustomProperty,
             [highContrastSelector]: {
                 "box-shadow": format<DesignSystem>(
                     "0 0 0 {0} {1} inset",
@@ -154,17 +157,17 @@ const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
     },
     toggle__checked: {
         "& $toggle_input": {
-            background: accentFillRest,
-            "border-color": accentFillRest,
+            background: accentFillRestCustomProperty,
+            "border-color": accentFillRestCustomProperty,
             ...applyFocusVisible({
                 "box-shadow": format<DesignSystem>(
                     "0 0 0 {0} {1} inset, 0 0 0 {2} {3} inset",
                     toPx(subtract(focusOutlineWidth, outlineWidth)),
-                    neutralFocus,
+                    neutralFocusCustomProperty,
                     toPx(add(focusOutlineWidth, outlineWidth)),
-                    neutralFocusInnerAccent
+                    neutralFocusInnerAccentCustomProperty
                 ),
-                "border-color": neutralFocus,
+                "border-color": neutralFocusCustomProperty,
                 ...highContrastDoubleFocus,
             }),
             "&:disabled": {
@@ -208,7 +211,7 @@ const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
         "& $toggle_stateIndicator": {
             left: directionSwitch(toPx(indicatorCheckedOffset), "unset"),
             right: directionSwitch("unset", toPx(indicatorCheckedOffset)),
-            background: accentForegroundCut,
+            background: accentForegroundCutCustomProperty,
         },
     },
     toggle__disabled: {

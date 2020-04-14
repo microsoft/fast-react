@@ -4,11 +4,11 @@ import { applyFocusVisible, format, subtract, toPx } from "@microsoft/fast-jss-u
 import { DesignSystem } from "../../design-system";
 import { baseButton, buttonStyles } from "../../patterns/button";
 import {
-    neutralFocus,
-    neutralForegroundRest,
-    neutralOutlineActive,
-    neutralOutlineHover,
-    neutralOutlineRest,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
+    neutralOutlineActiveCustomProperty,
+    neutralOutlineHoverCustomProperty,
+    neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { horizontalSpacing } from "../../utilities/density";
 import { focusOutlineWidth, outlineWidth } from "../../utilities/design-system";
@@ -25,13 +25,13 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
     ...baseButton,
     button: {
         ...buttonStyles(),
-        color: neutralForegroundRest,
-        fill: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
+        fill: neutralForegroundRestCustomProperty,
         background: "transparent",
         border: format(
             "{0} solid {1}",
             toPx<DesignSystem>(outlineWidth),
-            neutralOutlineRest
+            neutralOutlineRestCustomProperty
         ),
         padding: format("0 {0}", horizontalSpacing(outlineWidth)),
         "&:hover:enabled, a&:not($button__disabled):hover": {
@@ -39,7 +39,7 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
             border: format(
                 "{0} solid {1}",
                 toPx<DesignSystem>(outlineWidth),
-                neutralOutlineHover
+                neutralOutlineHoverCustomProperty
             ),
             ...highContrastSelected,
         },
@@ -48,16 +48,16 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
             border: format(
                 "{0} solid {1}",
                 toPx<DesignSystem>(outlineWidth),
-                neutralOutlineActive
+                neutralOutlineActiveCustomProperty
             ),
         },
         ...applyFocusVisible<DesignSystem>({
             "box-shadow": format(
                 "0 0 0 {0} {1} inset",
                 toPx<DesignSystem>(subtract(focusOutlineWidth, outlineWidth)),
-                neutralFocus
+                neutralFocusCustomProperty
             ),
-            "border-color": neutralFocus,
+            "border-color": neutralFocusCustomProperty,
             ...highContrastOutlineFocus,
         }),
         "&:disabled": {

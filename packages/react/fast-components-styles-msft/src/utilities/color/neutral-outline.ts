@@ -41,27 +41,27 @@ const neutralOutlineAlgorithm: SwatchFamilyResolver = (
     };
 };
 
-// export const neutralOutline: ColorRecipe<SwatchFamily> = colorRecipeFactory(
-//     neutralOutlineAlgorithm
-// );
-// export const neutralOutlineRest: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.rest,
-//     neutralOutline
-// );
-// export const neutralOutlineHover: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.hover,
-//     neutralOutline
-// );
-// export const neutralOutlineActive: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.active,
-//     neutralOutline
-// );
-// export const neutralOutlineFocus: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.focus,
-//     neutralOutline
-// );
+export const neutralOutline: ColorRecipe<SwatchFamily> = colorRecipeFactory(
+    neutralOutlineAlgorithm
+);
+export const neutralOutlineRest: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.rest,
+    neutralOutline
+);
+export const neutralOutlineHover: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.hover,
+    neutralOutline
+);
+export const neutralOutlineActive: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.active,
+    neutralOutline
+);
+export const neutralOutlineFocus: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.focus,
+    neutralOutline
+);
 
-export const neutralOutlineRest = "var(--neutral-outline-rest)";
-export const neutralOutlineHover = "var(--neutral-outline-hover)";
-export const neutralOutlineActive = "var(--neutral-outline-active)";
-export const neutralOutlineFocus = "var(--neutral-outline-focus)";
+export const neutralOutlineRestCustomProperty = "var(--neutral-outline-rest)";
+export const neutralOutlineHoverCustomProperty = "var(--neutral-outline-hover)";
+export const neutralOutlineActiveCustomProperty = "var(--neutral-outline-active)";
+export const neutralOutlineFocusCustomProperty = "var(--neutral-outline-focus)";

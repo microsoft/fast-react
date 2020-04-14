@@ -13,7 +13,10 @@ import designSystemDefaults, {
     DesignSystemResolver,
 } from "../../design-system/index";
 import { applyCornerRadius } from "../../utilities/border";
-import { accentForegroundCut, neutralForegroundRest } from "../../utilities/color";
+import {
+    accentForegroundCutCustomProperty,
+    neutralForegroundRestCustomProperty,
+} from "../../utilities/color";
 import { Swatch } from "../../utilities/color/common";
 import { applyCursorDefault } from "../../utilities/cursor";
 import { horizontalSpacing } from "../../utilities/density";
@@ -46,14 +49,14 @@ const styles: ComponentStyles<BadgeClassNameContract, DesignSystem> = {
         "box-sizing": "border-box",
         display: "inline-block",
         "max-width": "215px",
-        color: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
         transition: "all 0.2s ease-in-out",
     },
     badge__filled: {
         ...applyCornerRadius(),
         ...applyFontWeightNormal(),
         "background-color": filledBackground,
-        color: accentForegroundCut,
+        color: accentForegroundCutCustomProperty,
     },
     badge__small: {
         ...applyScaledTypeRamp("t8"),

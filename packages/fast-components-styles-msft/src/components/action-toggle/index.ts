@@ -6,11 +6,11 @@ import {
 import { directionSwitch, important } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system/index";
 import {
-    accentForegroundActive,
-    accentForegroundCut,
-    accentForegroundHover,
-    accentForegroundRest,
-    neutralForegroundRest,
+    accentForegroundActiveCustomProperty,
+    accentForegroundCutCustomProperty,
+    accentForegroundHoverCustomProperty,
+    accentForegroundRestCustomProperty,
+    neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { glyphSize, horizontalSpacing } from "../../utilities/density";
 import {
@@ -63,7 +63,7 @@ const styles: ComponentStyles<ActionToggleClassNameContract, DesignSystem> = {
     },
     actionToggle__primary: {
         "& $actionToggle_glyph": {
-            fill: accentForegroundCut,
+            fill: accentForegroundCutCustomProperty,
             ...highContrastSelectedForeground,
         },
         "&:hover:enabled": {
@@ -76,37 +76,37 @@ const styles: ComponentStyles<ActionToggleClassNameContract, DesignSystem> = {
     },
     actionToggle__lightweight: {
         "& $actionToggle_glyph": {
-            fill: accentForegroundRest,
+            fill: accentForegroundRestCustomProperty,
         },
         "&:hover:enabled": {
             "& $actionToggle_glyph": {
-                fill: accentForegroundHover,
+                fill: accentForegroundHoverCustomProperty,
             },
         },
         "&:active": {
             "& $actionToggle_glyph": {
-                fill: accentForegroundActive,
+                fill: accentForegroundActiveCustomProperty,
             },
         },
     },
     actionToggle__justified: {
         "& $actionToggle_glyph": {
-            fill: accentForegroundRest,
+            fill: accentForegroundRestCustomProperty,
         },
         "&:hover:enabled": {
             "& $actionToggle_glyph": {
-                fill: accentForegroundHover,
+                fill: accentForegroundHoverCustomProperty,
             },
         },
     },
     actionToggle__stealth: {
         "& $actionToggle_glyph": {
-            fill: neutralForegroundRest,
+            fill: neutralForegroundRestCustomProperty,
         },
     },
     actionToggle__outline: {
         "& $actionToggle_glyph": {
-            fill: neutralForegroundRest,
+            fill: neutralForegroundRestCustomProperty,
         },
     },
     actionToggle__disabled: {

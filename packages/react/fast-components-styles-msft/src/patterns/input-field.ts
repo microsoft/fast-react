@@ -1,7 +1,7 @@
 import { CSSRules } from "@microsoft/fast-jss-manager";
 import { format, toPx } from "@microsoft/fast-jss-utilities";
-import { applyCornerRadius } from "../../utilities/border";
-import { DesignSystem } from "../../design-system";
+import { applyCornerRadius } from "../utilities/border";
+import { DesignSystem } from "../design-system";
 import {
     neutralFillHover,
     neutralFillInputActive,
@@ -14,19 +14,19 @@ import {
     neutralOutlineActive,
     neutralOutlineHover,
     neutralOutlineRest,
-} from "../../utilities/color";
-import { horizontalSpacing } from "../../utilities/density";
-import { applyDisabledState } from "../../utilities/disabled";
-import { applyScaledTypeRamp } from "../../utilities/typography";
-import { applyFontWeightNormal } from "../../utilities/fonts";
-import { outlineWidth } from "../../utilities/design-system";
+} from "../utilities/color";
+import { horizontalSpacing } from "../utilities/density";
+import { applyDisabledState } from "../utilities/disabled";
+import { applyScaledTypeRamp } from "../utilities/typography";
+import { applyFontWeightNormal } from "../utilities/fonts";
+import { outlineWidth } from "../utilities/design-system";
 import {
     HighContrastColor,
     highContrastDisabledBorder,
     highContrastOptOutProperty,
     highContrastOutlineFocus,
     highContrastSelector,
-} from "../../utilities/high-contrast";
+} from "../utilities/high-contrast";
 
 /**
  * Shared input field styles

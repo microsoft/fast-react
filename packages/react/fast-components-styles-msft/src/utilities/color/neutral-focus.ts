@@ -31,11 +31,11 @@ const neutralFocusAlgorithm: SwatchResolver = swatchByContrast(backgroundColor)(
     neutralFocusContrastCondition
 );
 
-// export const neutralFocus: ColorRecipe<Swatch> = colorRecipeFactory(
-//     neutralFocusAlgorithm
-// );
+export const neutralFocus: ColorRecipe<Swatch> = colorRecipeFactory(
+    neutralFocusAlgorithm
+);
 
-export const neutralFocus = "var(--neutral-focus)";
+export const neutralFocusCustomProperty = "var(--neutral-focus)";
 function neutralFocusInnerAccentIndexResolver(
     accentFillColor: DesignSystemResolver<string>
 ): (
@@ -60,12 +60,12 @@ function neutralFocusInnerAccentDirectionResolver(
     return isDarkMode(designSystem) ? 1 : -1;
 }
 
-// export function neutralFocusInnerAccent(
-//     accentFillColor: DesignSystemResolver<string>
-// ): DesignSystemResolver<string> {
-//     return swatchByContrast(neutralFocus)(accentPalette)(
-//         neutralFocusInnerAccentIndexResolver(accentFillColor)
-//     )(neutralFocusInnerAccentDirectionResolver)(neutralFocusContrastCondition);
-// }
+export function neutralFocusInnerAccent(
+    accentFillColor: DesignSystemResolver<string>
+): DesignSystemResolver<string> {
+    return swatchByContrast(neutralFocus)(accentPalette)(
+        neutralFocusInnerAccentIndexResolver(accentFillColor)
+    )(neutralFocusInnerAccentDirectionResolver)(neutralFocusContrastCondition);
+}
 
-export const neutralFocusInnerAccent = "var(--neutral-focus-inner-accent)";
+export const neutralFocusInnerAccentCustomProperty = "var(--neutral-focus-inner-accent)";

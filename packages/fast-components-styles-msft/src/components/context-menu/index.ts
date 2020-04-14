@@ -10,11 +10,11 @@ import {
     highContrastOptOutProperty,
     highContrastSelector,
 } from "../../utilities/high-contrast";
-import { neutralLayerFloating } from "../../utilities/color";
+import { neutralLayerFloatingCustomProperty } from "../../utilities/color";
 
 const styles: ComponentStyles<ContextMenuClassNameContract, DesignSystem> = {
     contextMenu: {
-        background: neutralLayerFloating,
+        background: neutralLayerFloatingCustomProperty,
         ...applyElevatedCornerRadius(),
         ...applyElevation(ElevationMultiplier.e11),
         margin: "0",

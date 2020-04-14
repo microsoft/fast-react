@@ -1,16 +1,16 @@
 import { ButtonBaseClassNameContract as AccentButtonClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
 import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { applyFocusVisible, format } from "@microsoft/fast-jss-utilities";
-import { DesignSystem } from "../design-system";
-import { baseButton, buttonStyles } from "../patterns/button";
+import { DesignSystem } from "../../design-system";
+import { baseButton, buttonStyles } from "../../patterns/button";
 import {
-    accentFillActive,
-    accentFillHover,
-    accentFillRest,
-    accentForegroundCut,
-    neutralFocus,
-    neutralFocusInnerAccent,
-} from "../utilities/color";
+    accentFillActiveCustomProperty,
+    accentFillHoverCustomProperty,
+    accentFillRestCustomProperty,
+    accentForegroundCutCustomProperty,
+    neutralFocusCustomProperty,
+    neutralFocusInnerAccentCustomProperty,
+} from "../../utilities/color";
 import {
     highContrastAccent,
     highContrastDisabledBorder,
@@ -23,28 +23,31 @@ import {
     highContrastSelectedForeground,
     highContrastSelectedOutline,
     highContrastSelector,
-} from "../utilities/high-contrast";
+} from "../../utilities/high-contrast";
 
 const styles: ComponentStyles<AccentButtonClassNameContract, DesignSystem> = {
     ...baseButton,
     button: {
         ...buttonStyles(),
-        color: accentForegroundCut,
-        fill: accentForegroundCut,
-        background: accentFillRest,
+        color: accentForegroundCutCustomProperty,
+        fill: accentForegroundCutCustomProperty,
+        background: accentFillRestCustomProperty,
         "&:hover:enabled, a&:not($button__disabled):hover": {
-            background: accentFillHover,
+            background: accentFillHoverCustomProperty,
             ...highContrastSelectedOutline,
             "& $button_beforeContent, & $button_afterContent": {
                 ...highContrastHighlightForeground,
             },
         },
         "&:active:enabled, a&:not($button__disabled):active": {
-            background: accentFillActive,
+            background: accentFillActiveCustomProperty,
         },
         ...applyFocusVisible<DesignSystem>({
-            "border-color": neutralFocus,
-            "box-shadow": format("0 0 0 2px inset {0}", neutralFocusInnerAccent),
+            "border-color": neutralFocusCustomProperty,
+            "box-shadow": format(
+                "0 0 0 2px inset {0}",
+                neutralFocusInnerAccentCustomProperty
+            ),
             ...highContrastDoubleFocus,
         }),
         "&:disabled": {
@@ -54,7 +57,7 @@ const styles: ComponentStyles<AccentButtonClassNameContract, DesignSystem> = {
             },
         },
         "& $button_beforeContent, & $button_afterContent": {
-            fill: accentForegroundCut,
+            fill: accentForegroundCutCustomProperty,
             ...highContrastSelectedForeground,
         },
         ...highContrastAccent,

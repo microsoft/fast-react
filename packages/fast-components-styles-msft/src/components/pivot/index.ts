@@ -10,11 +10,11 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { DesignSystem } from "../../design-system";
 import { height, heightNumber, horizontalSpacing } from "../../utilities/density";
 import {
-    accentFillRest,
-    neutralFocus,
-    neutralForegroundActive,
-    neutralForegroundHover,
-    neutralForegroundRest,
+    accentFillRestCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundActiveCustomProperty,
+    neutralForegroundHoverCustomProperty,
+    neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { applyCornerRadius, applyFocusPlaceholderBorder } from "../../utilities/border";
 import { applyScaledTypeRamp } from "../../utilities/typography";
@@ -33,7 +33,7 @@ const styles: ComponentStyles<PivotClassNameContract, DesignSystem> = {
     pivot: {
         position: "relative",
         overflow: "hidden",
-        color: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
         transition: "all 0.2s ease-in-out",
         [highContrastSelector]: {
             ...highContrastOptOutProperty,
@@ -53,17 +53,17 @@ const styles: ComponentStyles<PivotClassNameContract, DesignSystem> = {
         "align-items": "center",
         "box-sizing": "border-box",
         "user-select": "none",
-        color: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
         ...applyCornerRadius(),
         "&:hover": {
-            color: neutralForegroundHover,
+            color: neutralForegroundHoverCustomProperty,
             ...highContrastForeground,
         },
         "&:active": {
-            color: neutralForegroundActive,
+            color: neutralForegroundActiveCustomProperty,
         },
         ...applyFocusVisible<DesignSystem>({
-            "border-color": neutralFocus,
+            "border-color": neutralFocusCustomProperty,
             ...highContrastBorderColor,
         }),
         ...highContrastForeground,
@@ -85,7 +85,7 @@ const styles: ComponentStyles<PivotClassNameContract, DesignSystem> = {
         width: "20px",
         height: toPx(activeIndicatorHeight),
         display: "block",
-        background: accentFillRest,
+        background: accentFillRestCustomProperty,
         ...highContrastHighlightBackground,
     },
     pivot_tabPanel: {

@@ -8,14 +8,14 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import {
-    neutralFillStealthActive,
-    neutralFillStealthHover,
-    neutralFillStealthRest,
-    neutralFocus,
-    neutralForegroundRest,
-    neutralOutlineActive,
-    neutralOutlineHover,
-    neutralOutlineRest,
+    neutralFillStealthActiveCustomProperty,
+    neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRestCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
+    neutralOutlineActiveCustomProperty,
+    neutralOutlineHoverCustomProperty,
+    neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { glyphSize, height } from "../../utilities/density";
 import { outlineWidth } from "../../utilities/design-system";
@@ -37,8 +37,8 @@ const styles: ComponentStyles<FlipperClassNameContract, DesignSystem> = {
         "align-items": "center",
         margin: "0",
         position: "relative",
-        fill: neutralForegroundRest,
-        color: neutralForegroundRest,
+        fill: neutralForegroundRestCustomProperty,
+        color: neutralForegroundRestCustomProperty,
         background: "transparent",
         border: "none",
         padding: "0",
@@ -46,11 +46,11 @@ const styles: ComponentStyles<FlipperClassNameContract, DesignSystem> = {
             transition: "all 0.1s ease-in-out",
             content: "''",
             opacity: "0.8",
-            background: neutralFillStealthRest,
+            background: neutralFillStealthRestCustomProperty,
             border: format(
                 "{0} solid {1}",
                 toPx<DesignSystem>(outlineWidth),
-                neutralOutlineRest
+                neutralOutlineRestCustomProperty
             ),
             "border-radius": "50%",
             position: "absolute",
@@ -62,14 +62,14 @@ const styles: ComponentStyles<FlipperClassNameContract, DesignSystem> = {
         },
         "&:active": {
             "&::before": {
-                background: neutralFillStealthActive,
-                "border-color": neutralOutlineActive,
+                background: neutralFillStealthActiveCustomProperty,
+                "border-color": neutralOutlineActiveCustomProperty,
             },
         },
         "&:hover": {
             "&::before": {
-                background: neutralFillStealthHover,
-                "border-color": neutralOutlineHover,
+                background: neutralFillStealthHoverCustomProperty,
+                "border-color": neutralOutlineHoverCustomProperty,
                 ...highContrastHighlightBackground,
             },
             "& $flipper_glyph": {
@@ -78,8 +78,11 @@ const styles: ComponentStyles<FlipperClassNameContract, DesignSystem> = {
         },
         ...applyFocusVisible({
             "&::before": {
-                "box-shadow": format<DesignSystem>("0 0 0 1px {0} inset", neutralFocus),
-                border: neutralFocus,
+                "box-shadow": format<DesignSystem>(
+                    "0 0 0 1px {0} inset",
+                    neutralFocusCustomProperty
+                ),
+                border: neutralFocusCustomProperty,
             },
         }),
         "&::-moz-focus-inner": {

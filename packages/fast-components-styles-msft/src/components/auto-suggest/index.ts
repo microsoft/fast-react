@@ -3,7 +3,7 @@ import { AutoSuggestClassNameContract } from "@microsoft/fast-components-class-n
 import { add, format, multiply, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { applyElevatedCornerRadius } from "../../utilities/border";
-import { neutralFillStealthRest } from "../../utilities/color";
+import { neutralFillStealthRestCustomProperty } from "../../utilities/color";
 import { heightNumber } from "../../utilities/density";
 import { applyElevation, ElevationMultiplier } from "../../utilities/elevation";
 import { designUnit, outlineWidth } from "../../utilities/design-system";
@@ -17,7 +17,7 @@ const styles: ComponentStyles<AutoSuggestClassNameContract, DesignSystem> = {
     },
     autoSuggest_menu: {
         ...applyElevation(ElevationMultiplier.e11),
-        background: neutralFillStealthRest,
+        background: neutralFillStealthRestCustomProperty,
         "z-index": "1",
         position: "absolute",
         width: "100%",

@@ -12,17 +12,17 @@ import { TextActionClassNameContract } from "@microsoft/fast-components-class-na
 import { DesignSystem } from "../../design-system";
 import { applyCornerRadius } from "../../utilities/border";
 import {
-    neutralFillActive,
-    neutralFillHover,
-    neutralFillInputActive,
-    neutralFillInputHover,
-    neutralFillInputRest,
-    neutralFillRest,
-    neutralFocus,
-    neutralForegroundRest,
-    neutralOutlineActive,
-    neutralOutlineHover,
-    neutralOutlineRest,
+    neutralFillActiveCustomProperty,
+    neutralFillHoverCustomProperty,
+    neutralFillInputActiveCustomProperty,
+    neutralFillInputHoverCustomProperty,
+    neutralFillInputRestCustomProperty,
+    neutralFillRestCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
+    neutralOutlineActiveCustomProperty,
+    neutralOutlineHoverCustomProperty,
+    neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { glyphSize, height, horizontalSpacing } from "../../utilities/density";
 import { focusOutlineWidth, outlineWidth } from "../../utilities/design-system";
@@ -64,7 +64,7 @@ const glyphStyles: CSSRules<{}> = {
     width: glyphSize,
     height: glyphSize,
     margin: "auto",
-    fill: neutralForegroundRest,
+    fill: neutralForegroundRestCustomProperty,
     ...highContrastForeground,
 };
 
@@ -78,32 +78,32 @@ const styles: ComponentStyles<TextActionClassNameContract, DesignSystem> = {
         border: format(
             "{0} solid {1}",
             toPx<DesignSystem>(outlineWidth),
-            neutralOutlineRest
+            neutralOutlineRestCustomProperty
         ),
-        background: neutralFillInputRest,
+        background: neutralFillInputRestCustomProperty,
         ...applyCornerRadius(),
         display: "flex",
         "flex-direction": "row",
         transition: "all 0.2s ease-in-out",
         "&:hover": {
-            background: neutralFillInputHover,
-            "border-color": neutralOutlineHover,
+            background: neutralFillInputHoverCustomProperty,
+            "border-color": neutralOutlineHoverCustomProperty,
             [highContrastSelector]: {
                 background: "transparent",
                 "border-color": HighContrastColor.selectedBackground,
             },
         },
         "&:active": {
-            background: neutralFillInputActive,
-            "border-color": neutralOutlineActive,
+            background: neutralFillInputActiveCustomProperty,
+            "border-color": neutralOutlineActiveCustomProperty,
         },
         ...highContrastOutline,
     },
     textAction__filled: {
-        background: neutralFillRest,
+        background: neutralFillRestCustomProperty,
         border: format("{0} solid transparent", toPx<DesignSystem>(outlineWidth)),
         "&:hover": {
-            background: neutralFillHover,
+            background: neutralFillHoverCustomProperty,
             "border-color": "transparent",
             [highContrastSelector]: {
                 background: HighContrastColor.buttonBackground,
@@ -111,7 +111,7 @@ const styles: ComponentStyles<TextActionClassNameContract, DesignSystem> = {
             },
         },
         "&:active": {
-            background: neutralFillActive,
+            background: neutralFillActiveCustomProperty,
             "border-color": "transparent",
         },
         [highContrastSelector]: {
@@ -129,12 +129,12 @@ const styles: ComponentStyles<TextActionClassNameContract, DesignSystem> = {
             "box-shadow": format(
                 "0 0 0 {0} {1} inset",
                 toPx<DesignSystem>(subtract(focusOutlineWidth, outlineWidth)),
-                neutralFocus
+                neutralFocusCustomProperty
             ),
             border: format(
                 "{0} solid {1}",
                 toPx<DesignSystem>(outlineWidth),
-                neutralFocus
+                neutralFocusCustomProperty
             ),
         },
         [highContrastSelector]: {
@@ -156,12 +156,12 @@ const styles: ComponentStyles<TextActionClassNameContract, DesignSystem> = {
         ...applyDisabledState(),
         ...highContrastDisabledBorder,
         "&:hover": {
-            background: neutralFillInputRest,
-            "border-color": neutralOutlineRest,
+            background: neutralFillInputRestCustomProperty,
+            "border-color": neutralOutlineRestCustomProperty,
         },
         "&:active": {
-            background: neutralFillInputRest,
-            "border-color": neutralOutlineRest,
+            background: neutralFillInputRestCustomProperty,
+            "border-color": neutralOutlineRestCustomProperty,
         },
         "& $textAction_beforeGlyph, & $textAction_afterGlyph": {
             ...highContrastDisabledForeground,
@@ -169,8 +169,8 @@ const styles: ComponentStyles<TextActionClassNameContract, DesignSystem> = {
     },
     textAction_button: {
         "border-color": "transparent",
-        color: neutralForegroundRest,
-        fill: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
+        fill: neutralForegroundRestCustomProperty,
         height: format("calc({0} - 6px)", height()),
         "min-width": "fit-content",
         margin: "2px",

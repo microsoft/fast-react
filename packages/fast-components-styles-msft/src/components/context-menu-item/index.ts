@@ -5,10 +5,10 @@ import { applyCursorPointer } from "../../utilities/cursor";
 import { DesignSystem } from "../../design-system";
 import { applyCornerRadius, applyFocusPlaceholderBorder } from "../../utilities/border";
 import {
-    neutralFillStealthActive,
-    neutralFillStealthHover,
-    neutralFocus,
-    neutralForegroundRest,
+    neutralFillStealthActiveCustomProperty,
+    neutralFillStealthHoverCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { height, horizontalSpacingNumber } from "../../utilities/density";
 import { designUnit, focusOutlineWidth } from "../../utilities/design-system";
@@ -38,8 +38,8 @@ const styles: ComponentStyles<ContextMenuItemClassNameContract, DesignSystem> = 
         "align-items": "center",
         padding: "0",
         margin: format("0 {0}", toPx<DesignSystem>(designUnit)),
-        color: neutralForegroundRest,
-        fill: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
+        fill: neutralForegroundRestCustomProperty,
         "white-space": "nowrap",
         overflow: "hidden",
         ...applyCursorPointer(),
@@ -47,7 +47,7 @@ const styles: ComponentStyles<ContextMenuItemClassNameContract, DesignSystem> = 
         ...applyCornerRadius(),
         ...applyFocusPlaceholderBorder(),
         ...applyFocusVisible<DesignSystem>({
-            "border-color": neutralFocus,
+            "border-color": neutralFocusCustomProperty,
             [highContrastSelector]: {
                 color: HighContrastColor.selectedText,
                 fill: HighContrastColor.selectedText,
@@ -60,11 +60,11 @@ const styles: ComponentStyles<ContextMenuItemClassNameContract, DesignSystem> = 
             },
         }),
         "&:hover": {
-            background: neutralFillStealthHover,
+            background: neutralFillStealthHoverCustomProperty,
             ...highContrastSelected,
         },
         "&:active": {
-            background: neutralFillStealthActive,
+            background: neutralFillStealthActiveCustomProperty,
             ...highContrastSelected,
         },
         ...highContrastStealth,

@@ -35,10 +35,10 @@ function accentForegroundCutFactory(targetContrast: number): SwatchRecipe {
 /**
  * Cut text for normal sized text, less than 18pt normal weight
  */
-// export const accentForegroundCut: SwatchRecipe = accentForegroundCutFactory(4.5);
-export const accentForegroundCut = "var(--accent-foreground-cut)";
+export const accentForegroundCut: SwatchRecipe = accentForegroundCutFactory(4.5);
+export const accentForegroundCutCustomProperty = "var(--accent-foreground-cut)";
 /**
  * Cut text for large sized text, greater than 18pt or 16pt and bold
  */
-export const accentForegroundCutLarge = "var(--accent-foreground-cut)";
-// export const accentForegroundCutLarge: SwatchRecipe = accentForegroundCutFactory(3);
+export const accentForegroundCutLargeCustomProperty = "var(--accent-foreground-cut)";
+export const accentForegroundCutLarge: SwatchRecipe = accentForegroundCutFactory(3);

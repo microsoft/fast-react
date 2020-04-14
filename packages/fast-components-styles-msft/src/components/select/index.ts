@@ -8,9 +8,9 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { SelectClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
 import {
-    neutralForegroundRest,
-    neutralLayerFloating,
-    neutralOutlineRest,
+    neutralForegroundRestCustomProperty,
+    neutralLayerFloatingCustomProperty,
+    neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { glyphSize, height, horizontalSpacing } from "../../utilities/density";
 import { applyElevation, ElevationMultiplier } from "../../utilities/elevation";
@@ -60,14 +60,14 @@ const styles: ComponentStyles<SelectClassNameContract, DesignSystem> = {
                 (designSystem && designSystem.direction) || DesignSystemDefaults.direction
             )(format("0 0 0 {0}", horizontalSpacing())(designSystem));
         },
-        fill: neutralForegroundRest,
+        fill: neutralForegroundRestCustomProperty,
         width: glyphSize,
         height: glyphSize,
         "grid-column-start": "2",
         ...highContrastForeground,
     },
     select_menu: {
-        background: neutralLayerFloating,
+        background: neutralLayerFloatingCustomProperty,
         ...applyElevatedCornerRadius(),
         ...applyElevation(ElevationMultiplier.e11),
         position: "relative",
@@ -91,7 +91,7 @@ const styles: ComponentStyles<SelectClassNameContract, DesignSystem> = {
             position: "static",
             "box-shadow": "none",
             border: "1px solid",
-            "border-color": neutralOutlineRest,
+            "border-color": neutralOutlineRestCustomProperty,
         },
     },
     select__menuPositioningRegion: {

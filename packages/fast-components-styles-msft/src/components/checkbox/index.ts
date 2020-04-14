@@ -10,14 +10,14 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import {
-    neutralFillInputActive,
-    neutralFillInputHover,
-    neutralFillInputRest,
-    neutralFocus,
-    neutralForegroundRest,
-    neutralOutlineActive,
-    neutralOutlineHover,
-    neutralOutlineRest,
+    neutralFillInputActiveCustomProperty,
+    neutralFillInputHoverCustomProperty,
+    neutralFillInputRestCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
+    neutralOutlineActiveCustomProperty,
+    neutralOutlineHoverCustomProperty,
+    neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { applyCornerRadius } from "../../utilities/border";
 import {
@@ -85,31 +85,34 @@ const styles: ComponentStyles<CheckboxClassNameContract, DesignSystem> = {
         "box-sizing": "border-box",
         margin: "0",
         "z-index": "1",
-        background: neutralFillInputRest,
+        background: neutralFillInputRestCustomProperty,
         transition: "all 0.2s ease-in-out",
         border: format(
             "{0} solid {1}",
             toPx<DesignSystem>(outlineWidth),
-            neutralOutlineRest
+            neutralOutlineRestCustomProperty
         ),
         "&:enabled": {
             ...applyCursorPointer(),
         },
         "&:hover:enabled": {
-            background: neutralFillInputHover,
-            "border-color": neutralOutlineHover,
+            background: neutralFillInputHoverCustomProperty,
+            "border-color": neutralOutlineHoverCustomProperty,
             [highContrastSelector]: {
                 background: HighContrastColor.background,
                 "border-color": HighContrastColor.selectedBackground,
             },
         },
         "&:active:enabled": {
-            background: neutralFillInputActive,
-            "border-color": neutralOutlineActive,
+            background: neutralFillInputActiveCustomProperty,
+            "border-color": neutralOutlineActiveCustomProperty,
         },
         ...applyFocusVisible({
-            "box-shadow": format<DesignSystem>("0 0 0 1px {0} inset", neutralFocus),
-            "border-color": neutralFocus,
+            "box-shadow": format<DesignSystem>(
+                "0 0 0 1px {0} inset",
+                neutralFocusCustomProperty
+            ),
+            "border-color": neutralFocusCustomProperty,
             [highContrastSelector]: {
                 "box-shadow": format<DesignSystem>(
                     "0 0 0 1px {0}",
@@ -139,7 +142,7 @@ const styles: ComponentStyles<CheckboxClassNameContract, DesignSystem> = {
     },
     checkbox_label: {
         ...applyCursorPointer(),
-        color: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
         ...applyScaledTypeRamp("t7"),
         ...highContrastTextForeground,
     },
@@ -148,7 +151,7 @@ const styles: ComponentStyles<CheckboxClassNameContract, DesignSystem> = {
             "&::before": {
                 background: format(
                     "url('data:image/svg+xml;utf8,{0}')",
-                    indicatorSvg(neutralForegroundRest)
+                    indicatorSvg(neutralForegroundRestCustomProperty)
                 ),
                 [highContrastSelector]: {
                     background: format(
@@ -188,7 +191,7 @@ const styles: ComponentStyles<CheckboxClassNameContract, DesignSystem> = {
                 left: indeterminateIndicatorMargin,
                 width: "auto",
                 height: "auto",
-                background: neutralForegroundRest,
+                background: neutralForegroundRestCustomProperty,
                 [highContrastSelector]: {
                     backgroundColor: HighContrastColor.selectedBackground,
                 },

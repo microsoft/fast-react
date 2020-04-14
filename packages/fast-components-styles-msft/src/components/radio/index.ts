@@ -11,14 +11,14 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import {
-    neutralFillInputActive,
-    neutralFillInputHover,
-    neutralFillInputRest,
-    neutralFocus,
-    neutralForegroundRest,
-    neutralOutlineActive,
-    neutralOutlineHover,
-    neutralOutlineRest,
+    neutralFillInputActiveCustomProperty,
+    neutralFillInputHoverCustomProperty,
+    neutralFillInputRestCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
+    neutralOutlineActiveCustomProperty,
+    neutralOutlineHoverCustomProperty,
+    neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import {
     densityCategorySwitch,
@@ -63,19 +63,19 @@ const styles: ComponentStyles<RadioClassNameContract, DesignSystem> = {
         "border-radius": "50%",
         margin: "0",
         "z-index": "1",
-        background: neutralFillInputRest,
+        background: neutralFillInputRestCustomProperty,
         transition: "all 0.2s ease-in-out",
         border: format(
             "{0} solid {1}",
             toPx<DesignSystem>(outlineWidth),
-            neutralOutlineRest
+            neutralOutlineRestCustomProperty
         ),
         "&:enabled": {
             ...applyCursorPointer(),
         },
         "&:hover:enabled": {
-            background: neutralFillInputHover,
-            "border-color": neutralOutlineHover,
+            background: neutralFillInputHoverCustomProperty,
+            "border-color": neutralOutlineHoverCustomProperty,
             [highContrastSelector]: {
                 background: "transparent",
                 border: format(
@@ -86,12 +86,15 @@ const styles: ComponentStyles<RadioClassNameContract, DesignSystem> = {
             },
         },
         "&:active": {
-            background: neutralFillInputActive,
-            "border-color": neutralOutlineActive,
+            background: neutralFillInputActiveCustomProperty,
+            "border-color": neutralOutlineActiveCustomProperty,
         },
         ...applyFocusVisible({
-            "box-shadow": format<DesignSystem>("0 0 0 1px {0} inset", neutralFocus),
-            "border-color": neutralFocus,
+            "box-shadow": format<DesignSystem>(
+                "0 0 0 1px {0} inset",
+                neutralFocusCustomProperty
+            ),
+            "border-color": neutralFocusCustomProperty,
             [highContrastSelector]: {
                 "box-shadow": format<DesignSystem>(
                     "0 0 0 1px {0}",
@@ -134,7 +137,7 @@ const styles: ComponentStyles<RadioClassNameContract, DesignSystem> = {
     },
     radio_label: {
         ...applyCursorPointer(),
-        color: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
         ...applyScaledTypeRamp("t7"),
         "margin-left": directionSwitch(horizontalSpacing(2), ""),
         "margin-right": directionSwitch("", horizontalSpacing(2)),
@@ -142,7 +145,7 @@ const styles: ComponentStyles<RadioClassNameContract, DesignSystem> = {
     radio__checked: {
         "& $radio_stateIndicator": {
             "&::before": {
-                background: neutralForegroundRest,
+                background: neutralForegroundRestCustomProperty,
                 [highContrastSelector]: {
                     background: HighContrastColor.selectedBackground,
                 },

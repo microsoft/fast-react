@@ -14,12 +14,12 @@ import { applyCursorPointer } from "../../utilities/cursor";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import { applyPillCornerRadius } from "../../utilities/border";
 import {
-    neutralFocus,
-    neutralForegroundActive,
-    neutralForegroundHint,
-    neutralForegroundHover,
-    neutralForegroundRest,
-    neutralOutlineRest,
+    neutralFocusCustomProperty,
+    neutralForegroundActiveCustomProperty,
+    neutralForegroundHintCustomProperty,
+    neutralForegroundHoverCustomProperty,
+    neutralForegroundRestCustomProperty,
+    neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { densityCategorySwitch, heightNumber } from "../../utilities/density";
 import {
@@ -70,7 +70,7 @@ const styles: ComponentStyles<SliderClassNameContract, DesignSystem> = {
         height: thumbSize,
         width: thumbSize,
         border: "none",
-        background: neutralForegroundRest,
+        background: neutralForegroundRestCustomProperty,
         "border-radius": "50%",
         transition: "all 0.2s ease",
         ...applyElevation(ElevationMultiplier.e4),
@@ -78,7 +78,7 @@ const styles: ComponentStyles<SliderClassNameContract, DesignSystem> = {
             "box-shadow": format(
                 `0 0 0 2px {0}, 0 0 0 {2} {1}`,
                 backgroundColor,
-                neutralFocus,
+                neutralFocusCustomProperty,
                 toPx(add(focusOutlineWidth, 2))
             ),
             [highContrastSelector]: {
@@ -90,10 +90,10 @@ const styles: ComponentStyles<SliderClassNameContract, DesignSystem> = {
             },
         }),
         "&:hover": {
-            background: neutralForegroundHover,
+            background: neutralForegroundHoverCustomProperty,
         },
         "&:active": {
-            background: neutralForegroundActive,
+            background: neutralForegroundActiveCustomProperty,
         },
         [highContrastSelector]: {
             background: HighContrastColor.buttonText,
@@ -107,12 +107,12 @@ const styles: ComponentStyles<SliderClassNameContract, DesignSystem> = {
     slider_track: {},
     slider_backgroundTrack: {
         ...applyPillCornerRadius(),
-        background: neutralOutlineRest,
+        background: neutralOutlineRestCustomProperty,
         ...highContrastBackground,
     },
     slider_foregroundTrack: {
         ...applyPillCornerRadius(),
-        background: neutralForegroundHint,
+        background: neutralForegroundHintCustomProperty,
         transition: "all 0.2s ease",
         ...highContrastHighlightBackground,
     },
@@ -121,10 +121,10 @@ const styles: ComponentStyles<SliderClassNameContract, DesignSystem> = {
         "& $slider_thumb, & $slider_backgroundTrack": {
             ...highContrastDisabledBackground,
             "&:hover": {
-                background: neutralForegroundRest,
+                background: neutralForegroundRestCustomProperty,
             },
             "&:active": {
-                background: neutralForegroundRest,
+                background: neutralForegroundRestCustomProperty,
             },
         },
         "& $slider_layoutRegion": {

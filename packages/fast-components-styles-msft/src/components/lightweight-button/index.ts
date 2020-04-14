@@ -4,10 +4,10 @@ import { applyFocusVisible, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { baseButton, buttonStyles } from "../../patterns/button";
 import {
-    accentForegroundActive,
-    accentForegroundHover,
-    accentForegroundRest,
-    neutralForegroundRest,
+    accentForegroundActiveCustomProperty,
+    accentForegroundHoverCustomProperty,
+    accentForegroundRestCustomProperty,
+    neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { focusOutlineWidth } from "../../utilities/design-system";
 import {
@@ -29,14 +29,14 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
         border: "0",
         "justify-content": "flex-start",
         "background-color": "transparent",
-        color: accentForegroundRest,
-        fill: accentForegroundRest,
+        color: accentForegroundRestCustomProperty,
+        fill: accentForegroundRestCustomProperty,
         ...applyFocusVisible({
             "border-color": "transparent",
             "box-shadow": "none",
             ...highContrastHighlightForeground,
             "& $button_contentRegion::before": {
-                background: neutralForegroundRest,
+                background: neutralForegroundRestCustomProperty,
                 height: toPx<DesignSystem>(focusOutlineWidth),
                 ...highContrastHighlightBackground,
             },
@@ -49,14 +49,14 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
             },
         },
         "&:hover $button_contentRegion::before": {
-            background: accentForegroundHover,
+            background: accentForegroundHoverCustomProperty,
             ...highContrastHighlightBackground,
         },
         "&:hover$button__disabled $button_contentRegion::before": {
             display: "none",
         },
         "&:active $button_contentRegion::before": {
-            background: accentForegroundActive,
+            background: accentForegroundActiveCustomProperty,
             ...highContrastHighlightBackground,
         },
         "&$button__disabled, &$button__disabled $button_contentRegion::before": {
@@ -64,14 +64,14 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
             ...highContrastDisabledForeground,
         },
         "&:hover:enabled, a&:not($button__disabled):hover": {
-            color: accentForegroundHover,
-            fill: accentForegroundHover,
+            color: accentForegroundHoverCustomProperty,
+            fill: accentForegroundHoverCustomProperty,
             "background-color": "transparent",
             ...highContrastHighlightForeground,
         },
         "&:active:enabled, a&:not($button__disabled):active": {
-            color: accentForegroundActive,
-            fill: accentForegroundActive,
+            color: accentForegroundActiveCustomProperty,
+            fill: accentForegroundActiveCustomProperty,
             "background-color": "transparent",
         },
         ...highContrastStealth,

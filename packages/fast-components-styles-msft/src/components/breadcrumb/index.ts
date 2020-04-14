@@ -1,14 +1,17 @@
 import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { directionSwitch } from "@microsoft/fast-jss-utilities";
 import { BreadcrumbClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
-import { neutralForegroundHint, neutralForegroundRest } from "../../utilities/color";
+import {
+    neutralForegroundHintCustomProperty,
+    neutralForegroundRestCustomProperty,
+} from "../../utilities/color";
 import { DesignSystem } from "../../design-system";
 import { applyCursorDefault } from "../../utilities/cursor";
 import { applyScaledTypeRamp } from "../../utilities/typography";
 
 const styles: ComponentStyles<BreadcrumbClassNameContract, DesignSystem> = {
     breadcrumb: {
-        color: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
         ...applyScaledTypeRamp("t7"),
         ...applyCursorDefault(),
     },
@@ -32,7 +35,7 @@ const styles: ComponentStyles<BreadcrumbClassNameContract, DesignSystem> = {
     breadcrumb_separator: {
         display: "inline-block",
         ...applyCursorDefault(),
-        color: neutralForegroundHint,
+        color: neutralForegroundHintCustomProperty,
         margin: "0 6px",
     },
 };

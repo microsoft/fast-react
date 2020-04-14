@@ -2,7 +2,10 @@ import { SliderLabelClassNameContract } from "@microsoft/fast-components-class-n
 import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
-import { neutralForegroundRest, neutralOutlineRest } from "../../utilities/color";
+import {
+    neutralForegroundRestCustomProperty,
+    neutralOutlineRestCustomProperty,
+} from "../../utilities/color";
 import { applyCursorDefault } from "../../utilities/cursor";
 import { heightNumber } from "../../utilities/density";
 import { designUnit } from "../../utilities/design-system";
@@ -34,12 +37,12 @@ const styles: ComponentStyles<SliderLabelClassNameContract, DesignSystem> = {
     sliderLabel_label: {
         ...applyScaledTypeRamp("t9"),
         "white-space": "nowrap",
-        color: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
         ...highContrastTextForeground,
     },
 
     sliderLabel_tickMark: {
-        background: neutralOutlineRest,
+        background: neutralOutlineRestCustomProperty,
         ...highContrastBackground,
     },
 

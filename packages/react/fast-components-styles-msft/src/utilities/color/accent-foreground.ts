@@ -98,52 +98,56 @@ function accentForegroundAlgorithm(
     };
 }
 
-// export const accentForeground: SwatchFamilyResolver = colorRecipeFactory(
-//     accentForegroundAlgorithm(4.5)
-// );
-// export const accentForegroundLarge: SwatchFamilyResolver = colorRecipeFactory(
-//     accentForegroundAlgorithm(3)
-// );
+export const accentForeground: SwatchFamilyResolver = colorRecipeFactory(
+    accentForegroundAlgorithm(4.5)
+);
+export const accentForegroundLarge: SwatchFamilyResolver = colorRecipeFactory(
+    accentForegroundAlgorithm(3)
+);
 
-// export const accentForegroundRest: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.rest,
-//     accentForeground
-// );
-// export const accentForegroundHover: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.hover,
-//     accentForeground
-// );
-// export const accentForegroundActive: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.active,
-//     accentForeground
-// );
-// export const accentForegroundFocus: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.focus,
-//     accentForeground
-// );
+export const accentForegroundRest: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.rest,
+    accentForeground
+);
+export const accentForegroundHover: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.hover,
+    accentForeground
+);
+export const accentForegroundActive: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.active,
+    accentForeground
+);
+export const accentForegroundFocus: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.focus,
+    accentForeground
+);
 
-// export const accentForegroundLargeRest: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.rest,
-//     accentForegroundLarge
-// );
-// export const accentForegroundLargeHover: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.hover,
-//     accentForegroundLarge
-// );
-// export const accentForegroundLargeActive: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.active,
-//     accentForegroundLarge
-// );
-// export const accentForegroundLargeFocus: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
-//     SwatchFamilyType.focus,
-//     accentForegroundLarge
-// );
+export const accentForegroundLargeRest: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.rest,
+    accentForegroundLarge
+);
+export const accentForegroundLargeHover: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.hover,
+    accentForegroundLarge
+);
+export const accentForegroundLargeActive: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.active,
+    accentForegroundLarge
+);
+export const accentForegroundLargeFocus: SwatchRecipe = swatchFamilyToSwatchRecipeFactory(
+    SwatchFamilyType.focus,
+    accentForegroundLarge
+);
 
-export const accentForegroundRest = "var(--accent-foreground-rest)";
-export const accentForegroundHover = "var(--accent-foreground-hover)";
-export const accentForegroundActive = "var(--accent-foreground-active)";
-export const accentForegroundFocus = "var(--accent-foreground-focus)";
-export const accentForegroundLargeRest = "var(--accent-foreground-large-rest)";
-export const accentForegroundLargeHover = "var(--accent-foreground-large-hover)";
-export const accentForegroundLargeActive = "var(--accent-foreground-large-active)";
-export const accentForegroundLargeFocus = "var(--accent-foreground-large-focus)";
+export const accentForegroundRestCustomProperty = "var(--accent-foreground-rest)";
+export const accentForegroundHoverCustomProperty = "var(--accent-foreground-hover)";
+export const accentForegroundActiveCustomProperty = "var(--accent-foreground-active)";
+export const accentForegroundFocusCustomProperty = "var(--accent-foreground-focus)";
+export const accentForegroundLargeRestCustomProperty =
+    "var(--accent-foreground-large-rest)";
+export const accentForegroundLargeHoverCustomProperty =
+    "var(--accent-foreground-large-hover)";
+export const accentForegroundLargeActiveCustomProperty =
+    "var(--accent-foreground-large-active)";
+export const accentForegroundLargeFocusCustomProperty =
+    "var(--accent-foreground-large-focus)";

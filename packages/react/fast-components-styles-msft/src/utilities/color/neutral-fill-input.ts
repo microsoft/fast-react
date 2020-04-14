@@ -32,36 +32,37 @@ function neutralFillInputAlgorithm(
     };
 }
 
-// export const neutralFillInputRest: SwatchRecipe = colorRecipeFactory(
-//     neutralFillInputAlgorithm(neutralFillInputRestDelta)
-// );
-// export const neutralFillInputHover: SwatchRecipe = colorRecipeFactory(
-//     neutralFillInputAlgorithm(neutralFillInputHoverDelta)
-// );
-// export const neutralFillInputActive: SwatchRecipe = colorRecipeFactory(
-//     neutralFillInputAlgorithm(neutralFillInputActiveDelta)
-// );
-// export const neutralFillInputFocus: SwatchRecipe = colorRecipeFactory(
-//     neutralFillInputAlgorithm(neutralFillInputFocusDelta)
-// );
-// export const neutralFillInputSelected: SwatchRecipe = colorRecipeFactory(
-//     neutralFillInputAlgorithm(neutralFillInputSelectedDelta)
-// );
+export const neutralFillInputRest: SwatchRecipe = colorRecipeFactory(
+    neutralFillInputAlgorithm(neutralFillInputRestDelta)
+);
+export const neutralFillInputHover: SwatchRecipe = colorRecipeFactory(
+    neutralFillInputAlgorithm(neutralFillInputHoverDelta)
+);
+export const neutralFillInputActive: SwatchRecipe = colorRecipeFactory(
+    neutralFillInputAlgorithm(neutralFillInputActiveDelta)
+);
+export const neutralFillInputFocus: SwatchRecipe = colorRecipeFactory(
+    neutralFillInputAlgorithm(neutralFillInputFocusDelta)
+);
+export const neutralFillInputSelected: SwatchRecipe = colorRecipeFactory(
+    neutralFillInputAlgorithm(neutralFillInputSelectedDelta)
+);
 
-// export const neutralFillInput: ColorRecipe<FillSwatchFamily> = colorRecipeFactory(
-//     (designSystem: DesignSystem): FillSwatchFamily => {
-//         return {
-//             rest: neutralFillInputRest(designSystem),
-//             hover: neutralFillInputHover(designSystem),
-//             active: neutralFillInputActive(designSystem),
-//             focus: neutralFillInputFocus(designSystem),
-//             selected: neutralFillInputSelected(designSystem),
-//         };
-//     }
-// );
+export const neutralFillInput: ColorRecipe<FillSwatchFamily> = colorRecipeFactory(
+    (designSystem: DesignSystem): FillSwatchFamily => {
+        return {
+            rest: neutralFillInputRest(designSystem),
+            hover: neutralFillInputHover(designSystem),
+            active: neutralFillInputActive(designSystem),
+            focus: neutralFillInputFocus(designSystem),
+            selected: neutralFillInputSelected(designSystem),
+        };
+    }
+);
 
-export const neutralFillInputRest = "var(--neutral-fill-input-rest)";
-export const neutralFillInputHover = "var(--neutral-fill-input-hover)";
-export const neutralFillInputActive = "var(--neutral-fill-input-active)";
-export const neutralFillInputFocus = "var(--neutral-fill-input-focus)";
-export const neutralFillInputSelected = "var(--neutral-fill-input-selected)";
+export const neutralFillInputRestCustomProperty = "var(--neutral-fill-input-rest)";
+export const neutralFillInputHoverCustomProperty = "var(--neutral-fill-input-hover)";
+export const neutralFillInputActiveCustomProperty = "var(--neutral-fill-input-active)";
+export const neutralFillInputFocusCustomProperty = "var(--neutral-fill-input-focus)";
+export const neutralFillInputSelectedCustomProperty =
+    "var(--neutral-fill-input-selected)";

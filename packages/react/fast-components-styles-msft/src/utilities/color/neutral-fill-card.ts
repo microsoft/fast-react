@@ -15,18 +15,18 @@ const neutralCardFillAlgorithm: SwatchResolver = (designSystem: DesignSystem): S
     );
 };
 
-// export function neutralFillCard(designSystem: DesignSystem): Swatch;
-// export function neutralFillCard(backgroundResolver: SwatchResolver): SwatchResolver;
-// export function neutralFillCard(arg: any): any {
-//     if (typeof arg === "function") {
-//         return (designSystem: DesignSystem): Swatch => {
-//             return neutralCardFillAlgorithm(
-//                 Object.assign({}, designSystem, { backgroundColor: arg(designSystem) })
-//             );
-//         };
-//     } else {
-//         return neutralCardFillAlgorithm(arg);
-//     }
-// }
+export function neutralFillCard(designSystem: DesignSystem): Swatch;
+export function neutralFillCard(backgroundResolver: SwatchResolver): SwatchResolver;
+export function neutralFillCard(arg: any): any {
+    if (typeof arg === "function") {
+        return (designSystem: DesignSystem): Swatch => {
+            return neutralCardFillAlgorithm(
+                Object.assign({}, designSystem, { backgroundColor: arg(designSystem) })
+            );
+        };
+    } else {
+        return neutralCardFillAlgorithm(arg);
+    }
+}
 
-export const neutralFillCard = "var(--neutral-fill-card)";
+export const neutralFillCardCustomProperty = "var(--neutral-fill-card)";

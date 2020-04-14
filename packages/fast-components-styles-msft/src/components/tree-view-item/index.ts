@@ -12,13 +12,13 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import {
-    accentForegroundRest,
-    neutralFillStealthActive,
-    neutralFillStealthHover,
-    neutralFillStealthRest,
-    neutralFillStealthSelected,
-    neutralFocus,
-    neutralForegroundRest,
+    accentForegroundRestCustomProperty,
+    neutralFillStealthActiveCustomProperty,
+    neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRestCustomProperty,
+    neutralFillStealthSelectedCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { heightNumber } from "../../utilities/density";
 import { designUnit, focusOutlineWidth } from "../../utilities/design-system";
@@ -49,22 +49,22 @@ const styles: ComponentStyles<TreeViewItemClassNameContract, DesignSystem> = {
     // Container for item AND any children
     treeViewItem: {
         position: "relative",
-        color: neutralForegroundRest,
-        background: neutralFillStealthRest,
+        color: neutralForegroundRestCustomProperty,
+        background: neutralFillStealthRestCustomProperty,
         ...applyCursorPointer(),
         // TODO: #1350 applyFocusVisible can only handle a single selector rule
         ...applyFocusVisible<DesignSystem>(" > $treeViewItem_contentRegion", {
             border: format<DesignSystem>(
                 "{0} solid {1}",
                 toPx(focusOutlineWidth),
-                neutralFocus
+                neutralFocusCustomProperty
             ),
             ...highContrastDoubleFocus,
         }),
         "& $treeViewItem_beforeContent, & $treeViewItem_afterContent": {
             width: glyphSize,
             height: glyphSize,
-            fill: neutralForegroundRest,
+            fill: neutralForegroundRestCustomProperty,
             [highContrastSelector]: {
                 fill: HighContrastColor.buttonText,
             },
@@ -87,7 +87,7 @@ const styles: ComponentStyles<TreeViewItemClassNameContract, DesignSystem> = {
         ...applyFocusPlaceholderBorder(),
         ...applyCornerRadius(),
         "&:hover": {
-            background: neutralFillStealthHover,
+            background: neutralFillStealthHoverCustomProperty,
             ...highContrastSelected,
             [`& $treeViewItem_expandCollapseGlyph,
             & $treeViewItem_beforeContent, & $treeViewItem_afterContent`]: {
@@ -97,7 +97,7 @@ const styles: ComponentStyles<TreeViewItemClassNameContract, DesignSystem> = {
             },
         },
         "&:active": {
-            background: neutralFillStealthActive,
+            background: neutralFillStealthActiveCustomProperty,
         },
         // Left indent padding for node level; em size set in treeViewItem_childNodeRegion
         "&::before": {
@@ -158,7 +158,7 @@ const styles: ComponentStyles<TreeViewItemClassNameContract, DesignSystem> = {
         transition: "transform .1s linear",
         transform: directionSwitch("rotate(-45deg)", "rotate(135deg)"),
         "pointer-events": "none",
-        fill: neutralForegroundRest,
+        fill: neutralForegroundRestCustomProperty,
         [highContrastSelector]: {
             fill: HighContrastColor.buttonText,
         },
@@ -173,7 +173,7 @@ const styles: ComponentStyles<TreeViewItemClassNameContract, DesignSystem> = {
     },
     treeViewItem__selected: {
         "& > $treeViewItem_contentRegion": {
-            background: neutralFillStealthSelected,
+            background: neutralFillStealthSelectedCustomProperty,
             ...highContrastSelected,
         },
         "&::after": {
@@ -183,7 +183,7 @@ const styles: ComponentStyles<TreeViewItemClassNameContract, DesignSystem> = {
             top: toPx(divide(subtract(heightNumber(), getScaledLineHeight("t7")), 2)),
             width: "3px",
             height: applyScaledLineHeight("t7"),
-            background: accentForegroundRest,
+            background: accentForegroundRestCustomProperty,
             left: directionSwitch(toPx(focusOutlineWidth), "unset"),
             right: directionSwitch("unset", toPx(focusOutlineWidth)),
             ...applyCornerRadius(),

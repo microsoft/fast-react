@@ -2,30 +2,48 @@
  * Text exports
  */
 export {
-    // neutralForeground,
+    neutralForegroundRestCustomProperty,
+    neutralForegroundHoverCustomProperty,
+    neutralForegroundActiveCustomProperty,
+    neutralForeground,
     neutralForegroundRest,
     neutralForegroundHover,
     neutralForegroundActive,
 } from "./neutral-foreground";
 
 export {
+    neutralForegroundToggleCustomProperty,
+    neutralForegroundToggleLargeCustomProperty,
     neutralForegroundToggle,
     neutralForegroundToggleLarge,
 } from "./neutral-foreground-toggle";
 
-export { accentForegroundCut, accentForegroundCutLarge } from "./accent-foreground-cut";
+export {
+    accentForegroundCutCustomProperty,
+    accentForegroundCutLargeCustomProperty,
+    accentForegroundCut,
+    accentForegroundCutLarge,
+} from "./accent-foreground-cut";
 
 export {
+    neutralForegroundHintCustomProperty,
+    neutralForegroundHintLargeCustomProperty,
     neutralForegroundHint,
     neutralForegroundHintLarge,
 } from "./neutral-foreground-hint";
 
 export {
-    // accentForeground,
+    accentForegroundRestCustomProperty,
+    accentForegroundHoverCustomProperty,
+    accentForegroundActiveCustomProperty,
+    accentForegroundLargeRestCustomProperty,
+    accentForegroundLargeHoverCustomProperty,
+    accentForegroundLargeActiveCustomProperty,
+    accentForegroundLarge,
+    accentForeground,
     accentForegroundRest,
     accentForegroundHover,
     accentForegroundActive,
-    // accentForegroundLarge,
     accentForegroundLargeRest,
     accentForegroundLargeHover,
     accentForegroundLargeActive,
@@ -35,67 +53,101 @@ export {
  * Fill exports
  */
 export {
-    // neutralFill,
+    neutralFillRestCustomProperty,
+    neutralFillHoverCustomProperty,
+    neutralFillActiveCustomProperty,
+    neutralFillSelectedCustomProperty,
     neutralFillRest,
     neutralFillHover,
     neutralFillActive,
     neutralFillSelected,
+    neutralFill,
 } from "./neutral-fill";
 
 export {
-    // neutralFillStealth,
+    neutralFillStealthRestCustomProperty,
+    neutralFillStealthHoverCustomProperty,
+    neutralFillStealthActiveCustomProperty,
+    neutralFillStealthSelectedCustomProperty,
     neutralFillStealthRest,
     neutralFillStealthHover,
     neutralFillStealthActive,
     neutralFillStealthSelected,
+    neutralFillStealth,
 } from "./neutral-fill-stealth";
 
 export {
-    neutralFillToggle,
+    neutralFillToggleRestCustomProperty,
+    neutralFillToggleHoverCustomProperty,
+    neutralFillToggleActiveCustomProperty,
     neutralFillToggleRest,
     neutralFillToggleHover,
     neutralFillToggleActive,
+    neutralFillToggle,
 } from "./neutral-fill-toggle";
 
 export {
-    // neutralFillInput,
+    neutralFillInputRestCustomProperty,
+    neutralFillInputHoverCustomProperty,
+    neutralFillInputActiveCustomProperty,
+    neutralFillInputSelectedCustomProperty,
     neutralFillInputRest,
     neutralFillInputHover,
     neutralFillInputActive,
     neutralFillInputSelected,
+    neutralFillInput,
 } from "./neutral-fill-input";
 
 export {
-    // accentFill,
+    accentFillRestCustomProperty,
+    accentFillHoverCustomProperty,
+    accentFillActiveCustomProperty,
+    accentFillSelectedCustomProperty,
+    accentFillLargeRestCustomProperty,
+    accentFillLargeHoverCustomProperty,
+    accentFillLargeActiveCustomProperty,
+    accentFillLargeSelectedCustomProperty,
+    accentFillLarge,
+    accentFill,
     accentFillRest,
     accentFillHover,
     accentFillActive,
     accentFillSelected,
-    // accentFillLarge,
     accentFillLargeRest,
     accentFillLargeHover,
     accentFillLargeActive,
     accentFillLargeSelected,
 } from "./accent-fill";
 
-export { neutralFillCard } from "./neutral-fill-card";
+export { neutralFillCardCustomProperty, neutralFillCard } from "./neutral-fill-card";
 
 /**
  * Border exports
  */
 export {
-    // neutralOutline,
+    neutralOutlineRestCustomProperty,
+    neutralOutlineHoverCustomProperty,
+    neutralOutlineActiveCustomProperty,
+    neutralOutline,
     neutralOutlineRest,
     neutralOutlineHover,
     neutralOutlineActive,
 } from "./neutral-outline";
 
-export { neutralDividerRest } from "./neutral-divider";
+export { neutralDividerRestCustomProperty, neutralDividerRest } from "./neutral-divider";
 
 /**
  * App layer exports
  */
 export {
+    neutralLayerFloatingCustomProperty,
+    neutralLayerCardCustomProperty,
+    neutralLayerCardContainerCustomProperty,
+    neutralLayerL1CustomProperty,
+    neutralLayerL1AltCustomProperty,
+    neutralLayerL2CustomProperty,
+    neutralLayerL3CustomProperty,
+    neutralLayerL4CustomProperty,
     neutralLayerFloating,
     neutralLayerCard,
     neutralLayerCardContainer,
@@ -112,7 +164,12 @@ export {
 /**
  * Focus colors
  */
-export { neutralFocus, neutralFocusInnerAccent } from "./neutral-focus";
+export {
+    neutralFocusCustomProperty,
+    neutralFocusInnerAccentCustomProperty,
+    neutralFocus,
+    neutralFocusInnerAccent,
+} from "./neutral-focus";
 
 /**
  * Export supporting types

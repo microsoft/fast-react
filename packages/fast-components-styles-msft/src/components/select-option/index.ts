@@ -11,11 +11,11 @@ import {
 import { DesignSystem } from "../../design-system";
 import { applyCornerRadius, applyFocusPlaceholderBorder } from "../../utilities/border";
 import {
-    neutralFillStealthHover,
-    neutralFillStealthRest,
-    neutralFillStealthSelected,
-    neutralFocus,
-    neutralForegroundRest,
+    neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRestCustomProperty,
+    neutralFillStealthSelectedCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { applyCursorDefault, applyCursorPointer } from "../../utilities/cursor";
 import { glyphSize, height, horizontalSpacing } from "../../utilities/density";
@@ -40,22 +40,22 @@ const styles: ComponentStyles<SelectOptionClassNameContract, DesignSystem> = {
         "align-items": "center",
         padding: format("0 {0}", horizontalSpacing(focusOutlineWidth)),
         margin: format("0 {0}", toPx(designUnit)),
-        color: neutralForegroundRest,
-        fill: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
+        fill: neutralForegroundRestCustomProperty,
         "white-space": "nowrap",
         overflow: "hidden",
         ...applyCursorDefault(),
         ...applyScaledTypeRamp("t7"),
-        background: neutralFillStealthRest,
+        background: neutralFillStealthRestCustomProperty,
         ...applyCursorPointer(),
         ...applyCornerRadius(),
         ...applyFocusPlaceholderBorder(),
         ...applyFocusVisible<DesignSystem>({
-            "border-color": neutralFocus,
+            "border-color": neutralFocusCustomProperty,
             ...highContrastOutlineFocus,
         }),
         "&:hover": {
-            background: neutralFillStealthHover,
+            background: neutralFillStealthHoverCustomProperty,
             ...highContrastSelected,
         },
         ...highContrastStealth,
@@ -79,7 +79,7 @@ const styles: ComponentStyles<SelectOptionClassNameContract, DesignSystem> = {
         ...applyDisabledState(),
         ...highContrastDisabledBorder,
         "&, &:hover": {
-            background: neutralFillStealthRest,
+            background: neutralFillStealthRestCustomProperty,
         },
     },
     selectOption__selected: {
@@ -89,9 +89,9 @@ const styles: ComponentStyles<SelectOptionClassNameContract, DesignSystem> = {
             color: important(HighContrastColor.selectedText),
             fill: important(HighContrastColor.selectedText),
         },
-        background: neutralFillStealthSelected,
+        background: neutralFillStealthSelectedCustomProperty,
         "&:hover": {
-            background: neutralFillStealthSelected,
+            background: neutralFillStealthSelectedCustomProperty,
         },
     },
 };

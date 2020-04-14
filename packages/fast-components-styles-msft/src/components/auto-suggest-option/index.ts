@@ -9,11 +9,11 @@ import { ellipsis, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { height, horizontalSpacing } from "../../utilities/density";
 import {
-    neutralFillStealthHover,
-    neutralFillStealthRest,
-    neutralFillStealthSelected,
-    neutralFocus,
-    neutralForegroundRest,
+    neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRestCustomProperty,
+    neutralFillStealthSelectedCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { applyScaledTypeRamp } from "../../utilities/typography";
 import { applyCornerRadius, applyFocusPlaceholderBorder } from "../../utilities/border";
@@ -44,20 +44,20 @@ const styles: ComponentStyles<AutoSuggestOptionClassNameContract, DesignSystem> 
         "white-space": "nowrap",
         overflow: "hidden",
         ...applyCursorDefault(),
-        color: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
         ...applyScaledTypeRamp("t7"),
-        background: neutralFillStealthRest,
+        background: neutralFillStealthRestCustomProperty,
         ...applyCornerRadius(),
         ...applyFocusPlaceholderBorder(),
         ...applyFocusVisible<DesignSystem>({
-            "border-color": neutralFocus,
+            "border-color": neutralFocusCustomProperty,
             [highContrastSelector]: {
                 background: HighContrastColor.selectedBackground,
                 color: HighContrastColor.selectedText,
             },
         }),
         "&:hover": {
-            background: neutralFillStealthHover,
+            background: neutralFillStealthHoverCustomProperty,
             ...highContrastSelected,
         },
         ...highContrastStealth,
@@ -71,14 +71,14 @@ const styles: ComponentStyles<AutoSuggestOptionClassNameContract, DesignSystem> 
         ...applyDisabledState(),
         ...highContrastDisabled,
         "&:hover": {
-            background: neutralFillStealthRest,
+            background: neutralFillStealthRestCustomProperty,
             ...highContrastDisabled,
         },
     },
     autoSuggestOption__selected: {
-        background: neutralFillStealthSelected,
+        background: neutralFillStealthSelectedCustomProperty,
         "&:hover": {
-            background: neutralFillStealthSelected,
+            background: neutralFillStealthSelectedCustomProperty,
             ...highContrastSelected,
         },
     },

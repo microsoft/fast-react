@@ -2,9 +2,9 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { ProgressClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
 import { directionSwitch, format, multiply, toPx } from "@microsoft/fast-jss-utilities";
 import {
-    accentFillRest,
-    neutralFillRest,
-    neutralForegroundHint,
+    accentFillRestCustomProperty,
+    neutralFillRestCustomProperty,
+    neutralForegroundHintCustomProperty,
 } from "../../utilities/color";
 import { DesignSystem } from "../../design-system";
 import { designUnit, outlineWidth } from "../../utilities/design-system";
@@ -40,7 +40,7 @@ const styles: ComponentStyles<ProgressClassNameContract, DesignSystem> = {
             transition: "all 0.2s ease-in-out",
         },
         "& $progress_valueIndicator": {
-            stroke: accentFillRest,
+            stroke: accentFillRestCustomProperty,
             transform: directionSwitch("", "scale(1)"),
             [highContrastSelector]: {
                 stroke: HighContrastColor.buttonText,
@@ -50,7 +50,7 @@ const styles: ComponentStyles<ProgressClassNameContract, DesignSystem> = {
             animation: "spin-infinite 2s linear infinite",
         },
         "& $progress_indicator": {
-            stroke: neutralFillRest,
+            stroke: neutralFillRestCustomProperty,
             [highContrastSelector]: {
                 stroke: HighContrastColor.buttonBackground,
             },
@@ -58,11 +58,11 @@ const styles: ComponentStyles<ProgressClassNameContract, DesignSystem> = {
     },
     progress__paused: {
         "& $progress_valueIndicator": {
-            background: neutralForegroundHint,
-            stroke: neutralForegroundHint,
+            background: neutralForegroundHintCustomProperty,
+            stroke: neutralForegroundHintCustomProperty,
         },
         "& $progress_dot": {
-            "background-color": neutralFillRest,
+            "background-color": neutralFillRestCustomProperty,
         },
         "& $progress_dot__1": {
             "animation-play-state": "paused",
@@ -72,7 +72,7 @@ const styles: ComponentStyles<ProgressClassNameContract, DesignSystem> = {
         },
         "& $progress_valueIndicator__indeterminate": {
             "animation-play-state": "paused",
-            stroke: neutralFillRest,
+            stroke: neutralFillRestCustomProperty,
         },
     },
     progress_circularSVG__control: {
@@ -88,7 +88,7 @@ const styles: ComponentStyles<ProgressClassNameContract, DesignSystem> = {
         width: toPx(multiply(heightNumber(), 2)),
     },
     progress_valueIndicator: {
-        background: accentFillRest,
+        background: accentFillRestCustomProperty,
         "border-radius": "100px",
         height: "100%",
         transition: "all 0.2s ease-in-out",
@@ -103,7 +103,7 @@ const styles: ComponentStyles<ProgressClassNameContract, DesignSystem> = {
         overflow: "hidden",
         "border-radius": "100px",
         height: toPx<DesignSystem>(designUnit),
-        background: neutralFillRest,
+        background: neutralFillRestCustomProperty,
         transition: "all 0.2s ease-in-out",
         "-webkit-mask-image": "-webkit-radial-gradient(white, black)",
         "mask-image": "-webkit-radial-gradient(white, black)",
@@ -132,7 +132,7 @@ const styles: ComponentStyles<ProgressClassNameContract, DesignSystem> = {
         position: "absolute",
         opacity: "0",
         height: "100%",
-        "background-color": accentFillRest,
+        "background-color": accentFillRestCustomProperty,
         "border-radius": "100px",
         "animation-timing-function": "cubic-bezier(0.4, 0.0, 0.6, 1.0)",
         [highContrastSelector]: {
