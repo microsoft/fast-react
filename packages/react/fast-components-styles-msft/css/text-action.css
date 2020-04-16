@@ -1,0 +1,144 @@
+.textAction-0-0-224 {
+  margin: 0;
+  display: flex;
+  position: relative;
+  min-width: 92px;
+  box-sizing: border-box;
+  background: var(--neutral-fill-input-rest);
+  transition: all 0.2s ease-in-out;
+  flex-direction: row;
+}
+.textAction-0-0-224:hover {
+  background: var(--neutral-fill-input-hover);
+  border-color: var(--neutral-outline-hover);
+}
+.textAction-0-0-224:active {
+  background: var(--neutral-fill-input-active);
+  border-color: var(--neutral-outline-active);
+}
+@media (-ms-high-contrast:active) {
+  .textAction-0-0-224 {
+    fill: ButtonText;
+    color: ButtonText;
+    background: ButtonFace;
+    border-color: ButtonText;
+    -ms-high-contrast-adjust: none;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .textAction-0-0-224:hover {
+    background: transparent;
+    border-color: Highlight;
+  }
+}
+.textAction__filled-0-0-225 {
+  background: var(--neutral-fill-rest);
+}
+.textAction__filled-0-0-225:hover {
+  background: var(--neutral-fill-hover);
+  border-color: transparent;
+}
+.textAction__filled-0-0-225:active {
+  background: var(--neutral-fill-active);
+  border-color: transparent;
+}
+@media (-ms-high-contrast:active) {
+  .textAction__filled-0-0-225 {
+    background: ButtonFace;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .textAction__filled-0-0-225:hover {
+    background: ButtonFace;
+    border-color: Highlight;
+  }
+}
+.textAction__disabled-0-0-228 {
+  cursor: not-allowed !important;
+}
+@media (-ms-high-contrast:active) {
+  .textAction__disabled-0-0-228 {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+    background: ButtonFace !important;
+    border-color: GrayText !important;
+  }
+}
+.textAction__disabled-0-0-228:hover {
+  background: var(--neutral-fill-input-rest);
+  border-color: var(--neutral-outline-rest);
+}
+.textAction__disabled-0-0-228:active {
+  background: var(--neutral-fill-input-rest);
+  border-color: var(--neutral-outline-rest);
+}
+@media (-ms-high-contrast:active) {
+  .textAction__disabled-0-0-228 .textAction_beforeGlyph-0-0-230, .textAction__disabled-0-0-228 .textAction_afterGlyph-0-0-231 {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+  }
+}
+.textAction_button-0-0-229 {
+  top: 0;
+  fill: var(--neutral-foreground-rest);
+  flex: 0 0 auto;
+  color: var(--neutral-foreground-rest);
+  margin: 2px;
+  cursor: pointer;
+  padding: 0 5px;
+  min-width: fit-content;
+  transition: color .1s, background-color .1s, border-color 0.2s ease-in-out;
+  border-color: transparent;
+}
+@media (-ms-high-contrast:active) {
+  .textAction_button-0-0-229 {
+    fill: ButtonText;
+    background: ButtonFace;
+  }
+}
+.textAction_button-0-0-229:focus {
+  outline: none;
+}
+@media (-ms-high-contrast:active) {
+  body:not(:global(.js-focus-visible)) .textAction_button-0-0-229:focus, :global(.js-focus-visible) .textAction_button-0-0-229:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].textAction_button-0-0-229 {
+    fill: HighlightText;
+    background: Highlight;
+    border-color: ButtonText !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .textAction_button-0-0-229:active {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .textAction_button-0-0-229:hover {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}
+.textAction_beforeGlyph-0-0-230 {
+  fill: var(--neutral-foreground-rest);
+  margin: auto;
+}
+@media (-ms-high-contrast:active) {
+  .textAction_beforeGlyph-0-0-230 {
+    fill: ButtonText !important;
+    color: ButtonText !important;
+  }
+}
+.textAction_afterGlyph-0-0-231 {
+  fill: var(--neutral-foreground-rest);
+  margin: auto;
+}
+@media (-ms-high-contrast:active) {
+  .textAction_afterGlyph-0-0-231 {
+    fill: ButtonText !important;
+    color: ButtonText !important;
+  }
+}

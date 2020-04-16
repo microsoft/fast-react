@@ -1,0 +1,82 @@
+.sliderLabel-0-0-201 {
+  cursor: default;
+  display: grid;
+}
+@media (-ms-high-contrast:active) {
+  .sliderLabel-0-0-201 {
+    -ms-high-contrast-adjust: none;
+  }
+}
+.sliderLabel_positioningRegion-0-0-202 {
+  display: grid;
+}
+.sliderLabel_label-0-0-203 {
+  color: var(--neutral-foreground-rest);
+  white-space: nowrap;
+}
+@media (-ms-high-contrast:active) {
+  .sliderLabel_label-0-0-203 {
+    fill: WindowText !important;
+    color: WindowText !important;
+  }
+}
+.sliderLabel_tickMark-0-0-204 {
+  background: var(--neutral-outline-rest);
+}
+@media (-ms-high-contrast:active) {
+  .sliderLabel_tickMark-0-0-204 {
+    background: ButtonText;
+  }
+}
+.sliderLabel__horizontal-0-0-207.sliderLabel-0-0-201 {
+  grid-row: 2;
+  align-self: start;
+  margin-top: -2px;
+}
+.sliderLabel__horizontal-0-0-207 .sliderLabel_positioningRegion-0-0-202 {
+  width: 0;
+  justify-self: center;
+  grid-template-rows: auto auto;
+  grid-template-columns: 0;
+}
+.sliderLabel__horizontal-0-0-207 .sliderLabel_label-0-0-203 {
+  grid-row: 2;
+  justify-self: center;
+}
+.sliderLabel__horizontal-0-0-207 .sliderLabel_tickMark-0-0-204 {
+  width: 2px;
+  justify-self: center;
+}
+.sliderLabel__horizontal-0-0-207 .sliderLabel_positioningRegion-0-0-202.sliderLabel__positionMax-0-0-206 .sliderLabel_label-0-0-203 {
+  justify-self: end;
+}
+.sliderLabel__horizontal-0-0-207 .sliderLabel_positioningRegion-0-0-202.sliderLabel__positionMin-0-0-205 .sliderLabel_label-0-0-203 {
+  justify-self: start;
+}
+.sliderLabel__vertical-0-0-208.sliderLabel-0-0-201 {
+  grid-column: 2;
+  margin-left: -2px;
+}
+.sliderLabel__vertical-0-0-208 .sliderLabel_positioningRegion-0-0-202 {
+  height: 2px;
+  align-self: center;
+  grid-template-rows: 0;
+  grid-template-columns: auto auto;
+}
+.sliderLabel__vertical-0-0-208 .sliderLabel_label-0-0-203 {
+  margin: 2px;
+  align-self: center;
+  grid-column: 2;
+}
+.sliderLabel__vertical-0-0-208 .sliderLabel_tickMark-0-0-204 {
+  height: 2px;
+  align-self: center;
+}
+.sliderLabel__rtl-0-0-209.sliderLabel__horizontal-0-0-207 .sliderLabel_positioningRegion-0-0-202.sliderLabel__positionMax-0-0-206 .sliderLabel_label-0-0-203 {
+  margin-right: 0;
+  justify-self: start;
+}
+.sliderLabel__rtl-0-0-209.sliderLabel__horizontal-0-0-207 .sliderLabel_positioningRegion-0-0-202.sliderLabel__positionMin-0-0-205 .sliderLabel_label-0-0-203 {
+  margin-right: 0;
+  justify-self: end;
+}

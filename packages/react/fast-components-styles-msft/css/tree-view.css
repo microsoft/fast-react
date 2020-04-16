@@ -1,0 +1,10 @@
+.treeView-0-0-243 {
+  display: flex;
+  min-width: fit-content;
+  font-size: 0;
+  align-items: stretch;
+  flex-direction: column;
+}
+.treeView-0-0-243:focus {
+  outline: none;
+}

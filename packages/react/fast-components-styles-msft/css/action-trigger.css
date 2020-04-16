@@ -1,0 +1,100 @@
+@media (-ms-high-contrast:active) {
+  .actionTrigger-0-0-16.actionTrigger__justified-0-0-20:hover:enabled .actionTrigger_glyph-0-0-17, a.actionTrigger-0-0-16.actionTrigger__justified-0-0-20:not(.actionTrigger__disabled-0-0-23):hover .actionTrigger_glyph-0-0-17, .actionTrigger-0-0-16.actionTrigger__lightweight-0-0-19:hover:enabled .actionTrigger_glyph-0-0-17, a.actionTrigger-0-0-16.actionTrigger__lightweight-0-0-19:not(.actionTrigger__disabled-0-0-23):hover .actionTrigger_glyph-0-0-17 {
+    fill: Highlight !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+@media (-ms-high-contrast:active) {
+  .actionTrigger-0-0-16:hover:enabled .actionTrigger_glyph-0-0-17, a.actionTrigger-0-0-16:not(.actionTrigger__disabled-0-0-23):hover .actionTrigger_glyph-0-0-17 {
+    fill: HighlightText !important;
+    color: HighlightText !important;
+  }
+}
+}
+@media (-ms-high-contrast:active) {
+  .actionTrigger-0-0-16 .actionTrigger_glyph-0-0-17 {
+    fill: ButtonText !important;
+    color: ButtonText !important;
+  }
+}
+.actionTrigger_glyph-0-0-17 {
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+}
+.actionTrigger__primary-0-0-18 .actionTrigger_glyph-0-0-17 {
+  fill: var(--accent-foreground-cut);
+}
+.actionTrigger__primary-0-0-18.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+  fill: var(--accent-foreground-cut);
+}
+@media (-ms-high-contrast:active) {
+  .actionTrigger__primary-0-0-18.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .actionTrigger__primary-0-0-18:hover:enabled .actionTrigger_glyph-0-0-17, a.actionTrigger__primary-0-0-18:not(.actionTrigger__disabled-0-0-23):hover .actionTrigger_glyph-0-0-17 {
+    fill: Highlight !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+@media (-ms-high-contrast:active) {
+  .actionTrigger__primary-0-0-18 .actionTrigger_glyph-0-0-17 {
+    fill: HighlightText !important;
+    color: HighlightText !important;
+  }
+}
+}
+.actionTrigger__lightweight-0-0-19 .actionTrigger_glyph-0-0-17 {
+  fill: var(--accent-foreground-rest);
+}
+.actionTrigger__lightweight-0-0-19.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+  fill: var(--accent-foreground-rest);
+}
+.actionTrigger__lightweight-0-0-19:active .actionTrigger_glyph-0-0-17 {
+  fill: var(--accent-foreground-active);
+}
+.actionTrigger__lightweight-0-0-19:hover .actionTrigger_glyph-0-0-17 {
+  fill: var(--accent-foreground-hover);
+}
+.actionTrigger__justified-0-0-20 .actionTrigger_glyph-0-0-17 {
+  fill: var(--accent-foreground-rest);
+}
+.actionTrigger__justified-0-0-20.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+  fill: var(--accent-foreground-rest);
+}
+.actionTrigger__justified-0-0-20:active .actionTrigger_glyph-0-0-17 {
+  fill: var(--accent-foreground-active);
+}
+.actionTrigger__justified-0-0-20:hover .actionTrigger_glyph-0-0-17 {
+  fill: var(--accent-foreground-hover);
+}
+.actionTrigger__outline-0-0-21 .actionTrigger_glyph-0-0-17 {
+  fill: var(--neutral-foreground-rest);
+}
+.actionTrigger__outline-0-0-21.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+  fill: var(--neutral-foreground-rest);
+}
+.actionTrigger__stealth-0-0-22 .actionTrigger_glyph-0-0-17 {
+  fill: var(--neutral-foreground-rest);
+}
+.actionTrigger__stealth-0-0-22.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+  fill: var(--neutral-foreground-rest);
+}
+@media (-ms-high-contrast:active) {
+  .actionTrigger__stealth-0-0-22.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+  }
+}

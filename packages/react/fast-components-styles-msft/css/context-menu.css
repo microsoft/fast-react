@@ -1,0 +1,13 @@
+.contextMenu-0-0-77 {
+  margin: 0;
+  max-width: 368px;
+  min-width: 64px;
+  background: var(--neutral-layer-floating);
+  transition: all 0.2s ease-in-out;
+}
+@media (-ms-high-contrast:active) {
+  .contextMenu-0-0-77 {
+    background: ButtonFace;
+    -ms-high-contrast-adjust: none;
+  }
+}

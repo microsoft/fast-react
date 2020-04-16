@@ -1,0 +1,70 @@
+.flipper-0-0-86 {
+  fill: var(--neutral-foreground-rest);
+  color: var(--neutral-foreground-rest);
+  cursor: pointer;
+  margin: 0;
+  border: none;
+  display: inline-flex;
+  padding: 0;
+  position: relative;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+}
+.flipper-0-0-86::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  opacity: 0.8;
+  position: absolute;
+  transition: all 0.1s ease-in-out;
+  background: var(--neutral-fill-stealth-rest);
+  border-radius: 50%;
+}
+.flipper-0-0-86:focus {
+  outline: none;
+}
+.flipper-0-0-86::-moz-focus-inner {
+  border: 0;
+}
+@media (-ms-high-contrast:active) {
+  .flipper-0-0-86 {
+    fill: ButtonText;
+    color: ButtonText;
+    background: ButtonFace;
+    border-color: ButtonText;
+    -ms-high-contrast-adjust: none;
+  }
+}
+body:not(:global(.js-focus-visible)) .flipper-0-0-86:focus::before, :global(.js-focus-visible) .flipper-0-0-86:global(.focus-visible)::before, global(.js-focus-visible) [data-focus-visible-added].flipper-0-0-86::before {
+  border: var(--neutral-focus);
+}
+.flipper-0-0-86:hover::before {
+  background: var(--neutral-fill-stealth-hover);
+  border-color: var(--neutral-outline-hover);
+}
+@media (-ms-high-contrast:active) {
+  .flipper-0-0-86:hover .flipper_glyph-0-0-87 {
+    fill: HighlightText !important;
+    color: HighlightText !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .flipper-0-0-86:hover::before {
+    background: Highlight;
+  }
+}
+.flipper-0-0-86:active::before {
+  background: var(--neutral-fill-stealth-active);
+  border-color: var(--neutral-outline-active);
+}
+@media (-ms-high-contrast:active) {
+  .flipper-0-0-86::before {
+    background: Window;
+  }
+}
+.flipper_glyph-0-0-87 {
+  position: relative;
+}

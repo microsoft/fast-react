@@ -1,0 +1,81 @@
+.selectOption-0-0-178 {
+  fill: var(--neutral-foreground-rest);
+  color: var(--neutral-foreground-rest);
+  cursor: pointer;
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: var(--neutral-fill-stealth-rest);
+  align-items: center;
+  white-space: nowrap;
+  list-style-type: none;
+}
+.selectOption-0-0-178:focus {
+  outline: none;
+}
+body:not(:global(.js-focus-visible)) .selectOption-0-0-178:focus, :global(.js-focus-visible) .selectOption-0-0-178:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].selectOption-0-0-178 {
+  border-color: var(--neutral-focus);
+}
+.selectOption-0-0-178:hover {
+  background: var(--neutral-fill-stealth-hover);
+}
+@media (-ms-high-contrast:active) {
+  .selectOption-0-0-178 {
+    fill: ButtonText;
+    color: ButtonText;
+    border: none;
+    background: ButtonFace;
+    -ms-high-contrast-adjust: none;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .selectOption-0-0-178:hover {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}
+@media (-ms-high-contrast:active) {
+  body:not(:global(.js-focus-visible)) .selectOption-0-0-178:focus, :global(.js-focus-visible) .selectOption-0-0-178:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].selectOption-0-0-178 {
+    border-color: ButtonText;
+  }
+}
+.selectOption_contentRegion-0-0-179 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.selectOption_glyph-0-0-180 {
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+}
+.selectOption__disabled-0-0-181 {
+  cursor: not-allowed !important;
+}
+@media (-ms-high-contrast:active) {
+  .selectOption__disabled-0-0-181 {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+    background: ButtonFace !important;
+    border-color: GrayText !important;
+  }
+}
+.selectOption__disabled-0-0-181, .selectOption__disabled-0-0-181:hover {
+  background: var(--neutral-fill-stealth-rest);
+}
+.selectOption__selected-0-0-182 {
+  background: var(--neutral-fill-stealth-selected);
+}
+@media (-ms-high-contrast:active) {
+  .selectOption__selected-0-0-182 {
+    fill: HighlightText !important;
+    color: HighlightText !important;
+    background: Highlight !important;
+    border-color: ButtonText !important;
+  }
+}
+.selectOption__selected-0-0-182:hover {
+  background: var(--neutral-fill-stealth-selected);
+}

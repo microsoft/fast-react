@@ -1,0 +1,124 @@
+.treeViewItem-0-0-244 {
+  color: var(--neutral-foreground-rest);
+  cursor: pointer;
+  position: relative;
+  background: var(--neutral-fill-stealth-rest);
+}
+.treeViewItem-0-0-244:focus {
+  outline: none;
+}
+.treeViewItem-0-0-244 .treeViewItem_beforeContent-0-0-245, .treeViewItem-0-0-244 .treeViewItem_afterContent-0-0-246 {
+  fill: var(--neutral-foreground-rest);
+}
+@media (-ms-high-contrast:active) {
+  .treeViewItem-0-0-244 .treeViewItem_beforeContent-0-0-245, .treeViewItem-0-0-244 .treeViewItem_afterContent-0-0-246 {
+    fill: ButtonText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  body:not(:global(.js-focus-visible)) .treeViewItem-0-0-244:focus > .treeViewItem_contentRegion-0-0-247, :global(.js-focus-visible) .treeViewItem-0-0-244:global(.focus-visible) > .treeViewItem_contentRegion-0-0-247, global(.js-focus-visible) [data-focus-visible-added].treeViewItem-0-0-244 > .treeViewItem_contentRegion-0-0-247 {
+    border-color: ButtonText !important;
+  }
+}
+.treeViewItem_contentRegion-0-0-247 {
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+}
+.treeViewItem_contentRegion-0-0-247:hover {
+  background: var(--neutral-fill-stealth-hover);
+}
+.treeViewItem_contentRegion-0-0-247:active {
+  background: var(--neutral-fill-stealth-active);
+}
+.treeViewItem_contentRegion-0-0-247::before {
+  width: 0;
+  content: '';
+  display: block;
+  flex-shrink: 0;
+}
+@media (-ms-high-contrast:active) {
+  .treeViewItem_contentRegion-0-0-247 {
+    color: ButtonText;
+    -ms-high-contrast-adjust: none;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .treeViewItem_contentRegion-0-0-247:hover {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .treeViewItem_contentRegion-0-0-247:hover .treeViewItem_expandCollapseGlyph-0-0-251, .treeViewItem_contentRegion-0-0-247:hover .treeViewItem_beforeContent-0-0-245, .treeViewItem_contentRegion-0-0-247:hover .treeViewItem_afterContent-0-0-246 {
+    fill: HighlightText;
+  }
+}
+.treeViewItem_innerContentRegion-0-0-248 {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.treeViewItem_childNodeRegion-0-0-249 {
+  display: none;
+}
+.treeViewItem_childNodeRegion-0-0-249 .treeViewItem_contentRegion-0-0-247::before {
+  width: 1em;
+}
+.treeViewItem_expandCollapseButton-0-0-250 {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  display: flex;
+  background: none;
+  align-items: center;
+  justify-content: center;
+}
+.treeViewItem_expandCollapseGlyph-0-0-251 {
+  fill: var(--neutral-foreground-rest);
+  transition: transform .1s linear;
+  pointer-events: none;
+}
+@media (-ms-high-contrast:active) {
+  .treeViewItem_expandCollapseGlyph-0-0-251 {
+    fill: ButtonText;
+  }
+}
+.treeViewItem__expanded-0-0-252 > .treeViewItem_childNodeRegion-0-0-249 {
+  display: block;
+}
+.treeViewItem__selected-0-0-253 > .treeViewItem_contentRegion-0-0-247 {
+  background: var(--neutral-fill-stealth-selected);
+}
+.treeViewItem__selected-0-0-253::after {
+  width: 3px;
+  content: '';
+  display: block;
+  position: absolute;
+  background: var(--accent-foreground-rest);
+}
+@media (-ms-high-contrast:active) {
+  .treeViewItem__selected-0-0-253 > .treeViewItem_contentRegion-0-0-247 .treeViewItem_beforeContent-0-0-245, .treeViewItem__selected-0-0-253 .treeViewItem_afterContent-0-0-246, .treeViewItem__selected-0-0-253 > .treeViewItem_contentRegion-0-0-247 .treeViewItem_expandCollapseGlyph-0-0-251 {
+    fill: HighlightText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .treeViewItem__selected-0-0-253::after {
+    background: HighlightText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .treeViewItem__selected-0-0-253 > .treeViewItem_contentRegion-0-0-247 {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}
+.treeViewItem__nested-0-0-254 .treeViewItem_innerContentRegion-0-0-248 {
+  position: relative;
+}
+.treeViewItem__nested-0-0-254 .treeViewItem_expandCollapseButton-0-0-250 {
+  position: absolute;
+}

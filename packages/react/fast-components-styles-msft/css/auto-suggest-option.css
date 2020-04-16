@@ -1,0 +1,84 @@
+.autoSuggestOption-0-0-28 {
+  color: var(--neutral-foreground-rest);
+  cursor: default;
+  display: grid;
+  padding: 0;
+  overflow: hidden;
+  background: var(--neutral-fill-stealth-rest);
+  align-items: center;
+  white-space: nowrap;
+  list-style-type: none;
+  grid-template-rows: auto;
+}
+.autoSuggestOption-0-0-28:focus {
+  outline: none;
+}
+body:not(:global(.js-focus-visible)) .autoSuggestOption-0-0-28:focus, :global(.js-focus-visible) .autoSuggestOption-0-0-28:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].autoSuggestOption-0-0-28 {
+  border-color: var(--neutral-focus);
+}
+.autoSuggestOption-0-0-28:hover {
+  background: var(--neutral-fill-stealth-hover);
+}
+@media (-ms-high-contrast:active) {
+  .autoSuggestOption-0-0-28 {
+    fill: ButtonText;
+    color: ButtonText;
+    border: none;
+    background: ButtonFace;
+    -ms-high-contrast-adjust: none;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .autoSuggestOption-0-0-28:hover {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}
+@media (-ms-high-contrast:active) {
+  body:not(:global(.js-focus-visible)) .autoSuggestOption-0-0-28:focus, :global(.js-focus-visible) .autoSuggestOption-0-0-28:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].autoSuggestOption-0-0-28 {
+    color: HighlightText;
+    background: Highlight;
+  }
+}
+.autoSuggestOption_contentRegion-0-0-29 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  grid-column-start: 3;
+}
+.autoSuggestOption__disabled-0-0-30 {
+  cursor: not-allowed !important;
+}
+@media (-ms-high-contrast:active) {
+  .autoSuggestOption__disabled-0-0-30 {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+    background: ButtonFace !important;
+  }
+}
+.autoSuggestOption__disabled-0-0-30:hover {
+  background: var(--neutral-fill-stealth-rest);
+}
+@media (-ms-high-contrast:active) {
+  .autoSuggestOption__disabled-0-0-30:hover {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+    background: ButtonFace !important;
+  }
+}
+.autoSuggestOption__selected-0-0-31 {
+  background: var(--neutral-fill-stealth-selected);
+}
+.autoSuggestOption__selected-0-0-31:hover {
+  background: var(--neutral-fill-stealth-selected);
+}
+@media (-ms-high-contrast:active) {
+  .autoSuggestOption__selected-0-0-31:hover {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}

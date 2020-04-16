@@ -1,0 +1,45 @@
+.textArea-0-0-232 {
+  margin: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  font-family: inherit;
+}
+.textArea-0-0-232:focus:enabled {
+  outline: none;
+}
+.textArea-0-0-232:disabled {
+  cursor: not-allowed !important;
+}
+@media (-ms-high-contrast:active) {
+  .textArea-0-0-232 {
+    color: ButtonText;
+    background: ButtonFace;
+    border-color: ButtonText;
+    -ms-high-contrast-adjust: none;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .textArea-0-0-232::placeholder {
+    color: GrayText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .textArea-0-0-232:disabled {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+    background: ButtonFace !important;
+    border-color: GrayText !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .textArea-0-0-232:focus:enabled {
+    border-color: ButtonText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .textArea-0-0-232:hover:enabled {
+    background: ButtonFace;
+  }
+}

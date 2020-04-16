@@ -1,0 +1,15 @@
+.badge-0-0-32 {
+  color: var(--neutral-foreground-rest);
+  cursor: default;
+  display: inline-block;
+  overflow: hidden;
+  max-width: 215px;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.badge__filled-0-0-33 {
+  color: var(--accent-foreground-cut);
+  background-color: #FFD800;
+}

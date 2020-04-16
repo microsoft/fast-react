@@ -1,0 +1,25 @@
+.breadcrumb-0-0-36 {
+  color: var(--neutral-foreground-rest);
+  cursor: default;
+}
+.breadcrumb_item-0-0-37 {
+  display: inline;
+  outline: none;
+  transition: all 0.2s ease-in-out, border none;
+  text-decoration: none;
+}
+.breadcrumb_item-0-0-37:link, .breadcrumb_item-0-0-37:visited {
+  border-bottom: 0px;
+}
+.breadcrumb_itemsContainer-0-0-38 {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.breadcrumb_separator-0-0-39 {
+  color: var(--neutral-foreground-hint);
+  cursor: default;
+  margin: 0 6px;
+  display: inline-block;
+}

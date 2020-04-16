@@ -1,0 +1,106 @@
+.pivot-0-0-135 {
+  color: var(--neutral-foreground-rest);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+@media (-ms-high-contrast:active) {
+  .pivot-0-0-135 {
+    -ms-high-contrast-adjust: none;
+  }
+}
+.pivot_tabList-0-0-136 {
+  display: flex;
+  box-sizing: border-box;
+}
+.pivot_tab-0-0-137 {
+  color: var(--neutral-foreground-rest);
+  cursor: pointer;
+  display: flex;
+  box-sizing: border-box;
+  white-space: nowrap;
+  align-items: center;
+  user-select: none;
+}
+.pivot_tab-0-0-137:hover {
+  color: var(--neutral-foreground-hover);
+}
+.pivot_tab-0-0-137:active {
+  color: var(--neutral-foreground-active);
+}
+.pivot_tab-0-0-137:focus {
+  outline: none;
+}
+body:not(:global(.js-focus-visible)) .pivot_tab-0-0-137:focus, :global(.js-focus-visible) .pivot_tab-0-0-137:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].pivot_tab-0-0-137 {
+  border-color: var(--neutral-focus);
+}
+@media (-ms-high-contrast:active) {
+  .pivot_tab-0-0-137 {
+    fill: ButtonText !important;
+    color: ButtonText !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  body:not(:global(.js-focus-visible)) .pivot_tab-0-0-137:focus, :global(.js-focus-visible) .pivot_tab-0-0-137:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].pivot_tab-0-0-137 {
+    border-color: ButtonText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .pivot_tab-0-0-137:hover {
+    fill: ButtonText !important;
+    color: ButtonText !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .pivot_tab__active-0-0-138 {
+    fill: ButtonText !important;
+    color: ButtonText !important;
+  }
+}
+.pivot_tabContent-0-0-139 {
+  top: -2px;
+  position: relative;
+}
+.pivot_activeIndicator-0-0-140 {
+  left: -10px;
+  width: 20px;
+  height: 3px;
+  display: block;
+  position: absolute;
+  transition: 0.2s ease-in-out;
+  background: var(--accent-fill-rest);
+}
+@media (-ms-high-contrast:active) {
+  .pivot_activeIndicator-0-0-140 {
+    background: Highlight;
+  }
+}
+.pivot_tabPanel-0-0-141 {
+  display: block;
+}
+.pivot_tabPanel__hidden-0-0-142 {
+  display: none;
+}
+.pivot_tabPanels-0-0-143 {
+  animation-timing-function: cubic-bezier(0.4, 0.0, 0.6, 1.0);
+}
+@keyframes fromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

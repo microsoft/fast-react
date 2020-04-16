@@ -1,0 +1,12 @@
+.divider-0-0-85 {
+  height: 0;
+  margin: 0;
+  border: none;
+  box-sizing: content-box;
+  transition: all 0.2s ease-in-out;
+}
+@media (-ms-high-contrast:active) {
+  .divider-0-0-85 {
+    border-color: ButtonText;
+  }
+}

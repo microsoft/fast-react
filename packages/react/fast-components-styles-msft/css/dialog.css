@@ -1,0 +1,29 @@
+.dialog-0-0-81 {
+  display: none;
+}
+.dialog-0-0-81[aria-hidden="false"] {
+  display: block;
+}
+.dialog_positioningRegion-0-0-82 {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  position: fixed;
+  overflow: auto;
+  justify-content: center;
+}
+.dialog_modalOverlay-0-0-83 {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.3);
+}
+.dialog_contentRegion-0-0-84 {
+  z-index: 1;
+  margin-top: auto;
+  margin-bottom: auto;
+}

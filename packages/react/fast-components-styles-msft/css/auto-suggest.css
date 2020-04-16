@@ -1,0 +1,19 @@
+.autoSuggest-0-0-25 {
+  min-width: 276px;
+  max-width: 374px;
+}
+.autoSuggest_menu-0-0-26 {
+  width: 100%;
+  margin: 0;
+  z-index: 1;
+  position: absolute;
+  overflow: auto;
+  max-width: 374px;
+  min-width: 276px;
+  background: var(--neutral-fill-stealth-rest);
+}
+@media (-ms-high-contrast:active) {
+  .autoSuggest_menu-0-0-26 {
+    background: ButtonFace;
+  }
+}

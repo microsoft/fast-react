@@ -1,0 +1,211 @@
+.carousel-0-0-62 {
+  display: inline-block;
+  position: relative;
+}
+@media (-ms-high-contrast:active) {
+  .carousel-0-0-62 {
+    -ms-high-contrast-adjust: none;
+  }
+}
+.carousel-0-0-62:hover .carousel_flipperPrevious-0-0-71, .carousel-0-0-62:hover .carousel_flipperNext-0-0-72 {
+  opacity: 1;
+}
+.carousel_sequenceIndicators-0-0-64 {
+  left: 50%;
+  bottom: 4px;
+  display: inline-flex;
+  padding: 0;
+  z-index: 100;
+  position: absolute;
+  max-width: 100%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.carousel_sequenceIndicators-0-0-64 > :first-child:nth-last-child(1) {
+  display: none;
+}
+.carousel_sequenceIndicator-0-0-65 {
+  display: inline-block;
+  padding: 4px;
+  position: relative;
+}
+.carousel_sequenceIndicator-0-0-65:focus {
+  outline: none;
+}
+.carousel_sequenceIndicator-0-0-65::before {
+  width: 32px;
+  border: 1px solid transparent;
+  opacity: 0.45;
+  content: '';
+  display: block;
+  transition: all 0.05s ease-in-out;
+  border-radius: 40px;
+}
+.carousel_sequenceIndicator-0-0-65:not(.carousel_sequenceIndicator__active-0-0-66):hover::before {
+  opacity: 0.9;
+}
+@media (-ms-high-contrast:active) {
+  .carousel_sequenceIndicator-0-0-65:not(.carousel_sequenceIndicator__active-0-0-66):hover::before {
+    opacity: 1;
+    background: Highlight;
+    border-color: HighlightText;
+  }
+}
+body:not(:global(.js-focus-visible)) .carousel_sequenceIndicator-0-0-65:focus::after, :global(.js-focus-visible) .carousel_sequenceIndicator-0-0-65:global(.focus-visible)::after, global(.js-focus-visible) [data-focus-visible-added].carousel_sequenceIndicator-0-0-65::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  transition: all 0.05s ease-in-out;
+  border-radius: 40px;
+}
+.carousel_sequenceIndicator__active-0-0-66::before {
+  opacity: 1;
+}
+.carousel_tabPanel-0-0-67 {
+  display: block;
+}
+.carousel_tabPanel__hidden-0-0-68 {
+  display: none;
+}
+.carousel_flipperPrevious-0-0-71 {
+  top: calc(50% - 20px);
+  z-index: 100;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+}
+.carousel_flipperNext-0-0-72 {
+  top: calc(50% - 20px);
+  z-index: 100;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+}
+.carousel__themeDark-0-0-73 .carousel_sequenceIndicator-0-0-65::before {
+  background: var(--neutral-fill-stealth-rest);
+  border-color: var(--neutral-outline-rest);
+}
+.carousel__themeDark-0-0-73 .carousel_sequenceIndicator-0-0-65::after {
+  border-color: var(--neutral-focus);
+}
+.carousel__themeDark-0-0-73 .carousel_sequenceIndicator-0-0-65.carousel_sequenceIndicator__active-0-0-66::before {
+  background: var(--neutral-fill-stealth-rest);
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeDark-0-0-73 .carousel_sequenceIndicator-0-0-65.carousel_sequenceIndicator__active-0-0-66::before {
+    opacity: 1;
+    background: Highlight;
+    border-color: HighlightText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeDark-0-0-73 .carousel_sequenceIndicator-0-0-65::before {
+    opacity: 1;
+    background: ButtonFace;
+    border-color: HighlightText;
+  }
+}
+.carousel__themeDark-0-0-73 .carousel_flipperPrevious-0-0-71::before, .carousel__themeDark-0-0-73 .carousel_flipperNext-0-0-72::before {
+  fill: var(--neutral-foreground-rest);
+  color: var(--neutral-foreground-rest);
+  background: var(--neutral-fill-stealth-rest);
+}
+.carousel__themeDark-0-0-73 .carousel_flipperPrevious-0-0-71 span::before, .carousel__themeDark-0-0-73 .carousel_flipperNext-0-0-72 span::before {
+  border-color: var(--neutral-foreground-rest);
+}
+.carousel__themeDark-0-0-73 .carousel_flipperPrevious-0-0-71 > svg, .carousel__themeDark-0-0-73 .carousel_flipperNext-0-0-72 > svg {
+  fill: var(--neutral-foreground-rest);
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeDark-0-0-73 .carousel_flipperPrevious-0-0-71, .carousel__themeDark-0-0-73 .carousel_flipperNext-0-0-72 {
+    background: none;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeDark-0-0-73 .carousel_flipperPrevious-0-0-71 > svg, .carousel__themeDark-0-0-73 .carousel_flipperNext-0-0-72 > svg {
+    fill: ButtonText !important;
+    color: ButtonText !important;
+  }
+}
+.carousel__themeDark-0-0-73 .carousel_flipperPrevious-0-0-71:hover::before, .carousel__themeDark-0-0-73 .carousel_flipperNext-0-0-72:hover::before {
+  background: var(--neutral-fill-stealth-hover);
+}
+.carousel__themeDark-0-0-73 .carousel_flipperPrevious-0-0-71:hover span::before, .carousel__themeDark-0-0-73 .carousel_flipperNext-0-0-72:hover span::before {
+  border-color: var(--neutral-foreground-rest);
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeDark-0-0-73 .carousel_flipperPrevious-0-0-71:hover::before, .carousel__themeDark-0-0-73 .carousel_flipperNext-0-0-72:hover::before {
+    background: Highlight;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeDark-0-0-73 .carousel_flipperPrevious-0-0-71::before, .carousel__themeDark-0-0-73 .carousel_flipperNext-0-0-72::before {
+    background: Window;
+  }
+}
+.carousel__themeLight-0-0-74 .carousel_sequenceIndicator-0-0-65::before {
+  background: var(--neutral-fill-stealth-rest);
+  border-color: var(--neutral-outline-rest);
+}
+.carousel__themeLight-0-0-74 .carousel_sequenceIndicator-0-0-65::after {
+  border-color: var(--neutral-focus);
+}
+.carousel__themeLight-0-0-74 .carousel_sequenceIndicator-0-0-65.carousel_sequenceIndicator__active-0-0-66::before {
+  background: var(--neutral-fill-stealth-rest);
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeLight-0-0-74 .carousel_sequenceIndicator-0-0-65.carousel_sequenceIndicator__active-0-0-66::before {
+    opacity: 1;
+    background: Highlight;
+    border-color: HighlightText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeLight-0-0-74 .carousel_sequenceIndicator-0-0-65::before {
+    opacity: 1;
+    background: ButtonFace;
+    border-color: HighlightText;
+  }
+}
+.carousel__themeLight-0-0-74 .carousel_flipperPrevious-0-0-71::before, .carousel__themeLight-0-0-74 .carousel_flipperNext-0-0-72::before {
+  fill: var(--neutral-foreground-rest);
+  color: var(--neutral-foreground-rest);
+  background: var(--neutral-fill-stealth-rest);
+}
+.carousel__themeLight-0-0-74 .carousel_flipperPrevious-0-0-71 span::before, .carousel__themeLight-0-0-74 .carousel_flipperNext-0-0-72 span::before {
+  border-color: var(--neutral-foreground-rest);
+}
+.carousel__themeLight-0-0-74 .carousel_flipperPrevious-0-0-71 > svg, .carousel__themeLight-0-0-74 .carousel_flipperNext-0-0-72 > svg {
+  fill: var(--neutral-foreground-rest);
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeLight-0-0-74 .carousel_flipperPrevious-0-0-71, .carousel__themeLight-0-0-74 .carousel_flipperNext-0-0-72 {
+    background: none;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeLight-0-0-74 .carousel_flipperPrevious-0-0-71 > svg, .carousel__themeLight-0-0-74 .carousel_flipperNext-0-0-72 > svg {
+    fill: ButtonText !important;
+    color: ButtonText !important;
+  }
+}
+.carousel__themeLight-0-0-74 .carousel_flipperPrevious-0-0-71:hover::before, .carousel__themeLight-0-0-74 .carousel_flipperNext-0-0-72:hover::before {
+  background: var(--neutral-fill-stealth-hover);
+}
+.carousel__themeLight-0-0-74 .carousel_flipperPrevious-0-0-71:hover span::before, .carousel__themeLight-0-0-74 .carousel_flipperNext-0-0-72:hover span::before {
+  border-color: var(--neutral-foreground-rest);
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeLight-0-0-74 .carousel_flipperPrevious-0-0-71:hover::before, .carousel__themeLight-0-0-74 .carousel_flipperNext-0-0-72:hover::before {
+    background: Highlight;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .carousel__themeLight-0-0-74 .carousel_flipperPrevious-0-0-71::before, .carousel__themeLight-0-0-74 .carousel_flipperNext-0-0-72::before {
+    background: Window;
+  }
+}

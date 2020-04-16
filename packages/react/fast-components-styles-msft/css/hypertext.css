@@ -1,0 +1,44 @@
+.hypertext-0-0-105 {
+  color: var(--neutral-foreground-rest);
+  outline: none;
+  transition: all 0.2s ease-in-out, border 0.03s ease-in-out;
+  text-decoration: none;
+}
+.hypertext-0-0-105:link, .hypertext-0-0-105:visited {
+  color: var(--accent-foreground-rest);
+}
+@media (-ms-high-contrast:active) {
+  .hypertext-0-0-105 {
+    color: WindowText;
+    -ms-high-contrast-adjust: none;
+  }
+}
+.hypertext-0-0-105:link:hover, .hypertext-0-0-105:visited:hover {
+  color: var(--accent-foreground-hover);
+  border-bottom-color: var(--accent-foreground-hover);
+}
+.hypertext-0-0-105:link:active, .hypertext-0-0-105:visited:active {
+  color: var(--accent-foreground-active);
+  border-bottom-color: var(--accent-foreground-active);
+}
+.hypertext-0-0-105:link:focus, .hypertext-0-0-105:visited:focus {
+  outline: none;
+}
+@media (-ms-high-contrast:active) {
+  .hypertext-0-0-105:link, .hypertext-0-0-105:visited {
+    color: -ms-hotlight !important;
+    border-bottom-color: -ms-hotlight !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  body:not(:global(.js-focus-visible)) .hypertext-0-0-105:link:focus, :global(.js-focus-visible) .hypertext-0-0-105:link:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].hypertext-0-0-105:link, body:not(:global(.js-focus-visible)) .hypertext-0-0-105:visited:focus, :global(.js-focus-visible) .hypertext-0-0-105:visited:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].hypertext-0-0-105:visited {
+    color: -ms-hotlight !important;
+    border-bottom-color: -ms-hotlight !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .hypertext-0-0-105:link:hover, .hypertext-0-0-105:visited:hover {
+    color: -ms-hotlight !important;
+    border-bottom-color: -ms-hotlight !important;
+  }
+}

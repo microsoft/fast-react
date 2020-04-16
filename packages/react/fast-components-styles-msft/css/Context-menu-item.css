@@ -1,0 +1,81 @@
+.contextMenuItem-0-0-78 {
+  fill: var(--neutral-foreground-rest);
+  color: var(--neutral-foreground-rest);
+  cursor: pointer;
+  display: grid;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  align-items: center;
+  white-space: nowrap;
+  justify-items: center;
+  list-style-type: none;
+  grid-template-rows: auto;
+}
+.contextMenuItem-0-0-78:focus {
+  outline: none;
+}
+body:not(:global(.js-focus-visible)) .contextMenuItem-0-0-78:focus, :global(.js-focus-visible) .contextMenuItem-0-0-78:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].contextMenuItem-0-0-78 {
+  border-color: var(--neutral-focus);
+}
+.contextMenuItem-0-0-78:hover {
+  background: var(--neutral-fill-stealth-hover);
+}
+.contextMenuItem-0-0-78:active {
+  background: var(--neutral-fill-stealth-active);
+}
+@media (-ms-high-contrast:active) {
+  .contextMenuItem-0-0-78 {
+    fill: ButtonText;
+    color: ButtonText;
+    border: none;
+    background: ButtonFace;
+    -ms-high-contrast-adjust: none;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .contextMenuItem-0-0-78:active {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .contextMenuItem-0-0-78:hover {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}
+@media (-ms-high-contrast:active) {
+  body:not(:global(.js-focus-visible)) .contextMenuItem-0-0-78:focus, :global(.js-focus-visible) .contextMenuItem-0-0-78:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].contextMenuItem-0-0-78 {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}
+.contextMenuItem_contentRegion-0-0-79 {
+  overflow: hidden;
+  justify-self: start;
+  text-overflow: ellipsis;
+  grid-column-start: 2;
+}
+.contextMenuItem__disabled-0-0-80 {
+  cursor: not-allowed !important;
+}
+@media (-ms-high-contrast:active) {
+  .contextMenuItem__disabled-0-0-80 {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+    background: ButtonFace !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .contextMenuItem__disabled-0-0-80:hover {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+    background: ButtonFace !important;
+  }
+}

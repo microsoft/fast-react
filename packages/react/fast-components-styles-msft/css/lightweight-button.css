@@ -1,0 +1,144 @@
+.button_contentRegion-0-0-111 {
+  position: relative;
+}
+.button_contentRegion-0-0-111::before {
+  width: 100%;
+  bottom: -3px;
+  content: '';
+  display: block;
+  position: absolute;
+}
+.button__disabled-0-0-112 {
+  cursor: not-allowed !important;
+}
+@media (-ms-high-contrast:active) {
+  .button__disabled-0-0-112 {
+    color: GrayText;
+    opacity: 1;
+  }
+}
+.button-0-0-116 {
+  fill: var(--accent-foreground-rest);
+  color: var(--accent-foreground-rest);
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  display: inline-flex;
+  overflow: hidden;
+  max-width: 374px;
+  box-sizing: border-box;
+  transition: all 0.1s ease-in-out;
+  line-height: 1;
+  font-family: inherit;
+  align-items: center;
+  white-space: nowrap;
+  justify-content: flex-start;
+  text-decoration: none;
+  background-color: transparent;
+}
+.button-0-0-116::-moz-focus-inner {
+  border: 0;
+}
+.button-0-0-116:focus {
+  outline: none;
+}
+body:not(:global(.js-focus-visible)) .button-0-0-116:focus, :global(.js-focus-visible) .button-0-0-116:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button-0-0-116 {
+  box-shadow: none;
+  border-color: transparent;
+}
+.button-0-0-116:hover .button_contentRegion-0-0-111::before {
+  background: var(--accent-foreground-hover);
+}
+.button-0-0-116:hover.button__disabled-0-0-112 .button_contentRegion-0-0-111::before {
+  display: none;
+}
+.button-0-0-116:active .button_contentRegion-0-0-111::before {
+  background: var(--accent-foreground-active);
+}
+.button-0-0-116.button__disabled-0-0-112, .button-0-0-116.button__disabled-0-0-112 .button_contentRegion-0-0-111::before {
+  background-color: transparent;
+}
+.button-0-0-116:hover:enabled, a.button-0-0-116:not(.button__disabled-0-0-112):hover {
+  fill: var(--accent-foreground-hover);
+  color: var(--accent-foreground-hover);
+  background-color: transparent;
+}
+.button-0-0-116:active:enabled, a.button-0-0-116:not(.button__disabled-0-0-112):active {
+  fill: var(--accent-foreground-active);
+  color: var(--accent-foreground-active);
+  background-color: transparent;
+}
+@media (-ms-high-contrast:active) {
+  .button-0-0-116 {
+    fill: ButtonText;
+    color: ButtonText;
+    border: none;
+    background: ButtonFace;
+    -ms-high-contrast-adjust: none;
+  }
+}
+@media (-ms-high-contrast:active) {
+  a.button-0-0-116:not(.button__disabled-0-0-112) {
+    fill: -ms-hotlight !important;
+    color: -ms-hotlight !important;
+    background: Window;
+  }
+}
+@media (-ms-high-contrast:active) {
+  a.button-0-0-116:not(.button__disabled-0-0-112) .button_contentRegion-0-0-111::before {
+    background: transparent;
+  }
+}
+@media (-ms-high-contrast:active) {
+  a.button-0-0-116:not(.button__disabled-0-0-112):hover .button_contentRegion-0-0-111::before {
+    background: -ms-hotlight !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  a.button-0-0-116:not(.button__disabled-0-0-112):not(.button__disabled-0-0-112):hover {
+    fill: -ms-hotlight !important;
+    color: -ms-hotlight !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .button-0-0-116:hover:enabled, a.button-0-0-116:not(.button__disabled-0-0-112):hover {
+    fill: Highlight !important;
+    color: Highlight !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .button-0-0-116.button__disabled-0-0-112, .button-0-0-116.button__disabled-0-0-112 .button_contentRegion-0-0-111::before {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .button-0-0-116:active .button_contentRegion-0-0-111::before {
+    background: Highlight;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .button-0-0-116:hover .button_contentRegion-0-0-111::before {
+    background: Highlight;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .button-0-0-116 .button_contentRegion-0-0-111::before {
+    background: ButtonText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  body:not(:global(.js-focus-visible)) .button-0-0-116:focus, :global(.js-focus-visible) .button-0-0-116:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button-0-0-116 {
+    fill: Highlight !important;
+    color: Highlight !important;
+  }
+}
+body:not(:global(.js-focus-visible)) .button-0-0-116:focus .button_contentRegion-0-0-111::before, :global(.js-focus-visible) .button-0-0-116:global(.focus-visible) .button_contentRegion-0-0-111::before, global(.js-focus-visible) [data-focus-visible-added].button-0-0-116 .button_contentRegion-0-0-111::before {
+  background: var(--neutral-foreground-rest);
+}
+@media (-ms-high-contrast:active) {
+  body:not(:global(.js-focus-visible)) .button-0-0-116:focus .button_contentRegion-0-0-111::before, :global(.js-focus-visible) .button-0-0-116:global(.focus-visible) .button_contentRegion-0-0-111::before, global(.js-focus-visible) [data-focus-visible-added].button-0-0-116 .button_contentRegion-0-0-111::before {
+    background: Highlight;
+  }
+}

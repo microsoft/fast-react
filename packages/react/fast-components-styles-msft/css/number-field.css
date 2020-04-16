@@ -1,0 +1,49 @@
+.numberField-0-0-124 {
+  margin: 0;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  font-family: inherit;
+  -moz-appearance: textfield;
+}
+.numberField-0-0-124:focus:enabled {
+  outline: none;
+}
+.numberField-0-0-124:disabled {
+  cursor: not-allowed !important;
+}
+@media (-ms-high-contrast:active) {
+  .numberField-0-0-124 {
+    color: ButtonText;
+    background: ButtonFace;
+    border-color: ButtonText;
+    -ms-high-contrast-adjust: none;
+  }
+}
+.numberField-0-0-124::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+}
+@media (-ms-high-contrast:active) {
+  .numberField-0-0-124::placeholder {
+    color: GrayText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .numberField-0-0-124:disabled {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+    background: ButtonFace !important;
+    border-color: GrayText !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .numberField-0-0-124:focus:enabled {
+    border-color: ButtonText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .numberField-0-0-124:hover:enabled {
+    background: ButtonFace;
+  }
+}
