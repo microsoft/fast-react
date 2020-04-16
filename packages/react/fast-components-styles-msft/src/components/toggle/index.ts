@@ -145,6 +145,7 @@ const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
                     toPx<DesignSystem>(outlineWidth),
                     () => HighContrastColor.buttonText
                 ),
+                "border-color": HighContrastColor.buttonText,
             },
         }),
         [highContrastSelector]: {
