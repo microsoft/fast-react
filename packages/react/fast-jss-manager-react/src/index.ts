@@ -18,3 +18,4 @@ export { Consumer as DesignSystemConsumer } from "./context";
 export { JSSManager } from "./jss-manager";
 export * from "./design-system-provider";
 export * from "@microsoft/fast-jss-manager";
+export * from "./css-custom-property-host";

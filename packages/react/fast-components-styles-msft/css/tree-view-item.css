@@ -1,72 +1,96 @@
-.treeViewItem-0-0-244 {
+.treeViewItem {
   color: var(--neutral-foreground-rest);
   cursor: pointer;
   position: relative;
   background: var(--neutral-fill-stealth-rest);
 }
-.treeViewItem-0-0-244:focus {
+.treeViewItem:focus {
   outline: none;
 }
-.treeViewItem-0-0-244 .treeViewItem_beforeContent-0-0-245, .treeViewItem-0-0-244 .treeViewItem_afterContent-0-0-246 {
+body:not(:global(.js-focus-visible)) .treeViewItem:focus > .treeViewItem_contentRegion, :global(.js-focus-visible) .treeViewItem:global(.focus-visible) > .treeViewItem_contentRegion, global(.js-focus-visible) [data-focus-visible-added].treeViewItem > .treeViewItem_contentRegion {
+  border: 2px solid var(--neutral-focus);
+}
+.treeViewItem .treeViewItem_beforeContent, .treeViewItem .treeViewItem_afterContent {
   fill: var(--neutral-foreground-rest);
+  width: 16px;
+  height: 16px;
 }
 @media (-ms-high-contrast:active) {
-  .treeViewItem-0-0-244 .treeViewItem_beforeContent-0-0-245, .treeViewItem-0-0-244 .treeViewItem_afterContent-0-0-246 {
+  .treeViewItem .treeViewItem_beforeContent, .treeViewItem .treeViewItem_afterContent {
     fill: ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .treeViewItem-0-0-244:focus > .treeViewItem_contentRegion-0-0-247, :global(.js-focus-visible) .treeViewItem-0-0-244:global(.focus-visible) > .treeViewItem_contentRegion-0-0-247, global(.js-focus-visible) [data-focus-visible-added].treeViewItem-0-0-244 > .treeViewItem_contentRegion-0-0-247 {
+  body:not(:global(.js-focus-visible)) .treeViewItem:focus > .treeViewItem_contentRegion, :global(.js-focus-visible) .treeViewItem:global(.focus-visible) > .treeViewItem_contentRegion, global(.js-focus-visible) [data-focus-visible-added].treeViewItem > .treeViewItem_contentRegion {
     border-color: ButtonText !important;
+    box-shadow: 0 0 0 2px inset ButtonFace;
   }
 }
-.treeViewItem_contentRegion-0-0-247 {
+.treeViewItem_beforeContent {
+  margin-right: 12px;
+  margin-left: ;
+}
+.treeViewItem_afterContent {
+  margin-left: 12px;
+  margin-right: ;
+}
+.treeViewItem_contentRegion {
   display: flex;
   position: relative;
   box-sizing: border-box;
+  height: 32px;
+  border: 2px solid transparent;
+  border-radius: 2px;
 }
-.treeViewItem_contentRegion-0-0-247:hover {
+.treeViewItem_contentRegion:hover {
   background: var(--neutral-fill-stealth-hover);
 }
-.treeViewItem_contentRegion-0-0-247:active {
+.treeViewItem_contentRegion:active {
   background: var(--neutral-fill-stealth-active);
 }
-.treeViewItem_contentRegion-0-0-247::before {
+.treeViewItem_contentRegion::before {
   width: 0;
   content: '';
   display: block;
   flex-shrink: 0;
 }
 @media (-ms-high-contrast:active) {
-  .treeViewItem_contentRegion-0-0-247 {
+  .treeViewItem_contentRegion {
     color: ButtonText;
     -ms-high-contrast-adjust: none;
+    border: 2px solid transparent;
   }
 }
 @media (-ms-high-contrast:active) {
-  .treeViewItem_contentRegion-0-0-247:hover {
+  .treeViewItem_contentRegion:hover {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;
   }
 }
 @media (-ms-high-contrast:active) {
-  .treeViewItem_contentRegion-0-0-247:hover .treeViewItem_expandCollapseGlyph-0-0-251, .treeViewItem_contentRegion-0-0-247:hover .treeViewItem_beforeContent-0-0-245, .treeViewItem_contentRegion-0-0-247:hover .treeViewItem_afterContent-0-0-246 {
+  .treeViewItem_contentRegion:hover .treeViewItem_expandCollapseGlyph, .treeViewItem_contentRegion:hover .treeViewItem_beforeContent, .treeViewItem_contentRegion:hover .treeViewItem_afterContent {
     fill: HighlightText;
   }
 }
-.treeViewItem_innerContentRegion-0-0-248 {
+.treeViewItem_innerContentRegion {
   display: flex;
   align-items: center;
   white-space: nowrap;
+  margin-left: 10px;
+  margin-right: ;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
 }
-.treeViewItem_childNodeRegion-0-0-249 {
+.treeViewItem_childNodeRegion {
   display: none;
+  font-size: calc(1em + 20px);
 }
-.treeViewItem_childNodeRegion-0-0-249 .treeViewItem_contentRegion-0-0-247::before {
+.treeViewItem_childNodeRegion .treeViewItem_contentRegion::before {
   width: 1em;
 }
-.treeViewItem_expandCollapseButton-0-0-250 {
+.treeViewItem_expandCollapseButton {
   border: none;
   cursor: pointer;
   outline: none;
@@ -75,50 +99,67 @@
   background: none;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 32px;
 }
-.treeViewItem_expandCollapseGlyph-0-0-251 {
+.treeViewItem_expandCollapseGlyph {
   fill: var(--neutral-foreground-rest);
   transition: transform .1s linear;
   pointer-events: none;
+  width: 16px;
+  height: 16px;
+  transform: rotate(-45deg);
 }
 @media (-ms-high-contrast:active) {
-  .treeViewItem_expandCollapseGlyph-0-0-251 {
+  .treeViewItem_expandCollapseGlyph {
     fill: ButtonText;
   }
 }
-.treeViewItem__expanded-0-0-252 > .treeViewItem_childNodeRegion-0-0-249 {
+.treeViewItem__expanded > .treeViewItem_contentRegion .treeViewItem_expandCollapseGlyph {
+  transform: rotate(0deg);
+}
+.treeViewItem__expanded > .treeViewItem_childNodeRegion {
   display: block;
 }
-.treeViewItem__selected-0-0-253 > .treeViewItem_contentRegion-0-0-247 {
+.treeViewItem__selected > .treeViewItem_contentRegion {
   background: var(--neutral-fill-stealth-selected);
 }
-.treeViewItem__selected-0-0-253::after {
+.treeViewItem__selected::after {
   width: 3px;
   content: '';
   display: block;
   position: absolute;
   background: var(--accent-foreground-rest);
+  top: 6px;
+  height: 20px;
+  left: 2px;
+  right: unset;
+  border-radius: 2px;
 }
 @media (-ms-high-contrast:active) {
-  .treeViewItem__selected-0-0-253 > .treeViewItem_contentRegion-0-0-247 .treeViewItem_beforeContent-0-0-245, .treeViewItem__selected-0-0-253 .treeViewItem_afterContent-0-0-246, .treeViewItem__selected-0-0-253 > .treeViewItem_contentRegion-0-0-247 .treeViewItem_expandCollapseGlyph-0-0-251 {
+  .treeViewItem__selected > .treeViewItem_contentRegion .treeViewItem_beforeContent, .treeViewItem__selected .treeViewItem_afterContent, .treeViewItem__selected > .treeViewItem_contentRegion .treeViewItem_expandCollapseGlyph {
     fill: HighlightText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .treeViewItem__selected-0-0-253::after {
+  .treeViewItem__selected::after {
     background: HighlightText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .treeViewItem__selected-0-0-253 > .treeViewItem_contentRegion-0-0-247 {
+  .treeViewItem__selected > .treeViewItem_contentRegion {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;
   }
 }
-.treeViewItem__nested-0-0-254 .treeViewItem_innerContentRegion-0-0-248 {
+.treeViewItem__nested .treeViewItem_innerContentRegion {
   position: relative;
+  margin-left: 32px;
+  margin-right: ;
 }
-.treeViewItem__nested-0-0-254 .treeViewItem_expandCollapseButton-0-0-250 {
+.treeViewItem__nested .treeViewItem_expandCollapseButton {
   position: absolute;
+  left: -32px;
+  right: ;
 }

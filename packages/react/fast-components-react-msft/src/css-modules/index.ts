@@ -29,12 +29,12 @@ export function MergeManagedClasses<T, Y extends { managedClasses?: T }>(
     return (props: Y): React.ReactElement => {
         const { managedClasses, ...rest } = props;
         return React.createElement(component, {
+            ...rest,
             managedClasses: mergeWith(
                 managedClasses,
                 classes,
                 mergeManagedClasses
             ) as any,
-            ...rest,
         } as Y);
     };
 }

@@ -1,4 +1,4 @@
-.selectOption-0-0-178 {
+.selectOption {
   fill: var(--neutral-foreground-rest);
   color: var(--neutral-foreground-rest);
   cursor: pointer;
@@ -9,18 +9,25 @@
   align-items: center;
   white-space: nowrap;
   list-style-type: none;
+  height: 32px;
+  padding: 0 10px;
+  margin: 0 4px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 2px;
+  border: 2px solid transparent;
 }
-.selectOption-0-0-178:focus {
+.selectOption:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .selectOption-0-0-178:focus, :global(.js-focus-visible) .selectOption-0-0-178:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].selectOption-0-0-178 {
+body:not(:global(.js-focus-visible)) .selectOption:focus, :global(.js-focus-visible) .selectOption:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].selectOption {
   border-color: var(--neutral-focus);
 }
-.selectOption-0-0-178:hover {
+.selectOption:hover {
   background: var(--neutral-fill-stealth-hover);
 }
 @media (-ms-high-contrast:active) {
-  .selectOption-0-0-178 {
+  .selectOption {
     fill: ButtonText;
     color: ButtonText;
     border: none;
@@ -29,32 +36,37 @@ body:not(:global(.js-focus-visible)) .selectOption-0-0-178:focus, :global(.js-fo
   }
 }
 @media (-ms-high-contrast:active) {
-  .selectOption-0-0-178:hover {
+  .selectOption:hover {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .selectOption-0-0-178:focus, :global(.js-focus-visible) .selectOption-0-0-178:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].selectOption-0-0-178 {
+  body:not(:global(.js-focus-visible)) .selectOption:focus, :global(.js-focus-visible) .selectOption:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].selectOption {
     border-color: ButtonText;
+    box-shadow: 0 0 0 1px inset ButtonText;
   }
 }
-.selectOption_contentRegion-0-0-179 {
+.selectOption_contentRegion {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.selectOption_glyph-0-0-180 {
+.selectOption_glyph {
   display: inline-block;
   position: relative;
   flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0 12px 0 0;
 }
-.selectOption__disabled-0-0-181 {
+.selectOption__disabled {
   cursor: not-allowed !important;
+  opacity: 0.3;
 }
 @media (-ms-high-contrast:active) {
-  .selectOption__disabled-0-0-181 {
+  .selectOption__disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -62,20 +74,20 @@ body:not(:global(.js-focus-visible)) .selectOption-0-0-178:focus, :global(.js-fo
     border-color: GrayText !important;
   }
 }
-.selectOption__disabled-0-0-181, .selectOption__disabled-0-0-181:hover {
+.selectOption__disabled, .selectOption__disabled:hover {
   background: var(--neutral-fill-stealth-rest);
 }
-.selectOption__selected-0-0-182 {
+.selectOption__selected {
   background: var(--neutral-fill-stealth-selected);
 }
 @media (-ms-high-contrast:active) {
-  .selectOption__selected-0-0-182 {
+  .selectOption__selected {
     fill: HighlightText !important;
     color: HighlightText !important;
     background: Highlight !important;
     border-color: ButtonText !important;
   }
 }
-.selectOption__selected-0-0-182:hover {
+.selectOption__selected:hover {
   background: var(--neutral-fill-stealth-selected);
 }

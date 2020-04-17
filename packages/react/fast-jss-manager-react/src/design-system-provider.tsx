@@ -10,6 +10,7 @@ import {
     mergeDesignSystem,
 } from "@microsoft/fast-jss-manager";
 import { designSystemContext, Provider } from "./context";
+import { CSSCustomPropertyHost } from "./css-custom-property-host";
 
 /**
  * @deprecated
@@ -64,7 +65,11 @@ export class DesignSystemProvider<T> extends React.Component<
         this.updateDownstreamDesignSystem();
 
         return (
-            <Provider value={this.downstreamDesignSystem}>{this.props.children}</Provider>
+            <Provider value={this.downstreamDesignSystem}>
+                <CSSCustomPropertyHost designSystem={this.downstreamDesignSystem}>
+                    {this.props.children}
+                </CSSCustomPropertyHost>
+            </Provider>
         );
     }
 

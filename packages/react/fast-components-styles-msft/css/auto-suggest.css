@@ -1,8 +1,8 @@
-.autoSuggest-0-0-25 {
+.autoSuggest {
   min-width: 276px;
   max-width: 374px;
 }
-.autoSuggest_menu-0-0-26 {
+.autoSuggest_menu {
   width: 100%;
   margin: 0;
   z-index: 1;
@@ -11,9 +11,15 @@
   max-width: 374px;
   min-width: 276px;
   background: var(--neutral-fill-stealth-rest);
+  box-shadow: 0px 12.8px 28.8px rgba(0,0,0,0.13), 0px 0px 9.2px rgba(0,0,0,0.11);
+  padding: 4px 0;
+  margin-top: 4px;
+  max-height: 328px;
+  border-radius: 4px;
 }
 @media (-ms-high-contrast:active) {
-  .autoSuggest_menu-0-0-26 {
+  .autoSuggest_menu {
     background: ButtonFace;
+    border: 1px solid ButtonText;
   }
 }

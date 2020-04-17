@@ -1,35 +1,58 @@
-.numberField-0-0-124 {
+.numberField {
+  color: var(--neutral-foreground-rest);
   margin: 0;
+  background: var(--neutral-fill-input-rest);
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
   font-family: inherit;
   -moz-appearance: textfield;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  border: 1px solid var(--neutral-outline-rest);
+  padding: 0 6px 0 12px;
+  border-radius: 2px;
+  height: 32px;
 }
-.numberField-0-0-124:focus:enabled {
+.numberField:hover:enabled {
+  background: var(--neutral-fill-input-hover);
+  border-color: var(--neutral-outline-hover);
+}
+.numberField:active:enabled {
+  background: var(--neutral-fill-input-active);
+  border-color: var(--neutral-outline-active);
+}
+.numberField:focus:enabled {
   outline: none;
+  border-color: var(--neutral-focus);
+  box-shadow: 0 0 0 1px var(--neutral-focus) inset;
 }
-.numberField-0-0-124:disabled {
+.numberField:disabled {
   cursor: not-allowed !important;
+  opacity: 0.3;
+}
+.numberField::placeholder {
+  color: var(--neutral-foreground-hint);
 }
 @media (-ms-high-contrast:active) {
-  .numberField-0-0-124 {
+  .numberField {
     color: ButtonText;
     background: ButtonFace;
     border-color: ButtonText;
     -ms-high-contrast-adjust: none;
   }
 }
-.numberField-0-0-124::-webkit-inner-spin-button {
+.numberField::-webkit-inner-spin-button {
   appearance: none;
   -webkit-appearance: none;
 }
 @media (-ms-high-contrast:active) {
-  .numberField-0-0-124::placeholder {
+  .numberField::placeholder {
     color: GrayText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .numberField-0-0-124:disabled {
+  .numberField:disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -38,12 +61,14 @@
   }
 }
 @media (-ms-high-contrast:active) {
-  .numberField-0-0-124:focus:enabled {
+  .numberField:focus:enabled {
     border-color: ButtonText;
+    box-shadow: 0 0 0 1px inset ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .numberField-0-0-124:hover:enabled {
+  .numberField:hover:enabled {
     background: ButtonFace;
+    border: 1px solid Highlight;
   }
 }

@@ -1,31 +1,40 @@
-.toggle-0-0-235 {
+.toggle {
   color: var(--neutral-foreground-rest);
   display: inline-block;
   transition: all 0.2s ease-in-out;
 }
 @media (-ms-high-contrast:active) {
-  .toggle-0-0-235 {
+  .toggle {
     -ms-high-contrast-adjust: none;
   }
 }
-.toggle_label-0-0-236 {
+.toggle_label {
   clear: both;
   cursor: pointer;
   display: block;
   padding-bottom: 7px;
+  font-size: 14px;
+  line-height: 20px;
 }
-.toggle_toggleButton-0-0-237 {
+.toggle_toggleButton {
   cursor: pointer;
   position: relative;
   margin-top: 0;
+  float: left;
 }
-.toggle_stateIndicator-0-0-238 {
+.toggle_stateIndicator {
   position: absolute;
   transition: all .1s ease;
   background: var(--neutral-foreground-rest);
   pointer-events: none;
+  top: 5px;
+  left: 5px;
+  right: unset;
+  border-radius: 10px;
+  width: 10px;
+  height: 10px;
 }
-.toggle_input-0-0-239 {
+.toggle_input {
   cursor: pointer;
   margin: 0;
   display: block;
@@ -35,137 +44,153 @@
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
+  width: 40px;
+  height: 20px;
+  border: 1px solid var(--neutral-outline-rest);
+  border-radius: 20px;
 }
-.toggle_input-0-0-239:active {
+.toggle_input:active {
   background: var(--neutral-fill-input-active);
   border-color: var(--neutral-outline-active);
 }
-.toggle_input-0-0-239:hover {
+.toggle_input:hover {
   background: var(--neutral-fill-input-hover);
   border-color: var(--neutral-outline-hover);
 }
-.toggle_input-0-0-239:focus {
+.toggle_input:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .toggle_input-0-0-239:focus, :global(.js-focus-visible) .toggle_input-0-0-239:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].toggle_input-0-0-239 {
+body:not(:global(.js-focus-visible)) .toggle_input:focus, :global(.js-focus-visible) .toggle_input:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].toggle_input {
   border-color: var(--neutral-focus);
+  box-shadow: 0 0 0 1px var(--neutral-focus) inset;
 }
 @media (-ms-high-contrast:active) {
-  .toggle_input-0-0-239 {
+  .toggle_input {
     background: Window;
     border-color: ButtonText;
   }
-  .toggle_input-0-0-239 + span {
+  .toggle_input + span {
     background: ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .toggle_input-0-0-239:focus, :global(.js-focus-visible) .toggle_input-0-0-239:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].toggle_input-0-0-239 {
+  body:not(:global(.js-focus-visible)) .toggle_input:focus, :global(.js-focus-visible) .toggle_input:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].toggle_input {
     border-color: ButtonText;
+    box-shadow: 0 0 0 1px ButtonText inset;
   }
 }
 @media (-ms-high-contrast:active) {
-  .toggle_input-0-0-239:hover {
+  .toggle_input:hover {
     background: Window;
     border-color: Highlight;
   }
-  .toggle_input-0-0-239:hover + span {
+  .toggle_input:hover + span {
     background: Highlight;
   }
 }
 @media (-ms-high-contrast:active) {
-  .toggle_input-0-0-239:active {
+  .toggle_input:active {
     background: Highlight;
     border-color: HighlightText;
   }
-  .toggle_input-0-0-239:active + span {
+  .toggle_input:active + span {
     background: HighlightText;
   }
 }
-.toggle__checked-0-0-240 .toggle_input-0-0-239 {
+.toggle__checked .toggle_input {
   background: var(--accent-fill-rest);
   border-color: var(--accent-fill-rest);
 }
-.toggle__checked-0-0-240 .toggle_stateIndicator-0-0-238 {
+.toggle__checked .toggle_stateIndicator {
   background: var(--accent-foreground-cut);
+  left: 25px;
+  right: unset;
 }
-.toggle__checked-0-0-240 .toggle_input-0-0-239:focus {
+.toggle__checked .toggle_input:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .toggle__checked-0-0-240 .toggle_input-0-0-239:focus, :global(.js-focus-visible) .toggle__checked-0-0-240 .toggle_input-0-0-239:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].toggle__checked-0-0-240 .toggle_input-0-0-239 {
+body:not(:global(.js-focus-visible)) .toggle__checked .toggle_input:focus, :global(.js-focus-visible) .toggle__checked .toggle_input:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].toggle__checked .toggle_input {
   border-color: var(--neutral-focus);
+  box-shadow: 0 0 0 1px var(--neutral-focus) inset, 0 0 0 3px var(--neutral-focus-inner-accent) inset;
 }
 @media (-ms-high-contrast:active) {
-  .toggle__checked-0-0-240 .toggle_input-0-0-239 {
+  .toggle__checked .toggle_input {
     background: Highlight;
     border-color: Highlight;
   }
-  .toggle__checked-0-0-240 .toggle_input-0-0-239 + span {
+  .toggle__checked .toggle_input + span {
     background: HighlightText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .toggle__checked-0-0-240 .toggle_input-0-0-239:active {
+  .toggle__checked .toggle_input:active {
     background: Highlight !important;
     border-color: Highlight !important;
   }
-  .toggle__checked-0-0-240 .toggle_input-0-0-239:active + span {
+  .toggle__checked .toggle_input:active + span {
     background: HighlightText !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .toggle__checked-0-0-240 .toggle_input-0-0-239:hover {
+  .toggle__checked .toggle_input:hover {
     background: HighlightText;
     border-color: Highlight;
   }
-  .toggle__checked-0-0-240 .toggle_input-0-0-239:hover + span {
+  .toggle__checked .toggle_input:hover + span {
     background: Highlight;
   }
 }
 @media (-ms-high-contrast:active) {
-  .toggle__checked-0-0-240 .toggle_input-0-0-239:disabled .toggle_input-0-0-239, .toggle__checked-0-0-240 .toggle_input-0-0-239:disabled .toggle_label-0-0-236, .toggle__checked-0-0-240 .toggle_input-0-0-239:disabled .toggle_statusMessage-0-0-242 {
+  .toggle__checked .toggle_input:disabled .toggle_input, .toggle__checked .toggle_input:disabled .toggle_label, .toggle__checked .toggle_input:disabled .toggle_statusMessage {
     color: GrayText !important;
     background: transparent;
     border-color: GrayText !important;
   }
-  .toggle__checked-0-0-240 .toggle_input-0-0-239:disabled .toggle_input-0-0-239 + span, .toggle__checked-0-0-240 .toggle_input-0-0-239:disabled .toggle_label-0-0-236 + span, .toggle__checked-0-0-240 .toggle_input-0-0-239:disabled .toggle_statusMessage-0-0-242 + span {
+  .toggle__checked .toggle_input:disabled .toggle_input + span, .toggle__checked .toggle_input:disabled .toggle_label + span, .toggle__checked .toggle_input:disabled .toggle_statusMessage + span {
     background: GrayText !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .toggle__checked-0-0-240 .toggle_input-0-0-239:focus, :global(.js-focus-visible) .toggle__checked-0-0-240 .toggle_input-0-0-239:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].toggle__checked-0-0-240 .toggle_input-0-0-239 {
+  body:not(:global(.js-focus-visible)) .toggle__checked .toggle_input:focus, :global(.js-focus-visible) .toggle__checked .toggle_input:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].toggle__checked .toggle_input {
     border-color: ButtonText !important;
+    box-shadow: 0 0 0 2px inset ButtonFace;
   }
 }
-.toggle__disabled-0-0-241 {
+.toggle__disabled {
   cursor: not-allowed !important;
+  opacity: 0.3;
 }
 @media (-ms-high-contrast:active) {
-  .toggle__disabled-0-0-241 {
+  .toggle__disabled {
     color: GrayText;
     opacity: 1;
   }
 }
-.toggle__disabled-0-0-241 .toggle_input-0-0-239, .toggle__disabled-0-0-241 .toggle_label-0-0-236, .toggle__disabled-0-0-241 .toggle_statusMessage-0-0-242 {
+.toggle__disabled .toggle_input, .toggle__disabled .toggle_label, .toggle__disabled .toggle_statusMessage {
   cursor: not-allowed !important;
 }
 @media (-ms-high-contrast:active) {
-  .toggle__disabled-0-0-241 .toggle_input-0-0-239, .toggle__disabled-0-0-241 .toggle_label-0-0-236, .toggle__disabled-0-0-241 .toggle_statusMessage-0-0-242 {
+  .toggle__disabled .toggle_input, .toggle__disabled .toggle_label, .toggle__disabled .toggle_statusMessage {
     color: GrayText !important;
     background: transparent;
     border-color: GrayText !important;
   }
-  .toggle__disabled-0-0-241 .toggle_input-0-0-239 + span, .toggle__disabled-0-0-241 .toggle_label-0-0-236 + span, .toggle__disabled-0-0-241 .toggle_statusMessage-0-0-242 + span {
+  .toggle__disabled .toggle_input + span, .toggle__disabled .toggle_label + span, .toggle__disabled .toggle_statusMessage + span {
     background: GrayText !important;
   }
 }
-.toggle_statusMessage-0-0-242 {
+.toggle_statusMessage {
   margin-top: 0;
   user-select: none;
   padding-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  float: left;
+  padding-left: 5px;
+  padding-right: ;
 }
 @media (-ms-high-contrast:active) {
-  .toggle_statusMessage-0-0-242 {
+  .toggle_statusMessage {
     fill: WindowText !important;
     color: WindowText !important;
   }

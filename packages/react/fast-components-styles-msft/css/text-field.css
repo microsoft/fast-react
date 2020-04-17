@@ -1,17 +1,40 @@
-.textField-0-0-233 {
+.textField {
+  color: var(--neutral-foreground-rest);
   margin: 0;
+  background: var(--neutral-fill-input-rest);
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
   font-family: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  border: 1px solid var(--neutral-outline-rest);
+  padding: 0 11px;
+  border-radius: 2px;
+  height: 32px;
 }
-.textField-0-0-233:focus:enabled {
+.textField:hover:enabled {
+  background: var(--neutral-fill-input-hover);
+  border-color: var(--neutral-outline-hover);
+}
+.textField:active:enabled {
+  background: var(--neutral-fill-input-active);
+  border-color: var(--neutral-outline-active);
+}
+.textField:focus:enabled {
   outline: none;
+  border-color: var(--neutral-focus);
+  box-shadow: 0 0 0 1px var(--neutral-focus) inset;
 }
-.textField-0-0-233:disabled {
+.textField:disabled {
   cursor: not-allowed !important;
+  opacity: 0.3;
+}
+.textField::placeholder {
+  color: var(--neutral-foreground-hint);
 }
 @media (-ms-high-contrast:active) {
-  .textField-0-0-233 {
+  .textField {
     color: ButtonText;
     background: ButtonFace;
     border-color: ButtonText;
@@ -19,12 +42,12 @@
   }
 }
 @media (-ms-high-contrast:active) {
-  .textField-0-0-233::placeholder {
+  .textField::placeholder {
     color: GrayText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .textField-0-0-233:disabled {
+  .textField:disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -33,44 +56,62 @@
   }
 }
 @media (-ms-high-contrast:active) {
-  .textField-0-0-233:focus:enabled {
+  .textField:focus:enabled {
     border-color: ButtonText;
+    box-shadow: 0 0 0 1px inset ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .textField-0-0-233:hover:enabled {
+  .textField:hover:enabled {
     background: ButtonFace;
+    border: 1px solid Highlight;
   }
 }
-.textField__filled-0-0-234 {
+.textField__filled {
+  color: var(--neutral-foreground-rest);
   margin: 0;
+  background: var(--neutral-fill-rest);
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
   font-family: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  border: 1px solid transparent;
+  padding: 0 11px;
+  border-radius: 2px;
 }
-.textField__filled-0-0-234:hover:enabled {
+.textField__filled:hover:enabled {
+  background: var(--neutral-fill-hover);
   border-color: transparent;
 }
-.textField__filled-0-0-234:active:enabled {
+.textField__filled:active:enabled {
   border-color: transparent;
 }
-.textField__filled-0-0-234:disabled {
+.textField__filled:focus:enabled {
+  border-color: var(--neutral-focus);
+}
+.textField__filled:disabled {
   cursor: not-allowed !important;
+  opacity: 0.3;
+}
+.textField__filled::placeholder {
+  color: var(--neutral-foreground-hint);
 }
 @media (-ms-high-contrast:active) {
-  .textField__filled-0-0-234 {
+  .textField__filled {
     background: ButtonFace;
     border-color: ButtonText;
     -ms-high-contrast-adjust: none;
   }
 }
 @media (-ms-high-contrast:active) {
-  .textField__filled-0-0-234::placeholder {
+  .textField__filled::placeholder {
     color: GrayText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .textField__filled-0-0-234:disabled {
+  .textField__filled:disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -79,7 +120,8 @@
   }
 }
 @media (-ms-high-contrast:active) {
-  .textField__filled-0-0-234:hover:enabled {
+  .textField__filled:hover:enabled {
     background: ButtonFace;
+    border: 1px solid Highlight;
   }
 }

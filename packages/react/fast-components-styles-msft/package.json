@@ -23,7 +23,7 @@
     "eslint": "eslint . --ext .ts",
     "eslint:fix": "eslint . --ext .ts --fix",
     "test": "yarn eslint && yarn unit-tests",
-    "build": "yarn generate-palettes && tsc -p ./tsconfig.build.json",
+    "build": "yarn generate-palettes && tsc -p ./tsconfig.build.json && yarn generate-css",
     "build:watch": "yarn build -- -w",
     "prepare": "yarn clean:dist && yarn build",
     "prettier": "prettier --config ../../../.prettierrc --write \"**/*.ts\"",

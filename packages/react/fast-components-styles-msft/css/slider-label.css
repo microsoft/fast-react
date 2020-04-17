@@ -1,82 +1,90 @@
-.sliderLabel-0-0-201 {
+.sliderLabel {
   cursor: default;
   display: grid;
 }
 @media (-ms-high-contrast:active) {
-  .sliderLabel-0-0-201 {
+  .sliderLabel {
     -ms-high-contrast-adjust: none;
   }
 }
-.sliderLabel_positioningRegion-0-0-202 {
+.sliderLabel_positioningRegion {
   display: grid;
 }
-.sliderLabel_label-0-0-203 {
+.sliderLabel_label {
   color: var(--neutral-foreground-rest);
   white-space: nowrap;
+  font-size: 10px;
+  line-height: 16px;
 }
 @media (-ms-high-contrast:active) {
-  .sliderLabel_label-0-0-203 {
+  .sliderLabel_label {
     fill: WindowText !important;
     color: WindowText !important;
   }
 }
-.sliderLabel_tickMark-0-0-204 {
+.sliderLabel_tickMark {
   background: var(--neutral-outline-rest);
 }
 @media (-ms-high-contrast:active) {
-  .sliderLabel_tickMark-0-0-204 {
+  .sliderLabel_tickMark {
     background: ButtonText;
   }
 }
-.sliderLabel__horizontal-0-0-207.sliderLabel-0-0-201 {
+.sliderLabel__horizontal.sliderLabel {
   grid-row: 2;
   align-self: start;
   margin-top: -2px;
 }
-.sliderLabel__horizontal-0-0-207 .sliderLabel_positioningRegion-0-0-202 {
+.sliderLabel__horizontal .sliderLabel_positioningRegion {
   width: 0;
   justify-self: center;
   grid-template-rows: auto auto;
   grid-template-columns: 0;
 }
-.sliderLabel__horizontal-0-0-207 .sliderLabel_label-0-0-203 {
+.sliderLabel__horizontal .sliderLabel_label {
   grid-row: 2;
   justify-self: center;
 }
-.sliderLabel__horizontal-0-0-207 .sliderLabel_tickMark-0-0-204 {
+.sliderLabel__horizontal .sliderLabel_tickMark {
   width: 2px;
   justify-self: center;
+  height: 4px;
 }
-.sliderLabel__horizontal-0-0-207 .sliderLabel_positioningRegion-0-0-202.sliderLabel__positionMax-0-0-206 .sliderLabel_label-0-0-203 {
+.sliderLabel__horizontal .sliderLabel_positioningRegion.sliderLabel__positionMax .sliderLabel_label {
   justify-self: end;
+  margin-right: -10px;
 }
-.sliderLabel__horizontal-0-0-207 .sliderLabel_positioningRegion-0-0-202.sliderLabel__positionMin-0-0-205 .sliderLabel_label-0-0-203 {
+.sliderLabel__horizontal .sliderLabel_positioningRegion.sliderLabel__positionMin .sliderLabel_label {
   justify-self: start;
+  margin-left: -10px;
 }
-.sliderLabel__vertical-0-0-208.sliderLabel-0-0-201 {
+.sliderLabel__vertical.sliderLabel {
   grid-column: 2;
   margin-left: -2px;
 }
-.sliderLabel__vertical-0-0-208 .sliderLabel_positioningRegion-0-0-202 {
+.sliderLabel__vertical .sliderLabel_positioningRegion {
   height: 2px;
   align-self: center;
   grid-template-rows: 0;
   grid-template-columns: auto auto;
 }
-.sliderLabel__vertical-0-0-208 .sliderLabel_label-0-0-203 {
+.sliderLabel__vertical .sliderLabel_label {
   margin: 2px;
   align-self: center;
   grid-column: 2;
 }
-.sliderLabel__vertical-0-0-208 .sliderLabel_tickMark-0-0-204 {
+.sliderLabel__vertical .sliderLabel_tickMark {
   height: 2px;
   align-self: center;
+  width: 4px;
 }
-.sliderLabel__rtl-0-0-209.sliderLabel__horizontal-0-0-207 .sliderLabel_positioningRegion-0-0-202.sliderLabel__positionMax-0-0-206 .sliderLabel_label-0-0-203 {
+.sliderLabel__rtl.sliderLabel__horizontal .sliderLabel_positioningRegion.sliderLabel__positionMax .sliderLabel_label {
   margin-right: 0;
   justify-self: start;
+  margin-left: -10px;
 }
-.sliderLabel__rtl-0-0-209.sliderLabel__horizontal-0-0-207 .sliderLabel_positioningRegion-0-0-202.sliderLabel__positionMin-0-0-205 .sliderLabel_label-0-0-203 {
+.sliderLabel__rtl.sliderLabel__horizontal .sliderLabel_positioningRegion.sliderLabel__positionMin .sliderLabel_label {
   margin-right: 0;
   justify-self: end;
+  margin-left: -10px;
 }

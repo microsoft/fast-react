@@ -49,6 +49,7 @@ import {
     TreeViewStyles,
     TreeViewItemStyles,
     TypographyStyles,
+    DesignSystemDefaults,
 } from "./src";
 
 function generateClassName(rule, sheet) {
@@ -56,7 +57,6 @@ function generateClassName(rule, sheet) {
 }
 
 jss.setup(preset());
-jss.setup({ generateClassName });
 
 [
     ["accent-button", AccentButtonStyles],
@@ -72,7 +72,7 @@ jss.setup({ generateClassName });
     ["card", CardStyles],
     ["carousel", CarouselStyles],
     ["context-menu", ContextMenuStyles],
-    ["Context-menu-item", ContextMenuItemStyles],
+    ["context-menu-item", ContextMenuItemStyles],
     ["dialog", DialogStyles],
     ["divider", DividerStyles],
     ["flipper", FlipperStyles],
@@ -104,7 +104,8 @@ jss.setup({ generateClassName });
     ["tree-view-item", TreeViewItemStyles],
     ["typography", TypographyStyles],
 ].forEach(pair => {
-    const style = jss.createStyleSheet(pair[1]);
+    const style = jss.createStyleSheet(pair[1], { generateClassName });
+    style.update(DesignSystemDefaults);
     const outDir = path.resolve(process.cwd(), "css");
 
     fs.mkdir(outDir, { recursive: true }, err => {

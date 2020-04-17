@@ -1,4 +1,4 @@
-.badge-0-0-32 {
+.badge {
   color: var(--neutral-foreground-rest);
   cursor: default;
   display: inline-block;
@@ -8,8 +8,28 @@
   transition: all 0.2s ease-in-out;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
 }
-.badge__filled-0-0-33 {
+.badge__filled {
   color: var(--accent-foreground-cut);
   background-color: #FFD800;
+  border-radius: 2px;
+  font-weight: 400;
+}
+.badge__small {
+  font-size: 12px;
+  line-height: 17px;
+  height: 20px;
+}
+.badge__small.badge__filled {
+  padding: 1px 8px;
+}
+.badge__large {
+  height: 24px;
+  line-height: 24px;
+}
+.badge__large.badge__filled {
+  padding: 0 12px;
 }

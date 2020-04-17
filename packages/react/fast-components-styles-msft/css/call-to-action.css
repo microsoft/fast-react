@@ -1,4 +1,4 @@
-.callToAction-0-0-50 {
+.callToAction {
   display: inline-flex;
   max-width: 100%;
   transition: all 0.2s ease-in-out;
@@ -6,103 +6,114 @@
   white-space: nowrap;
   text-decoration: none;
 }
-.callToAction-0-0-50:focus {
+.callToAction:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .callToAction-0-0-50:focus.callToAction-0-0-50 .callToAction_glyph-0-0-51, :global(.js-focus-visible) .callToAction-0-0-50:global(.focus-visible).callToAction-0-0-50 .callToAction_glyph-0-0-51, global(.js-focus-visible) [data-focus-visible-added].callToAction-0-0-50.callToAction-0-0-50 .callToAction_glyph-0-0-51 {
+body:not(:global(.js-focus-visible)) .callToAction:focus.callToAction .callToAction_glyph, :global(.js-focus-visible) .callToAction:global(.focus-visible).callToAction .callToAction_glyph, global(.js-focus-visible) [data-focus-visible-added].callToAction.callToAction .callToAction_glyph {
   position: relative;
+  transform: translateX(4px);
 }
 @media (-ms-high-contrast:active) {
-  .callToAction-0-0-50 {
+  .callToAction {
     -ms-high-contrast-adjust: none;
   }
 }
-.callToAction-0-0-50:hover .callToAction_glyph-0-0-51 {
+.callToAction:hover .callToAction_glyph {
   position: relative;
+  transform: translateX(4px);
 }
 @media (-ms-high-contrast:active) {
-  .callToAction-0-0-50:hover .callToAction_glyph-0-0-51 {
+  .callToAction:hover .callToAction_glyph {
     fill: HighlightText !important;
     color: HighlightText !important;
   }
 }
-.callToAction_glyph-0-0-51 {
+.callToAction_glyph {
   fill: var(--neutral-foreground-rest);
   display: inline-block;
   position: relative;
   transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  margin-right: ;
+  transform: none;
 }
 @media (-ms-high-contrast:active) {
-  .callToAction_glyph-0-0-51 {
+  .callToAction_glyph {
     fill: ButtonText !important;
     color: ButtonText !important;
   }
 }
-.callToAction__primary-0-0-52 button_contentRegion, .callToAction__primary-0-0-52 .callToAction_glyph-0-0-51 {
+.callToAction__primary button_contentRegion, .callToAction__primary .callToAction_glyph {
   fill: var(--accent-foreground-cut);
 }
 @media (-ms-high-contrast:active) {
-  a.callToAction__primary-0-0-52 button_contentRegion, a.callToAction__primary-0-0-52 .callToAction_glyph-0-0-51, a.callToAction__primary-0-0-52:hover button_contentRegion, a.callToAction__primary-0-0-52:hover .callToAction_glyph-0-0-51 {
+  a.callToAction__primary button_contentRegion, a.callToAction__primary .callToAction_glyph, a.callToAction__primary:hover button_contentRegion, a.callToAction__primary:hover .callToAction_glyph {
     fill: -ms-hotlight !important;
     color: -ms-hotlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  a.callToAction__primary-0-0-52:hover {
+  a.callToAction__primary:hover {
     box-shadow: none !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .callToAction__primary-0-0-52:hover .callToAction_glyph-0-0-51 {
+  .callToAction__primary:hover .callToAction_glyph {
     fill: Highlight !important;
     color: Highlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .callToAction__primary-0-0-52 button_contentRegion, .callToAction__primary-0-0-52 .callToAction_glyph-0-0-51 {
+  .callToAction__primary button_contentRegion, .callToAction__primary .callToAction_glyph {
     fill: HighlightText !important;
     color: HighlightText !important;
   }
 }
-.callToAction__lightweight-0-0-53 .callToAction_glyph-0-0-51 {
+.callToAction__lightweight .callToAction_glyph {
   fill: var(--accent-foreground-rest);
 }
-.callToAction__lightweight-0-0-53:active .callToAction_glyph-0-0-51 {
+.callToAction__lightweight:active .callToAction_glyph {
   fill: var(--accent-foreground-active);
 }
-.callToAction__lightweight-0-0-53:hover .callToAction_glyph-0-0-51 {
+.callToAction__lightweight:hover .callToAction_glyph {
   fill: var(--accent-foreground-hover);
 }
 @media (-ms-high-contrast:active) {
-  .callToAction__lightweight-0-0-53:hover .callToAction_glyph-0-0-51 {
+  .callToAction__lightweight:hover .callToAction_glyph {
     fill: Highlight !important;
     color: Highlight !important;
   }
 }
-.callToAction__justified-0-0-54 .callToAction_glyph-0-0-51 {
+.callToAction__justified {
+  padding-right: 4px;
+  padding-left: ;
+}
+.callToAction__justified .callToAction_glyph {
   fill: var(--accent-foreground-rest);
 }
-.callToAction__justified-0-0-54:hover .callToAction_glyph-0-0-51 {
+.callToAction__justified:hover .callToAction_glyph {
   fill: var(--accent-foreground-hover);
 }
 @media (-ms-high-contrast:active) {
-  .callToAction__justified-0-0-54:hover .callToAction_glyph-0-0-51 {
+  .callToAction__justified:hover .callToAction_glyph {
     fill: Highlight !important;
     color: Highlight !important;
   }
 }
-.callToAction__disabled-0-0-57:hover .callToAction_glyph-0-0-51 {
+.callToAction__disabled:hover .callToAction_glyph {
   transform: none;
 }
 @media (-ms-high-contrast:active) {
-  .callToAction__disabled-0-0-57:hover .callToAction_glyph-0-0-51 {
+  .callToAction__disabled:hover .callToAction_glyph {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
   }
 }
 @media (-ms-high-contrast:active) {
-  .callToAction__disabled-0-0-57 .callToAction_glyph-0-0-51 {
+  .callToAction__disabled .callToAction_glyph {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;

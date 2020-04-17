@@ -1,100 +1,106 @@
 @media (-ms-high-contrast:active) {
-  .actionTrigger-0-0-16.actionTrigger__justified-0-0-20:hover:enabled .actionTrigger_glyph-0-0-17, a.actionTrigger-0-0-16.actionTrigger__justified-0-0-20:not(.actionTrigger__disabled-0-0-23):hover .actionTrigger_glyph-0-0-17, .actionTrigger-0-0-16.actionTrigger__lightweight-0-0-19:hover:enabled .actionTrigger_glyph-0-0-17, a.actionTrigger-0-0-16.actionTrigger__lightweight-0-0-19:not(.actionTrigger__disabled-0-0-23):hover .actionTrigger_glyph-0-0-17 {
+  .actionTrigger.actionTrigger__justified:hover:enabled .actionTrigger_glyph, a.actionTrigger.actionTrigger__justified:not(.actionTrigger__disabled):hover .actionTrigger_glyph, .actionTrigger.actionTrigger__lightweight:hover:enabled .actionTrigger_glyph, a.actionTrigger.actionTrigger__lightweight:not(.actionTrigger__disabled):hover .actionTrigger_glyph {
     fill: Highlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
 @media (-ms-high-contrast:active) {
-  .actionTrigger-0-0-16:hover:enabled .actionTrigger_glyph-0-0-17, a.actionTrigger-0-0-16:not(.actionTrigger__disabled-0-0-23):hover .actionTrigger_glyph-0-0-17 {
+  .actionTrigger:hover:enabled .actionTrigger_glyph, a.actionTrigger:not(.actionTrigger__disabled):hover .actionTrigger_glyph {
     fill: HighlightText !important;
     color: HighlightText !important;
   }
 }
 }
 @media (-ms-high-contrast:active) {
-  .actionTrigger-0-0-16 .actionTrigger_glyph-0-0-17 {
+  .actionTrigger .actionTrigger_glyph {
     fill: ButtonText !important;
     color: ButtonText !important;
   }
 }
-.actionTrigger_glyph-0-0-17 {
+.actionTrigger_glyph {
   display: inline-block;
   position: relative;
   flex-shrink: 0;
+  width: 16px;
+  height: 16px;
 }
-.actionTrigger__primary-0-0-18 .actionTrigger_glyph-0-0-17 {
+.actionTrigger__primary .actionTrigger_glyph {
   fill: var(--accent-foreground-cut);
 }
-.actionTrigger__primary-0-0-18.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+.actionTrigger__primary.actionTrigger__disabled .actionTrigger_glyph {
   fill: var(--accent-foreground-cut);
 }
 @media (-ms-high-contrast:active) {
-  .actionTrigger__primary-0-0-18.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+  .actionTrigger__primary.actionTrigger__disabled .actionTrigger_glyph {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
   }
 }
 @media (-ms-high-contrast:active) {
-  .actionTrigger__primary-0-0-18:hover:enabled .actionTrigger_glyph-0-0-17, a.actionTrigger__primary-0-0-18:not(.actionTrigger__disabled-0-0-23):hover .actionTrigger_glyph-0-0-17 {
+  .actionTrigger__primary:hover:enabled .actionTrigger_glyph, a.actionTrigger__primary:not(.actionTrigger__disabled):hover .actionTrigger_glyph {
     fill: Highlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
 @media (-ms-high-contrast:active) {
-  .actionTrigger__primary-0-0-18 .actionTrigger_glyph-0-0-17 {
+  .actionTrigger__primary .actionTrigger_glyph {
     fill: HighlightText !important;
     color: HighlightText !important;
   }
 }
 }
-.actionTrigger__lightweight-0-0-19 .actionTrigger_glyph-0-0-17 {
+.actionTrigger__lightweight .actionTrigger_glyph {
   fill: var(--accent-foreground-rest);
 }
-.actionTrigger__lightweight-0-0-19.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+.actionTrigger__lightweight.actionTrigger__disabled .actionTrigger_glyph {
   fill: var(--accent-foreground-rest);
 }
-.actionTrigger__lightweight-0-0-19:active .actionTrigger_glyph-0-0-17 {
+.actionTrigger__lightweight:active .actionTrigger_glyph {
   fill: var(--accent-foreground-active);
 }
-.actionTrigger__lightweight-0-0-19:hover .actionTrigger_glyph-0-0-17 {
+.actionTrigger__lightweight:hover .actionTrigger_glyph {
   fill: var(--accent-foreground-hover);
 }
-.actionTrigger__justified-0-0-20 .actionTrigger_glyph-0-0-17 {
+.actionTrigger__justified .actionTrigger_glyph {
   fill: var(--accent-foreground-rest);
 }
-.actionTrigger__justified-0-0-20.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+.actionTrigger__justified.actionTrigger__disabled .actionTrigger_glyph {
   fill: var(--accent-foreground-rest);
 }
-.actionTrigger__justified-0-0-20:active .actionTrigger_glyph-0-0-17 {
+.actionTrigger__justified:active .actionTrigger_glyph {
   fill: var(--accent-foreground-active);
 }
-.actionTrigger__justified-0-0-20:hover .actionTrigger_glyph-0-0-17 {
+.actionTrigger__justified:hover .actionTrigger_glyph {
   fill: var(--accent-foreground-hover);
 }
-.actionTrigger__outline-0-0-21 .actionTrigger_glyph-0-0-17 {
+.actionTrigger__outline .actionTrigger_glyph {
   fill: var(--neutral-foreground-rest);
 }
-.actionTrigger__outline-0-0-21.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+.actionTrigger__outline.actionTrigger__disabled .actionTrigger_glyph {
   fill: var(--neutral-foreground-rest);
 }
-.actionTrigger__stealth-0-0-22 .actionTrigger_glyph-0-0-17 {
+.actionTrigger__stealth .actionTrigger_glyph {
   fill: var(--neutral-foreground-rest);
 }
-.actionTrigger__stealth-0-0-22.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+.actionTrigger__stealth.actionTrigger__disabled .actionTrigger_glyph {
   fill: var(--neutral-foreground-rest);
 }
 @media (-ms-high-contrast:active) {
-  .actionTrigger__stealth-0-0-22.actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+  .actionTrigger__stealth.actionTrigger__disabled .actionTrigger_glyph {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
   }
 }
 @media (-ms-high-contrast:active) {
-  .actionTrigger__disabled-0-0-23 .actionTrigger_glyph-0-0-17 {
+  .actionTrigger__disabled .actionTrigger_glyph {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
   }
+}
+.actionTrigger__hasGlyphAndContent .actionTrigger_glyph {
+  margin-right: 12px;
+  margin-left: ;
 }

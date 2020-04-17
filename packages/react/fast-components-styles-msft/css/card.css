@@ -1,5 +1,13 @@
-.card-0-0-61 {
+.card {
   width: 100%;
   height: 100%;
   transition: all 0.2s ease-in-out;
+  background: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0px 1.6px 3.6px rgba(0,0,0,0.13), 0px 0px 2.9px rgba(0,0,0,0.11);
+}
+@media (-ms-high-contrast:active) {
+  .card {
+    border: 1px solid WindowText;
+  }
 }

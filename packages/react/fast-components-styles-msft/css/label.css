@@ -1,9 +1,11 @@
-.label-0-0-109 {
+.label {
   color: var(--neutral-foreground-rest);
   display: inline-block;
   padding: 0;
+  font-size: 14px;
+  line-height: 20px;
 }
-.label__hidden-0-0-110 {
+.label__hidden {
   clip: rect(1px, 1px, 1px, 1px);
   width: 1px;
   height: 1px;

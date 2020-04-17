@@ -1,22 +1,46 @@
-.select-0-0-166 {
+.select {
   max-width: 374px;
+  height: 32px;
 }
-.select_button-0-0-167 {
+.select_button {
   width: 100%;
+  color: var(--neutral-foreground-rest);
   cursor: pointer;
   margin: 0;
+  background: var(--neutral-fill-input-rest);
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
   font-family: inherit;
+  height: 32px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  border: 1px solid var(--neutral-outline-rest);
+  padding: 0 11px;
+  border-radius: 2px;
 }
-.select_button-0-0-167:focus:enabled {
+.select_button:hover:enabled {
+  background: var(--neutral-fill-input-hover);
+  border-color: var(--neutral-outline-hover);
+}
+.select_button:active:enabled {
+  background: var(--neutral-fill-input-active);
+  border-color: var(--neutral-outline-active);
+}
+.select_button:focus:enabled {
   outline: none;
+  border-color: var(--neutral-focus);
+  box-shadow: 0 0 0 1px var(--neutral-focus) inset;
 }
-.select_button-0-0-167:disabled {
+.select_button:disabled {
   cursor: not-allowed !important;
+  opacity: 0.3;
+}
+.select_button::placeholder {
+  color: var(--neutral-foreground-hint);
 }
 @media (-ms-high-contrast:active) {
-  .select_button-0-0-167 {
+  .select_button {
     fill: ButtonText;
     color: ButtonText;
     background: ButtonFace;
@@ -25,19 +49,19 @@
   }
 }
 @media (-ms-high-contrast:active) {
-  .select_button-0-0-167:disabled > span > svg {
+  .select_button:disabled > span > svg {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
   }
 }
 @media (-ms-high-contrast:active) {
-  .select_button-0-0-167::placeholder {
+  .select_button::placeholder {
     color: GrayText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .select_button-0-0-167:disabled {
+  .select_button:disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -46,83 +70,93 @@
   }
 }
 @media (-ms-high-contrast:active) {
-  .select_button-0-0-167:focus:enabled {
+  .select_button:focus:enabled {
     border-color: ButtonText;
+    box-shadow: 0 0 0 1px inset ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .select_button-0-0-167:hover:enabled {
+  .select_button:hover:enabled {
     background: ButtonFace;
+    border: 1px solid Highlight;
   }
 }
-.select_buttonContentRegion-0-0-168 {
+.select_buttonContentRegion {
   display: grid;
   align-items: center;
   justify-items: start;
   grid-template-columns: 1fr auto;
 }
-.select_buttonDisplayText-0-0-169 {
+.select_buttonDisplayText {
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  text-align: left;
 }
-.select_toggleGlyph-0-0-170 {
+.select_toggleGlyph {
   fill: var(--neutral-foreground-rest);
   grid-column-start: 2;
+  margin: 0 0 0 12px;
+  width: 16px;
+  height: 16px;
 }
 @media (-ms-high-contrast:active) {
-  .select_toggleGlyph-0-0-170 {
+  .select_toggleGlyph {
     fill: ButtonText !important;
     color: ButtonText !important;
   }
 }
-.select_menu-0-0-171 {
+.select_menu {
   width: 100%;
   margin: 0;
   position: relative;
   overflow: auto;
   background: var(--neutral-layer-floating);
   max-height: 328px;
+  border-radius: 4px;
+  box-shadow: 0px 12.8px 28.8px rgba(0,0,0,0.13), 0px 0px 9.2px rgba(0,0,0,0.11);
+  padding: 4px 0;
 }
 @media (-ms-high-contrast:active) {
-  .select_menu-0-0-171 {
+  .select_menu {
     background: ButtonFace;
     -ms-high-contrast-adjust: none;
+    border: 1px solid ButtonText;
   }
 }
-.select__multiSelectable-0-0-172 .select_menu-0-0-171 {
+.select__multiSelectable .select_menu {
   border: 1px solid;
   position: static;
   box-shadow: none;
   border-color: var(--neutral-outline-rest);
 }
-.select__menuPositioningRegion-0-0-173 {
+.select__menuPositioningRegion {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
 }
-.select__menuPositionLeft-0-0-174 {
+.select__menuPositionLeft {
   grid-template-columns: 1fr auto;
 }
-.select__menuPositionLeft-0-0-174 .select_menu-0-0-171 {
+.select__menuPositionLeft .select_menu {
   grid-column: 2;
 }
-.select__menuPositionRight-0-0-175 {
+.select__menuPositionRight {
   grid-template-columns: auto 1fr;
 }
-.select__menuPositionRight-0-0-175 .select_menu-0-0-171 {
+.select__menuPositionRight .select_menu {
   grid-column: 1;
 }
-.select__menuPositionTop-0-0-176 {
+.select__menuPositionTop {
   grid-template-rows: 1fr auto;
 }
-.select__menuPositionTop-0-0-176 .select_menu-0-0-171 {
+.select__menuPositionTop .select_menu {
   grid-row: 2;
 }
-.select__menuPositionBottom-0-0-177 {
+.select__menuPositionBottom {
   grid-template-rows: auto 1fr;
 }
-.select__menuPositionBottom-0-0-177 .select_menu-0-0-171 {
+.select__menuPositionBottom .select_menu {
   grid-row: 1;
 }

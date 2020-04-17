@@ -1,4 +1,4 @@
-.flipper-0-0-86 {
+.flipper {
   fill: var(--neutral-foreground-rest);
   color: var(--neutral-foreground-rest);
   cursor: pointer;
@@ -10,8 +10,10 @@
   background: transparent;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 32px;
 }
-.flipper-0-0-86::before {
+.flipper::before {
   top: 0;
   left: 0;
   right: 0;
@@ -22,15 +24,16 @@
   transition: all 0.1s ease-in-out;
   background: var(--neutral-fill-stealth-rest);
   border-radius: 50%;
+  border: 1px solid var(--neutral-outline-rest);
 }
-.flipper-0-0-86:focus {
+.flipper:focus {
   outline: none;
 }
-.flipper-0-0-86::-moz-focus-inner {
+.flipper::-moz-focus-inner {
   border: 0;
 }
 @media (-ms-high-contrast:active) {
-  .flipper-0-0-86 {
+  .flipper {
     fill: ButtonText;
     color: ButtonText;
     background: ButtonFace;
@@ -38,33 +41,37 @@
     -ms-high-contrast-adjust: none;
   }
 }
-body:not(:global(.js-focus-visible)) .flipper-0-0-86:focus::before, :global(.js-focus-visible) .flipper-0-0-86:global(.focus-visible)::before, global(.js-focus-visible) [data-focus-visible-added].flipper-0-0-86::before {
+body:not(:global(.js-focus-visible)) .flipper:focus::before, :global(.js-focus-visible) .flipper:global(.focus-visible)::before, global(.js-focus-visible) [data-focus-visible-added].flipper::before {
   border: var(--neutral-focus);
+  box-shadow: 0 0 0 1px var(--neutral-focus) inset;
 }
-.flipper-0-0-86:hover::before {
+.flipper:hover::before {
   background: var(--neutral-fill-stealth-hover);
   border-color: var(--neutral-outline-hover);
 }
 @media (-ms-high-contrast:active) {
-  .flipper-0-0-86:hover .flipper_glyph-0-0-87 {
+  .flipper:hover .flipper_glyph {
     fill: HighlightText !important;
     color: HighlightText !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .flipper-0-0-86:hover::before {
+  .flipper:hover::before {
     background: Highlight;
   }
 }
-.flipper-0-0-86:active::before {
+.flipper:active::before {
   background: var(--neutral-fill-stealth-active);
   border-color: var(--neutral-outline-active);
 }
 @media (-ms-high-contrast:active) {
-  .flipper-0-0-86::before {
+  .flipper::before {
     background: Window;
   }
 }
-.flipper_glyph-0-0-87 {
+.flipper_glyph {
   position: relative;
+  transform: none;
+  width: 16px;
+  height: 16px;
 }

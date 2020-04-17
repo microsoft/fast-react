@@ -1,23 +1,47 @@
-.button_contentRegion-0-0-210 {
+.button_contentRegion {
   position: relative;
 }
-.button_contentRegion-0-0-210::before {
+.button_contentRegion::before {
   width: 100%;
   bottom: -3px;
   content: '';
   display: block;
   position: absolute;
+  height: 1px;
+  left: 0;
+  right: ;
 }
-.button__disabled-0-0-211 {
+.button_contentRegion svg {
+  width: 16px;
+  height: 16px;
+}
+.button__disabled {
   cursor: not-allowed !important;
+  opacity: 0.3;
 }
 @media (-ms-high-contrast:active) {
-  .button__disabled-0-0-211 {
+  .button__disabled {
     color: GrayText;
     opacity: 1;
   }
 }
-.button-0-0-215 {
+.button_beforeContent {
+  width: 16px;
+  height: 16px;
+}
+.button_afterContent {
+  width: 16px;
+  height: 16px;
+}
+.button__hasBeforeOrAfterAndChildren .button_beforeContent {
+  margin-right: 12px;
+  margin-left: ;
+}
+.button__hasBeforeOrAfterAndChildren .button_afterContent {
+  margin-right: ;
+  margin-left: 12px;
+}
+.button {
   fill: var(--neutral-foreground-rest);
   color: var(--neutral-foreground-rest);
   cursor: pointer;
@@ -33,24 +57,30 @@
   white-space: nowrap;
   justify-content: center;
   text-decoration: none;
+  font-size: 14px;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  min-width: 32px;
+  padding: 0 10px;
+  height: 32px;
 }
-.button-0-0-215::-moz-focus-inner {
+.button::-moz-focus-inner {
   border: 0;
 }
-.button-0-0-215:hover:enabled, a.button-0-0-215:not(.button__disabled-0-0-211):hover {
+.button:hover:enabled, a.button:not(.button__disabled):hover {
   background-color: var(--neutral-fill-stealth-hover);
 }
-.button-0-0-215:active:enabled, a.button-0-0-215:not(.button__disabled-0-0-211):active {
+.button:active:enabled, a.button:not(.button__disabled):active {
   background-color: var(--neutral-fill-stealth-active);
 }
-.button-0-0-215:focus {
+.button:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .button-0-0-215:focus, :global(.js-focus-visible) .button-0-0-215:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button-0-0-215 {
+body:not(:global(.js-focus-visible)) .button:focus, :global(.js-focus-visible) .button:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button {
   border-color: var(--neutral-focus);
 }
 @media (-ms-high-contrast:active) {
-  .button-0-0-215 {
+  .button {
     fill: ButtonText;
     color: ButtonText;
     border: none;
@@ -59,7 +89,7 @@ body:not(:global(.js-focus-visible)) .button-0-0-215:focus, :global(.js-focus-vi
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button-0-0-215:not(.button__disabled-0-0-211) {
+  a.button:not(.button__disabled) {
     fill: -ms-hotlight !important;
     color: -ms-hotlight !important;
     background: Window;
@@ -67,7 +97,7 @@ body:not(:global(.js-focus-visible)) .button-0-0-215:focus, :global(.js-focus-vi
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button-0-0-215:not(.button__disabled-0-0-211).button__disabled-0-0-211 {
+  a.button:not(.button__disabled).button__disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -76,12 +106,13 @@ body:not(:global(.js-focus-visible)) .button-0-0-215:focus, :global(.js-focus-vi
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button-0-0-215:not(.button__disabled-0-0-211):not(.button__disabled-0-0-211):hover {
+  a.button:not(.button__disabled):not(.button__disabled):hover {
     background: ButtonFace;
+    box-shadow: 0 0 0 1px inset -ms-hotlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button-0-0-215:disabled {
+  .button:disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -90,12 +121,13 @@ body:not(:global(.js-focus-visible)) .button-0-0-215:focus, :global(.js-focus-vi
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .button-0-0-215:focus, :global(.js-focus-visible) .button-0-0-215:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button-0-0-215 {
+  body:not(:global(.js-focus-visible)) .button:focus, :global(.js-focus-visible) .button:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button {
     border-color: ButtonText;
+    box-shadow: 0 0 0 1px inset ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button-0-0-215:hover:enabled, a.button-0-0-215:not(.button__disabled-0-0-211):hover {
+  .button:hover:enabled, a.button:not(.button__disabled):hover {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;

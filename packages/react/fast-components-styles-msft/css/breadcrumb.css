@@ -1,23 +1,27 @@
-.breadcrumb-0-0-36 {
+.breadcrumb {
   color: var(--neutral-foreground-rest);
   cursor: default;
+  font-size: 14px;
+  line-height: 20px;
 }
-.breadcrumb_item-0-0-37 {
+.breadcrumb_item {
   display: inline;
   outline: none;
   transition: all 0.2s ease-in-out, border none;
   text-decoration: none;
 }
-.breadcrumb_item-0-0-37:link, .breadcrumb_item-0-0-37:visited {
+.breadcrumb_item:link, .breadcrumb_item:visited {
   border-bottom: 0px;
 }
-.breadcrumb_itemsContainer-0-0-38 {
+.breadcrumb_itemsContainer {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  padding-left: 0;
+  padding-right: ;
 }
-.breadcrumb_separator-0-0-39 {
+.breadcrumb_separator {
   color: var(--neutral-foreground-hint);
   cursor: default;
   margin: 0 6px;

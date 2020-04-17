@@ -1,4 +1,4 @@
-.textAction-0-0-224 {
+.textAction {
   margin: 0;
   display: flex;
   position: relative;
@@ -7,17 +7,20 @@
   background: var(--neutral-fill-input-rest);
   transition: all 0.2s ease-in-out;
   flex-direction: row;
+  height: 32px;
+  border: 1px solid var(--neutral-outline-rest);
+  border-radius: 2px;
 }
-.textAction-0-0-224:hover {
+.textAction:hover {
   background: var(--neutral-fill-input-hover);
   border-color: var(--neutral-outline-hover);
 }
-.textAction-0-0-224:active {
+.textAction:active {
   background: var(--neutral-fill-input-active);
   border-color: var(--neutral-outline-active);
 }
 @media (-ms-high-contrast:active) {
-  .textAction-0-0-224 {
+  .textAction {
     fill: ButtonText;
     color: ButtonText;
     background: ButtonFace;
@@ -26,38 +29,51 @@
   }
 }
 @media (-ms-high-contrast:active) {
-  .textAction-0-0-224:hover {
+  .textAction:hover {
     background: transparent;
     border-color: Highlight;
   }
 }
-.textAction__filled-0-0-225 {
+.textAction__filled {
   background: var(--neutral-fill-rest);
+  border: 1px solid transparent;
 }
-.textAction__filled-0-0-225:hover {
+.textAction__filled:hover {
   background: var(--neutral-fill-hover);
   border-color: transparent;
 }
-.textAction__filled-0-0-225:active {
+.textAction__filled:active {
   background: var(--neutral-fill-active);
   border-color: transparent;
 }
 @media (-ms-high-contrast:active) {
-  .textAction__filled-0-0-225 {
+  .textAction__filled {
     background: ButtonFace;
+    border: 1px solid ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .textAction__filled-0-0-225:hover {
+  .textAction__filled:hover {
     background: ButtonFace;
     border-color: Highlight;
   }
 }
-.textAction__disabled-0-0-228 {
-  cursor: not-allowed !important;
+.textAction__focus, .textAction__focus:hover {
+  box-shadow: 0 0 0 1px var(--neutral-focus) inset;
+  border: 1px solid var(--neutral-focus);
 }
 @media (-ms-high-contrast:active) {
-  .textAction__disabled-0-0-228 {
+  .textAction__focus, .textAction__focus:hover {
+    box-shadow: 0 0 0 1px ButtonText inset;
+    border: 1px solid ButtonText;
+  }
+}
+.textAction__disabled {
+  cursor: not-allowed !important;
+  opacity: 0.3;
+}
+@media (-ms-high-contrast:active) {
+  .textAction__disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -65,22 +81,22 @@
     border-color: GrayText !important;
   }
 }
-.textAction__disabled-0-0-228:hover {
+.textAction__disabled:hover {
   background: var(--neutral-fill-input-rest);
   border-color: var(--neutral-outline-rest);
 }
-.textAction__disabled-0-0-228:active {
+.textAction__disabled:active {
   background: var(--neutral-fill-input-rest);
   border-color: var(--neutral-outline-rest);
 }
 @media (-ms-high-contrast:active) {
-  .textAction__disabled-0-0-228 .textAction_beforeGlyph-0-0-230, .textAction__disabled-0-0-228 .textAction_afterGlyph-0-0-231 {
+  .textAction__disabled .textAction_beforeGlyph, .textAction__disabled .textAction_afterGlyph {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
   }
 }
-.textAction_button-0-0-229 {
+.textAction_button {
   top: 0;
   fill: var(--neutral-foreground-rest);
   flex: 0 0 auto;
@@ -91,53 +107,65 @@
   min-width: fit-content;
   transition: color .1s, background-color .1s, border-color 0.2s ease-in-out;
   border-color: transparent;
+  height: calc(32px - 6px);
+  left: 0;
+  right: ;
 }
 @media (-ms-high-contrast:active) {
-  .textAction_button-0-0-229 {
+  .textAction_button {
     fill: ButtonText;
     background: ButtonFace;
   }
 }
-.textAction_button-0-0-229:focus {
+.textAction_button:focus {
   outline: none;
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .textAction_button-0-0-229:focus, :global(.js-focus-visible) .textAction_button-0-0-229:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].textAction_button-0-0-229 {
+  body:not(:global(.js-focus-visible)) .textAction_button:focus, :global(.js-focus-visible) .textAction_button:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].textAction_button {
     fill: HighlightText;
     background: Highlight;
     border-color: ButtonText !important;
+    box-shadow: 0 0 0 2px inset ButtonFace;
   }
 }
 @media (-ms-high-contrast:active) {
-  .textAction_button-0-0-229:active {
+  .textAction_button:active {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;
   }
 }
 @media (-ms-high-contrast:active) {
-  .textAction_button-0-0-229:hover {
+  .textAction_button:hover {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;
   }
 }
-.textAction_beforeGlyph-0-0-230 {
+.textAction_beforeGlyph {
   fill: var(--neutral-foreground-rest);
   margin: auto;
+  width: 16px;
+  height: 16px;
+  margin-left: 11px;
+  margin-right: ;
 }
 @media (-ms-high-contrast:active) {
-  .textAction_beforeGlyph-0-0-230 {
+  .textAction_beforeGlyph {
     fill: ButtonText !important;
     color: ButtonText !important;
   }
 }
-.textAction_afterGlyph-0-0-231 {
+.textAction_afterGlyph {
   fill: var(--neutral-foreground-rest);
   margin: auto;
+  width: 16px;
+  height: 16px;
+  margin-left: ;
+  margin-right: 11px;
 }
 @media (-ms-high-contrast:active) {
-  .textAction_afterGlyph-0-0-231 {
+  .textAction_afterGlyph {
     fill: ButtonText !important;
     color: ButtonText !important;
   }

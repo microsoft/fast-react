@@ -1,10 +1,10 @@
-.dialog-0-0-81 {
+.dialog {
   display: none;
 }
-.dialog-0-0-81[aria-hidden="false"] {
+.dialog[aria-hidden="false"] {
   display: block;
 }
-.dialog_positioningRegion-0-0-82 {
+.dialog_positioningRegion {
   top: 0;
   left: 0;
   right: 0;
@@ -14,7 +14,7 @@
   overflow: auto;
   justify-content: center;
 }
-.dialog_modalOverlay-0-0-83 {
+.dialog_modalOverlay {
   top: 0;
   left: 0;
   right: 0;
@@ -22,8 +22,16 @@
   position: fixed;
   background: rgba(0, 0, 0, 0.3);
 }
-.dialog_contentRegion-0-0-84 {
+.dialog_contentRegion {
   z-index: 1;
   margin-top: auto;
   margin-bottom: auto;
+  background: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0px 25.6px 57.6px rgba(0,0,0,0.13), 0px 0px 16.4px rgba(0,0,0,0.11);
+}
+@media (-ms-high-contrast:active) {
+  .dialog_contentRegion {
+    border: 1px solid WindowText;
+  }
 }

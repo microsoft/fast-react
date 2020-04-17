@@ -1,63 +1,69 @@
 @media (-ms-high-contrast:active) {
-  .actionToggle-0-0-7.actionToggle__justified-0-0-11:hover:enabled .actionToggle_glyph-0-0-8, .actionToggle-0-0-7.actionToggle__lightweight-0-0-10:hover:enabled .actionToggle_glyph-0-0-8 {
+  .actionToggle.actionToggle__justified:hover:enabled .actionToggle_glyph, .actionToggle.actionToggle__lightweight:hover:enabled .actionToggle_glyph {
     fill: Highlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .actionToggle-0-0-7:hover:enabled .actionToggle_glyph-0-0-8 {
+  .actionToggle:hover:enabled .actionToggle_glyph {
     fill: HighlightText !important;
     color: HighlightText !important;
   }
 }
-.actionToggle_glyph-0-0-8 {
+.actionToggle_glyph {
   display: inline-block;
   position: relative;
+  width: 16px;
+  height: 16px;
 }
 @media (-ms-high-contrast:active) {
-  .actionToggle_glyph-0-0-8 {
+  .actionToggle_glyph {
     fill: ButtonText !important;
     color: ButtonText !important;
   }
 }
-.actionToggle__primary-0-0-9 .actionToggle_glyph-0-0-8 {
+.actionToggle__primary .actionToggle_glyph {
   fill: var(--accent-foreground-cut);
 }
 @media (-ms-high-contrast:active) {
-  .actionToggle__primary-0-0-9:hover:enabled .actionToggle_glyph-0-0-8 {
+  .actionToggle__primary:hover:enabled .actionToggle_glyph {
     fill: Highlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .actionToggle__primary-0-0-9 .actionToggle_glyph-0-0-8 {
+  .actionToggle__primary .actionToggle_glyph {
     fill: HighlightText !important;
     color: HighlightText !important;
   }
 }
-.actionToggle__lightweight-0-0-10 .actionToggle_glyph-0-0-8 {
+.actionToggle__lightweight .actionToggle_glyph {
   fill: var(--accent-foreground-rest);
 }
-.actionToggle__lightweight-0-0-10:active .actionToggle_glyph-0-0-8 {
+.actionToggle__lightweight:active .actionToggle_glyph {
   fill: var(--accent-foreground-active);
 }
-.actionToggle__lightweight-0-0-10:hover:enabled .actionToggle_glyph-0-0-8 {
+.actionToggle__lightweight:hover:enabled .actionToggle_glyph {
   fill: var(--accent-foreground-hover);
 }
-.actionToggle__justified-0-0-11 .actionToggle_glyph-0-0-8 {
+.actionToggle__justified .actionToggle_glyph {
   fill: var(--accent-foreground-rest);
 }
-.actionToggle__justified-0-0-11:hover:enabled .actionToggle_glyph-0-0-8 {
+.actionToggle__justified:hover:enabled .actionToggle_glyph {
   fill: var(--accent-foreground-hover);
 }
-.actionToggle__stealth-0-0-12 .actionToggle_glyph-0-0-8 {
+.actionToggle__stealth .actionToggle_glyph {
   fill: var(--neutral-foreground-rest);
 }
-.actionToggle__outline-0-0-13 .actionToggle_glyph-0-0-8 {
+.actionToggle__outline .actionToggle_glyph {
   fill: var(--neutral-foreground-rest);
 }
 @media (-ms-high-contrast:active) {
-  .actionToggle__disabled-0-0-14 .actionToggle_glyph-0-0-8 {
+  .actionToggle__disabled .actionToggle_glyph {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
   }
+}
+.actionToggle__hasGlyphAndContent .actionToggle_glyph {
+  margin-right: 12px;
+  margin-left: ;
 }

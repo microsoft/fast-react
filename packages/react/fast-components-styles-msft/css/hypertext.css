@@ -1,43 +1,47 @@
-.hypertext-0-0-105 {
+.hypertext {
   color: var(--neutral-foreground-rest);
   outline: none;
   transition: all 0.2s ease-in-out, border 0.03s ease-in-out;
   text-decoration: none;
 }
-.hypertext-0-0-105:link, .hypertext-0-0-105:visited {
+.hypertext:link, .hypertext:visited {
   color: var(--accent-foreground-rest);
+  border-bottom: 1px solid var(--accent-foreground-rest);
 }
 @media (-ms-high-contrast:active) {
-  .hypertext-0-0-105 {
+  .hypertext {
     color: WindowText;
     -ms-high-contrast-adjust: none;
   }
 }
-.hypertext-0-0-105:link:hover, .hypertext-0-0-105:visited:hover {
+.hypertext:link:hover, .hypertext:visited:hover {
   color: var(--accent-foreground-hover);
   border-bottom-color: var(--accent-foreground-hover);
 }
-.hypertext-0-0-105:link:active, .hypertext-0-0-105:visited:active {
+.hypertext:link:active, .hypertext:visited:active {
   color: var(--accent-foreground-active);
   border-bottom-color: var(--accent-foreground-active);
 }
-.hypertext-0-0-105:link:focus, .hypertext-0-0-105:visited:focus {
+.hypertext:link:focus, .hypertext:visited:focus {
   outline: none;
 }
+body:not(:global(.js-focus-visible)) .hypertext:link:focus, :global(.js-focus-visible) .hypertext:link:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].hypertext:link, body:not(:global(.js-focus-visible)) .hypertext:visited:focus, :global(.js-focus-visible) .hypertext:visited:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].hypertext:visited {
+  border-bottom: 2px solid var(--neutral-focus);
+}
 @media (-ms-high-contrast:active) {
-  .hypertext-0-0-105:link, .hypertext-0-0-105:visited {
+  .hypertext:link, .hypertext:visited {
     color: -ms-hotlight !important;
     border-bottom-color: -ms-hotlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .hypertext-0-0-105:link:focus, :global(.js-focus-visible) .hypertext-0-0-105:link:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].hypertext-0-0-105:link, body:not(:global(.js-focus-visible)) .hypertext-0-0-105:visited:focus, :global(.js-focus-visible) .hypertext-0-0-105:visited:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].hypertext-0-0-105:visited {
+  body:not(:global(.js-focus-visible)) .hypertext:link:focus, :global(.js-focus-visible) .hypertext:link:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].hypertext:link, body:not(:global(.js-focus-visible)) .hypertext:visited:focus, :global(.js-focus-visible) .hypertext:visited:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].hypertext:visited {
     color: -ms-hotlight !important;
     border-bottom-color: -ms-hotlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .hypertext-0-0-105:link:hover, .hypertext-0-0-105:visited:hover {
+  .hypertext:link:hover, .hypertext:visited:hover {
     color: -ms-hotlight !important;
     border-bottom-color: -ms-hotlight !important;
   }

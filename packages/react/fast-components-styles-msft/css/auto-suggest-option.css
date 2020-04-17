@@ -1,4 +1,4 @@
-.autoSuggestOption-0-0-28 {
+.autoSuggestOption {
   color: var(--neutral-foreground-rest);
   cursor: default;
   display: grid;
@@ -9,18 +9,25 @@
   white-space: nowrap;
   list-style-type: none;
   grid-template-rows: auto;
+  height: 32px;
+  grid-template-columns: 12px auto auto 1fr 12px;
+  margin: 0 4px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 2px;
+  border: 2px solid transparent;
 }
-.autoSuggestOption-0-0-28:focus {
+.autoSuggestOption:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .autoSuggestOption-0-0-28:focus, :global(.js-focus-visible) .autoSuggestOption-0-0-28:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].autoSuggestOption-0-0-28 {
+body:not(:global(.js-focus-visible)) .autoSuggestOption:focus, :global(.js-focus-visible) .autoSuggestOption:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].autoSuggestOption {
   border-color: var(--neutral-focus);
 }
-.autoSuggestOption-0-0-28:hover {
+.autoSuggestOption:hover {
   background: var(--neutral-fill-stealth-hover);
 }
 @media (-ms-high-contrast:active) {
-  .autoSuggestOption-0-0-28 {
+  .autoSuggestOption {
     fill: ButtonText;
     color: ButtonText;
     border: none;
@@ -29,54 +36,55 @@ body:not(:global(.js-focus-visible)) .autoSuggestOption-0-0-28:focus, :global(.j
   }
 }
 @media (-ms-high-contrast:active) {
-  .autoSuggestOption-0-0-28:hover {
+  .autoSuggestOption:hover {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .autoSuggestOption-0-0-28:focus, :global(.js-focus-visible) .autoSuggestOption-0-0-28:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].autoSuggestOption-0-0-28 {
+  body:not(:global(.js-focus-visible)) .autoSuggestOption:focus, :global(.js-focus-visible) .autoSuggestOption:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].autoSuggestOption {
     color: HighlightText;
     background: Highlight;
   }
 }
-.autoSuggestOption_contentRegion-0-0-29 {
+.autoSuggestOption_contentRegion {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   grid-column-start: 3;
 }
-.autoSuggestOption__disabled-0-0-30 {
+.autoSuggestOption__disabled {
   cursor: not-allowed !important;
+  opacity: 0.3;
 }
 @media (-ms-high-contrast:active) {
-  .autoSuggestOption__disabled-0-0-30 {
+  .autoSuggestOption__disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
     background: ButtonFace !important;
   }
 }
-.autoSuggestOption__disabled-0-0-30:hover {
+.autoSuggestOption__disabled:hover {
   background: var(--neutral-fill-stealth-rest);
 }
 @media (-ms-high-contrast:active) {
-  .autoSuggestOption__disabled-0-0-30:hover {
+  .autoSuggestOption__disabled:hover {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
     background: ButtonFace !important;
   }
 }
-.autoSuggestOption__selected-0-0-31 {
+.autoSuggestOption__selected {
   background: var(--neutral-fill-stealth-selected);
 }
-.autoSuggestOption__selected-0-0-31:hover {
+.autoSuggestOption__selected:hover {
   background: var(--neutral-fill-stealth-selected);
 }
 @media (-ms-high-contrast:active) {
-  .autoSuggestOption__selected-0-0-31:hover {
+  .autoSuggestOption__selected:hover {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;

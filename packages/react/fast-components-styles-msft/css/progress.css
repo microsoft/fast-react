@@ -1,20 +1,21 @@
-.progress-0-0-147 {
+.progress {
   width: 100%;
   display: flex;
   text-align: left;
   align-items: center;
+  height: 4px;
 }
 @media (-ms-high-contrast:active) {
-  .progress-0-0-147 {
+  .progress {
     -ms-high-contrast-adjust: none;
   }
 }
-.progress__circular-0-0-148 {
+.progress__circular {
   width: unset;
   height: unset;
   display: inline-block;
 }
-.progress__circular-0-0-148 .progress_valueIndicator-0-0-153, .progress__circular-0-0-148 .progress_indicator-0-0-155 {
+.progress__circular .progress_valueIndicator, .progress__circular .progress_indicator {
   fill: none;
   transform: rotate(-90deg);
   transition: all 0.2s ease-in-out;
@@ -22,54 +23,67 @@
   stroke-linecap: round;
   transform-origin: 50% 50%;
 }
-.progress__circular-0-0-148 .progress_valueIndicator-0-0-153 {
+.progress__circular .progress_valueIndicator {
   stroke: var(--accent-fill-rest);
+  transform: ;
 }
-.progress__circular-0-0-148 .progress_valueIndicator__indeterminate-0-0-154 {
+.progress__circular .progress_valueIndicator__indeterminate {
   animation: spin-infinite 2s linear infinite;
 }
-.progress__circular-0-0-148 .progress_indicator-0-0-155 {
+.progress__circular .progress_indicator {
   stroke: var(--neutral-fill-rest);
 }
 @media (-ms-high-contrast:active) {
-  .progress__circular-0-0-148 .progress_indicator-0-0-155 {
+  .progress__circular .progress_indicator {
     stroke: ButtonFace;
   }
 }
 @media (-ms-high-contrast:active) {
-  .progress__circular-0-0-148 .progress_valueIndicator-0-0-153 {
+  .progress__circular .progress_valueIndicator {
     stroke: ButtonText;
   }
 }
-.progress__paused-0-0-149 .progress_valueIndicator-0-0-153 {
+.progress__paused .progress_valueIndicator {
   stroke: var(--neutral-foreground-hint);
   background: var(--neutral-foreground-hint);
 }
-.progress__paused-0-0-149 .progress_dot-0-0-157 {
+.progress__paused .progress_dot {
   background-color: var(--neutral-fill-rest);
 }
-.progress__paused-0-0-149 .progress_dot__1-0-0-158 {
+.progress__paused .progress_dot__1 {
   animation-play-state: paused;
 }
-.progress__paused-0-0-149 .progress_dot__2-0-0-159 {
+.progress__paused .progress_dot__2 {
   animation-play-state: paused;
 }
-.progress__paused-0-0-149 .progress_valueIndicator__indeterminate-0-0-154 {
+.progress__paused .progress_valueIndicator__indeterminate {
   stroke: var(--neutral-fill-rest);
   animation-play-state: paused;
 }
-.progress_valueIndicator-0-0-153 {
+.progress_circularSVG__control {
+  height: 16px;
+  width: 16px;
+}
+.progress_circularSVG__container {
+  height: 32px;
+  width: 32px;
+}
+.progress_circularSVG__page {
+  height: 64px;
+  width: 64px;
+}
+.progress_valueIndicator {
   height: 100%;
   background: var(--accent-fill-rest);
   transition: all 0.2s ease-in-out;
   border-radius: 100px;
 }
 @media (-ms-high-contrast:active) {
-  .progress_valueIndicator-0-0-153 {
+  .progress_valueIndicator {
     background: ButtonText;
   }
 }
-.progress_indicator-0-0-155 {
+.progress_indicator {
   width: 100%;
   display: flex;
   position: relative;
@@ -80,21 +94,25 @@
   align-items: center;
   border-radius: 100px;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
+  height: 4px;
 }
 @media (-ms-high-contrast:active) {
-  .progress_indicator-0-0-155 {
+  .progress_indicator {
     background: ButtonFace;
+    border: 1px solid ButtonText;
   }
 }
-.progress_indicator__determinate-0-0-156 {
+.progress_indicator__determinate {
   border-radius: 2px;
+  height: 4px;
 }
 @media (-ms-high-contrast:active) {
-  .progress_indicator__determinate-0-0-156 {
+  .progress_indicator__determinate {
     background: ButtonFace;
+    border: 1px solid ButtonText;
   }
 }
-.progress_dot-0-0-157 {
+.progress_dot {
   height: 100%;
   opacity: 0;
   position: absolute;
@@ -103,22 +121,23 @@
   animation-timing-function: cubic-bezier(0.4, 0.0, 0.6, 1.0);
 }
 @media (-ms-high-contrast:active) {
-  .progress_dot-0-0-157 {
+  .progress_dot {
     opacity: 1 !important;
     background: ButtonText;
   }
 }
-.progress_dot__1-0-0-158 {
+.progress_dot__1 {
   width: 40%;
   animation: indeterminate-1 2s infinite;
 }
-.progress_dot__2-0-0-159 {
+.progress_dot__2 {
   width: 60%;
   animation: indeterminate-2 2s infinite;
 }
 @keyframes spin-infinite {
   0% {
     stroke-dasharray: 0.01px 43.97px;
+    transform: rotate(0deg);
   }
   50% {
     transform: rotate(450deg);
@@ -126,33 +145,40 @@
   }
   100% {
     stroke-dasharray: .01px 43.97px;
+    transform: rotate(1080deg);
   }
 }
 @keyframes indeterminate-1 {
   0% {
     opacity: 1;
+    transform: translateX(-100%);
   }
   70% {
     opacity: 1;
+    transform: translateX(300%);
   }
   70.01% {
     opacity: 0;
   }
   100% {
     opacity: 0;
+    transform: translateX(300%);
   }
 }
 @keyframes indeterminate-2 {
   0% {
     opacity: 0;
+    transform: translateX(-150%);
   }
   29.99% {
     opacity: 0;
   }
   30% {
     opacity: 1;
+    transform: translateX(-150%);
   }
   100% {
     opacity: 1;
+    transform: translateX(166.66%);
   }
 }

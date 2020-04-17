@@ -1,4 +1,4 @@
-.button-0-0-40 {
+.button {
   fill: var(--neutral-foreground-rest);
   color: var(--neutral-foreground-rest);
   cursor: pointer;
@@ -14,24 +14,30 @@
   white-space: nowrap;
   justify-content: center;
   text-decoration: none;
+  font-size: 14px;
+  min-width: 32px;
+  padding: 0 10px;
+  height: 32px;
+  border: 2px solid transparent;
+  border-radius: 2px;
 }
-.button-0-0-40:hover:enabled, a.button-0-0-40:not(.button__disabled-0-0-47):hover {
+.button:hover:enabled, a.button:not(.button__disabled):hover {
   background: var(--neutral-fill-hover);
 }
-.button-0-0-40:active:enabled, a.button-0-0-40:not(.button__disabled-0-0-47):active {
+.button:active:enabled, a.button:not(.button__disabled):active {
   background: var(--neutral-fill-active);
 }
-.button-0-0-40:focus {
+.button:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .button-0-0-40:focus, :global(.js-focus-visible) .button-0-0-40:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button-0-0-40 {
+body:not(:global(.js-focus-visible)) .button:focus, :global(.js-focus-visible) .button:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button {
   border-color: var(--neutral-focus);
 }
-.button-0-0-40::-moz-focus-inner {
+.button::-moz-focus-inner {
   border: 0;
 }
 @media (-ms-high-contrast:active) {
-  .button-0-0-40 {
+  .button {
     fill: ButtonText;
     color: ButtonText;
     background: ButtonFace;
@@ -40,7 +46,7 @@ body:not(:global(.js-focus-visible)) .button-0-0-40:focus, :global(.js-focus-vis
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button-0-0-40:not(.button__disabled-0-0-47) {
+  a.button:not(.button__disabled) {
     fill: -ms-hotlight !important;
     color: -ms-hotlight !important;
     background: Window;
@@ -48,7 +54,7 @@ body:not(:global(.js-focus-visible)) .button-0-0-40:focus, :global(.js-focus-vis
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button-0-0-40:not(.button__disabled-0-0-47).button__disabled-0-0-47 {
+  a.button:not(.button__disabled).button__disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -57,23 +63,24 @@ body:not(:global(.js-focus-visible)) .button-0-0-40:focus, :global(.js-focus-vis
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button-0-0-40:not(.button__disabled-0-0-47).button__disabled-0-0-47:hover {
+  a.button:not(.button__disabled).button__disabled:hover {
     box-shadow: none !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button-0-0-40:not(.button__disabled-0-0-47):not(.button__disabled-0-0-47):hover {
+  a.button:not(.button__disabled):not(.button__disabled):hover {
     background: ButtonFace;
+    box-shadow: 0 0 0 1px inset -ms-hotlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button-0-0-40:not(.button__disabled-0-0-47):not(.button__disabled-0-0-47):hover .button_beforeContent-0-0-48, a.button-0-0-40:not(.button__disabled-0-0-47):not(.button__disabled-0-0-47):hover .button_afterContent-0-0-49 {
+  a.button:not(.button__disabled):not(.button__disabled):hover .button_beforeContent, a.button:not(.button__disabled):not(.button__disabled):hover .button_afterContent {
     fill: -ms-hotlight !important;
     color: -ms-hotlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button-0-0-40:disabled {
+  .button:disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -82,45 +89,47 @@ body:not(:global(.js-focus-visible)) .button-0-0-40:focus, :global(.js-focus-vis
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .button-0-0-40:focus, :global(.js-focus-visible) .button-0-0-40:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button-0-0-40 {
+  body:not(:global(.js-focus-visible)) .button:focus, :global(.js-focus-visible) .button:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button {
     border-color: ButtonText;
+    box-shadow: 0 0 0 1px inset ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button-0-0-40:hover:enabled, a.button-0-0-40:not(.button__disabled-0-0-47):hover {
+  .button:hover:enabled, a.button:not(.button__disabled):hover {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button-0-0-40:hover:enabled .button_beforeContent-0-0-48, .button-0-0-40:hover:enabled .button_afterContent-0-0-49, a.button-0-0-40:not(.button__disabled-0-0-47):hover .button_beforeContent-0-0-48, a.button-0-0-40:not(.button__disabled-0-0-47):hover .button_afterContent-0-0-49 {
+  .button:hover:enabled .button_beforeContent, .button:hover:enabled .button_afterContent, a.button:not(.button__disabled):hover .button_beforeContent, a.button:not(.button__disabled):hover .button_afterContent {
     fill: HighlightText !important;
     color: HighlightText !important;
   }
 }
-.button__primary-0-0-41 {
+.button__primary {
   fill: var(--accent-foreground-cut);
   color: var(--accent-foreground-cut);
   background: var(--accent-fill-rest);
 }
-.button__primary-0-0-41:hover:enabled, a.button__primary-0-0-41:not(.button__disabled-0-0-47):hover {
+.button__primary:hover:enabled, a.button__primary:not(.button__disabled):hover {
   background: var(--accent-fill-hover);
 }
-.button__primary-0-0-41:active:enabled, a.button__primary-0-0-41:not(.button__disabled-0-0-47):active {
+.button__primary:active:enabled, a.button__primary:not(.button__disabled):active {
   background: var(--accent-fill-active);
 }
-.button__primary-0-0-41:focus {
+.button__primary:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .button__primary-0-0-41:focus, :global(.js-focus-visible) .button__primary-0-0-41:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__primary-0-0-41 {
+body:not(:global(.js-focus-visible)) .button__primary:focus, :global(.js-focus-visible) .button__primary:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__primary {
   border-color: var(--neutral-focus);
+  box-shadow: 0 0 0 2px inset var(--neutral-focus-inner-accent);
 }
-.button__primary-0-0-41 .button_beforeContent-0-0-48, .button__primary-0-0-41 .button_afterContent-0-0-49 {
+.button__primary .button_beforeContent, .button__primary .button_afterContent {
   fill: var(--accent-foreground-cut);
 }
 @media (-ms-high-contrast:active) {
-  .button__primary-0-0-41 {
+  .button__primary {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;
@@ -129,41 +138,47 @@ body:not(:global(.js-focus-visible)) .button__primary-0-0-41:focus, :global(.js-
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button__primary-0-0-41:not(.button__disabled-0-0-47) .button_beforeContent-0-0-48, a.button__primary-0-0-41:not(.button__disabled-0-0-47) .button_afterContent-0-0-49 {
+  a.button__primary:not(.button__disabled) .button_beforeContent, a.button__primary:not(.button__disabled) .button_afterContent {
     fill: -ms-hotlight !important;
     color: -ms-hotlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .button__primary-0-0-41:focus, :global(.js-focus-visible) .button__primary-0-0-41:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__primary-0-0-41 {
+  body:not(:global(.js-focus-visible)) .button__primary:focus, :global(.js-focus-visible) .button__primary:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__primary {
     border-color: ButtonText !important;
+    box-shadow: 0 0 0 2px inset ButtonFace;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button__primary-0-0-41:hover:enabled, a.button__primary-0-0-41:not(.button__disabled-0-0-47):hover {
+  .button__primary:hover:enabled, a.button__primary:not(.button__disabled):hover {
     fill: Highlight;
     color: Highlight;
     background: HighlightText;
     border-color: Highlight;
   }
 }
-.button__outline-0-0-42 {
+.button__outline {
   background: transparent;
+  border: 1px solid var(--neutral-outline-rest);
+  padding: 0 11px;
 }
-.button__outline-0-0-42:hover:enabled, a.button__outline-0-0-42:not(.button__disabled-0-0-47):hover {
+.button__outline:hover:enabled, a.button__outline:not(.button__disabled):hover {
   background: transparent;
+  border: 1px solid var(--neutral-outline-hover);
 }
-.button__outline-0-0-42:active:enabled, a.button__outline-0-0-42:not(.button__disabled-0-0-47):active {
+.button__outline:active:enabled, a.button__outline:not(.button__disabled):active {
   background: transparent;
+  border: 1px solid var(--neutral-outline-active);
 }
-.button__outline-0-0-42:focus {
+.button__outline:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .button__outline-0-0-42:focus, :global(.js-focus-visible) .button__outline-0-0-42:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__outline-0-0-42 {
+body:not(:global(.js-focus-visible)) .button__outline:focus, :global(.js-focus-visible) .button__outline:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__outline {
   border-color: var(--neutral-focus);
+  box-shadow: 0 0 0 1px var(--neutral-focus) inset;
 }
 @media (-ms-high-contrast:active) {
-  .button__outline-0-0-42 {
+  .button__outline {
     fill: ButtonText;
     color: ButtonText;
     background: ButtonFace;
@@ -172,52 +187,53 @@ body:not(:global(.js-focus-visible)) .button__outline-0-0-42:focus, :global(.js-
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .button__outline-0-0-42:focus, :global(.js-focus-visible) .button__outline-0-0-42:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__outline-0-0-42 {
+  body:not(:global(.js-focus-visible)) .button__outline:focus, :global(.js-focus-visible) .button__outline:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__outline {
     border-color: ButtonText;
+    box-shadow: 0 0 0 1px inset ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button__outline-0-0-42:hover:enabled, a.button__outline-0-0-42:not(.button__disabled-0-0-47):hover {
+  .button__outline:hover:enabled, a.button__outline:not(.button__disabled):hover {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;
   }
 }
-.button__lightweight-0-0-43 {
+.button__lightweight {
   fill: var(--accent-foreground-rest);
   color: var(--accent-foreground-rest);
   background-color: transparent;
 }
-.button__lightweight-0-0-43:focus {
+.button__lightweight:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .button__lightweight-0-0-43:focus, :global(.js-focus-visible) .button__lightweight-0-0-43:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__lightweight-0-0-43 {
+body:not(:global(.js-focus-visible)) .button__lightweight:focus, :global(.js-focus-visible) .button__lightweight:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__lightweight {
   box-shadow: none;
   border-color: transparent;
 }
-.button__lightweight-0-0-43:hover .button_contentRegion-0-0-46::before {
+.button__lightweight:hover .button_contentRegion::before {
   background: var(--accent-foreground-hover);
 }
-.button__lightweight-0-0-43:hover.button__disabled-0-0-47 .button_contentRegion-0-0-46::before {
+.button__lightweight:hover.button__disabled .button_contentRegion::before {
   display: none;
 }
-.button__lightweight-0-0-43:active .button_contentRegion-0-0-46::before {
+.button__lightweight:active .button_contentRegion::before {
   background: var(--accent-foreground-active);
 }
-.button__lightweight-0-0-43.button__disabled-0-0-47, .button__lightweight-0-0-43.button__disabled-0-0-47 .button_contentRegion-0-0-46::before {
+.button__lightweight.button__disabled, .button__lightweight.button__disabled .button_contentRegion::before {
   background-color: transparent;
 }
-.button__lightweight-0-0-43:hover:enabled, a.button__lightweight-0-0-43:not(.button__disabled-0-0-47):hover {
+.button__lightweight:hover:enabled, a.button__lightweight:not(.button__disabled):hover {
   color: var(--accent-foreground-hover);
   background-color: transparent;
 }
-.button__lightweight-0-0-43:active:enabled, a.button__lightweight-0-0-43:not(.button__disabled-0-0-47):active {
+.button__lightweight:active:enabled, a.button__lightweight:not(.button__disabled):active {
   fill: var(--accent-foreground-active);
   color: var(--accent-foreground-active);
   background-color: transparent;
 }
 @media (-ms-high-contrast:active) {
-  .button__lightweight-0-0-43 {
+  .button__lightweight {
     fill: ButtonText;
     color: ButtonText;
     border: none;
@@ -226,12 +242,12 @@ body:not(:global(.js-focus-visible)) .button__lightweight-0-0-43:focus, :global(
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button__lightweight-0-0-43:not(.button__disabled-0-0-47) .button_contentRegion-0-0-46::before {
+  a.button__lightweight:not(.button__disabled) .button_contentRegion::before {
     background: transparent;
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button__lightweight-0-0-43:not(.button__disabled-0-0-47).button__disabled-0-0-47 {
+  a.button__lightweight:not(.button__disabled).button__disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -240,57 +256,58 @@ body:not(:global(.js-focus-visible)) .button__lightweight-0-0-43:focus, :global(
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button__lightweight-0-0-43:not(.button__disabled-0-0-47):not(.button__disabled-0-0-47):hover {
+  a.button__lightweight:not(.button__disabled):not(.button__disabled):hover {
     fill: -ms-hotlight !important;
     color: -ms-hotlight !important;
     box-shadow: none !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button__lightweight-0-0-43:not(.button__disabled-0-0-47):not(.button__disabled-0-0-47):hover .button_contentRegion-0-0-46::before {
+  a.button__lightweight:not(.button__disabled):not(.button__disabled):hover .button_contentRegion::before {
     background: -ms-hotlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button__lightweight-0-0-43:hover:enabled, a.button__lightweight-0-0-43:not(.button__disabled-0-0-47):hover {
+  .button__lightweight:hover:enabled, a.button__lightweight:not(.button__disabled):hover {
     fill: Highlight !important;
     color: Highlight !important;
   }
 }
-.button__lightweight-0-0-43:hover:enabled .button_beforeContent-0-0-48, .button__lightweight-0-0-43:hover:enabled .button_afterContent-0-0-49, a.button__lightweight-0-0-43:not(.button__disabled-0-0-47):hover .button_beforeContent-0-0-48, a.button__lightweight-0-0-43:not(.button__disabled-0-0-47):hover .button_afterContent-0-0-49 {
+.button__lightweight:hover:enabled .button_beforeContent, .button__lightweight:hover:enabled .button_afterContent, a.button__lightweight:not(.button__disabled):hover .button_beforeContent, a.button__lightweight:not(.button__disabled):hover .button_afterContent {
   fill: var(--accent-foreground-hover);
 }
 @media (-ms-high-contrast:active) {
-  .button__lightweight-0-0-43:hover:enabled .button_beforeContent-0-0-48, .button__lightweight-0-0-43:hover:enabled .button_afterContent-0-0-49, a.button__lightweight-0-0-43:not(.button__disabled-0-0-47):hover .button_beforeContent-0-0-48, a.button__lightweight-0-0-43:not(.button__disabled-0-0-47):hover .button_afterContent-0-0-49 {
+  .button__lightweight:hover:enabled .button_beforeContent, .button__lightweight:hover:enabled .button_afterContent, a.button__lightweight:not(.button__disabled):hover .button_beforeContent, a.button__lightweight:not(.button__disabled):hover .button_afterContent {
     fill: Highlight !important;
     color: Highlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button__lightweight-0-0-43:hover .button_contentRegion-0-0-46::before {
+  .button__lightweight:hover .button_contentRegion::before {
     background: Highlight;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button__lightweight-0-0-43 .button_contentRegion-0-0-46::before {
+  .button__lightweight .button_contentRegion::before {
     background: ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .button__lightweight-0-0-43:focus, :global(.js-focus-visible) .button__lightweight-0-0-43:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__lightweight-0-0-43 {
+  body:not(:global(.js-focus-visible)) .button__lightweight:focus, :global(.js-focus-visible) .button__lightweight:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__lightweight {
     fill: Highlight !important;
     color: Highlight !important;
   }
 }
-body:not(:global(.js-focus-visible)) .button__lightweight-0-0-43:focus .button_contentRegion-0-0-46::before, :global(.js-focus-visible) .button__lightweight-0-0-43:global(.focus-visible) .button_contentRegion-0-0-46::before, global(.js-focus-visible) [data-focus-visible-added].button__lightweight-0-0-43 .button_contentRegion-0-0-46::before {
+body:not(:global(.js-focus-visible)) .button__lightweight:focus .button_contentRegion::before, :global(.js-focus-visible) .button__lightweight:global(.focus-visible) .button_contentRegion::before, global(.js-focus-visible) [data-focus-visible-added].button__lightweight .button_contentRegion::before {
   background: var(--neutral-foreground-rest);
+  height: 2px;
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .button__lightweight-0-0-43:focus .button_contentRegion-0-0-46::before, :global(.js-focus-visible) .button__lightweight-0-0-43:global(.focus-visible) .button_contentRegion-0-0-46::before, global(.js-focus-visible) [data-focus-visible-added].button__lightweight-0-0-43 .button_contentRegion-0-0-46::before {
+  body:not(:global(.js-focus-visible)) .button__lightweight:focus .button_contentRegion::before, :global(.js-focus-visible) .button__lightweight:global(.focus-visible) .button_contentRegion::before, global(.js-focus-visible) [data-focus-visible-added].button__lightweight .button_contentRegion::before {
     background: Highlight;
   }
 }
-.button__justified-0-0-44 {
+.button__justified {
   fill: var(--accent-foreground-rest);
   color: var(--accent-foreground-rest);
   min-width: 74px;
@@ -300,36 +317,36 @@ body:not(:global(.js-focus-visible)) .button__lightweight-0-0-43:focus .button_c
   justify-content: flex-start;
   background-color: transparent;
 }
-.button__justified-0-0-44:focus {
+.button__justified:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .button__justified-0-0-44:focus, :global(.js-focus-visible) .button__justified-0-0-44:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__justified-0-0-44 {
+body:not(:global(.js-focus-visible)) .button__justified:focus, :global(.js-focus-visible) .button__justified:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__justified {
   box-shadow: none;
   border-color: transparent;
 }
-.button__justified-0-0-44:hover .button_contentRegion-0-0-46::before {
+.button__justified:hover .button_contentRegion::before {
   background: var(--accent-foreground-hover);
 }
-.button__justified-0-0-44:hover.button__disabled-0-0-47 .button_contentRegion-0-0-46::before {
+.button__justified:hover.button__disabled .button_contentRegion::before {
   display: none;
 }
-.button__justified-0-0-44:active .button_contentRegion-0-0-46::before {
+.button__justified:active .button_contentRegion::before {
   background: var(--accent-foreground-active);
 }
-.button__justified-0-0-44.button__disabled-0-0-47, .button__justified-0-0-44.button__disabled-0-0-47 .button_contentRegion-0-0-46::before {
+.button__justified.button__disabled, .button__justified.button__disabled .button_contentRegion::before {
   background-color: transparent;
 }
-.button__justified-0-0-44:hover:enabled, a.button__justified-0-0-44:not(.button__disabled-0-0-47):hover {
+.button__justified:hover:enabled, a.button__justified:not(.button__disabled):hover {
   color: var(--accent-foreground-hover);
   background-color: transparent;
 }
-.button__justified-0-0-44:active:enabled, a.button__justified-0-0-44:not(.button__disabled-0-0-47):active {
+.button__justified:active:enabled, a.button__justified:not(.button__disabled):active {
   fill: var(--accent-foreground-active);
   color: var(--accent-foreground-active);
   background-color: transparent;
 }
 @media (-ms-high-contrast:active) {
-  .button__justified-0-0-44 {
+  .button__justified {
     fill: ButtonText;
     color: ButtonText;
     border: none;
@@ -338,7 +355,7 @@ body:not(:global(.js-focus-visible)) .button__justified-0-0-44:focus, :global(.j
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button__justified-0-0-44:not(.button__disabled-0-0-47).button__disabled-0-0-47 {
+  a.button__justified:not(.button__disabled).button__disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -347,73 +364,74 @@ body:not(:global(.js-focus-visible)) .button__justified-0-0-44:focus, :global(.j
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button__justified-0-0-44:not(.button__disabled-0-0-47):not(.button__disabled-0-0-47):hover {
+  a.button__justified:not(.button__disabled):not(.button__disabled):hover {
     fill: -ms-hotlight !important;
     color: -ms-hotlight !important;
     box-shadow: none !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  a.button__justified-0-0-44:not(.button__disabled-0-0-47):not(.button__disabled-0-0-47):hover .button_contentRegion-0-0-46::before {
+  a.button__justified:not(.button__disabled):not(.button__disabled):hover .button_contentRegion::before {
     background: -ms-hotlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button__justified-0-0-44:hover:enabled, a.button__justified-0-0-44:not(.button__disabled-0-0-47):hover {
+  .button__justified:hover:enabled, a.button__justified:not(.button__disabled):hover {
     fill: Highlight !important;
     color: Highlight !important;
   }
 }
-.button__justified-0-0-44:hover:enabled .button_beforeContent-0-0-48, .button__justified-0-0-44:hover:enabled .button_afterContent-0-0-49, a.button__justified-0-0-44:not(.button__disabled-0-0-47):hover .button_beforeContent-0-0-48, a.button__justified-0-0-44:not(.button__disabled-0-0-47):hover .button_afterContent-0-0-49 {
+.button__justified:hover:enabled .button_beforeContent, .button__justified:hover:enabled .button_afterContent, a.button__justified:not(.button__disabled):hover .button_beforeContent, a.button__justified:not(.button__disabled):hover .button_afterContent {
   fill: var(--accent-foreground-hover);
 }
 @media (-ms-high-contrast:active) {
-  .button__justified-0-0-44:hover:enabled .button_beforeContent-0-0-48, .button__justified-0-0-44:hover:enabled .button_afterContent-0-0-49, a.button__justified-0-0-44:not(.button__disabled-0-0-47):hover .button_beforeContent-0-0-48, a.button__justified-0-0-44:not(.button__disabled-0-0-47):hover .button_afterContent-0-0-49 {
+  .button__justified:hover:enabled .button_beforeContent, .button__justified:hover:enabled .button_afterContent, a.button__justified:not(.button__disabled):hover .button_beforeContent, a.button__justified:not(.button__disabled):hover .button_afterContent {
     fill: Highlight !important;
     color: Highlight !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button__justified-0-0-44:hover .button_contentRegion-0-0-46::before {
+  .button__justified:hover .button_contentRegion::before {
     background: Highlight;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button__justified-0-0-44 .button_contentRegion-0-0-46::before {
+  .button__justified .button_contentRegion::before {
     background: ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .button__justified-0-0-44:focus, :global(.js-focus-visible) .button__justified-0-0-44:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__justified-0-0-44 {
+  body:not(:global(.js-focus-visible)) .button__justified:focus, :global(.js-focus-visible) .button__justified:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__justified {
     fill: Highlight !important;
     color: Highlight !important;
   }
 }
-body:not(:global(.js-focus-visible)) .button__justified-0-0-44:focus .button_contentRegion-0-0-46::before, :global(.js-focus-visible) .button__justified-0-0-44:global(.focus-visible) .button_contentRegion-0-0-46::before, global(.js-focus-visible) [data-focus-visible-added].button__justified-0-0-44 .button_contentRegion-0-0-46::before {
+body:not(:global(.js-focus-visible)) .button__justified:focus .button_contentRegion::before, :global(.js-focus-visible) .button__justified:global(.focus-visible) .button_contentRegion::before, global(.js-focus-visible) [data-focus-visible-added].button__justified .button_contentRegion::before {
   background: var(--neutral-foreground-rest);
+  height: 2px;
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .button__justified-0-0-44:focus .button_contentRegion-0-0-46::before, :global(.js-focus-visible) .button__justified-0-0-44:global(.focus-visible) .button_contentRegion-0-0-46::before, global(.js-focus-visible) [data-focus-visible-added].button__justified-0-0-44 .button_contentRegion-0-0-46::before {
+  body:not(:global(.js-focus-visible)) .button__justified:focus .button_contentRegion::before, :global(.js-focus-visible) .button__justified:global(.focus-visible) .button_contentRegion::before, global(.js-focus-visible) [data-focus-visible-added].button__justified .button_contentRegion::before {
     background: Highlight;
   }
 }
-.button__stealth-0-0-45 {
+.button__stealth {
   background: var(--neutral-fill-stealth-rest);
 }
-.button__stealth-0-0-45:hover:enabled, a.button__stealth-0-0-45:not(.button__disabled-0-0-47):hover {
+.button__stealth:hover:enabled, a.button__stealth:not(.button__disabled):hover {
   background-color: var(--neutral-fill-stealth-hover);
 }
-.button__stealth-0-0-45:active:enabled, a.button__stealth-0-0-45:not(.button__disabled-0-0-47):active {
+.button__stealth:active:enabled, a.button__stealth:not(.button__disabled):active {
   background-color: var(--neutral-fill-stealth-active);
 }
-.button__stealth-0-0-45:focus {
+.button__stealth:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .button__stealth-0-0-45:focus, :global(.js-focus-visible) .button__stealth-0-0-45:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__stealth-0-0-45 {
+body:not(:global(.js-focus-visible)) .button__stealth:focus, :global(.js-focus-visible) .button__stealth:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__stealth {
   border-color: var(--neutral-focus);
 }
 @media (-ms-high-contrast:active) {
-  .button__stealth-0-0-45 {
+  .button__stealth {
     fill: ButtonText;
     color: ButtonText;
     border: none;
@@ -422,32 +440,41 @@ body:not(:global(.js-focus-visible)) .button__stealth-0-0-45:focus, :global(.js-
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .button__stealth-0-0-45:focus, :global(.js-focus-visible) .button__stealth-0-0-45:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__stealth-0-0-45 {
+  body:not(:global(.js-focus-visible)) .button__stealth:focus, :global(.js-focus-visible) .button__stealth:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button__stealth {
     border-color: ButtonText;
+    box-shadow: 0 0 0 1px inset ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .button__stealth-0-0-45:hover:enabled, a.button__stealth-0-0-45:not(.button__disabled-0-0-47):hover {
+  .button__stealth:hover:enabled, a.button__stealth:not(.button__disabled):hover {
     fill: HighlightText;
     color: HighlightText;
     background: Highlight;
   }
 }
-.button_contentRegion-0-0-46 {
+.button_contentRegion {
   position: relative;
 }
-.button_contentRegion-0-0-46::before {
+.button_contentRegion::before {
   width: 100%;
   bottom: -3px;
   content: '';
   display: block;
   position: absolute;
+  height: 1px;
+  left: 0;
+  right: ;
 }
-.button__disabled-0-0-47 {
+.button_contentRegion svg {
+  width: 16px;
+  height: 16px;
+}
+.button__disabled {
   cursor: not-allowed !important;
+  opacity: 0.3;
 }
 @media (-ms-high-contrast:active) {
-  .button__disabled-0-0-47 {
+  .button__disabled {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
@@ -456,9 +483,21 @@ body:not(:global(.js-focus-visible)) .button__stealth-0-0-45:focus, :global(.js-
   }
 }
 @media (-ms-high-contrast:active) {
-  .button__disabled-0-0-47 .button_beforeContent-0-0-48, .button__disabled-0-0-47 .button_afterContent-0-0-49 {
+  .button__disabled .button_beforeContent, .button__disabled .button_afterContent {
     fill: GrayText !important;
     color: GrayText !important;
     opacity: 1;
   }
+}
+.button_beforeContent {
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  margin-left: ;
+}
+.button_afterContent {
+  width: 16px;
+  height: 16px;
+  margin-right: ;
+  margin-left: 12px;
 }

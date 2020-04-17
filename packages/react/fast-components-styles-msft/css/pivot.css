@@ -1,19 +1,19 @@
-.pivot-0-0-135 {
+.pivot {
   color: var(--neutral-foreground-rest);
   position: relative;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
 }
 @media (-ms-high-contrast:active) {
-  .pivot-0-0-135 {
+  .pivot {
     -ms-high-contrast-adjust: none;
   }
 }
-.pivot_tabList-0-0-136 {
+.pivot_tabList {
   display: flex;
   box-sizing: border-box;
 }
-.pivot_tab-0-0-137 {
+.pivot_tab {
   color: var(--neutral-foreground-rest);
   cursor: pointer;
   display: flex;
@@ -21,47 +21,53 @@
   white-space: nowrap;
   align-items: center;
   user-select: none;
+  height: 32px;
+  padding: 0 10px;
+  border: 2px solid transparent;
+  border-radius: 2px;
 }
-.pivot_tab-0-0-137:hover {
+.pivot_tab:hover {
   color: var(--neutral-foreground-hover);
 }
-.pivot_tab-0-0-137:active {
+.pivot_tab:active {
   color: var(--neutral-foreground-active);
 }
-.pivot_tab-0-0-137:focus {
+.pivot_tab:focus {
   outline: none;
 }
-body:not(:global(.js-focus-visible)) .pivot_tab-0-0-137:focus, :global(.js-focus-visible) .pivot_tab-0-0-137:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].pivot_tab-0-0-137 {
+body:not(:global(.js-focus-visible)) .pivot_tab:focus, :global(.js-focus-visible) .pivot_tab:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].pivot_tab {
   border-color: var(--neutral-focus);
 }
 @media (-ms-high-contrast:active) {
-  .pivot_tab-0-0-137 {
+  .pivot_tab {
     fill: ButtonText !important;
     color: ButtonText !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  body:not(:global(.js-focus-visible)) .pivot_tab-0-0-137:focus, :global(.js-focus-visible) .pivot_tab-0-0-137:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].pivot_tab-0-0-137 {
+  body:not(:global(.js-focus-visible)) .pivot_tab:focus, :global(.js-focus-visible) .pivot_tab:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].pivot_tab {
     border-color: ButtonText;
   }
 }
 @media (-ms-high-contrast:active) {
-  .pivot_tab-0-0-137:hover {
+  .pivot_tab:hover {
     fill: ButtonText !important;
     color: ButtonText !important;
   }
 }
 @media (-ms-high-contrast:active) {
-  .pivot_tab__active-0-0-138 {
+  .pivot_tab__active {
     fill: ButtonText !important;
     color: ButtonText !important;
   }
 }
-.pivot_tabContent-0-0-139 {
+.pivot_tabContent {
   top: -2px;
   position: relative;
+  font-size: 14px;
+  line-height: 20px;
 }
-.pivot_activeIndicator-0-0-140 {
+.pivot_activeIndicator {
   left: -10px;
   width: 20px;
   height: 3px;
@@ -69,20 +75,28 @@ body:not(:global(.js-focus-visible)) .pivot_tab-0-0-137:focus, :global(.js-focus
   position: absolute;
   transition: 0.2s ease-in-out;
   background: var(--accent-fill-rest);
+  border-radius: 2px;
+  top: 27px;
 }
 @media (-ms-high-contrast:active) {
-  .pivot_activeIndicator-0-0-140 {
+  .pivot_activeIndicator {
     background: Highlight;
   }
 }
-.pivot_tabPanel-0-0-141 {
+.pivot_tabPanel {
   display: block;
 }
-.pivot_tabPanel__hidden-0-0-142 {
+.pivot_tabPanel__hidden {
   display: none;
 }
-.pivot_tabPanels-0-0-143 {
+.pivot_tabPanels {
   animation-timing-function: cubic-bezier(0.4, 0.0, 0.6, 1.0);
+}
+.pivot_tabPanels__animatePrevious {
+  animation: fromLeft 0.2s;
+}
+.pivot_tabPanels__animateNext {
+  animation: fromRight 0.2s;
 }
 @keyframes fromRight {
   0% {
