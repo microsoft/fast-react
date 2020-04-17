@@ -16,7 +16,7 @@ function WithCustomPropertyResolvers(definitions: CustomPropertyResolver[]) {
     return (component: React.Component | React.FunctionComponent) => {};
 }
 
-function mergeManagedClasses(objValue, srcValue, key, obj, source, stack): any {
+function mergeManagedClasses<T extends {}>(objValue: T, srcValue: T): string {
     if (srcValue && objValue) {
         return `${srcValue} ${objValue}`;
     }
