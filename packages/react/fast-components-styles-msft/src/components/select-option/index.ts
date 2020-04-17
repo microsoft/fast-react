@@ -11,10 +11,15 @@ import {
 import { DesignSystem } from "../../design-system";
 import { applyCornerRadius, applyFocusPlaceholderBorder } from "../../utilities/border";
 import {
+    neutralFillStealthHover,
     neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRest,
     neutralFillStealthRestCustomProperty,
+    neutralFillStealthSelected,
     neutralFillStealthSelectedCustomProperty,
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { applyCursorDefault, applyCursorPointer } from "../../utilities/cursor";
@@ -97,3 +102,10 @@ const styles: ComponentStyles<SelectOptionClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const selectOptionDependencies = [
+    [neutralFillStealthHoverCustomProperty, neutralFillStealthHover],
+    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
+    [neutralFillStealthSelectedCustomProperty, neutralFillStealthSelected],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+];

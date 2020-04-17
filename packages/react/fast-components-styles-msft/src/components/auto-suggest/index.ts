@@ -3,7 +3,10 @@ import { AutoSuggestClassNameContract } from "@microsoft/fast-components-class-n
 import { add, format, multiply, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { applyElevatedCornerRadius } from "../../utilities/border";
-import { neutralFillStealthRestCustomProperty } from "../../utilities/color";
+import {
+    neutralFillStealthRest,
+    neutralFillStealthRestCustomProperty,
+} from "../../utilities/color";
 import { heightNumber } from "../../utilities/density";
 import { applyElevation, ElevationMultiplier } from "../../utilities/elevation";
 import { designUnit, outlineWidth } from "../../utilities/design-system";
@@ -42,3 +45,7 @@ const styles: ComponentStyles<AutoSuggestClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+
+export const autoSuggestDependencies = [
+    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
+];

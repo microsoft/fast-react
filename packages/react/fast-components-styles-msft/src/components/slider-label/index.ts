@@ -3,7 +3,9 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import {
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
+    neutralOutlineRest,
     neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { applyCursorDefault } from "../../utilities/cursor";
@@ -140,3 +142,7 @@ const styles: ComponentStyles<SliderLabelClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const sliderLabelDependencies = [
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+];

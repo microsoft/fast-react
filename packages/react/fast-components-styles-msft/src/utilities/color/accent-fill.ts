@@ -1,3 +1,4 @@
+import { inRange } from "lodash-es";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import {
     accentBaseColor,
@@ -29,7 +30,6 @@ import {
     isDarkMode,
     Palette,
 } from "./palette";
-import { inRange } from "lodash-es";
 
 const neutralFillThreshold: DesignSystemResolver<number> = designSystemResolverMax(
     neutralFillRestDelta,

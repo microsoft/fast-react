@@ -2,8 +2,11 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { ProgressClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
 import { directionSwitch, format, multiply, toPx } from "@microsoft/fast-jss-utilities";
 import {
+    accentFillRest,
     accentFillRestCustomProperty,
+    neutralFillRest,
     neutralFillRestCustomProperty,
+    neutralForegroundHint,
     neutralForegroundHintCustomProperty,
 } from "../../utilities/color";
 import { DesignSystem } from "../../design-system";
@@ -199,3 +202,8 @@ const styles: ComponentStyles<ProgressClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const progressDependencies = [
+    [accentFillRestCustomProperty, accentFillRest],
+    [neutralFillRestCustomProperty, neutralFillRest],
+    [neutralForegroundHintCustomProperty, neutralForegroundHint],
+];

@@ -14,16 +14,27 @@ import { ToggleClassNameContract } from "@microsoft/fast-components-class-name-c
 import { applyScaledTypeRamp } from "../../utilities/typography";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import {
+    accentFillRest,
     accentFillRestCustomProperty,
+    accentForegroundCut,
     accentForegroundCutCustomProperty,
+    neutralFillInputActive,
     neutralFillInputActiveCustomProperty,
+    neutralFillInputHover,
     neutralFillInputHoverCustomProperty,
+    neutralFillInputRest,
     neutralFillInputRestCustomProperty,
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralFocusInnerAccent,
     neutralFocusInnerAccentCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
+    neutralOutlineActive,
     neutralOutlineActiveCustomProperty,
+    neutralOutlineHover,
     neutralOutlineHoverCustomProperty,
+    neutralOutlineRest,
     neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { applyDisabledState } from "../../utilities/disabled";
@@ -243,3 +254,16 @@ const styles: ComponentStyles<ToggleClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const toggleDependencies = [
+    [accentFillRestCustomProperty, accentFillRest],
+    [accentForegroundCutCustomProperty, accentForegroundCut],
+    [neutralFillInputActiveCustomProperty, neutralFillInputActive],
+    [neutralFillInputHoverCustomProperty, neutralFillInputHover],
+    [neutralFillInputRestCustomProperty, neutralFillInputRest],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralFocusInnerAccentCustomProperty, neutralFocusInnerAccent],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    [neutralOutlineActiveCustomProperty, neutralOutlineActive],
+    [neutralOutlineHoverCustomProperty, neutralOutlineHover],
+    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+];

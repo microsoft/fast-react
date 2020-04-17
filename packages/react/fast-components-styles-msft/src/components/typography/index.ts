@@ -2,7 +2,10 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { TypographyClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
 import { DesignSystem } from "../../design-system";
 import { applyScaledTypeRamp } from "../../utilities/typography";
-import { neutralForegroundRestCustomProperty } from "../../utilities/color";
+import {
+    neutralForegroundRest,
+    neutralForegroundRestCustomProperty,
+} from "../../utilities/color";
 
 const styles: ComponentStyles<TypographyClassNameContract, DesignSystem> = {
     typography: {
@@ -41,3 +44,6 @@ const styles: ComponentStyles<TypographyClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const typographyDependencies = [
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+];

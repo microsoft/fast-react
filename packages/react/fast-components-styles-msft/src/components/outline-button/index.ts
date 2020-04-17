@@ -4,10 +4,15 @@ import { applyFocusVisible, format, subtract, toPx } from "@microsoft/fast-jss-u
 import { DesignSystem } from "../../design-system";
 import { baseButton, buttonStyles } from "../../patterns/button";
 import {
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
+    neutralOutlineActive,
     neutralOutlineActiveCustomProperty,
+    neutralOutlineHover,
     neutralOutlineHoverCustomProperty,
+    neutralOutlineRest,
     neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { horizontalSpacing } from "../../utilities/density";
@@ -77,3 +82,10 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
 };
 
 export default styles;
+export const outlineButtonDependencies = [
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    [neutralOutlineActiveCustomProperty, neutralOutlineActive],
+    [neutralOutlineHoverCustomProperty, neutralOutlineHover],
+    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+];

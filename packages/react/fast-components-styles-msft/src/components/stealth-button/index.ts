@@ -3,10 +3,15 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { applyFocusVisible } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import {
+    neutralFillStealthActive,
     neutralFillStealthActiveCustomProperty,
+    neutralFillStealthHover,
     neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRest,
     neutralFillStealthRestCustomProperty,
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { baseButton, buttonStyles } from "../../patterns/button";
@@ -54,3 +59,10 @@ const styles: ComponentStyles<StealthButtonClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const stealthButtonDependencies = [
+    [neutralFillStealthActiveCustomProperty, neutralFillStealthActive],
+    [neutralFillStealthHoverCustomProperty, neutralFillStealthHover],
+    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+];

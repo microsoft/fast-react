@@ -6,10 +6,15 @@ import {
 import { directionSwitch, important } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system/index";
 import {
+    accentForegroundActive,
     accentForegroundActiveCustomProperty,
+    accentForegroundCut,
     accentForegroundCutCustomProperty,
+    accentForegroundHover,
     accentForegroundHoverCustomProperty,
+    accentForegroundRest,
     accentForegroundRestCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { glyphSize, horizontalSpacing } from "../../utilities/density";
@@ -123,3 +128,10 @@ const styles: ComponentStyles<ActionToggleClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const actionToggleDependencies = [
+    [accentForegroundActiveCustomProperty, accentForegroundActive],
+    [accentForegroundCutCustomProperty, accentForegroundCut],
+    [accentForegroundHoverCustomProperty, accentForegroundHover],
+    [accentForegroundRestCustomProperty, accentForegroundRest],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+];

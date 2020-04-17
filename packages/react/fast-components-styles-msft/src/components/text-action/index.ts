@@ -12,16 +12,27 @@ import { TextActionClassNameContract } from "@microsoft/fast-components-class-na
 import { DesignSystem } from "../../design-system";
 import { applyCornerRadius } from "../../utilities/border";
 import {
+    neutralFillActive,
     neutralFillActiveCustomProperty,
+    neutralFillHover,
     neutralFillHoverCustomProperty,
+    neutralFillInputActive,
     neutralFillInputActiveCustomProperty,
+    neutralFillInputHover,
     neutralFillInputHoverCustomProperty,
+    neutralFillInputRest,
     neutralFillInputRestCustomProperty,
+    neutralFillRest,
     neutralFillRestCustomProperty,
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
+    neutralOutlineActive,
     neutralOutlineActiveCustomProperty,
+    neutralOutlineHover,
     neutralOutlineHoverCustomProperty,
+    neutralOutlineRest,
     neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { glyphSize, height, horizontalSpacing } from "../../utilities/density";
@@ -218,3 +229,16 @@ const styles: ComponentStyles<TextActionClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const textActionDependencies = [
+    [neutralFillActiveCustomProperty, neutralFillActive],
+    [neutralFillHoverCustomProperty, neutralFillHover],
+    [neutralFillInputActiveCustomProperty, neutralFillInputActive],
+    [neutralFillInputHoverCustomProperty, neutralFillInputHover],
+    [neutralFillInputRestCustomProperty, neutralFillInputRest],
+    [neutralFillRestCustomProperty, neutralFillRest],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    [neutralOutlineActiveCustomProperty, neutralOutlineActive],
+    [neutralOutlineHoverCustomProperty, neutralOutlineHover],
+    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+];

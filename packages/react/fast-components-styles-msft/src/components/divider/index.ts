@@ -3,7 +3,10 @@ import { DividerClassNameContract } from "@microsoft/fast-components-class-name-
 import { format, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { outlineWidth } from "../../utilities/design-system";
-import { neutralDividerRestCustomProperty } from "../../utilities/color/neutral-divider";
+import {
+    neutralDividerRest,
+    neutralDividerRestCustomProperty,
+} from "../../utilities/color/neutral-divider";
 import { highContrastBorderColor } from "../../utilities/high-contrast";
 
 const styles: ComponentStyles<DividerClassNameContract, DesignSystem> = {
@@ -23,3 +26,6 @@ const styles: ComponentStyles<DividerClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const dividerDependencies = [
+    [neutralDividerRestCustomProperty, neutralDividerRest],
+];

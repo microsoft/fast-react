@@ -12,12 +12,19 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import {
+    accentForegroundRest,
     accentForegroundRestCustomProperty,
+    neutralFillStealthActive,
     neutralFillStealthActiveCustomProperty,
+    neutralFillStealthHover,
     neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRest,
     neutralFillStealthRestCustomProperty,
+    neutralFillStealthSelected,
     neutralFillStealthSelectedCustomProperty,
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { heightNumber } from "../../utilities/density";
@@ -225,3 +232,12 @@ const styles: ComponentStyles<TreeViewItemClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const treeViewItemDependencies = [
+    [accentForegroundRestCustomProperty, accentForegroundRest],
+    [neutralFillStealthActiveCustomProperty, neutralFillStealthActive],
+    [neutralFillStealthHoverCustomProperty, neutralFillStealthHover],
+    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
+    [neutralFillStealthSelectedCustomProperty, neutralFillStealthSelected],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+];

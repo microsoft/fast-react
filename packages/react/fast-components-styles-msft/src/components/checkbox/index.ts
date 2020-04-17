@@ -10,13 +10,21 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import {
+    neutralFillInputActive,
     neutralFillInputActiveCustomProperty,
+    neutralFillInputHover,
     neutralFillInputHoverCustomProperty,
+    neutralFillInputRest,
     neutralFillInputRestCustomProperty,
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
+    neutralOutlineActive,
     neutralOutlineActiveCustomProperty,
+    neutralOutlineHover,
     neutralOutlineHoverCustomProperty,
+    neutralOutlineRest,
     neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { applyCornerRadius } from "../../utilities/border";
@@ -208,3 +216,13 @@ const styles: ComponentStyles<CheckboxClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const checkboxDependencies = [
+    [neutralFillInputActiveCustomProperty, neutralFillInputActive],
+    [neutralFillInputHoverCustomProperty, neutralFillInputHover],
+    [neutralFillInputRestCustomProperty, neutralFillInputRest],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    [neutralOutlineActiveCustomProperty, neutralOutlineActive],
+    [neutralOutlineHoverCustomProperty, neutralOutlineHover],
+    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+];

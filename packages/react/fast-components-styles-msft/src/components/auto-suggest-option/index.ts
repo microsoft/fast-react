@@ -9,10 +9,15 @@ import { ellipsis, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { height, horizontalSpacing } from "../../utilities/density";
 import {
+    neutralFillStealthHover,
     neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRest,
     neutralFillStealthRestCustomProperty,
+    neutralFillStealthSelected,
     neutralFillStealthSelectedCustomProperty,
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { applyScaledTypeRamp } from "../../utilities/typography";
@@ -85,3 +90,10 @@ const styles: ComponentStyles<AutoSuggestOptionClassNameContract, DesignSystem> 
 };
 
 export default styles;
+export const autoSuggestOptionDependencies = [
+    [neutralFillStealthHoverCustomProperty, neutralFillStealthHover],
+    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
+    [neutralFillStealthSelectedCustomProperty, neutralFillStealthSelected],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+];

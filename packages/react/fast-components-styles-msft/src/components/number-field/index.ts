@@ -3,7 +3,10 @@ import { NumberFieldClassNameContract } from "@microsoft/fast-components-class-n
 import { directionSwitch, format } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { height, horizontalSpacing } from "../../utilities/density";
-import { inputFieldStyles } from "../../patterns/input-field";
+import {
+    dependencies as inputFieldDependencies,
+    inputFieldStyles,
+} from "../../patterns/input-field";
 
 const styles: ComponentStyles<NumberFieldClassNameContract, DesignSystem> = {
     numberField: {
@@ -22,3 +25,4 @@ const styles: ComponentStyles<NumberFieldClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const numberFieldDependencies = inputFieldDependencies;

@@ -8,13 +8,21 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import {
+    neutralFillStealthActive,
     neutralFillStealthActiveCustomProperty,
+    neutralFillStealthHover,
     neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRest,
     neutralFillStealthRestCustomProperty,
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
+    neutralOutlineActive,
     neutralOutlineActiveCustomProperty,
+    neutralOutlineHover,
     neutralOutlineHoverCustomProperty,
+    neutralOutlineRest,
     neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { glyphSize, height } from "../../utilities/density";
@@ -101,3 +109,13 @@ const styles: ComponentStyles<FlipperClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const flipperDependencies = [
+    [neutralFillStealthActiveCustomProperty, neutralFillStealthActive],
+    [neutralFillStealthHoverCustomProperty, neutralFillStealthHover],
+    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    [neutralOutlineActiveCustomProperty, neutralOutlineActive],
+    [neutralOutlineHoverCustomProperty, neutralOutlineHover],
+    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+];

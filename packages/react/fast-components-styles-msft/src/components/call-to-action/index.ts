@@ -12,10 +12,15 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import {
+    accentForegroundActive,
     accentForegroundActiveCustomProperty,
+    accentForegroundCut,
     accentForegroundCutCustomProperty,
+    accentForegroundHover,
     accentForegroundHoverCustomProperty,
+    accentForegroundRest,
     accentForegroundRestCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { glyphSize } from "../../utilities/density";
@@ -180,3 +185,10 @@ const styles: ComponentStyles<CallToActionClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const callToActionDependencies = [
+    [accentForegroundActiveCustomProperty, accentForegroundActive],
+    [accentForegroundCutCustomProperty, accentForegroundCut],
+    [accentForegroundHoverCustomProperty, accentForegroundHover],
+    [accentForegroundRestCustomProperty, accentForegroundRest],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+];

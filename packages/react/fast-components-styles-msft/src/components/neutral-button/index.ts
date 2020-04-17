@@ -4,10 +4,15 @@ import { applyFocusVisible } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { baseButton, buttonStyles } from "../../patterns/button";
 import {
+    neutralFillActive,
     neutralFillActiveCustomProperty,
+    neutralFillHover,
     neutralFillHoverCustomProperty,
+    neutralFillRest,
     neutralFillRestCustomProperty,
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import {
@@ -57,3 +62,10 @@ const styles: ComponentStyles<NeutralButtonClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const neutralButtonDependencies = [
+    [neutralFillActiveCustomProperty, neutralFillActive],
+    [neutralFillHoverCustomProperty, neutralFillHover],
+    [neutralFillRestCustomProperty, neutralFillRest],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+];

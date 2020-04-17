@@ -14,11 +14,17 @@ import { applyCursorPointer } from "../../utilities/cursor";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import { applyPillCornerRadius } from "../../utilities/border";
 import {
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundActive,
     neutralForegroundActiveCustomProperty,
+    neutralForegroundHint,
     neutralForegroundHintCustomProperty,
+    neutralForegroundHover,
     neutralForegroundHoverCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
+    neutralOutlineRest,
     neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { densityCategorySwitch, heightNumber } from "../../utilities/density";
@@ -323,3 +329,11 @@ const styles: ComponentStyles<SliderClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const sliderDependencies = [
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundActiveCustomProperty, neutralForegroundActive],
+    [neutralForegroundHintCustomProperty, neutralForegroundHint],
+    [neutralForegroundHoverCustomProperty, neutralForegroundHover],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+];

@@ -3,7 +3,10 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { multiply, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { height } from "../../utilities/density";
-import { inputFieldStyles } from "../../patterns/input-field";
+import {
+    dependencies as inputFieldDependencies,
+    inputFieldStyles,
+} from "../../patterns/input-field";
 import { designUnit } from "../../utilities/design-system";
 
 const styles: ComponentStyles<TextAreaClassNameContract, DesignSystem> = {
@@ -17,3 +20,4 @@ const styles: ComponentStyles<TextAreaClassNameContract, DesignSystem> = {
 };
 
 export default styles;
+export const textAreaDependencies = inputFieldDependencies;

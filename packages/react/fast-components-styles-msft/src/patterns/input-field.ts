@@ -4,16 +4,27 @@ import { applyCornerRadius } from "../utilities/border";
 import { DesignSystem } from "../design-system";
 import {
     neutralFillHover,
+    neutralFillHoverCustomProperty,
     neutralFillInputActive,
+    neutralFillInputActiveCustomProperty,
     neutralFillInputHover,
+    neutralFillInputHoverCustomProperty,
     neutralFillInputRest,
+    neutralFillInputRestCustomProperty,
     neutralFillRest,
+    neutralFillRestCustomProperty,
     neutralFocus,
+    neutralFocusCustomProperty,
     neutralForegroundHint,
+    neutralForegroundHintCustomProperty,
     neutralForegroundRest,
+    neutralForegroundRestCustomProperty,
     neutralOutlineActive,
+    neutralOutlineActiveCustomProperty,
     neutralOutlineHover,
+    neutralOutlineHoverCustomProperty,
     neutralOutlineRest,
+    neutralOutlineRestCustomProperty,
 } from "../utilities/color";
 import { horizontalSpacing } from "../utilities/density";
 import { applyDisabledState } from "../utilities/disabled";
@@ -38,13 +49,13 @@ export function inputFieldStyles(
     return {
         ...applyScaledTypeRamp("t7"),
         ...applyFontWeightNormal(),
-        background: neutralFillInputRest,
+        background: neutralFillInputRestCustomProperty,
         border: format(
             "{0} solid {1}",
             toPx<DesignSystem>(outlineWidth),
-            neutralOutlineRest
+            neutralOutlineRestCustomProperty
         ),
-        color: neutralForegroundRest,
+        color: neutralForegroundRestCustomProperty,
         "font-family": "inherit",
         "box-sizing": "border-box",
         padding: format("0 {0}", horizontalSpacing(outlineWidth)),
@@ -52,8 +63,8 @@ export function inputFieldStyles(
         margin: "0",
         transition: "all 0.2s ease-in-out",
         "&:hover:enabled": {
-            background: neutralFillInputHover,
-            "border-color": neutralOutlineHover,
+            background: neutralFillInputHoverCustomProperty,
+            "border-color": neutralOutlineHoverCustomProperty,
             [highContrastSelector]: {
                 background: HighContrastColor.buttonBackground,
                 border: format(
@@ -64,12 +75,15 @@ export function inputFieldStyles(
             },
         },
         "&:active:enabled": {
-            background: neutralFillInputActive,
-            "border-color": neutralOutlineActive,
+            background: neutralFillInputActiveCustomProperty,
+            "border-color": neutralOutlineActiveCustomProperty,
         },
         "&:focus:enabled": {
-            "box-shadow": format<DesignSystem>("0 0 0 1px {0} inset", neutralFocus),
-            "border-color": neutralFocus,
+            "box-shadow": format<DesignSystem>(
+                "0 0 0 1px {0} inset",
+                neutralFocusCustomProperty
+            ),
+            "border-color": neutralFocusCustomProperty,
             outline: "none",
             ...highContrastOutlineFocus,
         },
@@ -78,7 +92,7 @@ export function inputFieldStyles(
             ...highContrastDisabledBorder,
         },
         "&::placeholder": {
-            color: neutralForegroundHint,
+            color: neutralForegroundHintCustomProperty,
             [highContrastSelector]: {
                 color: HighContrastColor.disabledText,
             },
@@ -95,10 +109,10 @@ export function inputFieldStyles(
 export function filledInputFieldStyles(): CSSRules<{}> {
     return {
         ...inputFieldStyles(),
-        background: neutralFillRest,
+        background: neutralFillRestCustomProperty,
         border: format("{0} solid transparent", toPx(outlineWidth)),
         "&:hover:enabled": {
-            background: neutralFillHover,
+            background: neutralFillHoverCustomProperty,
             "border-color": "transparent",
             [highContrastSelector]: {
                 background: HighContrastColor.buttonBackground,
@@ -113,10 +127,10 @@ export function filledInputFieldStyles(): CSSRules<{}> {
             "border-color": "transparent",
         },
         "&:focus:enabled": {
-            "border-color": neutralFocus,
+            "border-color": neutralFocusCustomProperty,
         },
         "&::placeholder": {
-            color: neutralForegroundHint,
+            color: neutralForegroundHintCustomProperty,
             [highContrastSelector]: {
                 color: HighContrastColor.disabledText,
             },
@@ -128,3 +142,16 @@ export function filledInputFieldStyles(): CSSRules<{}> {
         },
     };
 }
+export const dependencies = [
+    [neutralFillHoverCustomProperty, neutralFillHover],
+    [neutralFillInputActiveCustomProperty, neutralFillInputActive],
+    [neutralFillInputHoverCustomProperty, neutralFillInputHover],
+    [neutralFillInputRestCustomProperty, neutralFillInputRest],
+    [neutralFillRestCustomProperty, neutralFillRest],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundHintCustomProperty, neutralForegroundHint],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    [neutralOutlineActiveCustomProperty, neutralOutlineActive],
+    [neutralOutlineHoverCustomProperty, neutralOutlineHover],
+    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+];

@@ -5,9 +5,13 @@ import { applyCursorPointer } from "../../utilities/cursor";
 import { DesignSystem } from "../../design-system";
 import { applyCornerRadius, applyFocusPlaceholderBorder } from "../../utilities/border";
 import {
+    neutralFillStealthActive,
     neutralFillStealthActiveCustomProperty,
+    neutralFillStealthHover,
     neutralFillStealthHoverCustomProperty,
+    neutralFocus,
     neutralFocusCustomProperty,
+    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { height, horizontalSpacingNumber } from "../../utilities/density";
@@ -85,3 +89,9 @@ const styles: ComponentStyles<ContextMenuItemClassNameContract, DesignSystem> = 
 };
 
 export default styles;
+export const contextMenuItemDependencies = [
+    [neutralFillStealthActiveCustomProperty, neutralFillStealthActive],
+    [neutralFillStealthHoverCustomProperty, neutralFillStealthHover],
+    [neutralFocusCustomProperty, neutralFocus],
+    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+];
