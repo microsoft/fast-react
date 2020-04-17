@@ -230,3 +230,36 @@ export const neutralLayerL1AltCustomProperty = "var(--neutral-layer-L1-alt)";
 export const neutralLayerL2CustomProperty = "var(--neutral-layer-L2)";
 export const neutralLayerL3CustomProperty = "var(--neutral-layer-L3)";
 export const neutralLayerL4CustomProperty = "var(--neutral-layer-L4)";
+
+export const neutralLayerFloatingDefinition = {
+    name: "neutral-layer-floating",
+    value: neutralLayerFloating,
+};
+export const neutralLayerCardDefinition = {
+    name: "neutral-layer-card",
+    value: neutralLayerCard,
+};
+export const neutralLayerCardContainerDefinition = {
+    name: "neutral-layer-card-container",
+    value: neutralLayerCardContainer,
+};
+export const neutralLayerL1Definition = {
+    name: "neutral-layer-L1",
+    value: neutralLayerL1,
+};
+export const neutralLayerL1AltDefinition = {
+    name: "neutral-layer-L1-alt",
+    value: neutralLayerL1Alt,
+};
+export const neutralLayerL2Definition = {
+    name: "neutral-layer-L2",
+    value: neutralLayerL2,
+};
+export const neutralLayerL3Definition = {
+    name: "neutral-layer-L3",
+    value: neutralLayerL3,
+};
+export const neutralLayerL4Definition = {
+    name: "neutral-layer-L4",
+    value: neutralLayerL4,
+};

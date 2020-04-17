@@ -66,3 +66,24 @@ export const neutralFillInputActiveCustomProperty = "var(--neutral-fill-input-ac
 export const neutralFillInputFocusCustomProperty = "var(--neutral-fill-input-focus)";
 export const neutralFillInputSelectedCustomProperty =
     "var(--neutral-fill-input-selected)";
+
+export const neutralFillInputRestDefinition = {
+    name: "neutral-fill-input-rest",
+    value: neutralFillInputRest,
+};
+export const neutralFillInputHoverDefinition = {
+    name: "neutral-fill-input-hover",
+    value: neutralFillInputHover,
+};
+export const neutralFillInputActiveDefinition = {
+    name: "neutral-fill-input-active",
+    value: neutralFillInputActive,
+};
+export const neutralFillInputFocusDefinition = {
+    name: "neutral-fill-input-focus",
+    value: neutralFillInputFocus,
+};
+export const neutralFillInputSelectedDefinition = {
+    name: "neutral-fill-input-selected",
+    value: neutralFillInputSelected,
+};

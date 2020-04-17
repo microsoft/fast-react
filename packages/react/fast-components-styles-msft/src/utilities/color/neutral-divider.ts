@@ -18,3 +18,7 @@ export const neutralDividerRest: SwatchRecipe = colorRecipeFactory<Swatch>(
 );
 
 export const neutralDividerRestCustomProperty = "var(--neutral-divider-rest)";
+export const neutralDividerRestDefinition = {
+    name: "neutral-divider-rest",
+    value: neutralDividerRest,
+};

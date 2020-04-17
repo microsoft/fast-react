@@ -2,6 +2,7 @@ import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import { accentPalette, backgroundColor, neutralPalette } from "../design-system";
 import { findClosestSwatchIndex, isDarkMode, Palette, swatchByContrast } from "./palette";
 import { ColorRecipe, colorRecipeFactory, Swatch, SwatchResolver } from "./common";
+import { accentFillRest } from "./accent-fill";
 
 const targetRatio: number = 3.5;
 
@@ -36,6 +37,11 @@ export const neutralFocus: ColorRecipe<Swatch> = colorRecipeFactory(
 );
 
 export const neutralFocusCustomProperty = "var(--neutral-focus)";
+export const neutralFocusDefinition = {
+    name: "neutral-focus",
+    value: neutralFocus,
+};
+
 function neutralFocusInnerAccentIndexResolver(
     accentFillColor: DesignSystemResolver<string>
 ): (
@@ -69,3 +75,7 @@ export function neutralFocusInnerAccent(
 }
 
 export const neutralFocusInnerAccentCustomProperty = "var(--neutral-focus-inner-accent)";
+export const neutralFocusInnerAccentDefinition = {
+    name: "neutral-focus-inner-accent",
+    value: neutralFocusInnerAccent(accentFillRest),
+};

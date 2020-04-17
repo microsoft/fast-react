@@ -82,3 +82,24 @@ export const neutralFillStealthActiveCustomProperty =
 export const neutralFillStealthFocusCustomProperty = "var(--neutral-fill-stealth-focus)";
 export const neutralFillStealthSelectedCustomProperty =
     "var(--neutral-fill-stealth-selected)";
+
+export const neutralFillStealthRestDefinition = {
+    name: "neutral-fill-stealth-rest",
+    value: neutralFillStealthRest,
+};
+export const neutralFillStealthHoverDefinition = {
+    name: "neutral-fill-stealth-hover",
+    value: neutralFillStealthHover,
+};
+export const neutralFillStealthActiveDefinition = {
+    name: "neutral-fill-stealth-active",
+    value: neutralFillStealthActive,
+};
+export const neutralFillStealthFocusDefinition = {
+    name: "neutral-fill-stealth-focus",
+    value: neutralFillStealthFocus,
+};
+export const neutralFillStealthSelectedDefinition = {
+    name: "neutral-fill-stealth-selected",
+    value: neutralFillStealthSelected,
+};

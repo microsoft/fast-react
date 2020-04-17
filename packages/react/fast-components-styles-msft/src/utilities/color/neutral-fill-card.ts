@@ -2,6 +2,7 @@ import { DesignSystem } from "../../design-system";
 import { backgroundColor, neutralFillCardDelta, neutralPalette } from "../design-system";
 import { Swatch, SwatchResolver } from "./common";
 import { findClosestSwatchIndex, getSwatch } from "./palette";
+import { neutralFill } from "./neutral-fill";
 
 const neutralCardFillAlgorithm: SwatchResolver = (designSystem: DesignSystem): Swatch => {
     const offset: number = neutralFillCardDelta(designSystem);
@@ -30,3 +31,7 @@ export function neutralFillCard(arg: any): any {
 }
 
 export const neutralFillCardCustomProperty = "var(--neutral-fill-card)";
+export const neutralFillCardDefinition = {
+    name: "neutral-fill-card",
+    value: neutralFillCard,
+};

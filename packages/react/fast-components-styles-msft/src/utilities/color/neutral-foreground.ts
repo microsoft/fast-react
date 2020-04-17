@@ -45,3 +45,20 @@ export const neutralForegroundRestCustomProperty = "var(--neutral-foreground-res
 export const neutralForegroundHoverCustomProperty = "var(--neutral-foreground-hover)";
 export const neutralForegroundActiveCustomProperty = "var(--neutral-foreground-active)";
 export const neutralForegroundFocusCustomProperty = "var(--neutral-foreground-focus)";
+
+export const neutralForegroundRestDefinition = {
+    name: "neutral-foreground-rest",
+    value: neutralForegroundRest,
+};
+export const neutralForegroundHoverDefinition = {
+    name: "neutral-foreground-hover",
+    value: neutralForegroundHover,
+};
+export const neutralForegroundActiveDefinition = {
+    name: "neutral-foreground-active",
+    value: neutralForegroundActive,
+};
+export const neutralForegroundFocusDefinition = {
+    name: "neutral-foreground-focus",
+    value: neutralForegroundFocus,
+};

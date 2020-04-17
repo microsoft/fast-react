@@ -34,3 +34,12 @@ export const neutralForegroundHintLarge: SwatchRecipe = swatchFamilyToSwatchReci
 export const neutralForegroundHintCustomProperty = "var(--neutral-foreground-hint)";
 export const neutralForegroundHintLargeCustomProperty =
     "var(--neutral-foreground-hint-large)";
+
+export const neutralForegroundHintDefinition = {
+    name: "neutral-foreground-hint",
+    value: neutralForegroundHint,
+};
+export const neutralForegroundHintLargeDefinition = {
+    name: "neutral-foreground-hint-large",
+    value: neutralForegroundHintLarge,
+};

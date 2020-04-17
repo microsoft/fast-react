@@ -146,3 +146,44 @@ export const accentFillLargeHoverCustomProperty = "var(--accent-fill-large-hover
 export const accentFillLargeActiveCustomProperty = "var(--accent-fill-large-active)";
 export const accentFillLargeFocusCustomProperty = "var(--accent-fill-large-focus)";
 export const accentFillLargeSelectedCustomProperty = "var(--accent-fill-large-selected)";
+
+export const accentFillRestDefinition = {
+    name: "accent-fill-rest",
+    value: accentFillRest,
+};
+export const accentFillHoverDefinition = {
+    name: "accent-fill-hover",
+    value: accentFillHover,
+};
+export const accentFillActiveDefinition = {
+    name: "accent-fill-active",
+    value: accentFillActive,
+};
+export const accentFillFocusDefinition = {
+    name: "accent-fill-focus",
+    value: accentFillFocus,
+};
+export const accentFillSelectedDefinition = {
+    name: "accent-fill-selected",
+    value: accentFillSelected,
+};
+export const accentFillLargeRestDefinition = {
+    name: "accent-fill-large-rest",
+    value: accentFillLargeRest,
+};
+export const accentFillLargeHoverDefinition = {
+    name: "accent-fill-large-hover",
+    value: accentFillLargeHover,
+};
+export const accentFillLargeActiveDefinition = {
+    name: "accent-fill-large-active",
+    value: accentFillLargeActive,
+};
+export const accentFillLargeFocusDefinition = {
+    name: "accent-fill-large-focus",
+    value: accentFillLargeFocus,
+};
+export const accentFillLargeSelectedDefinition = {
+    name: "accent-fill-large-selected",
+    value: accentFillLargeSelected,
+};

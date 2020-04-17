@@ -65,3 +65,20 @@ export const neutralOutlineRestCustomProperty = "var(--neutral-outline-rest)";
 export const neutralOutlineHoverCustomProperty = "var(--neutral-outline-hover)";
 export const neutralOutlineActiveCustomProperty = "var(--neutral-outline-active)";
 export const neutralOutlineFocusCustomProperty = "var(--neutral-outline-focus)";
+
+export const neutralOutlineRestDefinition = {
+    name: "neutral-outline-rest",
+    value: neutralOutlineRest,
+};
+export const neutralOutlineHoverDefinition = {
+    name: "neutral-outline-hover",
+    value: neutralOutlineHover,
+};
+export const neutralOutlineActiveDefinition = {
+    name: "neutral-outline-active",
+    value: neutralOutlineActive,
+};
+export const neutralOutlineFocusDefinition = {
+    name: "neutral-outline-focus",
+    value: neutralOutlineFocus,
+};

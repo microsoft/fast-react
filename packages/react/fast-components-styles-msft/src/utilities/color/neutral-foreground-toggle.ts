@@ -53,3 +53,12 @@ export const neutralForegroundToggleLarge: SwatchRecipe = neutralForegroundToggl
 export const neutralForegroundToggleCustomProperty = "var(--neutral-foreground-toggle)";
 export const neutralForegroundToggleLargeCustomProperty =
     "var(--neutral-foreground-toggle-large)";
+
+export const neutralForegroundToggleDefinition = {
+    name: "neutral-foreground-toggle",
+    value: neutralForegroundToggle,
+};
+export const neutralForegroundToggleLargeDefinition = {
+    name: "neutral-foreground-toggle-large",
+    value: neutralForegroundToggleLarge,
+};

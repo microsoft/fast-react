@@ -151,3 +151,36 @@ export const accentForegroundLargeActiveCustomProperty =
     "var(--accent-foreground-large-active)";
 export const accentForegroundLargeFocusCustomProperty =
     "var(--accent-foreground-large-focus)";
+
+export const accentForegroundRestDefinition = {
+    name: "accent-foreground-rest",
+    value: accentForegroundRest,
+};
+export const accentForegroundHoverDefinition = {
+    name: "accent-foreground-hover",
+    value: accentForegroundHover,
+};
+export const accentForegroundActiveDefinition = {
+    name: "accent-foreground-active",
+    value: accentForegroundActive,
+};
+export const accentForegroundFocusDefinition = {
+    name: "accent-foreground-focus",
+    value: accentForegroundFocus,
+};
+export const accentForegroundLargeRestDefinition = {
+    name: "accent-foreground-large-rest",
+    value: accentForegroundLargeRest,
+};
+export const accentForegroundLargeHoverDefinition = {
+    name: "accent-foreground-large-hover",
+    value: accentForegroundLargeHover,
+};
+export const accentForegroundLargeActiveDefinition = {
+    name: "accent-foreground-large-active",
+    value: accentForegroundLargeActive,
+};
+export const accentForegroundLargeFocusDefinition = {
+    name: "accent-foreground-large-focus",
+    value: accentForegroundLargeFocus,
+};

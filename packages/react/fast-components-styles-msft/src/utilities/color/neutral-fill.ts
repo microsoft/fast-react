@@ -72,3 +72,24 @@ export const neutralFillHoverCustomProperty = "var(--neutral-fill-hover)";
 export const neutralFillActiveCustomProperty = "var(--neutral-fill-active)";
 export const neutralFillFocusCustomProperty = "var(--neutral-fill-focus)";
 export const neutralFillSelectedCustomProperty = "var(--neutral-fill-selected)";
+
+export const neutralFillRestDefinition = {
+    name: "neutral-fill-rest",
+    value: neutralFillRest,
+};
+export const neutralFillHoverDefinition = {
+    name: "neutral-fill-hover",
+    value: neutralFillHover,
+};
+export const neutralFillActiveDefinition = {
+    name: "neutral-fill-active",
+    value: neutralFillActive,
+};
+export const neutralFillFocusDefinition = {
+    name: "neutral-fill-focus",
+    value: neutralFillFocus,
+};
+export const neutralFillSelectedDefinition = {
+    name: "neutral-fill-selected",
+    value: neutralFillSelected,
+};

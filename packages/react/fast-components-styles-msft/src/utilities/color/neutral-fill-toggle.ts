@@ -45,3 +45,20 @@ export const neutralFillToggleRestCustomProperty = "var(--neutral-fill-toggle-re
 export const neutralFillToggleHoverCustomProperty = "var(--neutral-fill-toggle-hover)";
 export const neutralFillToggleActiveCustomProperty = "var(--neutral-fill-toggle-active)";
 export const neutralFillToggleFocusCustomProperty = "var(--neutral-fill-toggle-focus)";
+
+export const neutralFillToggleRestDefinition = {
+    name: "neutral-fill-toggle-rest",
+    value: neutralFillToggleRest,
+};
+export const neutralFillToggleHoverDefinition = {
+    name: "neutral-fill-toggle-hover",
+    value: neutralFillToggleHover,
+};
+export const neutralFillToggleActiveDefinition = {
+    name: "neutral-fill-toggle-active",
+    value: neutralFillToggleActive,
+};
+export const neutralFillToggleFocusDefinition = {
+    name: "neutral-fill-toggle-focus",
+    value: neutralFillToggleFocus,
+};
