@@ -2,16 +2,16 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { HypertextClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
 import { applyFocusVisible, format, toPx } from "@microsoft/fast-jss-utilities";
 import {
-    accentForegroundActive,
     accentForegroundActiveCustomProperty,
-    accentForegroundHover,
+    accentForegroundActiveDefinition,
     accentForegroundHoverCustomProperty,
-    accentForegroundRest,
+    accentForegroundHoverDefinition,
     accentForegroundRestCustomProperty,
-    neutralFocus,
+    accentForegroundRestDefinition,
     neutralFocusCustomProperty,
-    neutralForegroundRest,
+    neutralFocusDefinition,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
 } from "../../utilities/color";
 import { DesignSystem } from "../../design-system";
 import { focusOutlineWidth, outlineWidth } from "../../utilities/design-system";
@@ -72,9 +72,9 @@ const styles: ComponentStyles<HypertextClassNameContract, DesignSystem> = {
 
 export default styles;
 export const hypertextDependencies = [
-    [accentForegroundActiveCustomProperty, accentForegroundActive],
-    [accentForegroundHoverCustomProperty, accentForegroundHover],
-    [accentForegroundRestCustomProperty, accentForegroundRest],
-    [neutralFocusCustomProperty, neutralFocus],
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    accentForegroundActiveDefinition,
+    accentForegroundHoverDefinition,
+    accentForegroundRestDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
 ];

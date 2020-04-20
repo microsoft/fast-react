@@ -4,8 +4,8 @@ import { format, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { outlineWidth } from "../../utilities/design-system";
 import {
-    neutralDividerRest,
     neutralDividerRestCustomProperty,
+    neutralDividerRestDefinition,
 } from "../../utilities/color/neutral-divider";
 import { highContrastBorderColor } from "../../utilities/high-contrast";
 
@@ -26,6 +26,4 @@ const styles: ComponentStyles<DividerClassNameContract, DesignSystem> = {
 };
 
 export default styles;
-export const dividerDependencies = [
-    [neutralDividerRestCustomProperty, neutralDividerRest],
-];
+export const dividerDependencies = [neutralDividerRestDefinition];

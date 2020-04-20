@@ -11,8 +11,8 @@ import {
     highContrastSelector,
 } from "../../utilities/high-contrast";
 import {
-    neutralLayerFloating,
     neutralLayerFloatingCustomProperty,
+    neutralLayerFloatingDefinition,
 } from "../../utilities/color";
 
 const styles: ComponentStyles<ContextMenuClassNameContract, DesignSystem> = {
@@ -38,6 +38,4 @@ const styles: ComponentStyles<ContextMenuClassNameContract, DesignSystem> = {
 };
 
 export default styles;
-export const contextMenuDependencies = [
-    [neutralLayerFloatingCustomProperty, neutralLayerFloating],
-];
+export const contextMenuDependencies = [neutralLayerFloatingDefinition];

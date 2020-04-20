@@ -9,16 +9,16 @@ import { ellipsis, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { height, horizontalSpacing } from "../../utilities/density";
 import {
-    neutralFillStealthHover,
     neutralFillStealthHoverCustomProperty,
-    neutralFillStealthRest,
+    neutralFillStealthHoverDefinition,
     neutralFillStealthRestCustomProperty,
-    neutralFillStealthSelected,
+    neutralFillStealthRestDefinition,
     neutralFillStealthSelectedCustomProperty,
-    neutralFocus,
+    neutralFillStealthSelectedDefinition,
     neutralFocusCustomProperty,
-    neutralForegroundRest,
+    neutralFocusDefinition,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
 } from "../../utilities/color";
 import { applyScaledTypeRamp } from "../../utilities/typography";
 import { applyCornerRadius, applyFocusPlaceholderBorder } from "../../utilities/border";
@@ -91,9 +91,9 @@ const styles: ComponentStyles<AutoSuggestOptionClassNameContract, DesignSystem> 
 
 export default styles;
 export const autoSuggestOptionDependencies = [
-    [neutralFillStealthHoverCustomProperty, neutralFillStealthHover],
-    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
-    [neutralFillStealthSelectedCustomProperty, neutralFillStealthSelected],
-    [neutralFocusCustomProperty, neutralFocus],
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    neutralFillStealthHoverDefinition,
+    neutralFillStealthRestDefinition,
+    neutralFillStealthSelectedDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
 ];

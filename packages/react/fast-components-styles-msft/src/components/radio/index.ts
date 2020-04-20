@@ -11,22 +11,22 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import {
-    neutralFillInputActive,
     neutralFillInputActiveCustomProperty,
-    neutralFillInputHover,
+    neutralFillInputActiveDefinition,
     neutralFillInputHoverCustomProperty,
-    neutralFillInputRest,
+    neutralFillInputHoverDefinition,
     neutralFillInputRestCustomProperty,
-    neutralFocus,
+    neutralFillInputRestDefinition,
     neutralFocusCustomProperty,
-    neutralForegroundRest,
+    neutralFocusDefinition,
     neutralForegroundRestCustomProperty,
-    neutralOutlineActive,
+    neutralForegroundRestDefinition,
     neutralOutlineActiveCustomProperty,
-    neutralOutlineHover,
+    neutralOutlineActiveDefinition,
     neutralOutlineHoverCustomProperty,
-    neutralOutlineRest,
+    neutralOutlineHoverDefinition,
     neutralOutlineRestCustomProperty,
+    neutralOutlineRestDefinition,
 } from "../../utilities/color";
 import {
     densityCategorySwitch,
@@ -186,12 +186,12 @@ const styles: ComponentStyles<RadioClassNameContract, DesignSystem> = {
 
 export default styles;
 export const radioDependencies = [
-    [neutralFillInputActiveCustomProperty, neutralFillInputActive],
-    [neutralFillInputHoverCustomProperty, neutralFillInputHover],
-    [neutralFillInputRestCustomProperty, neutralFillInputRest],
-    [neutralFocusCustomProperty, neutralFocus],
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
-    [neutralOutlineActiveCustomProperty, neutralOutlineActive],
-    [neutralOutlineHoverCustomProperty, neutralOutlineHover],
-    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+    neutralFillInputActiveDefinition,
+    neutralFillInputHoverDefinition,
+    neutralFillInputRestDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
+    neutralOutlineActiveDefinition,
+    neutralOutlineHoverDefinition,
+    neutralOutlineRestDefinition,
 ];

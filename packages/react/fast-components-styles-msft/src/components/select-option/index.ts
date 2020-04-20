@@ -11,16 +11,16 @@ import {
 import { DesignSystem } from "../../design-system";
 import { applyCornerRadius, applyFocusPlaceholderBorder } from "../../utilities/border";
 import {
-    neutralFillStealthHover,
     neutralFillStealthHoverCustomProperty,
-    neutralFillStealthRest,
+    neutralFillStealthHoverDefinition,
     neutralFillStealthRestCustomProperty,
-    neutralFillStealthSelected,
+    neutralFillStealthRestDefinition,
     neutralFillStealthSelectedCustomProperty,
-    neutralFocus,
+    neutralFillStealthSelectedDefinition,
     neutralFocusCustomProperty,
-    neutralForegroundRest,
+    neutralFocusDefinition,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
 } from "../../utilities/color";
 import { applyCursorDefault, applyCursorPointer } from "../../utilities/cursor";
 import { glyphSize, height, horizontalSpacing } from "../../utilities/density";
@@ -103,9 +103,9 @@ const styles: ComponentStyles<SelectOptionClassNameContract, DesignSystem> = {
 
 export default styles;
 export const selectOptionDependencies = [
-    [neutralFillStealthHoverCustomProperty, neutralFillStealthHover],
-    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
-    [neutralFillStealthSelectedCustomProperty, neutralFillStealthSelected],
-    [neutralFocusCustomProperty, neutralFocus],
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    neutralFillStealthHoverDefinition,
+    neutralFillStealthRestDefinition,
+    neutralFillStealthSelectedDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
 ];

@@ -5,6 +5,9 @@ export {
     neutralForegroundRestCustomProperty,
     neutralForegroundHoverCustomProperty,
     neutralForegroundActiveCustomProperty,
+    neutralForegroundRestDefinition,
+    neutralForegroundHoverDefinition,
+    neutralForegroundActiveDefinition,
     neutralForeground,
     neutralForegroundRest,
     neutralForegroundHover,
@@ -14,6 +17,8 @@ export {
 export {
     neutralForegroundToggleCustomProperty,
     neutralForegroundToggleLargeCustomProperty,
+    neutralForegroundToggleDefinition,
+    neutralForegroundToggleLargeDefinition,
     neutralForegroundToggle,
     neutralForegroundToggleLarge,
 } from "./neutral-foreground-toggle";
@@ -21,6 +26,8 @@ export {
 export {
     accentForegroundCutCustomProperty,
     accentForegroundCutLargeCustomProperty,
+    accentForegroundCutDefinition,
+    accentForegroundCutLargeDefinition,
     accentForegroundCut,
     accentForegroundCutLarge,
 } from "./accent-foreground-cut";
@@ -28,6 +35,8 @@ export {
 export {
     neutralForegroundHintCustomProperty,
     neutralForegroundHintLargeCustomProperty,
+    neutralForegroundHintDefinition,
+    neutralForegroundHintLargeDefinition,
     neutralForegroundHint,
     neutralForegroundHintLarge,
 } from "./neutral-foreground-hint";
@@ -39,6 +48,12 @@ export {
     accentForegroundLargeRestCustomProperty,
     accentForegroundLargeHoverCustomProperty,
     accentForegroundLargeActiveCustomProperty,
+    accentForegroundRestDefinition,
+    accentForegroundHoverDefinition,
+    accentForegroundActiveDefinition,
+    accentForegroundLargeRestDefinition,
+    accentForegroundLargeHoverDefinition,
+    accentForegroundLargeActiveDefinition,
     accentForegroundLarge,
     accentForeground,
     accentForegroundRest,
@@ -57,6 +72,10 @@ export {
     neutralFillHoverCustomProperty,
     neutralFillActiveCustomProperty,
     neutralFillSelectedCustomProperty,
+    neutralFillRestDefinition,
+    neutralFillHoverDefinition,
+    neutralFillActiveDefinition,
+    neutralFillSelectedDefinition,
     neutralFillRest,
     neutralFillHover,
     neutralFillActive,
@@ -69,6 +88,10 @@ export {
     neutralFillStealthHoverCustomProperty,
     neutralFillStealthActiveCustomProperty,
     neutralFillStealthSelectedCustomProperty,
+    neutralFillStealthRestDefinition,
+    neutralFillStealthHoverDefinition,
+    neutralFillStealthActiveDefinition,
+    neutralFillStealthSelectedDefinition,
     neutralFillStealthRest,
     neutralFillStealthHover,
     neutralFillStealthActive,
@@ -80,6 +103,9 @@ export {
     neutralFillToggleRestCustomProperty,
     neutralFillToggleHoverCustomProperty,
     neutralFillToggleActiveCustomProperty,
+    neutralFillToggleRestDefinition,
+    neutralFillToggleHoverDefinition,
+    neutralFillToggleActiveDefinition,
     neutralFillToggleRest,
     neutralFillToggleHover,
     neutralFillToggleActive,
@@ -91,6 +117,10 @@ export {
     neutralFillInputHoverCustomProperty,
     neutralFillInputActiveCustomProperty,
     neutralFillInputSelectedCustomProperty,
+    neutralFillInputRestDefinition,
+    neutralFillInputHoverDefinition,
+    neutralFillInputActiveDefinition,
+    neutralFillInputSelectedDefinition,
     neutralFillInputRest,
     neutralFillInputHover,
     neutralFillInputActive,
@@ -107,6 +137,14 @@ export {
     accentFillLargeHoverCustomProperty,
     accentFillLargeActiveCustomProperty,
     accentFillLargeSelectedCustomProperty,
+    accentFillRestDefinition,
+    accentFillHoverDefinition,
+    accentFillActiveDefinition,
+    accentFillSelectedDefinition,
+    accentFillLargeRestDefinition,
+    accentFillLargeHoverDefinition,
+    accentFillLargeActiveDefinition,
+    accentFillLargeSelectedDefinition,
     accentFillLarge,
     accentFill,
     accentFillRest,
@@ -119,7 +157,11 @@ export {
     accentFillLargeSelected,
 } from "./accent-fill";
 
-export { neutralFillCardCustomProperty, neutralFillCard } from "./neutral-fill-card";
+export {
+    neutralFillCardCustomProperty,
+    neutralFillCard,
+    neutralFillCardDefinition,
+} from "./neutral-fill-card";
 
 /**
  * Border exports
@@ -128,13 +170,20 @@ export {
     neutralOutlineRestCustomProperty,
     neutralOutlineHoverCustomProperty,
     neutralOutlineActiveCustomProperty,
+    neutralOutlineRestDefinition,
+    neutralOutlineHoverDefinition,
+    neutralOutlineActiveDefinition,
     neutralOutline,
     neutralOutlineRest,
     neutralOutlineHover,
     neutralOutlineActive,
 } from "./neutral-outline";
 
-export { neutralDividerRestCustomProperty, neutralDividerRest } from "./neutral-divider";
+export {
+    neutralDividerRestCustomProperty,
+    neutralDividerRest,
+    neutralDividerRestDefinition,
+} from "./neutral-divider";
 
 /**
  * App layer exports
@@ -148,6 +197,14 @@ export {
     neutralLayerL2CustomProperty,
     neutralLayerL3CustomProperty,
     neutralLayerL4CustomProperty,
+    neutralLayerFloatingDefinition,
+    neutralLayerCardDefinition,
+    neutralLayerCardContainerDefinition,
+    neutralLayerL1Definition,
+    neutralLayerL1AltDefinition,
+    neutralLayerL2Definition,
+    neutralLayerL3Definition,
+    neutralLayerL4Definition,
     neutralLayerFloating,
     neutralLayerCard,
     neutralLayerCardContainer,
@@ -167,6 +224,8 @@ export {
 export {
     neutralFocusCustomProperty,
     neutralFocusInnerAccentCustomProperty,
+    neutralFocusDefinition,
+    neutralFocusInnerAccentDefinition,
     neutralFocus,
     neutralFocusInnerAccent,
 } from "./neutral-focus";

@@ -3,8 +3,8 @@ import { LabelClassNameContract } from "@microsoft/fast-components-class-name-co
 import { applyScreenReader } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import {
-    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
 } from "../../utilities/color";
 import { applyScaledTypeRamp } from "../../utilities/typography";
 
@@ -21,6 +21,4 @@ const styles: ComponentStyles<LabelClassNameContract, DesignSystem> = {
 };
 
 export default styles;
-export const labelDependencies = [
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
-];
+export const labelDependencies = [neutralForegroundRestDefinition];

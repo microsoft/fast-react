@@ -12,20 +12,20 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import {
-    accentForegroundRest,
     accentForegroundRestCustomProperty,
-    neutralFillStealthActive,
+    accentForegroundRestDefinition,
     neutralFillStealthActiveCustomProperty,
-    neutralFillStealthHover,
+    neutralFillStealthActiveDefinition,
     neutralFillStealthHoverCustomProperty,
-    neutralFillStealthRest,
+    neutralFillStealthHoverDefinition,
     neutralFillStealthRestCustomProperty,
-    neutralFillStealthSelected,
+    neutralFillStealthRestDefinition,
     neutralFillStealthSelectedCustomProperty,
-    neutralFocus,
+    neutralFillStealthSelectedDefinition,
     neutralFocusCustomProperty,
-    neutralForegroundRest,
+    neutralFocusDefinition,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
 } from "../../utilities/color";
 import { heightNumber } from "../../utilities/density";
 import { designUnit, focusOutlineWidth } from "../../utilities/design-system";
@@ -233,11 +233,11 @@ const styles: ComponentStyles<TreeViewItemClassNameContract, DesignSystem> = {
 
 export default styles;
 export const treeViewItemDependencies = [
-    [accentForegroundRestCustomProperty, accentForegroundRest],
-    [neutralFillStealthActiveCustomProperty, neutralFillStealthActive],
-    [neutralFillStealthHoverCustomProperty, neutralFillStealthHover],
-    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
-    [neutralFillStealthSelectedCustomProperty, neutralFillStealthSelected],
-    [neutralFocusCustomProperty, neutralFocus],
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    accentForegroundRestDefinition,
+    neutralFillStealthActiveDefinition,
+    neutralFillStealthHoverDefinition,
+    neutralFillStealthRestDefinition,
+    neutralFillStealthSelectedDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
 ];

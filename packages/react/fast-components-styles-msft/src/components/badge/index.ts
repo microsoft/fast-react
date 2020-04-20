@@ -14,10 +14,10 @@ import designSystemDefaults, {
 } from "../../design-system/index";
 import { applyCornerRadius } from "../../utilities/border";
 import {
-    accentForegroundCut,
     accentForegroundCutCustomProperty,
-    neutralForegroundRest,
+    accentForegroundCutDefinition,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
 } from "../../utilities/color";
 import { applyCursorDefault } from "../../utilities/cursor";
 import { horizontalSpacing } from "../../utilities/density";
@@ -81,6 +81,6 @@ const styles: ComponentStyles<BadgeClassNameContract, DesignSystem> = {
 
 export default styles;
 export const badgeDependencies = [
-    [accentForegroundCutCustomProperty, accentForegroundCut],
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    accentForegroundCutDefinition,
+    neutralForegroundRestDefinition,
 ];

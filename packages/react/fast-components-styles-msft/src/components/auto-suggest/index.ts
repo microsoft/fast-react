@@ -4,8 +4,8 @@ import { add, format, multiply, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { applyElevatedCornerRadius } from "../../utilities/border";
 import {
-    neutralFillStealthRest,
     neutralFillStealthRestCustomProperty,
+    neutralFillStealthRestDefinition,
 } from "../../utilities/color";
 import { heightNumber } from "../../utilities/density";
 import { applyElevation, ElevationMultiplier } from "../../utilities/elevation";
@@ -46,6 +46,4 @@ const styles: ComponentStyles<AutoSuggestClassNameContract, DesignSystem> = {
 
 export default styles;
 
-export const autoSuggestDependencies = [
-    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
-];
+export const autoSuggestDependencies = [neutralFillStealthRestDefinition];

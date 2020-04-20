@@ -7,15 +7,10 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { CarouselClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
 import {
-    neutralFillStealthHover,
     neutralFillStealthHoverCustomProperty,
-    neutralFillStealthRest,
     neutralFillStealthRestCustomProperty,
-    neutralFocus,
     neutralFocusCustomProperty,
-    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
-    neutralOutlineRest,
     neutralOutlineRestCustomProperty,
 } from "../../utilities/color";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
@@ -34,7 +29,7 @@ import {
     highContrastSelector,
 } from "../../utilities/high-contrast";
 
-const white: string = "#FFF";
+const white: string = "#FFFFFF";
 const black: string = "#101010";
 const themeDarkneutralForegroundRestCustomProperty = neutralForegroundRestCustomProperty;
 const themeLightneutralForegroundRestCustomProperty = neutralForegroundRestCustomProperty;
@@ -267,9 +262,9 @@ const styles: ComponentStyles<CarouselClassNameContract, DesignSystem> = {
 
 export default styles;
 export const carouselDependencies = [
-    [neutralFillStealthHoverCustomProperty, neutralFillStealthHover],
-    [neutralFillStealthRestCustomProperty, neutralFillStealthRest],
-    [neutralFocusCustomProperty, neutralFocus],
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
-    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+    neutralFillStealthHoverCustomProperty,
+    neutralFillStealthRestCustomProperty,
+    neutralFocusCustomProperty,
+    neutralForegroundRestCustomProperty,
+    neutralOutlineRestCustomProperty,
 ];

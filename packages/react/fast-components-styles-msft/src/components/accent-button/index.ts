@@ -4,18 +4,18 @@ import { applyFocusVisible, format } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { baseButton, buttonStyles } from "../../patterns/button";
 import {
-    accentFillActive,
     accentFillActiveCustomProperty,
-    accentFillHover,
+    accentFillActiveDefinition,
     accentFillHoverCustomProperty,
-    accentFillRest,
+    accentFillHoverDefinition,
     accentFillRestCustomProperty,
-    accentForegroundCut,
+    accentFillRestDefinition,
     accentForegroundCutCustomProperty,
-    neutralFocus,
+    accentForegroundCutDefinition,
     neutralFocusCustomProperty,
-    neutralFocusInnerAccent,
+    neutralFocusDefinition,
     neutralFocusInnerAccentCustomProperty,
+    neutralFocusInnerAccentDefinition,
 } from "../../utilities/color";
 import {
     highContrastAccent,
@@ -98,10 +98,10 @@ const styles: ComponentStyles<AccentButtonClassNameContract, DesignSystem> = {
 
 export default styles;
 export const accentButtonDependencies = [
-    [accentFillActiveCustomProperty, accentFillActive],
-    [accentFillHoverCustomProperty, accentFillHover],
-    [accentFillRestCustomProperty, accentFillRest],
-    [accentForegroundCutCustomProperty, accentForegroundCut],
-    [neutralFocusCustomProperty, neutralFocus],
-    [neutralFocusInnerAccentCustomProperty, neutralFocusInnerAccent],
+    accentFillActiveDefinition,
+    accentFillHoverDefinition,
+    accentFillRestDefinition,
+    accentForegroundCutDefinition,
+    neutralFocusDefinition,
+    neutralFocusInnerAccentDefinition,
 ];

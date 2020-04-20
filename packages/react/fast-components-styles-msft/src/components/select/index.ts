@@ -8,12 +8,12 @@ import {
 } from "@microsoft/fast-jss-utilities";
 import { SelectClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
 import {
-    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
-    neutralLayerFloating,
+    neutralForegroundRestDefinition,
     neutralLayerFloatingCustomProperty,
-    neutralOutlineRest,
+    neutralLayerFloatingDefinition,
     neutralOutlineRestCustomProperty,
+    neutralOutlineRestDefinition,
 } from "../../utilities/color";
 import { glyphSize, height, horizontalSpacing } from "../../utilities/density";
 import { applyElevation, ElevationMultiplier } from "../../utilities/elevation";
@@ -133,7 +133,7 @@ const styles: ComponentStyles<SelectClassNameContract, DesignSystem> = {
 
 export default styles;
 export const selectDependencies = [
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
-    [neutralLayerFloatingCustomProperty, neutralLayerFloating],
-    [neutralOutlineRestCustomProperty, neutralOutlineRest],
+    neutralForegroundRestDefinition,
+    neutralLayerFloatingDefinition,
+    neutralOutlineRestDefinition,
 ].concat(inputFieldDependencies);

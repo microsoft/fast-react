@@ -4,13 +4,9 @@ import { applyFocusVisible, toPx } from "@microsoft/fast-jss-utilities";
 import { DesignSystem } from "../../design-system";
 import { baseButton, buttonStyles } from "../../patterns/button";
 import {
-    accentForegroundActive,
     accentForegroundActiveCustomProperty,
-    accentForegroundHover,
     accentForegroundHoverCustomProperty,
-    accentForegroundRest,
     accentForegroundRestCustomProperty,
-    neutralForegroundRest,
     neutralForegroundRestCustomProperty,
 } from "../../utilities/color";
 import { focusOutlineWidth } from "../../utilities/design-system";
@@ -105,8 +101,8 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
 
 export default styles;
 export const lightweightButtonDependencies = [
-    [accentForegroundActiveCustomProperty, accentForegroundActive],
-    [accentForegroundHoverCustomProperty, accentForegroundHover],
-    [accentForegroundRestCustomProperty, accentForegroundRest],
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    accentForegroundActiveCustomProperty,
+    accentForegroundHoverCustomProperty,
+    accentForegroundRestCustomProperty,
+    neutralForegroundRestCustomProperty,
 ];

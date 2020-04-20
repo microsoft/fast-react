@@ -2,8 +2,8 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { MetatextClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
 import { DesignSystem } from "../../design-system";
 import {
-    neutralForegroundHint,
     neutralForegroundHintCustomProperty,
+    neutralForegroundHintDefinition,
 } from "../../utilities/color";
 
 const styles: ComponentStyles<MetatextClassNameContract, DesignSystem> = {
@@ -13,6 +13,4 @@ const styles: ComponentStyles<MetatextClassNameContract, DesignSystem> = {
 };
 
 export default styles;
-export const metatextDependencies = [
-    [neutralForegroundHintCustomProperty, neutralForegroundHint],
-];
+export const metatextDependencies = [neutralForegroundHintDefinition];

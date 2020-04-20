@@ -10,16 +10,16 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { DesignSystem } from "../../design-system";
 import { height, heightNumber, horizontalSpacing } from "../../utilities/density";
 import {
-    accentFillRest,
     accentFillRestCustomProperty,
-    neutralFocus,
+    accentFillRestDefinition,
     neutralFocusCustomProperty,
-    neutralForegroundActive,
+    neutralFocusDefinition,
     neutralForegroundActiveCustomProperty,
-    neutralForegroundHover,
+    neutralForegroundActiveDefinition,
     neutralForegroundHoverCustomProperty,
-    neutralForegroundRest,
+    neutralForegroundHoverDefinition,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
 } from "../../utilities/color";
 import { applyCornerRadius, applyFocusPlaceholderBorder } from "../../utilities/border";
 import { applyScaledTypeRamp } from "../../utilities/typography";
@@ -133,9 +133,9 @@ const styles: ComponentStyles<PivotClassNameContract, DesignSystem> = {
 
 export default styles;
 export const pivotDependencies = [
-    [accentFillRestCustomProperty, accentFillRest],
-    [neutralFocusCustomProperty, neutralFocus],
-    [neutralForegroundActiveCustomProperty, neutralForegroundActive],
-    [neutralForegroundHoverCustomProperty, neutralForegroundHover],
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    accentFillRestDefinition,
+    neutralFocusDefinition,
+    neutralForegroundActiveDefinition,
+    neutralForegroundHoverDefinition,
+    neutralForegroundRestDefinition,
 ];

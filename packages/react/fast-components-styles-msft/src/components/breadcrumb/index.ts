@@ -2,10 +2,10 @@ import { ComponentStyles } from "@microsoft/fast-jss-manager";
 import { directionSwitch } from "@microsoft/fast-jss-utilities";
 import { BreadcrumbClassNameContract } from "@microsoft/fast-components-class-name-contracts-base";
 import {
-    neutralForegroundHint,
     neutralForegroundHintCustomProperty,
-    neutralForegroundRest,
+    neutralForegroundHintDefinition,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
 } from "../../utilities/color";
 import { DesignSystem } from "../../design-system";
 import { applyCursorDefault } from "../../utilities/cursor";
@@ -44,6 +44,6 @@ const styles: ComponentStyles<BreadcrumbClassNameContract, DesignSystem> = {
 
 export default styles;
 export const breadcrumbDependencies = [
-    [neutralForegroundHintCustomProperty, neutralForegroundHint],
-    [neutralForegroundRestCustomProperty, neutralForegroundRest],
+    neutralForegroundHintDefinition,
+    neutralForegroundRestDefinition,
 ];
