@@ -9,7 +9,7 @@ import {
     DesignSystem,
 } from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
-import AutoSuggestOptionStyles from "@microsoft/fast-components-styles-msft/css/auto-suggest-option-styles.css";
+import AutoSuggestOptionStyles from "@microsoft/fast-components-styles-msft/css/auto-suggest-option.css";
 import { MergeManagedClasses } from "../css-modules";
 import autoSuggestOptionSchema from "./auto-suggest-option.schema";
 import autoSuggestOptionSchema2 from "./auto-suggest-option.schema.2";

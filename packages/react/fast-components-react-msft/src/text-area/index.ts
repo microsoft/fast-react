@@ -15,7 +15,7 @@ import {
     DesignSystem,
     textAreaDependencies,
 } from "@microsoft/fast-components-styles-msft";
-import TextAreaStyles from "@microsoft/fast-components-styles-msft/css/textarea.css";
+import TextAreaStyles from "@microsoft/fast-components-styles-msft/css/text-area.css";
 import { Subtract } from "utility-types";
 import { MergeManagedClasses } from "../css-modules";
 import textAreaSchema from "./text-area.schema";

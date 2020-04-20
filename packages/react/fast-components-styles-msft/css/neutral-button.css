@@ -1,0 +1,135 @@
+.button_contentRegion {
+  position: relative;
+}
+.button_contentRegion::before {
+  width: 100%;
+  bottom: -3px;
+  content: '';
+  display: block;
+  position: absolute;
+  height: 1px;
+  left: 0;
+  right: ;
+}
+.button_contentRegion svg {
+  width: 16px;
+  height: 16px;
+}
+.button__disabled {
+  cursor: not-allowed !important;
+  opacity: 0.3;
+}
+@media (-ms-high-contrast:active) {
+  .button__disabled {
+    color: GrayText;
+    opacity: 1;
+  }
+}
+.button_beforeContent {
+  width: 16px;
+  height: 16px;
+}
+.button_afterContent {
+  width: 16px;
+  height: 16px;
+}
+.button__hasBeforeOrAfterAndChildren .button_beforeContent {
+  margin-right: 12px;
+  margin-left: ;
+}
+.button__hasBeforeOrAfterAndChildren .button_afterContent {
+  margin-right: ;
+  margin-left: 12px;
+}
+.button {
+  fill: var(--neutral-foreground-rest);
+  color: var(--neutral-foreground-rest);
+  cursor: pointer;
+  display: inline-flex;
+  overflow: hidden;
+  max-width: 374px;
+  box-sizing: border-box;
+  transition: all 0.1s ease-in-out;
+  background: var(--neutral-fill-rest);
+  line-height: 1;
+  font-family: inherit;
+  align-items: center;
+  white-space: nowrap;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 14px;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  min-width: 32px;
+  padding: 0 10px;
+  height: 32px;
+}
+.button::-moz-focus-inner {
+  border: 0;
+}
+.button:hover:enabled, a.button:not(.button__disabled):hover {
+  background: var(--neutral-fill-hover);
+}
+.button:active:enabled, a.button:not(.button__disabled):active {
+  background: var(--neutral-fill-active);
+}
+.button:focus {
+  outline: none;
+}
+body:not(:global(.js-focus-visible)) .button:focus, :global(.js-focus-visible) .button:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button {
+  border-color: var(--neutral-focus);
+}
+@media (-ms-high-contrast:active) {
+  .button {
+    fill: ButtonText;
+    color: ButtonText;
+    background: ButtonFace;
+    border-color: ButtonText;
+    -ms-high-contrast-adjust: none;
+  }
+}
+@media (-ms-high-contrast:active) {
+  a.button:not(.button__disabled) {
+    fill: -ms-hotlight !important;
+    color: -ms-hotlight !important;
+    background: Window;
+    border-color: -ms-hotlight !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  a.button:not(.button__disabled).button__disabled {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+    background: ButtonFace !important;
+    border-color: GrayText !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  a.button:not(.button__disabled):not(.button__disabled):hover {
+    background: ButtonFace;
+    box-shadow: 0 0 0 1px inset -ms-hotlight !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .button:disabled {
+    fill: GrayText !important;
+    color: GrayText !important;
+    opacity: 1;
+    background: ButtonFace !important;
+    border-color: GrayText !important;
+  }
+}
+@media (-ms-high-contrast:active) {
+  body:not(:global(.js-focus-visible)) .button:focus, :global(.js-focus-visible) .button:global(.focus-visible), global(.js-focus-visible) [data-focus-visible-added].button {
+    border-color: ButtonText;
+    box-shadow: 0 0 0 1px inset ButtonText;
+  }
+}
+@media (-ms-high-contrast:active) {
+  .button:hover:enabled, a.button:not(.button__disabled):hover {
+    fill: HighlightText;
+    color: HighlightText;
+    background: Highlight;
+  }
+}
