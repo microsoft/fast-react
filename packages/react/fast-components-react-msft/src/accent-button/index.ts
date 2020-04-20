@@ -1,8 +1,15 @@
 import React from "react";
 import { ButtonBaseClassNameContract as AccentButtonClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { AccentButtonStyles, DesignSystem } from "@microsoft/fast-components-styles-msft";
+import manageJss, {
+    ManagedJSSProps,
+    withCSSCustomProperties,
+} from "@microsoft/fast-jss-manager-react";
+import {
+    accentButtonDependencies,
+    DesignSystem,
+} from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import AccentButtonStyles from "@microsoft/fast-components-styles-msft/css/accent-button.css";
 import {
     ButtonBaseUnhandledProps as AccentButtonUnhandledProps,
     ButtonBase,
@@ -11,6 +18,7 @@ import {
     ButtonBaseProps,
 } from "../button-base";
 import { DisplayNamePrefix } from "../utilities";
+import { MergeManagedClasses } from "../css-modules";
 import accentButtonSchema from "./accent-button.schema";
 import accentButtonSchema2 from "./accent-button.schema.2";
 
@@ -18,7 +26,11 @@ import accentButtonSchema2 from "./accent-button.schema.2";
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
-const AccentButton = manageJss(AccentButtonStyles)(ButtonBase);
+const AccentButton = manageJss()(
+    withCSSCustomProperties(...accentButtonDependencies)(
+        MergeManagedClasses(ButtonBase, AccentButtonStyles)
+    )
+);
 type AccentButton = InstanceType<typeof AccentButton>;
 
 type AccentButtonHandledProps = Subtract<

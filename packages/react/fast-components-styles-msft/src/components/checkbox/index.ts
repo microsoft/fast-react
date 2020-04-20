@@ -18,6 +18,14 @@ import {
     neutralOutlineActiveCustomProperty,
     neutralOutlineHoverCustomProperty,
     neutralOutlineRestCustomProperty,
+    neutralFillInputActiveDefinition,
+    neutralFillInputHoverDefinition,
+    neutralFillInputRestDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
+    neutralOutlineActiveDefinition,
+    neutralOutlineHoverDefinition,
+    neutralOutlineRestDefinition,
 } from "../../utilities/color";
 import { applyCornerRadius } from "../../utilities/border";
 import {
@@ -209,12 +217,12 @@ const styles: ComponentStyles<CheckboxClassNameContract, DesignSystem> = {
 
 export default styles;
 export const checkboxDependencies = [
-    neutralFillInputActiveCustomProperty,
-    neutralFillInputHoverCustomProperty,
-    neutralFillInputRestCustomProperty,
-    neutralFocusCustomProperty,
-    neutralForegroundRestCustomProperty,
-    neutralOutlineActiveCustomProperty,
-    neutralOutlineHoverCustomProperty,
-    neutralOutlineRestCustomProperty,
+    neutralFillInputActiveDefinition,
+    neutralFillInputHoverDefinition,
+    neutralFillInputRestDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
+    neutralOutlineActiveDefinition,
+    neutralOutlineHoverDefinition,
+    neutralOutlineRestDefinition,
 ];

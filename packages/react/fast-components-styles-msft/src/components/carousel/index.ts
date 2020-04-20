@@ -8,10 +8,15 @@ import {
 import { CarouselClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
 import {
     neutralFillStealthHoverCustomProperty,
+    neutralFillStealthHoverDefinition,
     neutralFillStealthRestCustomProperty,
+    neutralFillStealthRestDefinition,
     neutralFocusCustomProperty,
+    neutralFocusDefinition,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
     neutralOutlineRestCustomProperty,
+    neutralOutlineRestDefinition,
 } from "../../utilities/color";
 import { DesignSystem, DesignSystemResolver } from "../../design-system";
 import {
@@ -262,9 +267,9 @@ const styles: ComponentStyles<CarouselClassNameContract, DesignSystem> = {
 
 export default styles;
 export const carouselDependencies = [
-    neutralFillStealthHoverCustomProperty,
-    neutralFillStealthRestCustomProperty,
-    neutralFocusCustomProperty,
-    neutralForegroundRestCustomProperty,
-    neutralOutlineRestCustomProperty,
+    neutralFillStealthHoverDefinition,
+    neutralFillStealthRestDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
+    neutralOutlineRestDefinition,
 ];

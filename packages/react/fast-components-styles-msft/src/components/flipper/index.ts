@@ -16,6 +16,14 @@ import {
     neutralOutlineActiveCustomProperty,
     neutralOutlineHoverCustomProperty,
     neutralOutlineRestCustomProperty,
+    neutralFillStealthActiveDefinition,
+    neutralFillStealthHoverDefinition,
+    neutralFillStealthRestDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
+    neutralOutlineActiveDefinition,
+    neutralOutlineHoverDefinition,
+    neutralOutlineRestDefinition,
 } from "../../utilities/color";
 import { glyphSize, height } from "../../utilities/density";
 import { outlineWidth } from "../../utilities/design-system";
@@ -102,12 +110,12 @@ const styles: ComponentStyles<FlipperClassNameContract, DesignSystem> = {
 
 export default styles;
 export const flipperDependencies = [
-    neutralFillStealthActiveCustomProperty,
-    neutralFillStealthHoverCustomProperty,
-    neutralFillStealthRestCustomProperty,
-    neutralFocusCustomProperty,
-    neutralForegroundRestCustomProperty,
-    neutralOutlineActiveCustomProperty,
-    neutralOutlineHoverCustomProperty,
-    neutralOutlineRestCustomProperty,
+    neutralFillStealthActiveDefinition,
+    neutralFillStealthHoverDefinition,
+    neutralFillStealthRestDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
+    neutralOutlineActiveDefinition,
+    neutralOutlineHoverDefinition,
+    neutralOutlineRestDefinition,
 ];

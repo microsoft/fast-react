@@ -7,13 +7,25 @@ import {
     BreadcrumbManagedClasses,
     BreadcrumbUnhandledProps,
 } from "@microsoft/fast-components-react-base";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { BreadcrumbStyles, DesignSystem } from "@microsoft/fast-components-styles-msft";
+import manageJss, {
+    ManagedJSSProps,
+    withCSSCustomProperties,
+} from "@microsoft/fast-jss-manager-react";
+import {
+    breadcrumbDependencies,
+    DesignSystem,
+} from "@microsoft/fast-components-styles-msft";
 import { Subtract } from "utility-types";
+import BreadcrumbStyles from "@microsoft/fast-components-styles-msft/css/breadcrumb.css";
+import { MergeManagedClasses } from "../css-modules";
 import breadcrumbSchema from "./breadcrumb.schema";
 import breadcrumbSchema2 from "./breadcrumb.schema.2";
 
-const Breadcrumb = manageJss(BreadcrumbStyles)(BaseBreadcrumb);
+const Breadcrumb = manageJss()(
+    withCSSCustomProperties(...breadcrumbDependencies)(
+        MergeManagedClasses(BaseBreadcrumb, BreadcrumbStyles)
+    )
+);
 type Breadcrumb = InstanceType<typeof Breadcrumb>;
 
 type BreadcrumbHandledProps = Subtract<

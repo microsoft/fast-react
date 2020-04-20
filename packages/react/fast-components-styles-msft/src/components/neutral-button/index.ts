@@ -5,10 +5,15 @@ import { DesignSystem } from "../../design-system";
 import { baseButton, buttonStyles } from "../../patterns/button";
 import {
     neutralFillActiveCustomProperty,
+    neutralFillActiveDefinition,
     neutralFillHoverCustomProperty,
+    neutralFillHoverDefinition,
     neutralFillRestCustomProperty,
+    neutralFillRestDefinition,
     neutralFocusCustomProperty,
+    neutralFocusDefinition,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
 } from "../../utilities/color";
 import {
     highContrastDisabledBorder,
@@ -58,9 +63,9 @@ const styles: ComponentStyles<NeutralButtonClassNameContract, DesignSystem> = {
 
 export default styles;
 export const neutralButtonDependencies = [
-    neutralFillActiveCustomProperty,
-    neutralFillHoverCustomProperty,
-    neutralFillRestCustomProperty,
-    neutralFocusCustomProperty,
-    neutralForegroundRestCustomProperty,
+    neutralFillActiveDefinition,
+    neutralFillHoverDefinition,
+    neutralFillRestDefinition,
+    neutralFocusDefinition,
+    neutralForegroundRestDefinition,
 ];

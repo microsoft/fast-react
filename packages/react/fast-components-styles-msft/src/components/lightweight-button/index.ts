@@ -5,9 +5,13 @@ import { DesignSystem } from "../../design-system";
 import { baseButton, buttonStyles } from "../../patterns/button";
 import {
     accentForegroundActiveCustomProperty,
+    accentForegroundActiveDefinition,
     accentForegroundHoverCustomProperty,
+    accentForegroundHoverDefinition,
     accentForegroundRestCustomProperty,
+    accentForegroundRestDefinition,
     neutralForegroundRestCustomProperty,
+    neutralForegroundRestDefinition,
 } from "../../utilities/color";
 import { focusOutlineWidth } from "../../utilities/design-system";
 import {
@@ -101,8 +105,8 @@ const styles: ComponentStyles<LightweightButtonClassNameContract, DesignSystem> 
 
 export default styles;
 export const lightweightButtonDependencies = [
-    accentForegroundActiveCustomProperty,
-    accentForegroundHoverCustomProperty,
-    accentForegroundRestCustomProperty,
-    neutralForegroundRestCustomProperty,
+    accentForegroundActiveDefinition,
+    accentForegroundHoverDefinition,
+    accentForegroundRestDefinition,
+    neutralForegroundRestDefinition,
 ];

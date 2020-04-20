@@ -9,12 +9,14 @@ import {
     CardUnhandledProps,
 } from "@microsoft/fast-components-react-base";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { CardStyles, DesignSystem } from "@microsoft/fast-components-styles-msft";
+import { DesignSystem } from "@microsoft/fast-components-styles-msft";
+import CardStyles from "@microsoft/fast-components-styles-msft/css/card.css";
 import { Subtract } from "utility-types";
+import { MergeManagedClasses } from "../css-modules";
 import cardSchema from "./card.schema";
 import cardSchema2 from "./card.schema.2";
 
-const Card = manageJss(CardStyles)(BaseCard);
+const Card = manageJss()(MergeManagedClasses(BaseCard, CardStyles));
 type Card = InstanceType<typeof Card>;
 
 type CardHandledProps = Subtract<BaseCardHandledProps, CardManagedClasses>;

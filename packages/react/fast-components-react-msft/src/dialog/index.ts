@@ -8,8 +8,10 @@ import {
     DialogUnhandledProps,
 } from "@microsoft/fast-components-react-base";
 import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { DesignSystem, DialogStyles } from "@microsoft/fast-components-styles-msft";
+import { DesignSystem } from "@microsoft/fast-components-styles-msft";
+import DialogStyles from "@microsoft/fast-components-styles-msft/css/dialog.css";
 import { Subtract } from "utility-types";
+import { MergeManagedClasses } from "../css-modules";
 import dialogSchema from "./dialog.schema";
 import dialogSchema2 from "./dialog.schema.2";
 
@@ -17,7 +19,7 @@ import dialogSchema2 from "./dialog.schema.2";
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
-const Dialog = manageJss(DialogStyles)(BaseDialog);
+const Dialog = manageJss()(MergeManagedClasses(BaseDialog, DialogStyles));
 type Dialog = InstanceType<typeof Dialog>;
 
 type DialogHandledProps = Subtract<BaseDialogHandledProps, DialogManagedClasses>;

@@ -8,9 +8,14 @@ import {
     ToggleManagedClasses,
     ToggleUnhandledProps,
 } from "@microsoft/fast-components-react-base";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { DesignSystem, ToggleStyles } from "@microsoft/fast-components-styles-msft";
+import manageJss, {
+    ManagedJSSProps,
+    withCSSCustomProperties,
+} from "@microsoft/fast-jss-manager-react";
+import { DesignSystem, toggleDependencies } from "@microsoft/fast-components-styles-msft";
+import ToggleStyles from "@microsoft/fast-components-styles-msft/css/toggle.css";
 import { Subtract } from "utility-types";
+import { MergeManagedClasses } from "../css-modules";
 import toggleSchema from "./toggle.schema";
 import toggleSchema2 from "./toggle.schema.2";
 
@@ -18,7 +23,11 @@ import toggleSchema2 from "./toggle.schema.2";
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
-const Toggle = manageJss(ToggleStyles)(BaseToggle);
+const Toggle = manageJss()(
+    withCSSCustomProperties(...toggleDependencies)(
+        MergeManagedClasses(BaseToggle, ToggleStyles)
+    )
+);
 type Toggle = InstanceType<typeof Toggle>;
 
 type ToggleHandledProps = Subtract<BaseToggleHandledProps, ToggleManagedClasses>;

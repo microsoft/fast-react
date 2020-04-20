@@ -1,8 +1,16 @@
 import React from "react";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
+import manageJss, {
+    ManagedJSSProps,
+    withCSSCustomProperties,
+} from "@microsoft/fast-jss-manager-react";
 import { SelectOptionClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
-import { DesignSystem, SelectOptionStyles } from "@microsoft/fast-components-styles-msft";
+import {
+    DesignSystem,
+    selectOptionDependencies,
+} from "@microsoft/fast-components-styles-msft";
+import SelectOptionStyles from "@microsoft/fast-components-styles-msft/css/select-option.css";
 import { Subtract } from "utility-types";
+import { MergeManagedClasses } from "../css-modules";
 import selectOptionSchema from "./select-option.schema";
 import selectOptionSchema2 from "./select-option.schema.2";
 import MSFTSelectOption, {
@@ -12,7 +20,11 @@ import MSFTSelectOption, {
     SelectOptionUnhandledProps,
 } from "./select-option";
 
-const SelectOption = manageJss(SelectOptionStyles)(MSFTSelectOption);
+const SelectOption = manageJss()(
+    withCSSCustomProperties(...selectOptionDependencies)(
+        MergeManagedClasses(MSFTSelectOption, SelectOptionStyles)
+    )
+);
 type SelectOption = InstanceType<typeof SelectOption>;
 
 type SelectOptionHandledProps = Subtract<

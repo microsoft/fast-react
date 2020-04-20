@@ -8,15 +8,27 @@ import {
     NumberFieldManagedClasses,
     NumberFieldUnhandledProps,
 } from "@microsoft/fast-components-react-base";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { DesignSystem, NumberFieldStyles } from "@microsoft/fast-components-styles-msft";
+import manageJss, {
+    ManagedJSSProps,
+    withCSSCustomProperties,
+} from "@microsoft/fast-jss-manager-react";
+import {
+    DesignSystem,
+    numberFieldDependencies,
+} from "@microsoft/fast-components-styles-msft";
+import NumberFieldStyles from "@microsoft/fast-components-styles-msft/css/number-field.css";
+import { MergeManagedClasses } from "../css-modules";
 import numberFieldSchema from "./number-field.schema";
 
 /*
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
-const NumberField = manageJss(NumberFieldStyles)(BaseNumberField);
+const NumberField = manageJss()(
+    withCSSCustomProperties(...numberFieldDependencies)(
+        MergeManagedClasses(BaseNumberField, NumberFieldStyles)
+    )
+);
 type NumberField = InstanceType<typeof NumberField>;
 
 type NumberFieldHandledProps = BaseNumberFieldHandledProps;

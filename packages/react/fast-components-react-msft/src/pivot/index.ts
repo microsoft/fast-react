@@ -1,8 +1,13 @@
 import React from "react";
 import { PivotClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
-import { DesignSystem, PivotStyles } from "@microsoft/fast-components-styles-msft";
+import manageJss, {
+    ManagedJSSProps,
+    withCSSCustomProperties,
+} from "@microsoft/fast-jss-manager-react";
+import { DesignSystem, pivotDependencies } from "@microsoft/fast-components-styles-msft";
+import PivotStyles from "@microsoft/fast-components-styles-msft/css/pivot.css";
 import { Subtract } from "utility-types";
+import { MergeManagedClasses } from "../css-modules";
 import pivotSchema from "./pivot.schema";
 import pivotSchema2 from "./pivot.schema.2";
 import MSFTPivot, {
@@ -12,7 +17,11 @@ import MSFTPivot, {
     PivotUnhandledProps,
 } from "./pivot";
 
-const Pivot = manageJss(PivotStyles)(MSFTPivot);
+const Pivot = manageJss()(
+    withCSSCustomProperties(...pivotDependencies)(
+        MergeManagedClasses(MSFTPivot, PivotStyles)
+    )
+);
 type Pivot = InstanceType<typeof Pivot>;
 
 type PivotHandledProps = Subtract<MSFTPivotHandledProps, PivotManagedClasses>;

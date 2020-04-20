@@ -1,10 +1,14 @@
 import React from "react";
 import { ButtonBaseClassNameContract as LightweightButtonClassNameContract } from "@microsoft/fast-components-class-name-contracts-msft";
-import manageJss, { ManagedJSSProps } from "@microsoft/fast-jss-manager-react";
+import manageJss, {
+    ManagedJSSProps,
+    withCSSCustomProperties,
+} from "@microsoft/fast-jss-manager-react";
 import {
     DesignSystem,
-    LightweightButtonStyles,
+    lightweightButtonDependencies,
 } from "@microsoft/fast-components-styles-msft";
+import LightweightButtonStyles from "@microsoft/fast-components-styles-msft/css/lightweight-button.css";
 import { Subtract } from "utility-types";
 import {
     ButtonBase,
@@ -14,6 +18,7 @@ import {
     ButtonBaseUnhandledProps as LightweightButtonUnhandledProps,
 } from "../button-base";
 import { DisplayNamePrefix } from "../utilities";
+import { MergeManagedClasses } from "../css-modules";
 import lightweightButtonSchema from "./lightweight-button.schema";
 import lightweightButtonSchema2 from "./lightweight-button.schema.2";
 
@@ -21,7 +26,11 @@ import lightweightButtonSchema2 from "./lightweight-button.schema.2";
  * The type returned by manageJss type is very complicated so we'll let the
  * compiler infer the type instead of re-declaring just for the package export
  */
-const LightweightButton = manageJss(LightweightButtonStyles)(ButtonBase);
+const LightweightButton = manageJss()(
+    withCSSCustomProperties(...lightweightButtonDependencies)(
+        MergeManagedClasses(ButtonBase, LightweightButtonStyles)
+    )
+);
 type LightweightButton = InstanceType<typeof LightweightButton>;
 
 type LightweightButtonHandledProps = Subtract<

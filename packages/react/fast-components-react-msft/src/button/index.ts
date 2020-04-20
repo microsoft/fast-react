@@ -24,7 +24,7 @@ import buttonSchema2 from "./button.schema.2";
  * compiler infer the type instead of re-declaring just for the package export
  */
 const Button = manageJss()(
-    withCSSCustomProperties(...(buttonDependencies as any[]))(
+    withCSSCustomProperties(...buttonDependencies)(
         MergeManagedClasses(MSFTButton, ButtonStyles)
     )
 );
