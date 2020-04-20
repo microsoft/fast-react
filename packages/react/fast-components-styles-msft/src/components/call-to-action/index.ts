@@ -121,7 +121,7 @@ const styles: ComponentStyles<CallToActionClassNameContract, DesignSystem> = {
         ...highContrastForeground,
     },
     callToAction__primary: {
-        "& $button_contentRegion, $callToAction_glyph": {
+        "& $callToAction_glyph": {
             fill: accentForegroundCutCustomProperty,
             ...highContrastSelectedForeground,
         },
@@ -135,7 +135,7 @@ const styles: ComponentStyles<CallToActionClassNameContract, DesignSystem> = {
                 },
             },
         },
-        "a& $button_contentRegion, a& $callToAction_glyph, a&:hover $button_contentRegion, a&:hover $callToAction_glyph": {
+        "a& a& $callToAction_glyph, a&:hover a&:hover $callToAction_glyph": {
             ...highContrastLinkForeground,
         },
     },

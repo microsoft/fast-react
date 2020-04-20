@@ -45,11 +45,11 @@ body:not(:global(.js-focus-visible)) .callToAction:focus.callToAction .callToAct
     color: ButtonText !important;
   }
 }
-.callToAction__primary button_contentRegion, .callToAction__primary .callToAction_glyph {
+.callToAction__primary .callToAction_glyph {
   fill: var(--accent-foreground-cut);
 }
 @media (-ms-high-contrast:active) {
-  a.callToAction__primary button_contentRegion, a.callToAction__primary .callToAction_glyph, a.callToAction__primary:hover button_contentRegion, a.callToAction__primary:hover .callToAction_glyph {
+  a.callToAction__primary a.callToAction__primary .callToAction_glyph, a.callToAction__primary:hover a.callToAction__primary:hover .callToAction_glyph {
     fill: -ms-hotlight !important;
     color: -ms-hotlight !important;
   }
@@ -66,7 +66,7 @@ body:not(:global(.js-focus-visible)) .callToAction:focus.callToAction .callToAct
   }
 }
 @media (-ms-high-contrast:active) {
-  .callToAction__primary button_contentRegion, .callToAction__primary .callToAction_glyph {
+  .callToAction__primary .callToAction_glyph {
     fill: HighlightText !important;
     color: HighlightText !important;
   }
